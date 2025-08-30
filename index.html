@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+
         }
 
         :root {
@@ -27,7 +28,7 @@
             font-family: 'EB Garamond', 'Times New Roman', 'Georgia', serif;
             background-color: var(--primary-bg);
             color: var(--primary-text);
-            line-height: 1.6;
+            line-height: 1.2;
             overflow-x: hidden;
         }
     </style>
@@ -464,6 +465,7 @@
             },
             '.nav-container': {
                 maxWidth: '1200px',
+                maxHeight: '100px',
                 margin: '0 auto',
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -476,8 +478,8 @@
                 gap: '15px'
             },
             '.logo-icon': {
-                width: '120px',
-                height: '120px',
+                width: '180px',
+                height: '180px',
                 backgroundImage: 'url("main_srb_v16_lower_text_innershadow.png")',
                 backgroundSize: '100%',
                 backgroundRepeat: 'no-repeat',
@@ -859,31 +861,6 @@
             }
         };
 
-        // Animation Styles (simplified)
-        const animationStyles = {
-            '@keyframes fadeIn': {
-                'from': { 
-                    opacity: '0', 
-                    transform: 'translateY(20px)' 
-                },
-                'to': { 
-                    opacity: '1', 
-                    transform: 'translateY(0)' 
-                }
-            },
-            '.fade-in': {
-                animation: 'fadeIn 0.6s ease-in'
-            },
-            '.scroll-fade': {
-                opacity: '0',
-                transform: 'translateY(20px)',
-                transition: 'all 0.5s ease-out'
-            },
-            '.scroll-fade.visible': {
-                opacity: '1',
-                transform: 'translateY(0)'
-            }
-        };
 
         // Apply all styles
         function applyStyles(styleObj) {
