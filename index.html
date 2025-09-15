@@ -901,6 +901,20 @@
             }
         });
 
+        // SPECIFIC FIX FOR 430PX NAV-CONTAINER GAP
+        // Add specific breakpoint for 430px range
+        generateResponsiveStyles(sheet, 430, {
+            '.nav-container': {
+                padding: '0.6rem 1rem !important',
+                maxWidth: '1200px !important',
+                minHeight: '75px !important'
+            },
+            '.logo-icon': {
+                width: '130px !important',
+                height: '130px !important'
+            }
+        });
+
         // Comprehensive Mobile Responsive Styles
         
         // Extra Small Devices (320px - 480px)
