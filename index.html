@@ -96,7 +96,7 @@
     <!-- Hero Section -->
     <section id="hem" class="hero fade-in">
         <div class="hero-content">
-<h1><span class="title-part1">Svenska Reformations</span><span class="title-break"></span><span class="title-part2">bibeln</span></h1>
+            <h1><span class="title-part1">Svenska Reformations</span><span class="title-break"></span><span class="title-part2">bibeln</span></h1>
             <p class="hero-subtitle">En Bibel i Tiden</p>
             <p class="hero-description">
                 Reformationsbibeln är en modern svenska översättning baserad på Textus Receptus, 
@@ -558,31 +558,20 @@
 
         // Hero Section Styles
         const heroStyles = {
-
-'.hero h1 .title-break::before': {
-    content: '""'
-},
-'.hero h1 .title-part1, .hero h1 .title-part2': {
-    display: 'inline'
-},
-
-
             '.hero': {
                 background: 'linear-gradient(135deg, var(--primary-bg) 0%, #ede7d3 100%)',
                 padding: '3rem 2rem',
                 textAlign: 'center'
             },
             '.hero-content': {
-'.hero-content': {
-    maxWidth: '800px',
-    margin: '0 auto',
-    padding: '0 1rem',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center'
-}
+                maxWidth: '800px',
+                margin: '0 auto',
+                padding: '0 1rem',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textAlign: 'center'
             },
             '.hero h1': {
                 fontSize: 'clamp(3rem, 6vw, 3.5rem)',
@@ -597,6 +586,12 @@
                 maxWidth: '100%',
                 padding: '0 1rem',
                 display: 'block'
+            },
+            '.hero h1 .title-break::before': {
+                content: '""'
+            },
+            '.hero h1 .title-part1, .hero h1 .title-part2': {
+                display: 'inline'
             },
             '.hero-subtitle': {
                 fontSize: 'clamp(1.5rem, 3vw, 1.3rem)',
@@ -887,21 +882,23 @@
         applyStyles(quickAccessStyles);
         applyStyles(footerStyles);
 
+        // Title break for smaller screens
+        generateResponsiveStyles(sheet, 600, {
+            '.hero h1': {
+                lineHeight: '1.1'
+            },
+            '.hero h1 .title-break::before': {
+                content: '"\\A"',
+                whiteSpace: 'pre'
+            },
+            '.hero h1 .title-part2::before': {
+                content: '"-"'
+            }
+        });
+
         // Comprehensive Mobile Responsive Styles
         
         // Extra Small Devices (320px - 480px)
-
-
-        // Title break for smaller screens
-generateResponsiveStyles(sheet, 600, {
-    '.hero h1 .title-break::before': {
-        content: '"\\A"',
-        whiteSpace: 'pre'
-    },
-    '.hero h1 .title-part2::before': {
-        content: '"-"'
-    }
-});
         generateResponsiveStyles(sheet, 320, {
             '.nav-container': {
                 padding: '0.5rem 0.75rem',
@@ -1163,58 +1160,59 @@ generateResponsiveStyles(sheet, 600, {
             });
         }
 
-// Enhanced Sub-link expansion functionality with smooth animations
-document.addEventListener('click', (e) => {
-    const mainLink = e.target.closest('.main-link');
-    if (mainLink) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        const button = mainLink.querySelector('.expand-btn');
-        if (button) {
-            const targetId = button.getAttribute('data-target');
-            const subLinks = document.getElementById(targetId);
-            
-            if (subLinks) {
-                const isExpanded = subLinks.classList.contains('expanded');
+        // Enhanced Sub-link expansion functionality with smooth animations
+        document.addEventListener('click', (e) => {
+            const mainLink = e.target.closest('.main-link');
+            if (mainLink) {
+                e.preventDefault();
+                e.stopPropagation();
                 
-                // Close other expanded sections for better mobile UX
-                document.querySelectorAll('.sub-links.expanded').forEach(section => {
-                    if (section !== subLinks) {
-                        section.classList.remove('expanded');
-                        const otherButton = document.querySelector(`[data-target="${section.id}"]`);
-                        if (otherButton) otherButton.textContent = '+';
-                        // Smooth close animation
-                        section.style.maxHeight = '0px';
-                    }
-                });
-                
-                if (isExpanded) {
-                    subLinks.classList.remove('expanded');
-                    button.textContent = '+';
-                    subLinks.style.maxHeight = '0px';
-                } else {
-                    subLinks.classList.add('expanded');
-                    button.textContent = '−';
+                const button = mainLink.querySelector('.expand-btn');
+                if (button) {
+                    const targetId = button.getAttribute('data-target');
+                    const subLinks = document.getElementById(targetId);
                     
-                    // Calculate actual content height for smooth animation
-                    const scrollHeight = subLinks.scrollHeight;
-                    subLinks.style.maxHeight = scrollHeight + 'px';
-                    
-                    // Smooth scroll to expanded section on mobile
-                    if (window.innerWidth <= 768) {
-                        setTimeout(() => {
-                            mainLink.scrollIntoView({ 
-                                behavior: 'smooth', 
-                                block: 'nearest' 
-                            });
-                        }, 100);
+                    if (subLinks) {
+                        const isExpanded = subLinks.classList.contains('expanded');
+                        
+                        // Close other expanded sections for better mobile UX
+                        document.querySelectorAll('.sub-links.expanded').forEach(section => {
+                            if (section !== subLinks) {
+                                section.classList.remove('expanded');
+                                const otherButton = document.querySelector(`[data-target="${section.id}"]`);
+                                if (otherButton) otherButton.textContent = '+';
+                                // Smooth close animation
+                                section.style.maxHeight = '0px';
+                            }
+                        });
+                        
+                        if (isExpanded) {
+                            subLinks.classList.remove('expanded');
+                            button.textContent = '+';
+                            subLinks.style.maxHeight = '0px';
+                        } else {
+                            subLinks.classList.add('expanded');
+                            button.textContent = '−';
+                            
+                            // Calculate actual content height for smooth animation
+                            const scrollHeight = subLinks.scrollHeight;
+                            subLinks.style.maxHeight = scrollHeight + 'px';
+                            
+                            // Smooth scroll to expanded section on mobile
+                            if (window.innerWidth <= 768) {
+                                setTimeout(() => {
+                                    mainLink.scrollIntoView({ 
+                                        behavior: 'smooth', 
+                                        block: 'nearest' 
+                                    });
+                                }, 100);
+                            }
+                        }
                     }
                 }
             }
-        }
-    }
-});
+        });
+
         // Smooth scrolling for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
