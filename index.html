@@ -96,7 +96,7 @@
     <!-- Hero Section -->
     <section id="hem" class="hero fade-in">
         <div class="hero-content">
-            <h1>Svenska Reformationsbibeln</h1>
+<h1><span class="title-part1">Svenska Reformations</span><span class="title-break"></span><span class="title-part2">bibeln</span></h1>
             <p class="hero-subtitle">En Bibel i Tiden</p>
             <p class="hero-description">
                 Reformationsbibeln är en modern svenska översättning baserad på Textus Receptus, 
@@ -558,6 +558,15 @@
 
         // Hero Section Styles
         const heroStyles = {
+
+'.hero h1 .title-break::before': {
+    content: '""'
+},
+'.hero h1 .title-part1, .hero h1 .title-part2': {
+    display: 'inline'
+},
+
+
             '.hero': {
                 background: 'linear-gradient(135deg, var(--primary-bg) 0%, #ede7d3 100%)',
                 padding: '3rem 2rem',
@@ -881,6 +890,18 @@
         // Comprehensive Mobile Responsive Styles
         
         // Extra Small Devices (320px - 480px)
+
+
+        // Title break for smaller screens
+generateResponsiveStyles(sheet, 600, {
+    '.hero h1 .title-break::before': {
+        content: '"\\A"',
+        whiteSpace: 'pre'
+    },
+    '.hero h1 .title-part2::before': {
+        content: '"-"'
+    }
+});
         generateResponsiveStyles(sheet, 320, {
             '.nav-container': {
                 padding: '0.5rem 0.75rem',
