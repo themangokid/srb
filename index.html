@@ -752,12 +752,11 @@
             '.sub-links': {
                 maxHeight: '0',
                 overflow: 'hidden',
-                transition: 'max-height 0.4s ease-out',
+                transition: 'max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                 paddingLeft: '1rem',
                 borderLeft: '2px solid var(--border-color)'
             },
             '.sub-links.expanded': {
-                maxHeight: '500px',
                 paddingBottom: '0.5rem'
             },
             '.sub-links a': {
@@ -1143,52 +1142,58 @@
             });
         }
 
-        // Enhanced Sub-link expansion functionality with better mobile support
-        document.addEventListener('click', (e) => {
-            const mainLink = e.target.closest('.main-link');
-            if (mainLink) {
-                e.preventDefault();
-                e.stopPropagation();
+// Enhanced Sub-link expansion functionality with smooth animations
+document.addEventListener('click', (e) => {
+    const mainLink = e.target.closest('.main-link');
+    if (mainLink) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const button = mainLink.querySelector('.expand-btn');
+        if (button) {
+            const targetId = button.getAttribute('data-target');
+            const subLinks = document.getElementById(targetId);
+            
+            if (subLinks) {
+                const isExpanded = subLinks.classList.contains('expanded');
                 
-                const button = mainLink.querySelector('.expand-btn');
-                if (button) {
-                    const targetId = button.getAttribute('data-target');
-                    const subLinks = document.getElementById(targetId);
+                // Close other expanded sections for better mobile UX
+                document.querySelectorAll('.sub-links.expanded').forEach(section => {
+                    if (section !== subLinks) {
+                        section.classList.remove('expanded');
+                        const otherButton = document.querySelector(`[data-target="${section.id}"]`);
+                        if (otherButton) otherButton.textContent = '+';
+                        // Smooth close animation
+                        section.style.maxHeight = '0px';
+                    }
+                });
+                
+                if (isExpanded) {
+                    subLinks.classList.remove('expanded');
+                    button.textContent = '+';
+                    subLinks.style.maxHeight = '0px';
+                } else {
+                    subLinks.classList.add('expanded');
+                    button.textContent = '−';
                     
-                    if (subLinks) {
-                        const isExpanded = subLinks.classList.contains('expanded');
-                        
-                        // Close other expanded sections for better mobile UX
-                        document.querySelectorAll('.sub-links.expanded').forEach(section => {
-                            if (section !== subLinks) {
-                                section.classList.remove('expanded');
-                                const otherButton = document.querySelector(`[data-target="${section.id}"]`);
-                                if (otherButton) otherButton.textContent = '+';
-                            }
-                        });
-                        
-                        if (isExpanded) {
-                            subLinks.classList.remove('expanded');
-                            button.textContent = '+';
-                        } else {
-                            subLinks.classList.add('expanded');
-                            button.textContent = '−';
-                            
-                            // Smooth scroll to expanded section on mobile
-                            if (window.innerWidth <= 768) {
-                                setTimeout(() => {
-                                    mainLink.scrollIntoView({ 
-                                        behavior: 'smooth', 
-                                        block: 'nearest' 
-                                    });
-                                }, 100);
-                            }
-                        }
+                    // Calculate actual content height for smooth animation
+                    const scrollHeight = subLinks.scrollHeight;
+                    subLinks.style.maxHeight = scrollHeight + 'px';
+                    
+                    // Smooth scroll to expanded section on mobile
+                    if (window.innerWidth <= 768) {
+                        setTimeout(() => {
+                            mainLink.scrollIntoView({ 
+                                behavior: 'smooth', 
+                                block: 'nearest' 
+                            });
+                        }, 100);
                     }
                 }
             }
-        });
-
+        }
+    }
+});
         // Smooth scrolling for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
