@@ -137,7 +137,7 @@
         }
 
         .question-text {
-            font-size: 1.1rem;
+            font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 0.8rem;
             padding-right: 2rem;
@@ -168,15 +168,26 @@
         }
 
         .answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
+            font-size: 1.5rem;
+            display: none;
             background: white;
             border-top: 2px solid var(--border-color);
         }
 
         .qa-item.expanded .answer {
-            max-height: 1000px;
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .answer-content {
@@ -186,6 +197,10 @@
 
         .answer-content p {
             margin-bottom: 1rem;
+        }
+
+        .answer-content p:last-child {
+            margin-bottom: 0;
         }
 
         .no-data {
