@@ -499,8 +499,8 @@
                 gap: '15px'
             },
             '.logo-icon': {
-                width: '250px',
-                height: '250px',
+                width: '230px',
+                height: '230px',
                 backgroundImage: 'url("main_srb_v16_lower_text_innershadow.png")',
                 backgroundSize: '100%',
                 backgroundRepeat: 'no-repeat',
@@ -564,17 +564,30 @@
                 textAlign: 'center'
             },
             '.hero-content': {
-                maxWidth: '500px',
-                margin: '0 auto'
+'.hero-content': {
+    maxWidth: '800px',
+    margin: '0 auto',
+    padding: '0 1rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center'
+}
             },
             '.hero h1': {
-                fontSize: 'clamp(4rem, 6vw, 3.5rem)',
+                fontSize: 'clamp(3rem, 6vw, 3.5rem)',
                 fontWeight: '700',
                 color: 'var(--primary-text)',
-                marginBottom: '1rem',
+                margin: '0 auto 1rem auto',
                 letterSpacing: '2px',
                 textShadow: '2px 2px 4px var(--shadow-color)',
-                lineHeight: '1.2'
+                lineHeight: '1.2',
+                textAlign: 'center',
+                width: '100%',
+                maxWidth: '100%',
+                padding: '0 1rem',
+                display: 'block'
             },
             '.hero-subtitle': {
                 fontSize: 'clamp(1.5rem, 3vw, 1.3rem)',
