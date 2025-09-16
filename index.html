@@ -81,6 +81,46 @@
         background-image: none !important;
     }
 }
+
+@media (max-width: 430px) {
+    .main-content {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: none !important;
+        
+    }
+
+        .flag-section {
+        padding: 1rem 0.5rem !important;
+        margin: 1rem 0 !important;
+    }
+    
+    .flag-image {
+        width: 60% !important;  /* Reduced from 90% */
+        max-width: 200px !important;  /* Reduced from 300px */
+        height: auto !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
+    
+    .nav-grid {
+        padding: 0 0.5rem !important;
+        gap: 0.8rem !important;
+        grid-template-columns: 1fr !important;
+    }
+    
+    .nav-card {
+        padding: 1rem !important;
+        margin: 0 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+    
+    .quick-access {
+        margin: 1rem 0.5rem !important;
+        padding: 1rem !important;
+    }
+}
     </style>
 </head>
 <body>
@@ -435,9 +475,9 @@
                 </div>
             </div>
         </section>
-                <div class="hero" style="display:flex; justify-content:center;">
-                <img src="dragen_ut_får_svensk_flagg_01.png" width="65%" >
-                </div>
+            <div class="hero flag-section">
+                <img src="dragen_ut_får_svensk_flagg_01.png" class="flag-image">
+            </div>
     </main>
 
     <!-- Footer -->
@@ -917,94 +957,89 @@
 
         // Comprehensive Mobile Responsive Styles
         
-        // Extra Small Devices (320px - 480px)
-        generateResponsiveStyles(sheet, 320, {
-            '.nav-container': {
-                padding: '0.5rem 0.75rem',
-                minHeight: '60px'
-            },
-            '.logo-icon': {
-                width: '120px',
-                height: '120px'
-            },
-            '.hamburger': {
-                display: 'flex',
-                padding: '12px'
-            },
-            '.hamburger span': {
-                width: '24px',
-                height: '3px'
-            },
-            '.nav-menu': {
-                position: 'fixed',
-                left: '-100%',
-                top: '60px',
-                flexDirection: 'column',
-                backgroundColor: 'var(--primary-bg)',
-                width: '100%',
-                textAlign: 'center',
-                transition: 'left 0.3s ease',
-                boxShadow: '0 4px 10px var(--shadow-color)',
-                padding: '1rem',
-                gap: '0.5rem',
-                zIndex: '999',
-                maxHeight: 'calc(100vh - 60px)',
-                overflowY: 'auto'
-            },
-            '.nav-menu.active': {
-                left: '0'
-            },
-            '.nav-menu li': {
-                width: '100%'
-            },
-            '.nav-menu a': {
-                fontSize: '1.1rem',
-                padding: '12px 16px',
-                marginBottom: '0.25rem',
-                minHeight: '48px',
-                width: '100%',
-                borderRadius: '6px'
-            },
-            '.hero': {
-                padding: '1rem 0.75rem'
-            },
-            '.main-content': {
-                padding: '1.5rem 0.75rem'
-            },
-            '.nav-grid': {
-                gap: '1rem'
-            },
-            '.nav-card': {
-                padding: '1rem'
-            },
-            '.main-link': {
-                padding: '1.1rem',
-                minHeight: '56px',
-                gap: '0.5rem'
-            },
-            '.expand-btn': {
-                minWidth: '44px',
-                minHeight: '44px',
-                fontSize: '1.1rem'
-            },
-            '.quick-access': {
-                padding: '1.5rem 0.75rem',
-                margin: '1.5rem 0'
-            },
-            '.quick-buttons': {
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '0.75rem'
-            },
-            '.quick-btn': {
-                width: '100%',
-                maxWidth: '280px',
-                padding: '0.8rem 1rem'
-            },
-            '.footer': {
-                padding: '2rem 0.75rem'
-            }
-        });
+// Replace the 320px responsive section with this:
+generateResponsiveStyles(sheet, 320, {
+    '.nav-container': {
+        padding: '0.5rem 0.75rem',
+        minHeight: '60px'
+    },
+    '.logo-icon': {
+        width: '120px',
+        height: '120px'
+    },
+    '.hamburger': {
+        display: 'flex',
+        padding: '12px'
+    },
+    '.hamburger span': {
+        width: '24px',
+        height: '3px'
+    },
+    '.nav-menu': {
+        position: 'fixed',
+        left: '-100%',
+        top: '60px',
+        flexDirection: 'column',
+        backgroundColor: 'var(--primary-bg)',
+        width: '100%',
+        textAlign: 'center',
+        transition: 'left 0.3s ease',
+        boxShadow: '0 4px 10px var(--shadow-color)',
+        padding: '1rem',
+        gap: '0.5rem',
+        zIndex: '999',
+        maxHeight: 'calc(100vh - 60px)',
+        overflowY: 'auto'
+    },
+    '.nav-menu.active': {
+        left: '0'
+    },
+    '.nav-menu li': {
+        width: '100%'
+    },
+    '.nav-menu a': {
+        fontSize: '1.1rem',
+        padding: '12px 16px',
+        marginBottom: '0.25rem',
+        minHeight: '48px',
+        width: '100%',
+        borderRadius: '6px'
+    },
+    '.hero': {
+        padding: '1rem 0.75rem'
+    },
+    '.main-content': {
+        padding: '0 !important',
+        margin: '0 !important',
+        maxWidth: 'none !important'
+    },
+    '.nav-grid': {
+        gap: '1rem',
+        padding: '0 1rem',
+        gridTemplateColumns: '1fr !important'
+    },
+    '.nav-card': {
+        padding: '1.5rem !important',
+        margin: '0 !important'
+    },
+    '.quick-access': {
+        padding: '1.5rem 1rem',
+        margin: '1.5rem 1rem'
+    },
+    '.quick-buttons': {
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '0.75rem'
+    },
+    '.quick-btn': {
+        width: '100%',
+        maxWidth: '280px',
+        padding: '0.8rem 1rem'
+    },
+    '.footer': {
+        padding: '2rem 0.75rem'
+    }
+});
 
         // Small Devices (481px - 768px)
         generateResponsiveStyles(sheet, 768, {
