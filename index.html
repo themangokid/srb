@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
     <title>Svenska Reformationsbibeln - En Bibel i Tiden</title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -38,6 +43,19 @@
 
         /* Enhanced Mobile Touch Targets */
         @media (max-width: 768px) {
+            .flag-section {
+        padding: 1rem 0.5rem !important;
+        margin: 1.5rem 0 !important;
+        background: none !important;
+    }
+    
+    .flag-image {
+        width: 55% !important;
+        max-width: 250px !important;
+        height: auto !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
             body {
                 font-size: 16px;
                 line-height: 1.4;
@@ -121,6 +139,53 @@
         padding: 1rem !important;
     }
 }
+/* Tablet landscape and small desktop */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .flag-section {
+        padding: 2rem 1rem !important;
+        margin: 2rem 0 !important;
+    }
+    
+    .flag-image {
+        width: 45% !important;
+        max-width: 400px !important;
+        height: auto !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
+}
+
+/* Medium desktop */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .flag-section {
+        padding: 2.5rem 1.5rem !important;
+        margin: 2.5rem 0 !important;
+    }
+    
+    .flag-image {
+        width: 40% !important;
+        max-width: 500px !important;
+        height: auto !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
+}
+
+/* Large desktop and beyond */
+@media (min-width: 1441px) {
+    .flag-section {
+        padding: 3rem 2rem !important;
+        margin: 3rem 0 !important;
+    }
+    
+    .flag-image {
+        width: 35% !important;
+        max-width: 600px !important;
+        height: auto !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
+}
     </style>
 </head>
 <body>
@@ -152,7 +217,7 @@
             <p class="hero-subtitle">En Bibel i Tiden</p>
             <div class="hero-description">
                 Reformationsbibeln är en modern svensk översättning baserad på Textus Receptus.
-            Nuvarande prognos är att kunna skicka hela Bibelns <b>text till tryckning i början av 2026</b>. Förbön och ekonomiskt stöd är mycket angeläget. Ny PDF-fil av <b>GT är publicerad 8 september 2025</b>.
+            Nuvarande prognos är att kunna skicka hela  <b> Bibelns text till tryckning i början av 2026</b>. <b> Förbön och ekonomiskt stöd är mycket angeläget</b>. Ny PDF-fil av <b>GT är publicerad 8 september 2025</b>.
             </div>
     </section>
     </div>
@@ -293,16 +358,14 @@
                     <div class="card-icon">❓</div>
                     <h3 class="card-title">Frågor och Svar</h3>
                     <div class="card-links">
-
-
+                    
                         <div class="main-link">
-                            <span>Alla frågor & svar</span>
-                            <button class="expand-btn" data-target="grundtext-sub">+</button>
+                            <span>Frågor & svar</span>
+                            <button class="expand-btn" data-target="qna-sub">+</button>
                         </div>
                         <div class="sub-links" id="qna-sub">
-                            <a href="QnA.html"target="_blank">Frågor & Svar</a>
+                            <a href="QnA.html" target="_blank">Frågor & Svar</a>
                         </div>
-
 
                         <div class="main-link">
                             <span>SRB:s Bibelsyn</span>
@@ -1140,6 +1203,8 @@ generateResponsiveStyles(sheet, 320, {
             '.hero': {
                 padding: '4rem 2.5rem'
             }
+
+            
         });
 
         // Extra Large Devices (1441px+)
