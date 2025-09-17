@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="styles.css">
     <title>Svenska Reformationsbibeln - En Bibel i Tiden</title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Add Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -54,16 +59,19 @@
             <h2 class="section-title">Snabbåtkomst</h2>
             <div class="quick-buttons">
                 <a href="https://bibelonline.se/biblereader.php" target="_blank" class="quick-btn">
-                    📖 Läs Online
+                    <i class="fas fa-book-open"></i> Läs Online
                 </a>
                 <a href="https://bibel.se/wordpress/index.php/2022/01/22/bestalla-reformationsbibeln/" target="_blank" class="quick-btn">
-                    🛒 Beställ Bibel
+                    <i class="fas fa-shopping-cart"></i> Beställ Bibel
                 </a>
                 <a href="https://bibel.se/wordpress/index.php/2022/01/18/oversatta-bibelbocker/" target="_blank" class="quick-btn">
-                    💾 Bibeln som PDF 
+                    <i class="fas fa-file-pdf"></i> Bibeln som PDF 
                 </a>
             </div>
         </section>
+
+        <!-- SheepAndFlag logo-->
+        <img src="img/dragen_ut_får_svensk_flagg_01.png" class="flag-image" alt="Swedish Flag">
 
         <!-- Navigation Grid -->
         <section id="resurser" class="section scroll-fade">
@@ -72,7 +80,7 @@
                 
                 <!-- Bible Reading Section -->
                 <div id="bibeln" class="nav-card">
-                    <div class="card-icon">📚</div>
+                    <div class="card-icon"><i class="fas fa-bible"></i></div>
                     <h3 class="card-title">Bibeltexten</h3>
                     <div class="card-links">
                         <div class="main-link">
@@ -109,7 +117,7 @@
 
                 <!-- Media and Resources -->
                 <div class="nav-card">
-                    <div class="card-icon">🎥</div>
+                    <div class="card-icon"><i class="fas fa-video"></i></div>
                     <h3 class="card-title">Videoserie & YouTube</h3>
                     <div class="card-links">
 
@@ -151,12 +159,9 @@
                     </div>
                 </div>
 
-
-                
-
                 <!-- Bible Translations Section -->
                 <div class="nav-card">
-                    <div class="card-icon">🔄</div>
+                    <div class="card-icon"><i class="fas fa-exchange-alt"></i></div>
                     <h3 class="card-title">Bibelöversättningar</h3>
                     <div class="card-links">
                         <div class="main-link">
@@ -192,7 +197,7 @@
 
                 <!-- Bible Study Tools -->
                 <div class="nav-card">
-                    <div class="card-icon">🔍</div>
+                    <div class="card-icon"><i class="fas fa-search"></i></div>
                     <h3 class="card-title">Studieverktyg</h3>
                     <div class="card-links">
                         <div class="main-link">
@@ -226,7 +231,7 @@
 
                 <!-- Questions and Answers -->
                 <div class="nav-card">
-                    <div class="card-icon">❓</div>
+                    <div class="card-icon"><i class="fas fa-question-circle"></i></div>
                     <h3 class="card-title">Frågor och Svar</h3>
                     <div class="card-links">
                     
@@ -266,7 +271,7 @@
 
                 <!-- Articles and Teaching -->
                 <div class="nav-card">
-                    <div class="card-icon">📝</div>
+                    <div class="card-icon"><i class="fas fa-file-alt"></i></div>
                     <h3 class="card-title">Artiklar och Undervisning</h3>
                     <div class="card-links">
                         <div class="main-link">
@@ -311,11 +316,9 @@
                     </div>
                 </div>
 
-              
-
                 <!-- About and Contact -->
                 <div id="om-oss" class="nav-card">
-                    <div class="card-icon">ℹ️</div>
+                    <div class="card-icon"><i class="fas fa-info-circle"></i></div>
                     <h3 class="card-title">Om Oss och Kontakt</h3>
                     <div class="card-links">
                         <div class="main-link">
@@ -346,9 +349,6 @@
                 </div>
             </div>
         </section>
-        
-        <div class="hero flag-section">
-            <img src="img/dragen_ut_får_svensk_flagg_01.png" class="flag-image" alt="Swedish Flag">
         </div>
     </main>
 
@@ -359,8 +359,6 @@
             <p>© 2025 Svenska Reformationsbibelsällskapet</p>
             <p>En moderniserad version av Karl XII:s Bibel från 1703, baserad på Textus Receptus</p>
             <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(244, 240, 224, 0.3);">
-                <h4 style="margin-bottom: 1rem;">Kontaktinformation</h4>
-                <p>För frågor om Reformationsbibeln, besök vår huvudwebbplats på <a href="https://bibel.se/" target="_blank" style="color: #d4af37;">bibel.se</a></p>
             </div>
         </div>
     </footer>

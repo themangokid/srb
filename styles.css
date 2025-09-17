@@ -977,3 +977,17 @@ body {
     }
 }
 
+        /* Additional styles for Font Awesome icons */
+        .card-icon {
+            font-size: 1.8rem;
+            color: #9b7a0e; /* Gold color */
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+        
+        /* Quick buttons icons */
+        .quick-btn i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
