@@ -40,6 +40,7 @@ body {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     font-size: 14px;
+
 }
 
 
@@ -56,6 +57,10 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
+
+
+
+
 }
 
 .nav-container {
@@ -141,6 +146,11 @@ body {
     background: linear-gradient(135deg, var(--primary-bg) 0%, #ede7d3 100%);
     padding: 1rem 1rem;
     text-align: center;
+
+background-size: 5px px;
+background-image: repeating-linear-gradient(45deg, #ffc8002f 0, #ffc80085 0.4pxrgba(250, 248, 240, 0.575)f0 0, #faf8f075 50%);
+
+
 }
 
 .hero-content {
@@ -215,6 +225,7 @@ body {
     text-align: center;
     margin-bottom: 1.5rem;
     position: relative;
+   
 }
 
 .section-title::after {
@@ -256,6 +267,8 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 6px 25px var(--shadow-color);
     border-color: var(--border-color);
+
+
 }
 
 .card-icon {
@@ -330,7 +343,7 @@ body {
 }
 
 .expand-btn {
-    background: var(--accent-color);
+    background-color:#66360054;
     color: white;
     border: none;
     padding: 0.8rem 1rem;
@@ -415,6 +428,8 @@ body {
     text-align: center;
     margin: 3rem 0;
     box-shadow: 0 6px 25px var(--shadow-color);
+    background-size: 5px px;
+    background-image: repeating-linear-gradient(45deg, #ffc8002f 0, #ffc80085 0.4pxrgba(250, 248, 240, 0.575)f0 0, #faf8f075 50%);
 }
 
 .quick-buttons {
@@ -991,3 +1006,4 @@ body {
             margin-right: 0.5rem;
             font-size: 1.2rem;
         }
+        
