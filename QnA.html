@@ -380,7 +380,7 @@
         // Auto-load if there's a data file
         window.addEventListener('load', function() {
             // Try to load from common filenames
-            const commonFiles = ['bibel_qa_data.json', 'qa_data.json', 'data.json'];
+            const commonFiles = ['scrape/bibel_qa_data.json', 'scrape/qa_data.json', 'scrape/data.json'];
             
             for (const filename of commonFiles) {
                 fetch(filename)
