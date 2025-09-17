@@ -30,8 +30,9 @@ p {
     --card-bg: #faf8f0;
 }
 
+
 body {
-    font-family: 'EB Garamond', 'Times New Roman', 'Georgia', serif;
+    font-family: 'EB Garamond', Garamond, serif !important;
     background-color: var(--primary-bg);
     color: var(--primary-text);
     line-height: 1.2;
@@ -40,6 +41,9 @@ body {
     -ms-text-size-adjust: 100%;
     font-size: 14px;
 }
+
+
+
 
 /* ═══════════════════════════════════════════════════════════
    HEADER & NAVIGATION
@@ -423,7 +427,7 @@ body {
 
 .quick-btn {
     background: var(--gradient-gold);
-    color: white;
+    color: rgb(43, 29, 0);
     text-decoration: none;
     padding: 1rem 1.5rem;
     border-radius: 25px;
@@ -972,3 +976,4 @@ body {
         min-width: 40px;
     }
 }
+
