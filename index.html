@@ -16,9 +16,504 @@
         rel="stylesheet">
     <!-- Add Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
+    
+<!-- Add this CSS to your existing style.css file -->
+<style>
+/* Spotlight Search Styles - Add to your style.css */
+.overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
 
-    </style>
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-box {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-30px);
+    width: 90%;
+    max-width: 720px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.overlay.active .search-box {
+    transform: translateX(-50%) translateY(0);
+}
+
+.search-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--primary-bg);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-icon {
+    color: var(--accent-color);
+    font-size: 1.4rem;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1.3rem;
+    font-family: inherit;
+    color: var(--primary-text);
+    padding: 0.5rem 0;
+    font-weight: 500;
+}
+
+.search-input::placeholder {
+    color: rgba(74, 52, 38, 0.6);
+}
+
+.close-hint {
+    color: rgba(74, 52, 38, 0.5);
+    font-size: 0.9rem;
+    font-family: monospace;
+    background: rgba(74, 52, 38, 0.1);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+}
+
+.search-results {
+    max-height: 65vh;
+    overflow-y: auto;
+    background: var(--card-bg);
+}
+
+.result-item {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid rgba(212, 197, 169, 0.3);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.result-item:hover,
+.result-item.selected {
+    background: rgba(139, 105, 20, 0.08);
+    border-left: 4px solid var(--accent-color);
+    padding-left: calc(1.5rem - 4px);
+}
+
+.verse-reference {
+    font-weight: 600;
+    color: var(--accent-color);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+}
+
+.verse-text {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--primary-text);
+}
+
+.verse-text mark {
+    background: rgba(139, 105, 20, 0.3);
+    padding: 0.1em 0.2em;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.empty-state {
+    padding: 4rem 2rem;
+    text-align: center;
+    color: rgba(74, 52, 38, 0.6);
+}
+
+.empty-state i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--gradient-gold);
+    color: #2b1d00;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+    z-index: 10001;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+    .search-box { width: 95%; top: 8%; }
+    .search-header { padding: 1.2rem; }
+    .search-input { font-size: 1.1rem; }
+    .notification { right: 10px; left: 10px; transform: translateY(-100px); }
+    .notification.show { transform: translateY(0); }
+}
+</style>
+
+<!-- Add this HTML anywhere on your page -->
+<div class="overlay" id="searchOverlay">
+    <div class="search-box">
+        <div class="search-header">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" id="searchInput" 
+                   placeholder="Sök i Svenska Reformationsbibeln..." 
+                   autocomplete="off" spellcheck="false">
+            <span class="close-hint">ESC</span>
+        </div>
+        <div class="search-results" id="searchResults">
+            <div class="empty-state">
+                <i class="fas fa-bible"></i>
+                <p>Börja skriva för att söka...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add this JavaScript at the end of your page -->
+<script>
+class SRB16Search {
+    constructor() {
+        this.overlay = document.getElementById('searchOverlay');
+        this.input = document.getElementById('searchInput');
+        this.results = document.getElementById('searchResults');
+        this.selectedIndex = -1;
+        this.currentResults = [];
+        this.bibleData = null;
+        this.searchIndex = [];
+        
+        this.init();
+    }
+
+    async init() {
+        await this.loadBibleData();
+        this.buildSearchIndex();
+        this.setupEventListeners();
+    }
+
+    async loadBibleData() {
+        const cacheKey = 'srb16_bible_data';
+        const cacheVersionKey = 'srb16_bible_version';
+        const currentVersion = '1.0'; // Increment this when you update the JSON file
+        
+        try {
+            // Check if we have cached data and it's the right version
+            const cachedVersion = localStorage.getItem(cacheVersionKey);
+            const cachedData = localStorage.getItem(cacheKey);
+            
+            if (cachedData && cachedVersion === currentVersion) {
+                console.log('Loading Bible data from cache...');
+                this.bibleData = JSON.parse(cachedData);
+                return;
+            }
+            
+            // Fetch fresh data
+            console.log('Fetching Bible data from server...');
+            const response = await fetch('srb16_new_testament.json');
+            this.bibleData = await response.json();
+            
+            // Cache the data
+            try {
+                localStorage.setItem(cacheKey, JSON.stringify(this.bibleData));
+                localStorage.setItem(cacheVersionKey, currentVersion);
+                console.log('Bible data cached successfully');
+            } catch (cacheError) {
+                console.warn('Could not cache Bible data (storage full?):', cacheError);
+            }
+            
+        } catch (error) {
+            console.error('Failed to load Bible data:', error);
+            // Try to fall back to cached data even if version is old
+            const cachedData = localStorage.getItem(cacheKey);
+            if (cachedData) {
+                console.log('Using old cached data as fallback...');
+                this.bibleData = JSON.parse(cachedData);
+            }
+        }
+    }
+
+    buildSearchIndex() {
+        if (!this.bibleData?.books) return;
+        
+        this.searchIndex = [];
+        Object.entries(this.bibleData.books).forEach(([bookCode, book]) => {
+            Object.entries(book.chapters).forEach(([chapterNum, verses]) => {
+                Object.entries(verses).forEach(([verseNum, text]) => {
+                    this.searchIndex.push({
+                        reference: `${book.name} ${chapterNum}:${verseNum}`,
+                        book: book.name,
+                        bookCode: bookCode,
+                        chapter: parseInt(chapterNum),
+                        verse: parseInt(verseNum),
+                        text: text,
+                        keywords: this.extractKeywords(text),
+                        searchText: `${book.name} ${text}`.toLowerCase()
+                    });
+                });
+            });
+        });
+    }
+
+    extractKeywords(text) {
+        return text.toLowerCase()
+            .replace(/[^\w\såäö]/g, ' ')
+            .split(/\s+/)
+            .filter(word => word.length >= 3)
+            .filter(word => !['och', 'att', 'det', 'som', 'för', 'med', 'till', 'han', 'hon', 'den', 'dem', 'var', 'har', 'inte', 'från', 'när', 'alla'].includes(word));
+    }
+
+    setupEventListeners() {
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                this.open();
+            }
+            if (e.key === 'Escape' && this.isOpen()) {
+                this.close();
+            }
+            if (this.isOpen()) {
+                this.handleNavigation(e);
+            }
+        });
+
+        this.input.addEventListener('input', () => {
+            setTimeout(() => this.search(this.input.value), 200);
+        });
+
+        this.overlay.addEventListener('click', (e) => {
+            if (e.target === this.overlay) this.close();
+        });
+    }
+
+    open() {
+        this.overlay.classList.add('active');
+        this.input.value = '';
+        document.body.style.overflow = 'hidden';
+        
+        // Focus after the CSS transition completes (300ms)
+        setTimeout(() => {
+            this.input.focus();
+        }, 100);
+    }
+
+    close() {
+        this.overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    isOpen() {
+        return this.overlay.classList.contains('active');
+    }
+
+    search(query) {
+        if (!query.trim()) {
+            this.results.innerHTML = '<div class="empty-state"><i class="fas fa-bible"></i><p>Börja skriva för att söka...</p></div>';
+            return;
+        }
+
+        const results = this.performSearch(query);
+        this.displayResults(results);
+    }
+
+    performSearch(query) {
+        const searchTerms = query.toLowerCase().split(/\s+/);
+        const results = [];
+
+        this.searchIndex.forEach(verse => {
+            let score = 0;
+
+            // Check for Bible reference match
+            const refScore = this.matchReference(query.toLowerCase(), verse);
+            if (refScore > 0) score += refScore;
+
+            // Check for keyword matches
+            searchTerms.forEach(term => {
+                if (term.length < 3) return;
+                verse.keywords.forEach(keyword => {
+                    if (keyword.includes(term) || term.includes(keyword)) {
+                        score += keyword === term ? 10 : 5;
+                    }
+                });
+            });
+
+            // Check for text content matches
+            searchTerms.forEach(term => {
+                if (term.length >= 3) {
+                    const matches = (verse.text.toLowerCase().match(new RegExp(term, 'g')) || []).length;
+                    score += matches * 3;
+                }
+            });
+
+            if (score > 0) {
+                results.push({
+                    ...verse,
+                    score,
+                    highlighted: this.highlightMatches(verse.text, searchTerms)
+                });
+            }
+        });
+
+        return results.sort((a, b) => b.score - a.score).slice(0, 8);
+    }
+
+    matchReference(query, verse) {
+        const cleanQuery = query.replace(/\s+/g, '');
+        const shortcuts = {
+            'matt': 'matteus', 'joh': 'johannes', 'rom': 'romarbrevet',
+            '1kor': 'förstakorintierbrevet', '2kor': 'andrakorintierbrevet'
+        };
+
+        const bookName = verse.book.toLowerCase().replace(/\s+/g, '');
+        const fullRef = `${bookName}${verse.chapter}:${verse.verse}`;
+        
+        if (cleanQuery === fullRef) return 100;
+
+        for (const [shortcut, fullName] of Object.entries(shortcuts)) {
+            if (bookName.includes(fullName)) {
+                const shortRef = `${shortcut}${verse.chapter}:${verse.verse}`;
+                if (cleanQuery === shortRef) return 95;
+            }
+        }
+        return 0;
+    }
+
+    highlightMatches(text, searchTerms) {
+        let highlighted = text;
+        searchTerms.forEach(term => {
+            if (term.length >= 3) {
+                highlighted = highlighted.replace(new RegExp(`(${term})`, 'gi'), '<mark>$1</mark>');
+            }
+        });
+        return highlighted;
+    }
+
+    displayResults(results) {
+        this.currentResults = results;
+        this.selectedIndex = -1;
+
+        if (results.length === 0) {
+            this.results.innerHTML = '<div class="empty-state"><i class="fas fa-search"></i><p>Inga resultat hittades</p></div>';
+            return;
+        }
+
+        const html = results.map((result, index) => `
+            <div class="result-item" data-index="${index}">
+                <div class="verse-reference">
+                    <i class="fas fa-bookmark"></i>
+                    ${result.reference}
+                </div>
+                <div class="verse-text">${result.highlighted}</div>
+            </div>
+        `).join('');
+
+        this.results.innerHTML = html;
+
+        this.results.querySelectorAll('.result-item').forEach((item, index) => {
+            item.addEventListener('click', () => this.selectResult(index));
+        });
+    }
+
+    handleNavigation(e) {
+        const resultItems = this.results.querySelectorAll('.result-item');
+        
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            this.selectedIndex = Math.min(this.selectedIndex + 1, resultItems.length - 1);
+            this.updateSelection();
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            this.selectedIndex = Math.max(this.selectedIndex - 1, -1);
+            this.updateSelection();
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            if (this.selectedIndex >= 0) {
+                this.selectResult(this.selectedIndex);
+            }
+        }
+    }
+
+    updateSelection() {
+        const resultItems = this.results.querySelectorAll('.result-item');
+        resultItems.forEach((item, index) => {
+            item.classList.toggle('selected', index === this.selectedIndex);
+        });
+        if (this.selectedIndex >= 0) {
+            resultItems[this.selectedIndex].scrollIntoView({ block: 'nearest' });
+        }
+    }
+
+    selectResult(index) {
+        const result = this.currentResults[index];
+        if (result) {
+            const textToCopy = `${result.reference}\n"${result.text}"`;
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(textToCopy);
+            } else {
+                const textArea = document.createElement('textarea');
+                textArea.value = textToCopy;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+            }
+            
+            this.showNotification('Bibelversen kopierad!');
+            this.close();
+        }
+    }
+
+    showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerHTML = `<i class="fas fa-check"></i> ${message}`;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => notification.classList.add('show'), 100);
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => document.body.removeChild(notification), 300);
+        }, 3000);
+    }
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    new SRB16Search();
+});
+</script>
+
+
+
 </head>
 
 <body>
@@ -567,5 +1062,4 @@
         }, false);
     </script>
 </body>
-
 </html>
