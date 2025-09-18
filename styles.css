@@ -266,7 +266,7 @@ background-image: repeating-linear-gradient(45deg, #ffc8002f 0, #ffc80085 0.4pxr
 .nav-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 25px var(--shadow-color);
-    border-color: var(--border-color);
+    border-color: #b18d22dc;
 
 
 }
