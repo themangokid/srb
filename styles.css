@@ -453,6 +453,7 @@ background-image: repeating-linear-gradient(45deg, #ffc8002f 0, #ffc80085 0.4pxr
 }
 
 .quick-btn {
+    cursor: pointer;              
     background: var(--gradient-gold);
     color: rgb(43, 29, 0);
     text-decoration: none;
@@ -1019,3 +1020,296 @@ background-image: repeating-linear-gradient(45deg, #ffc8002f 0, #ffc80085 0.4pxr
             font-size: 1.2rem;
         }
         
+
+
+/* Searchbar*/
+
+/* Search Button Styles */
+.search-btn {
+    border: none !important;
+    cursor: pointer;
+    text-decoration: none;
+    background: inherit;
+    color: inherit;
+    font-family: inherit;
+    font-size: 1.6rem;
+    font-weight: inherit;
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Website Search Styles - Enlarged */
+.overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-box {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-30px);
+    width: 95%;
+    max-width: 900px;
+    background: var(--card-bg);
+    border-radius: 24px;
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.overlay.active .search-box {
+    transform: translateX(-50%) translateY(0);
+}
+
+.search-header {
+    padding: 2rem 2.5rem;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--primary-bg);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.search-icon {
+    color: var(--accent-color);
+    font-size: 1.8rem;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1.6rem;
+    font-family: inherit;
+    color: var(--primary-text);
+    padding: 0.75rem 0;
+    font-weight: 500;
+}
+
+.search-input::placeholder {
+    color: rgba(74, 52, 38, 0.6);
+}
+
+.close-hint {
+    color: rgba(74, 52, 38, 0.5);
+    font-size: 1rem;
+    font-family: monospace;
+    background: rgba(74, 52, 38, 0.1);
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+}
+
+.search-results {
+    max-height: 70vh;
+    overflow-y: auto;
+    background: var(--card-bg);
+}
+
+.result-item {
+    padding: 1.8rem 2.5rem;
+    border-bottom: 1px solid rgba(212, 197, 169, 0.3);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.result-item:hover,
+.result-item.selected {
+    background: rgba(139, 105, 20, 0.08);
+    border-left: 6px solid var(--accent-color);
+    padding-left: calc(2.5rem - 6px);
+}
+
+.result-title {
+    font-weight: 600;
+    color: var(--accent-color);
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.result-description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--primary-text);
+    margin-bottom: 0.6rem;
+}
+
+.result-url {
+    font-size: 1rem;
+    color: rgba(74, 52, 38, 0.7);
+    font-family: monospace;
+}
+
+.result-description mark,
+.result-title mark {
+    background: rgba(139, 105, 20, 0.3);
+    padding: 0.1em 0.2em;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.empty-state {
+    padding: 5rem 3rem;
+    text-align: center;
+    color: rgba(74, 52, 38, 0.6);
+}
+
+.empty-state i {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+}
+
+.empty-state p {
+    font-size: 1.3rem;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--gradient-gold);
+    color: #2b1d00;
+    padding: 1.2rem 1.8rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    z-index: 10001;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+    .search-box { 
+        width: 98%; 
+        top: 6%; 
+        max-width: none;
+        border-radius: 20px;
+    }
+    .search-header { 
+        padding: 1.5rem 1.8rem; 
+    }
+    .search-input { 
+        font-size: 1.4rem; 
+    }
+    .search-icon {
+        font-size: 1.6rem;
+    }
+    .result-item {
+        padding: 1.5rem 1.8rem;
+    }
+    .result-title {
+        font-size: 1.2rem;
+    }
+    .result-description {
+        font-size: 1.1rem;
+    }
+    .empty-state {
+        padding: 4rem 2rem;
+    }
+    .empty-state i {
+        font-size: 3rem;
+    }
+    .empty-state p {
+        font-size: 1.2rem;
+    }
+    .notification { 
+        right: 10px; 
+        left: 10px; 
+        transform: translateY(-100px);
+        font-size: 1rem;
+        padding: 1rem 1.5rem;
+    }
+    .notification.show { 
+        transform: translateY(0); 
+    }
+}
+
+  kbd {
+    font-size: 0.9em;
+    color:rgba(0, 0, 0, 0.521);
+    line-height: 1;
+    background: #6d50002f;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1);
+  }
+
+
+/* Add this CSS to the end of your styles.css file */
+
+/* Bible search result styling */
+.result-item.bible-result {
+    border-left: 4px solid #d4a574;
+    background: linear-gradient(135deg, #f5f1e8 0%, #f0ebe0 100%);
+}
+
+.result-item.bible-result:hover,
+.result-item.bible-result.selected {
+    background: linear-gradient(135deg, #f0ebe0 0%, #ebe5d6 100%);
+    border-left-color: #c19653;
+}
+
+.result-icon.bible-icon {
+    color: #8b6914;
+    background: rgba(212, 165, 116, 0.1);
+}
+
+.bible-result .result-title {
+    color: #5d4e37;
+    font-weight: 600;
+}
+
+.search-notification.notification-bible {
+    background: linear-gradient(135deg, #d4a574 0%, #c19653 100%);
+    color: white;
+}
+
+/* Basic notification styles if not already present */
+.search-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #333;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    z-index: 1001;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s ease;
+}
+
+.search-notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}

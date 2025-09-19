@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 
+    <!-- Icons-->
     <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
     <link rel="shortcut icon" href="favicon/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
 
+    <!-- Fonts and styles-->
     <link rel="stylesheet" href="styles.css">
     <title>Svenska Reformationsbibeln - En Bibel i Tiden</title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap"
@@ -17,663 +19,38 @@
     <!-- Add Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-<!-- Add this CSS to your existing style.css file -->
-<style>
-/* Search Button Styles */
-.search-btn {
-    border: none !important;
-    cursor: pointer;
-    text-decoration: none;
-    background: inherit;
-    color: inherit;
-    font-family: inherit;
-    font-size: 1.6rem;
-    font-weight: inherit;
-}
+    <!-- Enhanced Search Scripts - Load search data first, then search engine -->
+    <script src="search-data.js"></script>
+    <script src="website-search.js" defer></script>
 
-.search-btn:hover {
-    transform: translateY(-2px);
-}
-
-/* Website Search Styles - Enlarged */
-.overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(8px);
-    z-index: 10000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-
-.overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.search-box {
-    position: absolute;
-    top: 8%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-30px);
-    width: 95%;
-    max-width: 900px;
-    background: var(--card-bg);
-    border-radius: 24px;
-    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    border: 1px solid var(--border-color);
-}
-
-.overlay.active .search-box {
-    transform: translateX(-50%) translateY(0);
-}
-
-.search-header {
-    padding: 2rem 2.5rem;
-    border-bottom: 1px solid var(--border-color);
-    background: var(--primary-bg);
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.search-icon {
-    color: var(--accent-color);
-    font-size: 1.8rem;
-}
-
-.search-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    background: transparent;
-    font-size: 1.6rem;
-    font-family: inherit;
-    color: var(--primary-text);
-    padding: 0.75rem 0;
-    font-weight: 500;
-}
-
-.search-input::placeholder {
-    color: rgba(74, 52, 38, 0.6);
-}
-
-.close-hint {
-    color: rgba(74, 52, 38, 0.5);
-    font-size: 1rem;
-    font-family: monospace;
-    background: rgba(74, 52, 38, 0.1);
-    padding: 0.5rem 0.8rem;
-    border-radius: 6px;
-}
-
-.search-results {
-    max-height: 70vh;
-    overflow-y: auto;
-    background: var(--card-bg);
-}
-
-.result-item {
-    padding: 1.8rem 2.5rem;
-    border-bottom: 1px solid rgba(212, 197, 169, 0.3);
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.result-item:hover,
-.result-item.selected {
-    background: rgba(139, 105, 20, 0.08);
-    border-left: 6px solid var(--accent-color);
-    padding-left: calc(2.5rem - 6px);
-}
-
-.result-title {
-    font-weight: 600;
-    color: var(--accent-color);
-    font-size: 1.3rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 0.8rem;
-}
-
-.result-description {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: var(--primary-text);
-    margin-bottom: 0.6rem;
-}
-
-.result-url {
-    font-size: 1rem;
-    color: rgba(74, 52, 38, 0.7);
-    font-family: monospace;
-}
-
-.result-description mark,
-.result-title mark {
-    background: rgba(139, 105, 20, 0.3);
-    padding: 0.1em 0.2em;
-    border-radius: 3px;
-    font-weight: 600;
-}
-
-.empty-state {
-    padding: 5rem 3rem;
-    text-align: center;
-    color: rgba(74, 52, 38, 0.6);
-}
-
-.empty-state i {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--accent-color);
-}
-
-.empty-state p {
-    font-size: 1.3rem;
-}
-
-.notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: var(--gradient-gold);
-    color: #2b1d00;
-    padding: 1.2rem 1.8rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-    z-index: 10001;
-    font-weight: 600;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    transform: translateX(400px);
-    transition: transform 0.3s ease;
-}
-
-.notification.show {
-    transform: translateX(0);
-}
-
-@media (max-width: 768px) {
-    .search-box { 
-        width: 98%; 
-        top: 6%; 
-        max-width: none;
-        border-radius: 20px;
-    }
-    .search-header { 
-        padding: 1.5rem 1.8rem; 
-    }
-    .search-input { 
-        font-size: 1.4rem; 
-    }
-    .search-icon {
-        font-size: 1.6rem;
-    }
-    .result-item {
-        padding: 1.5rem 1.8rem;
-    }
-    .result-title {
-        font-size: 1.2rem;
-    }
-    .result-description {
-        font-size: 1.1rem;
-    }
-    .empty-state {
-        padding: 4rem 2rem;
-    }
-    .empty-state i {
-        font-size: 3rem;
-    }
-    .empty-state p {
-        font-size: 1.2rem;
-    }
-    .notification { 
-        right: 10px; 
-        left: 10px; 
-        transform: translateY(-100px);
-        font-size: 1rem;
-        padding: 1rem 1.5rem;
-    }
-    .notification.show { 
-        transform: translateY(0); 
-    }
-}
-</style>
-
-<!-- Website Search HTML -->
-<div class="overlay" id="searchOverlay">
-    <div class="search-box">
-        <div class="search-header">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" class="search-input" id="searchInput" 
-                   placeholder="Sök på webbplatsen..." 
-                   autocomplete="off" spellcheck="false">
-            <span class="close-hint">ESC</span>
-        </div>
-        <div class="search-results" id="searchResults">
-            <div class="empty-state">
-                <i class="fas fa-globe"></i>
-                <p>Börja skriva för att söka på webbplatsen...</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Website Search JavaScript -->
-<script>
-class WebsiteSearch {
-    constructor() {
-        this.overlay = document.getElementById('searchOverlay');
-        this.input = document.getElementById('searchInput');
-        this.results = document.getElementById('searchResults');
-        this.selectedIndex = -1;
-        this.currentResults = [];
-        this.websiteData = [];
-        
-        this.init();
-    }
-
-    async init() {
-        this.buildWebsiteIndex();
-        this.setupEventListeners();
-    }
-
-    buildWebsiteIndex() {
-        // Build searchable content from the current page
-        this.websiteData = [
-            // Main sections
-            {
-                title: "Svenska Reformationsbibeln - Hem",
-                description: "En Bibel i Tiden. Reformationsbibeln är en modern svensk översättning av Karl XII:s Bibel från 1703 baserad på Textus Receptus.",
-                url: "#hem",
-                icon: "fas fa-home",
-                keywords: ["hem", "reformationsbibeln", "karl xii", "textus receptus", "bibel", "översättning"]
-            },
-            {
-                title: "Frågor & Svar",
-                description: "Vanliga frågor och svar om Reformationsbibeln, grundtexter och översättningar.",
-                url: "QnA.html",
-                icon: "fas fa-question-circle",
-                keywords: ["frågor", "svar", "q&a", "grundtext", "textus receptus", "bibelsyn"]
-            },
-            {
-                title: "Resurser",
-                description: "Utforska våra resurser: Bibeltexten, videor, studieverktyg och mer.",
-                url: "#resurser",
-                icon: "fas fa-book",
-                keywords: ["resurser", "bibel", "verktyg", "material"]
-            },
-            {
-                title: "Om Oss",
-                description: "Information om Svenska Reformationsbibelsällskapet och vårt arbete.",
-                url: "#om-oss",
-                icon: "fas fa-info-circle",
-                keywords: ["om oss", "historia", "sällskap", "reformation"]
-            },
-            {
-                title: "Kontakt",
-                description: "Kontakta Svenska Reformationsbibelsällskapet.",
-                url: "#kontakt",
-                icon: "fas fa-envelope",
-                keywords: ["kontakt", "meddelande", "email"]
-            },
-
-            // Bible reading resources
-            {
-                title: "Digital Bibelläsare",
-                description: "Läs Svenska Reformationsbibeln online med sökfunktion och versfunktioner.",
-                url: "https://bibelonline.se/biblereader.php",
-                icon: "fas fa-book-open",
-                keywords: ["läs", "online", "digital", "bibelläsare", "bibel", "sök"]
-            },
-            {
-                title: "Nya Testamentet",
-                description: "Läs Nya Testamentet i Svenska Reformationsbibeln online.",
-                url: "https://bibelonline.se/biblereader.php?book=40",
-                icon: "fas fa-cross",
-                keywords: ["nya testamentet", "nt", "jesus", "evangelium"]
-            },
-            {
-                title: "Gamla Testamentet",
-                description: "Läs Gamla Testamentet i Svenska Reformationsbibeln online.",
-                url: "https://bibelonline.se/biblereader.php?book=1",
-                icon: "fas fa-scroll",
-                keywords: ["gamla testamentet", "gt", "moses", "psalmer"]
-            },
-
-            // YouVersion
-            {
-                title: "YouVersion (SRB16)",
-                description: "Svenska Reformationsbibeln på YouVersion Bible App med läsplaner och delningsfunktioner.",
-                url: "https://www.bible.com/bible/3413/MAT.1.SRB16",
-                icon: "fas fa-mobile-alt",
-                keywords: ["youversion", "app", "mobil", "srb16", "läsplan"]
-            },
-
-            // PDF downloads
-            {
-                title: "PDF-nedladdningar",
-                description: "Ladda ner Svenska Reformationsbibeln som PDF-filer för offline-läsning.",
-                url: "https://bibel.se/wordpress/index.php/2022/01/18/oversatta-bibelbocker/",
-                icon: "fas fa-file-pdf",
-                keywords: ["pdf", "nedladdning", "offline", "dokument", "fil"]
-            },
-            {
-                title: "NT med fotnoter",
-                description: "Nya Testamentet med utförliga fotnoter och kommentarer.",
-                url: "http://www.bibel.se/objfiles/1/SRBNTmedUNfotno_1604169176.pdf",
-                icon: "fas fa-sticky-note",
-                keywords: ["fotnoter", "kommentarer", "noter", "förklaring"]
-            },
-
-            // Videos and media
-            {
-                title: "Videoserie: En felaktig grundtext",
-                description: "Femdelad videoserie som förklarar problemen med moderna bibelöversättningars grundtexter.",
-                url: "#",
-                icon: "fas fa-video",
-                keywords: ["video", "grundtext", "felaktig", "moderna", "översättningar", "serie"]
-            },
-            {
-                title: "Reformationsbibeln-serien",
-                description: "Videoserie som förklarar bakgrunden till Svenska Reformationsbibeln.",
-                url: "#",
-                icon: "fas fa-play-circle",
-                keywords: ["reformationsbibeln", "video", "bakgrund", "förklaring"]
-            },
-            {
-                title: "YouTube-kanal Ljudbibel",
-                description: "Lyssna på Svenska Reformationsbibeln som ljudbok på YouTube.",
-                url: "https://www.youtube.com/@reformationsbibeln9676/videos",
-                icon: "fas fa-headphones",
-                keywords: ["youtube", "ljudbibel", "lyssna", "audio", "uppläsning"]
-            },
-
-            // Bible translations
-            {
-                title: "Karl XII:s Bibel 1703",
-                description: "Den ursprungliga Karl XII:s Bibel från 1703 som ligger till grund för Reformationsbibeln.",
-                url: "https://www.bibel.se/objfiles/1/KXIIBibel1703he_-1499304058.pdf",
-                icon: "fas fa-crown",
-                keywords: ["karl xii", "1703", "ursprunglig", "historisk", "grundlag"]
-            },
-            {
-                title: "Åkesons Översättning",
-                description: "Information om Åkesons bibelöversättning och dess historia.",
-                url: "http://www.bibel.se/bibeln/andra-bibeloversattningar/fragor-om-bibeloversattningar/akesons-oversattning/bk-1861-nt_1059",
-                icon: "fas fa-user",
-                keywords: ["åkeson", "översättning", "1861", "historia"]
-            },
-
-            // Study tools
-            {
-                title: "Illustrerat Bibellexikon",
-                description: "Omfattande bibellexikon med uppslagsord, bilder och förklaringar.",
-                url: "https://www.bibel.se/bibellexikon",
-                icon: "fas fa-book-open",
-                keywords: ["lexikon", "uppslagsord", "förklaring", "bilder", "studium"]
-            },
-            {
-                title: "Bibelsökning",
-                description: "Sök i Svenska Reformationsbibeln efter ord, fraser och bibelställen.",
-                url: "https://bibelonline.se/biblereader.php",
-                icon: "fas fa-search",
-                keywords: ["sök", "sökning", "ord", "fraser", "bibelställen"]
-            },
-
-            // Articles and teaching
-            {
-                title: "Artiklar",
-                description: "Läs artiklar om bibelöversättning, grundtexter och biblisk tro.",
-                url: "https://bibel.se/wordpress/index.php/artiklar/",
-                icon: "fas fa-newspaper",
-                keywords: ["artiklar", "undervisning", "tro", "lära", "biblisk"]
-            },
-            {
-                title: "Debattartiklar",
-                description: "Debattartiklar om bibelöversättningar och textkritiska frågor.",
-                url: "https://bibel.se/wordpress/index.php/2021/12/04/debatt/",
-                icon: "fas fa-comments",
-                keywords: ["debatt", "diskussion", "textkritik", "översättning"]
-            },
-            {
-                title: "Vad har hänt med Bibeln?",
-                description: "Artikel som förklarar utvecklingen av moderna bibelöversättningar.",
-                url: "http://www.bibel.se/artiklar/vad-har-hant-med-bibeln_1193",
-                icon: "fas fa-exclamation-triangle",
-                keywords: ["vad hänt", "moderna", "utveckling", "problem", "kritik"]
-            }
-        ];
-    }
-
-    setupEventListeners() {
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-                e.preventDefault();
-                if (this.isOpen()) {
-                    this.close();
-                } else {
-                    this.open();
-                }
-            }
-            if (e.key === 'Escape' && this.isOpen()) {
-                this.close();
-            }
-            if (this.isOpen()) {
-                this.handleNavigation(e);
-            }
-        });
-
-        this.input.addEventListener('input', () => {
-            setTimeout(() => this.search(this.input.value), 200);
-        });
-
-        this.overlay.addEventListener('click', (e) => {
-            if (e.target === this.overlay) this.close();
-        });
-
-        // Add click listener for the search button
-        const searchButton = document.getElementById('searchButton');
-        if (searchButton) {
-            searchButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.open();
-            });
-        }
-    }
-
-    open() {
-        this.overlay.classList.add('active');
-        this.input.value = '';
-        document.body.style.overflow = 'hidden';
-        
-        setTimeout(() => {
-            this.input.focus();
-        }, 100);
-    }
-
-    close() {
-        this.overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    isOpen() {
-        return this.overlay.classList.contains('active');
-    }
-
-    search(query) {
-        if (!query.trim()) {
-            this.results.innerHTML = '<div class="empty-state"><i class="fas fa-globe"></i><p>Börja skriva för att söka på webbplatsen...</p></div>';
-            return;
-        }
-
-        const results = this.performSearch(query);
-        this.displayResults(results);
-    }
-
-    performSearch(query) {
-        const searchTerms = query.toLowerCase().split(/\s+/);
-        const results = [];
-
-        this.websiteData.forEach(item => {
-            let score = 0;
-
-            // Check title matches (highest priority)
-            searchTerms.forEach(term => {
-                if (item.title.toLowerCase().includes(term)) {
-                    score += 15;
-                }
-            });
-
-            // Check keyword matches (high priority)
-            searchTerms.forEach(term => {
-                item.keywords.forEach(keyword => {
-                    if (keyword.includes(term) || term.includes(keyword)) {
-                        score += keyword === term ? 10 : 5;
-                    }
-                });
-            });
-
-            // Check description matches (medium priority)
-            searchTerms.forEach(term => {
-                if (item.description.toLowerCase().includes(term)) {
-                    score += 3;
-                }
-            });
-
-            if (score > 0) {
-                results.push({
-                    ...item,
-                    score,
-                    highlightedTitle: this.highlightMatches(item.title, searchTerms),
-                    highlightedDescription: this.highlightMatches(item.description, searchTerms)
-                });
-            }
-        });
-
-        return results.sort((a, b) => b.score - a.score).slice(0, 8);
-    }
-
-    highlightMatches(text, searchTerms) {
-        let highlighted = text;
-        searchTerms.forEach(term => {
-            if (term.length >= 2) {
-                // Escape special regex characters
-                const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                // Use word boundaries to match only complete words
-                const regex = new RegExp(`\\b(${escapedTerm})\\b`, 'gi');
-                highlighted = highlighted.replace(regex, '<mark>$1</mark>');
-            }
-        });
-        return highlighted;
-    }
-
-    displayResults(results) {
-        this.currentResults = results;
-        this.selectedIndex = -1;
-
-        if (results.length === 0) {
-            this.results.innerHTML = '<div class="empty-state"><i class="fas fa-search"></i><p>Inga resultat hittades</p></div>';
-            return;
-        }
-
-        const html = results.map((result, index) => `
-            <div class="result-item" data-index="${index}">
-                <div class="result-title">
-                    <i class="${result.icon}"></i>
-                    ${result.highlightedTitle}
-                </div>
-                <div class="result-description">${result.highlightedDescription}</div>
-                <div class="result-url">${result.url}</div>
-            </div>
-        `).join('');
-
-        this.results.innerHTML = html;
-
-        this.results.querySelectorAll('.result-item').forEach((item, index) => {
-            item.addEventListener('click', () => this.selectResult(index));
-        });
-    }
-
-    handleNavigation(e) {
-        const resultItems = this.results.querySelectorAll('.result-item');
-        
-        if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            this.selectedIndex = Math.min(this.selectedIndex + 1, resultItems.length - 1);
-            this.updateSelection();
-        } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            this.selectedIndex = Math.max(this.selectedIndex - 1, -1);
-            this.updateSelection();
-        } else if (e.key === 'Enter') {
-            e.preventDefault();
-            if (this.selectedIndex >= 0) {
-                this.selectResult(this.selectedIndex);
-            }
-        }
-    }
-
-    updateSelection() {
-        const resultItems = this.results.querySelectorAll('.result-item');
-        resultItems.forEach((item, index) => {
-            item.classList.toggle('selected', index === this.selectedIndex);
-        });
-        if (this.selectedIndex >= 0) {
-            resultItems[this.selectedIndex].scrollIntoView({ block: 'nearest' });
-        }
-    }
-
-    selectResult(index) {
-        const result = this.currentResults[index];
-        if (result) {
-            // Navigate to the URL
-            if (result.url.startsWith('#')) {
-                // Internal anchor link
-                const element = document.querySelector(result.url);
-                if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                }
-            } else {
-                // External link
-                window.open(result.url, '_blank');
-            }
-            
-            this.showNotification(`Navigerar till: ${result.title}`);
-            this.close();
-        }
-    }
-
-    showNotification(message) {
-        const notification = document.createElement('div');
-        notification.className = 'notification';
-        notification.innerHTML = `<i class="fas fa-external-link-alt"></i> ${message}`;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => notification.classList.add('show'), 100);
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => document.body.removeChild(notification), 300);
-        }, 3000);
-    }
-}
-
-// Initialize when page loads
-document.addEventListener('DOMContentLoaded', () => {
-    new WebsiteSearch();
-});
-</script>
-
+    <!-- Enhanced Search Scripts - Load in correct order -->
+    <script src="bible-search-data.js"></script> <!-- Add this line -->
+    <script src="enhanced-bible-search.js" defer></script> <!-- Replace website-search.js -->
+    
+    <!-- Add enhanced search styles -->
+    <link rel="stylesheet" href="bible-search-styles.css">
 </head>
 
 <body>
+    <!-- Website Search Overlay -->
+    <div class="overlay" id="searchOverlay">
+        <div class="search-box">
+            <div class="search-header">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" id="searchInput" 
+                       placeholder="Sök på webbplatsen..." 
+                       autocomplete="off" spellcheck="false">
+                <span class="close-hint">ESC</span>
+            </div>
+            <div class="search-results" id="searchResults">
+                <div class="empty-state">
+                    <i class="fas fa-globe"></i>
+                    <p>Börja skriva för att söka på webbplatsen...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <nav class="nav-container">
@@ -731,11 +108,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <i class="fas fa-file-pdf"></i> PDF-Versioner
                 </a>
                 <button class="quick-btn search-btn" id="searchButton">
-                    <i class="fas fa-search"></i> Sök
+                    <i class="fas fa-search"></i> Sök <kbd>⌘</kbd> + <kbd>K</kbd>
+
                 </button>
             </div>
         </section>
-
 
         <!-- Navigation Grid -->
         <section id="resurser" class="section scroll-fade">
@@ -1033,6 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </footer>
 
+    <!-- Main site functionality scripts -->
     <script>
         // Mobile menu toggle functionality
         const hamburger = document.querySelector('.hamburger');
