@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+"""
+Svenska Reformationsbibeln (SRB16) Downloader - Fixed Version with Better Parsing
+Downloads SRB16 (Version ID: 3413) from YouVersion Bible.com
+
+The SRB16 is freely available with no restrictions on copying text.
+URL Pattern: https://www.bible.com/bible/3413/{BOOK}.{CHAPTER}.SRB16
+"""
 
 import requests
 import json
@@ -15,6 +23,7 @@ class SRB16Downloader:
         self.version_id = 3413
         self.version_code = "SRB16" 
         self.version_name = "Svenska Reformationsbibeln"
+        self.debug_mode = False  # Set to True to see debug output
         
         self.session = requests.Session()
         self.session.headers.update({
@@ -23,18 +32,15 @@ class SRB16Downloader:
             'Accept-Language': 'sv-SE,sv;q=0.9,en;q=0.8',
             'Accept-Encoding': 'gzip, deflate, br',
             'Connection': 'keep-alive',
+            'Cache-Control': 'no-cache'
         })
         
-        # Expected verse counts for verification (approximate ranges)
-        # These are typical verse counts - some variations exist between translations
-        self.expected_verse_ranges = {
-            # Old Testament
-            'GEN': [(31, 50), (25, 35), (24, 30), (26, 32), (32, 35), (40, 45), (21, 25), (28, 35), (35, 40), (29, 35),
-                   (42, 50), (30, 35), (25, 30), (25, 30), (19, 25), (23, 28), (31, 35), (27, 32), (22, 28), (25, 30),
-                   (32, 38), (22, 28), (29, 35), (14, 20), (18, 24), (22, 28), (28, 35), (23, 29), (14, 20), (18, 24),
-                   (8, 12), (31, 35), (22, 28), (33, 40), (37, 45), (16, 22), (33, 40), (24, 30), (41, 50), (35, 42),
-                   (28, 35), (25, 32), (16, 22), (22, 28), (17, 23), (15, 21), (22, 28), (14, 20), (14, 20), (17, 23)],
-            # Add more books as needed...
+        # Expected verse counts for major chapters (for validation)
+        self.expected_verse_counts = {
+            'MAT': {1: 25, 2: 23, 3: 17, 4: 25, 5: 48, 6: 34, 7: 29, 8: 34, 9: 38, 10: 42},
+            'MRK': {1: 45, 2: 28, 3: 35, 4: 41, 5: 43, 6: 56, 7: 37, 8: 38, 9: 50, 10: 52},
+            'LUK': {1: 80, 2: 52, 3: 38, 4: 44, 5: 39, 6: 49, 7: 50, 8: 56, 9: 62, 10: 42},
+            'JHN': {1: 51, 2: 25, 3: 36, 4: 54, 5: 47, 6: 71, 7: 53, 8: 59, 9: 41, 10: 42}
         }
         
         # Bible books with chapter counts
@@ -110,6 +116,11 @@ class SRB16Downloader:
             'REV': {'name': 'Uppenbarelseboken', 'chapters': 22, 'swedish': 'Uppenbarelseboken'}
         }
 
+    def debug_print(self, message: str):
+        """Print debug message if debug mode is enabled"""
+        if self.debug_mode:
+            print(f"DEBUG: {message}")
+
     def clean_verse_text(self, text: str) -> str:
         """Clean verse text from all non-biblical content"""
         if not text:
@@ -161,7 +172,15 @@ class SRB16Downloader:
             r'^\*?[Aa]lt\.?\s*övers',
             r'^\*?[Aa]lternativ',
             r'^#\d+:\d+',
-            r'^\s*$'
+            r'^\s*$',
+            r'^Cookie',
+            r'^Accept',
+            r'^Settings',
+            r'^Menu',
+            r'^Sign\s+in',
+            r'^Download',
+            r'^App\s+Store',
+            r'^Google\s+Play'
         ]
         
         for pattern in invalid_patterns:
@@ -170,69 +189,198 @@ class SRB16Downloader:
         
         return True
 
-    def extract_verse_content(self, soup: BeautifulSoup) -> str:
-        """Extract only the verse content from the HTML, avoiding navigation and footer"""
+    def extract_verse_content_advanced(self, soup: BeautifulSoup) -> str:
+        """Advanced extraction targeting YouVersion's specific structure"""
         
-        # Try to find the main content area with verses
+        # Method 1: Try YouVersion-specific selectors
+        verse_selectors = [
+            'span[data-usfm*="."]',  # Verses with USFM data
+            '.verse',
+            '.v',
+            '[class*="verse"]',
+            '[class*="Verse"]',
+            'span.label-1 + span',  # Verse number + text pattern
+            'span.ChapterContent_verse__',  # YouVersion specific
+            '.ChapterContent_content__',
+            '.reader span[data-usfm]'
+        ]
+        
+        # Try each selector
+        for selector in verse_selectors:
+            elements = soup.select(selector)
+            if elements:
+                self.debug_print(f"Found {len(elements)} elements with selector: {selector}")
+                
+                # Extract text from all verse elements
+                verse_texts = []
+                for elem in elements:
+                    text = elem.get_text(strip=True)
+                    if text and len(text) > 3:
+                        verse_texts.append(text)
+                
+                if verse_texts:
+                    combined_text = " ".join(verse_texts)
+                    self.debug_print(f"Combined text length: {len(combined_text)}")
+                    return combined_text
+        
+        # Method 2: Look for the main content container
         content_selectors = [
-            'div.ChapterContent_reader__',  # Common YouVersion selector
-            'div[data-usfm]',  # USFM data attribute
-            '.chapter-content',
-            '.reader',
-            '.verse-content',
+            'div.ChapterContent_reader__',
+            'div[data-testid="chapter-content"]',
+            'main[role="main"]',
+            'div.reader',
+            'div.chapter-content',
+            '.content',
             'main',
             'article'
         ]
         
-        verse_content = None
         for selector in content_selectors:
-            elements = soup.select(selector)
-            if elements:
-                verse_content = elements[0]
-                break
+            container = soup.select_one(selector)
+            if container:
+                self.debug_print(f"Found container with selector: {selector}")
+                
+                # Remove navigation and footer elements
+                for unwanted in container.select('nav, footer, header, .nav, .footer, .header, .navigation, .breadcrumb, .social-links, .app-download'):
+                    unwanted.decompose()
+                
+                text = container.get_text()
+                if text and len(text) > 100:  # Should have substantial content
+                    self.debug_print(f"Container text length: {len(text)}")
+                    return text
         
-        if not verse_content:
-            # Fallback: try to find by looking for verse numbers
-            verse_elements = soup.find_all(string=re.compile(r'^\d+\s'))
-            if verse_elements:
-                # Get the parent container that contains verse numbers
-                for element in verse_elements[:3]:  # Check first few matches
-                    parent = element.parent
-                    while parent and parent.name != 'body':
-                        # Look for a container that has multiple verse numbers
-                        parent_text = parent.get_text()
-                        if len(re.findall(r'\b\d+\s', parent_text)) >= 3:
-                            verse_content = parent
-                            break
-                        parent = parent.parent
-                    if verse_content:
-                        break
-        
-        if verse_content:
-            # Remove navigation, footer, and other non-content elements
-            for unwanted in verse_content.select('nav, footer, header, .nav, .footer, .header, .navigation, .breadcrumb, .social'):
-                unwanted.decompose()
+        # Method 3: Fallback - look for patterns that indicate verses
+        # Find elements that contain verse-like patterns (number followed by text)
+        potential_verse_elements = soup.find_all(string=re.compile(r'^\d+\s+\w'))
+        if potential_verse_elements:
+            self.debug_print(f"Found {len(potential_verse_elements)} potential verse strings")
             
-            return verse_content.get_text()
-        else:
-            # Last resort: get all text but this is less reliable
-            return soup.get_text()
+            # Get the common parent of these elements
+            parents = [elem.parent for elem in potential_verse_elements[:5]]
+            if parents:
+                # Find the highest common ancestor
+                common_parent = parents[0]
+                for parent in parents[1:]:
+                    # Simple approach - go up until we find a container
+                    temp = parent
+                    while temp and temp != common_parent and temp.name not in ['body', 'html']:
+                        temp = temp.parent
+                    if temp == common_parent:
+                        continue
+                    # Find common ancestor
+                    while common_parent and common_parent not in [p for p in parent.parents]:
+                        common_parent = common_parent.parent
+                
+                if common_parent:
+                    text = common_parent.get_text()
+                    if text and len(text) > 100:
+                        self.debug_print(f"Common parent text length: {len(text)}")
+                        return text
+        
+        # Method 4: Last resort - get all text but this is unreliable
+        self.debug_print("Using fallback method - getting all text")
+        return soup.get_text()
 
-    def parse_verses(self, raw_text: str) -> dict:
-        """Parse raw SRB16 text into structured verses with improved cleaning"""
+    def parse_verses_improved(self, raw_text: str, book_code: str, chapter: int) -> dict:
+        """Improved verse parsing with multiple strategies"""
         verses = {}
         
         if not raw_text:
             return verses
         
+        self.debug_print(f"Raw text length for {book_code} {chapter}: {len(raw_text)}")
+        self.debug_print(f"First 500 chars: {raw_text[:500]}")
+        
         # Clean up the text - remove extra whitespace and newlines
         text = re.sub(r'\s+', ' ', raw_text.strip())
         
-        # More precise verse pattern - look for number followed by space and text
-        # Look ahead to next verse number or end of string
-        verse_pattern = r'(\d+)\s+([^0-9]*?)(?=\s+\d+\s+|$)'
+        # Strategy 1: Standard verse pattern (number space text)
+        verse_pattern1 = r'(\d+)\s+([^0-9]*?)(?=\s+\d+\s+|$)'
+        matches1 = re.findall(verse_pattern1, text, re.DOTALL)
         
-        matches = re.findall(verse_pattern, text, re.DOTALL)
+        if matches1:
+            self.debug_print(f"Strategy 1 found {len(matches1)} matches")
+            verses.update(self.process_verse_matches(matches1))
+        
+        # Strategy 2: More flexible pattern allowing for various separators
+        if not verses:
+            verse_pattern2 = r'(\d+)[\s\.\-:]*([^0-9]*?)(?=\s*\d+[\s\.\-:]|$)'
+            matches2 = re.findall(verse_pattern2, text, re.DOTALL)
+            
+            if matches2:
+                self.debug_print(f"Strategy 2 found {len(matches2)} matches")
+                verses.update(self.process_verse_matches(matches2))
+        
+        # Strategy 3: Line-based parsing for cases where verses are on separate lines
+        if not verses:
+            lines = text.split('\n')
+            current_verse_num = None
+            current_verse_text = []
+            
+            for line in lines:
+                line = line.strip()
+                if not line:
+                    continue
+                
+                # Check if line starts with a verse number
+                verse_match = re.match(r'^(\d+)\s+(.+)', line)
+                if verse_match:
+                    # Save previous verse if exists
+                    if current_verse_num and current_verse_text:
+                        combined_text = ' '.join(current_verse_text)
+                        cleaned_text = self.clean_verse_text(combined_text)
+                        if self.is_valid_verse_text(cleaned_text):
+                            verses[current_verse_num] = cleaned_text
+                    
+                    # Start new verse
+                    current_verse_num = int(verse_match.group(1))
+                    current_verse_text = [verse_match.group(2)]
+                else:
+                    # Continue current verse
+                    if current_verse_num:
+                        current_verse_text.append(line)
+            
+            # Don't forget the last verse
+            if current_verse_num and current_verse_text:
+                combined_text = ' '.join(current_verse_text)
+                cleaned_text = self.clean_verse_text(combined_text)
+                if self.is_valid_verse_text(cleaned_text):
+                    verses[current_verse_num] = cleaned_text
+            
+            if verses:
+                self.debug_print(f"Strategy 3 found {len(verses)} verses")
+        
+        # Strategy 4: Split on likely verse boundaries and parse
+        if not verses:
+            # Split on patterns that look like verse starts
+            verse_boundaries = re.split(r'\s+(\d+)\s+', text)
+            if len(verse_boundaries) > 2:  # Should have number, text, number, text, etc.
+                for i in range(1, len(verse_boundaries), 2):
+                    try:
+                        verse_num = int(verse_boundaries[i])
+                        if i + 1 < len(verse_boundaries):
+                            verse_text = verse_boundaries[i + 1]
+                            cleaned_text = self.clean_verse_text(verse_text)
+                            if self.is_valid_verse_text(cleaned_text):
+                                verses[verse_num] = cleaned_text
+                    except (ValueError, IndexError):
+                        continue
+                
+                if verses:
+                    self.debug_print(f"Strategy 4 found {len(verses)} verses")
+        
+        # Validation: Check if we got a reasonable number of verses
+        expected_count = self.expected_verse_counts.get(book_code, {}).get(chapter)
+        if expected_count and verses:
+            actual_count = len(verses)
+            if actual_count < expected_count * 0.5:  # Less than 50% of expected
+                self.debug_print(f"WARNING: Only got {actual_count} verses, expected ~{expected_count}")
+        
+        return verses
+
+    def process_verse_matches(self, matches: List[Tuple[str, str]]) -> dict:
+        """Process regex matches into verse dictionary"""
+        verses = {}
         
         for verse_num_str, verse_text in matches:
             try:
@@ -254,40 +402,66 @@ class SRB16Downloader:
         
         return verses
 
-    def fetch_chapter(self, book_code: str, chapter: int) -> dict:
-        """Fetch a chapter from YouVersion SRB16 with improved parsing"""
+    def fetch_chapter(self, book_code: str, chapter: int, retry_count: int = 3) -> dict:
+        """Fetch a chapter from YouVersion SRB16 with improved parsing and retry logic"""
         
         url = f"https://www.bible.com/bible/{self.version_id}/{book_code}.{chapter}.{self.version_code}"
         
         print(f"  📖 {book_code} {chapter}... ", end="", flush=True)
         
-        try:
-            response = self.session.get(url, timeout=30)
-            response.raise_for_status()
-            
-            soup = BeautifulSoup(response.content, 'html.parser')
-            
-            # Extract only verse content, avoiding navigation/footer
-            verse_text = self.extract_verse_content(soup)
-            
-            # Parse verses from the extracted text
-            verses = self.parse_verses(verse_text)
-            
-            if verses:
-                print(f"✅ ({len(verses)} verses)")
-                return {
-                    'book': book_code,
-                    'book_name': self.books[book_code]['name'],
-                    'chapter': chapter,
-                    'verses': verses
-                }
-            else:
+        for attempt in range(retry_count):
+            try:
+                # Add slight delay before each attempt
+                if attempt > 0:
+                    time.sleep(2)
+                    self.debug_print(f"Retry attempt {attempt + 1} for {book_code} {chapter}")
+                
+                response = self.session.get(url, timeout=30)
+                response.raise_for_status()
+                
+                soup = BeautifulSoup(response.content, 'html.parser')
+                
+                # Extract verse content using advanced method
+                verse_text = self.extract_verse_content_advanced(soup)
+                
+                # Parse verses using improved method
+                verses = self.parse_verses_improved(verse_text, book_code, chapter)
+                
+                # Validate result
+                if verses:
+                    verse_count = len(verses)
+                    expected_count = self.expected_verse_counts.get(book_code, {}).get(chapter)
+                    
+                    # Check if we got a reasonable number of verses
+                    if expected_count and verse_count < expected_count * 0.3:
+                        self.debug_print(f"Got {verse_count} verses, expected ~{expected_count} - retrying")
+                        if attempt < retry_count - 1:
+                            continue  # Retry
+                    
+                    print(f"✅ ({verse_count} verses)")
+                    return {
+                        'book': book_code,
+                        'book_name': self.books[book_code]['name'],
+                        'chapter': chapter,
+                        'verses': verses
+                    }
+                else:
+                    if attempt < retry_count - 1:
+                        self.debug_print(f"No verses found, retrying...")
+                        continue
+                    
                 print("❌ No verses found")
                 return None
                 
-        except Exception as e:
-            print(f"❌ Error: {e}")
-            return None
+            except Exception as e:
+                if attempt < retry_count - 1:
+                    self.debug_print(f"Error on attempt {attempt + 1}: {e}, retrying...")
+                    continue
+                else:
+                    print(f"❌ Error: {e}")
+                    return None
+        
+        return None
 
     def verify_chapter_quality(self, book_code: str, chapter: int, verses: Dict[int, str]) -> List[str]:
         """Verify quality of a downloaded chapter"""
@@ -317,17 +491,26 @@ class SRB16Downloader:
         # Check for verses with suspicious content
         suspicious_verses = []
         for v, text in verses.items():
-            if any(keyword in text.lower() for keyword in ['youversion', 'privacy', 'facebook', 'twitter']):
+            if any(keyword in text.lower() for keyword in ['youversion', 'privacy', 'facebook', 'twitter', 'cookie', 'app store']):
                 suspicious_verses.append(v)
         if suspicious_verses:
             issues.append(f"Verses with suspicious content: {suspicious_verses}")
         
-        # Check if verse count is reasonable (between 5 and 180 verses per chapter is typical)
+        # Check if verse count is reasonable compared to expected
         verse_count = len(verses)
-        if verse_count < 3:
-            issues.append(f"Very few verses ({verse_count}) - possible parsing issue")
-        elif verse_count > 180:
-            issues.append(f"Too many verses ({verse_count}) - possible parsing issue")
+        expected_count = self.expected_verse_counts.get(book_code, {}).get(chapter)
+        
+        if expected_count:
+            if verse_count < expected_count * 0.5:
+                issues.append(f"Too few verses ({verse_count}) - expected ~{expected_count}")
+            elif verse_count > expected_count * 1.5:
+                issues.append(f"Too many verses ({verse_count}) - expected ~{expected_count}")
+        else:
+            # General sanity check
+            if verse_count < 3:
+                issues.append(f"Very few verses ({verse_count}) - possible parsing issue")
+            elif verse_count > 200:
+                issues.append(f"Too many verses ({verse_count}) - possible parsing issue")
         
         return issues
 
@@ -506,20 +689,6 @@ class SRB16Downloader:
             if len(report['missing_data']) > 10:
                 print(f"    ... and {len(report['missing_data']) - 10} more")
         
-        # Book statistics (top 5 books with most issues)
-        book_issue_counts = {}
-        for book_code, stats in report['book_statistics'].items():
-            issue_count = len(stats.get('chapter_issues', {})) + len(stats.get('missing_chapters', []))
-            if issue_count > 0:
-                book_issue_counts[book_code] = issue_count
-        
-        if book_issue_counts:
-            print(f"\n📚 BOOKS WITH MOST ISSUES:")
-            sorted_books = sorted(book_issue_counts.items(), key=lambda x: x[1], reverse=True)
-            for book_code, issue_count in sorted_books[:5]:
-                book_name = report['book_statistics'][book_code]['name']
-                print(f"    • {book_code} ({book_name}): {issue_count} issues")
-        
         print("\n" + "=" * 70)
 
     def save_verification_report(self, report: dict, filename: str) -> bool:
@@ -556,8 +725,10 @@ class SRB16Downloader:
             print(f"❌ Error verifying file: {e}")
             return False
 
-    def download_bible(self, output_file: str = None, sample_books: list = None) -> bool:
+    def download_bible(self, output_file: str = None, sample_books: list = None, debug: bool = False) -> bool:
         """Download the SRB16 Bible with verification"""
+        
+        self.debug_mode = debug
         
         if output_file is None:
             output_file = "svenska_reformationsbibeln_srb16.json"
@@ -569,6 +740,8 @@ class SRB16Downloader:
         print(f"📚 Books to download: {len(books_to_download)}")
         if sample_books:
             print(f"📝 Sample mode - downloading: {', '.join(sample_books)}")
+        if debug:
+            print("🐛 Debug mode enabled")
         print("=" * 70)
         
         bible_data = {
@@ -658,8 +831,8 @@ class SRB16Downloader:
             return False
 
 def main():
-    """Main function with options including verification"""
-    print("🇸🇪 Svenska Reformationsbibeln (SRB16) Downloader - Improved Version")
+    """Main function with options including verification and debug mode"""
+    print("🇸🇪 Svenska Reformationsbibeln (SRB16) Downloader - Fixed Version")
     print("=" * 70)
     
     downloader = SRB16Downloader()
@@ -669,10 +842,11 @@ def main():
     print("1. Download complete Bible (66 books) - Takes ~1 hour")
     print("2. Download New Testament only (27 books) - Takes ~20 minutes")  
     print("3. Download sample (5 books) for testing - Takes ~5 minutes")
-    print("4. Verify existing JSON file")
+    print("4. Download sample with debug mode - For troubleshooting")
+    print("5. Verify existing JSON file")
     
     while True:
-        choice = input("\nEnter choice (1, 2, 3, or 4): ").strip()
+        choice = input("\nEnter choice (1-5): ").strip()
         
         if choice == "1":
             # Full Bible
@@ -692,6 +866,11 @@ def main():
             success = downloader.download_bible("srb16_sample.json", sample_books)
             break
         elif choice == "4":
+            # Sample with debug
+            sample_books = ['MAT']  # Just Matthew for debugging
+            success = downloader.download_bible("srb16_debug.json", sample_books, debug=True)
+            break
+        elif choice == "5":
             # Verify existing file
             filename = input("Enter JSON filename to verify: ").strip()
             if not filename:
@@ -699,7 +878,7 @@ def main():
             success = downloader.verify_downloaded_file(filename)
             break
         else:
-            print("Invalid choice. Please enter 1, 2, 3, or 4.")
+            print("Invalid choice. Please enter 1-5.")
     
     if success:
         print("\n🎉 Ready to use in your spotlight search app!")
@@ -713,4 +892,3 @@ if __name__ == "__main__":
         print("\n\n⏹️  Operation interrupted by user.")
     except Exception as e:
         print(f"\n💥 Error: {e}")
-
