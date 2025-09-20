@@ -1,2 +1,2 @@
-<img width="1552" height="1379" alt="reffan" src="https://github.com/user-attachments/assets/0de7fdaf-702a-47b6-9365-f134bee81250" />
-
+# Svenska Reformationsbibeln
+<img width="1427" height="1592" alt="reffan1" src="https://github.com/user-attachments/assets/de51816f-2eee-4b50-9f64-d9b05cf0927b" />
