@@ -590,39 +590,50 @@
     </script>
 
 <!-- Swish-->
-
 <script>
 function openSwish() {
-    // Organisation/Company Swish number format
+    // Option 1: Try QR code generation service (most reliable for prefilling)
+    const amount = "100"; // Set your preferred donation amount in SEK
     const swishNumber = "1233882669";
+    const message = "Donation Svenska Reformationsbibeln";
     
-    // Try multiple URL formats for better compatibility
-    const swishUrls = [
-        `swish://payment?phone=${swishNumber}&message=Donation%20Svenska%20Reformationsbibeln`,
-        `swish://payment?phone=${swishNumber}`,
-        `swish://paymentrequest?phone=${swishNumber}&message=Donation%20Svenska%20Reformationsbibeln`,
-        `swish://paymentrequest?phone=${swishNumber}`
-    ];
+    // Third-party QR service that can prefill amounts
+    const qrServiceUrl = `https://app.swish-easy.com/#eyJwaG9uZSI6IiR7c3dpc2hOdW1iZXJ9IiwiYW1vdW50IjoiJHthbW91bnR9IiwibWVzc2FnZSI6IiR7bWVzc2FnZX0ifQ==`;
     
-    // Try each URL format in sequence
-    function trySwishUrl(index) {
-        if (index >= swishUrls.length) {
-            console.log('All Swish URL formats failed');
-            return;
-        }
-        
+    // Detect if user is on mobile
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // Try standard Swish URL first (won't prefill amount but will open app)
         try {
-            window.location.href = swishUrls[index];
+            window.location.href = `swish://payment?phone=${swishNumber}&message=${encodeURIComponent(message)}`;
         } catch (error) {
-            // Try next format if this one fails
-            setTimeout(() => trySwishUrl(index + 1), 100);
+            // Fallback to QR service
+            window.open(qrServiceUrl, '_blank');
         }
+    } else {
+        // Desktop: Open QR service that shows prefilled QR code
+        window.open(qrServiceUrl, '_blank');
     }
+}
+
+// Alternative function for prefilled payments using QR service
+function openSwishWithAmount(amount = "100") {
+    const swishNumber = "1233882669";
+    const message = "Donation Svenska Reformationsbibeln";
     
-    // Start with the first URL format
-    trySwishUrl(0);
+    // Create base64 encoded data for swish-easy service
+    const paymentData = {
+        phone: swishNumber,
+        amount: amount,
+        message: message
+    };
+    
+    const encodedData = btoa(JSON.stringify(paymentData));
+    const qrUrl = `https://app.swish-easy.com/#${encodedData}`;
+    
+    window.open(qrUrl, '_blank');
 }
 </script>
-
 </body>
 </html>
