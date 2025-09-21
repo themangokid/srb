@@ -77,6 +77,7 @@
         </nav>
     </header>
 
+
 <!-- Hero Section -->
 <section id="hem" class="hero fade-in">
     <div class="hero-content">
@@ -588,86 +589,35 @@
             lastTouchEnd = now;
         }, false);
     </script>
-
+    
 <script>
 function openSwish() {
-    const swishNumber = "1233882669";
-    const amount = 100; // Default amount in SEK
+    const swishNumber = "1233882669"; // Company Swish number (no country code needed)
     const message = "Donation Svenska Reformationsbibeln";
     
-    // Method 1: Official Swish payment data format (supports amount prefilling)
-    const swishData = {
-        version: 1,
-        payee: {
-            value: `+46${swishNumber.replace(/^0/, "")}`  // Ensure +46 country code
-        },
-        amount: {
-            value: parseInt(amount, 10)
-        }
-    };
-    
-    const swishUrl = `swish://payment?data=${encodeURIComponent(JSON.stringify(swishData))}`;
-    
-    // Method 2: Fallback URLs if the JSON format doesn't work
-    const fallbackUrls = [
+    // Simple approach - let user enter amount in Swish app
+    const swishUrls = [
         `swish://payment?phone=${swishNumber}&message=${encodeURIComponent(message)}`,
-        `swish://paymentrequest?phone=${swishNumber}&message=${encodeURIComponent(message)}`,
         `swish://payment?phone=${swishNumber}`,
+        `swish://paymentrequest?phone=${swishNumber}&message=${encodeURIComponent(message)}`,
         `swish://paymentrequest?phone=${swishNumber}`
     ];
     
-    // Try the official data format first
-    try {
-        window.location.href = swishUrl;
-        return;
-    } catch (error) {
-        console.log('Primary Swish data format failed:', error);
-    }
-    
-    // Try fallback URLs
-    for (let i = 0; i < fallbackUrls.length; i++) {
+    // Try each URL format
+    for (let i = 0; i < swishUrls.length; i++) {
         try {
-            window.location.href = fallbackUrls[i];
+            window.location.href = swishUrls[i];
             return;
         } catch (error) {
-            console.log(`Fallback ${i+1} failed:`, error);
+            console.log(`Swish URL ${i+1} failed:`, error);
         }
     }
     
-    // Final fallback
+    // Final fallback using window.location
     try {
-        window.location = swishUrl;
+        window.location = swishUrls[0];
     } catch (error) {
         console.log('All Swish methods failed:', error);
-    }
-}
-
-// Function for custom amounts
-function openSwishWithAmount(customAmount) {
-    const swishNumber = "1233882669";
-    const message = "Donation Svenska Reformationsbibeln";
-    
-    const swishData = {
-        version: 1,
-        payee: {
-            value: `+46${swishNumber.replace(/^0/, "")}`
-        },
-        amount: {
-            value: parseInt(customAmount, 10)
-        }
-    };
-    
-    const swishUrl = `swish://payment?data=${encodeURIComponent(JSON.stringify(swishData))}`;
-    
-    try {
-        window.location.href = swishUrl;
-    } catch (error) {
-        // Fallback without amount prefill
-        try {
-            window.location.href = `swish://payment?phone=${swishNumber}&message=${encodeURIComponent(message)}`;
-        } catch (error2) {
-            console.log('Swish could not be opened');
-        }
     }
 }
 </script>
