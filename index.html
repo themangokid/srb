@@ -593,7 +593,12 @@
 
 <script>
 function openSwish() {
-    const swishUrl = "swish://paymentrequest?token=c28a4061470f4af48973bd2a4642b4fa&callbackurl=merchant%253A%252F%252F";
+    // Option 1: Direct payment with phone number (simpler, more reliable)
+    const swishNumber = "1233882669"; // Your Swish number
+    const swishUrl = `swish://payment?phone=${swishNumber}&message=Donation%20Svenska%20Reformationsbibeln`;
+    
+    // Option 2: If you have a valid payment request token, use this format instead:
+    // const swishUrl = "swish://paymentrequest?token=YOUR_VALID_TOKEN_HERE&callbackurl=YOUR_CALLBACK_URL";
     
     try {
         window.location.href = swishUrl;
