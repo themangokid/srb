@@ -84,24 +84,24 @@
                 class="title-part2">bibeln</span></h1>
         <p class="hero-subtitle">En Bibel i Tiden</p>
         <div class="hero-container-flex">
-        <div class="hero-item">
-        <div class="hero-description">
-            Reformationsbibeln är en modern svensk översättning av Karl XII:s Bibel från 1703 baserad på Textus
-            Receptus.
-            Nuvarande prognos är att kunna skicka hela <b> Bibelns text till tryckning i början av 2026</b>. <b>
-                Förbön och ekonomiskt stöd är mycket angeläget</b>.<b> GT är publicerad 8 september
-                2025</b>.
+            <div class="hero-item">
+                <div class="hero-description">
+                    Reformationsbibeln är en modern svensk översättning av Karl XII:s Bibel från 1703 baserad på Textus
+                    Receptus.
+                    Nuvarande prognos är att kunna skicka hela <b> Bibelns text till tryckning i början av 2026</b>. <b>
+                        Förbön och ekonomiskt stöd är mycket angeläget</b>.<b> GT är publicerad 8 september
+                        2025</b>.
                 </div>
-        <div class="hero-item">
-       <a href="swish://paymentrequest?token=c28a4061470f4af48973bd2a4642b4fa&callbackurl=merchant%253A%252F%252F"> 
-            <img src="img/swish.png" width="40%" height="40%" >
-            </a>
-        <div>
-        </div>
+            </div>
+            <div class="hero-item">
+                <img src="img/swish.png" width="40%" height="40%" 
+                     onclick="openSwish()" 
+                     style="cursor: pointer;" 
+                     alt="Swish betalning">
+            </div>
         </div>
     </div>
 </section>
-
 
     
 <!-- Main Content -->
@@ -593,31 +593,36 @@
 
 <script>
 function openSwish() {
-    // Option 1: Direct payment with phone number (simpler, more reliable)
-    const swishNumber = "1233882669"; // Your Swish number
-    const swishUrl = `swish://payment?phone=${swishNumber}&message=Donation%20Svenska%20Reformationsbibeln`;
+    // Organisation/Company Swish number format
+    const swishNumber = "1233882669";
     
-    // Option 2: If you have a valid payment request token, use this format instead:
-    // const swishUrl = "swish://paymentrequest?token=YOUR_VALID_TOKEN_HERE&callbackurl=YOUR_CALLBACK_URL";
+    // Try multiple URL formats for better compatibility
+    const swishUrls = [
+        `swish://payment?phone=${swishNumber}&message=Donation%20Svenska%20Reformationsbibeln`,
+        `swish://payment?phone=${swishNumber}`,
+        `swish://paymentrequest?phone=${swishNumber}&message=Donation%20Svenska%20Reformationsbibeln`,
+        `swish://paymentrequest?phone=${swishNumber}`
+    ];
     
-    try {
-        window.location.href = swishUrl;
-    } catch (error) {
+    // Try each URL format in sequence
+    function trySwishUrl(index) {
+        if (index >= swishUrls.length) {
+            console.log('All Swish URL formats failed');
+            return;
+        }
+        
         try {
-            window.location = swishUrl;
-        } catch (error2) {
-            try {
-                window.open(swishUrl, '_self');
-            } catch (error3) {
-                // Silent fallback - do nothing rather than show error
-                console.log('Swish could not be opened');
-            }
+            window.location.href = swishUrls[index];
+        } catch (error) {
+            // Try next format if this one fails
+            setTimeout(() => trySwishUrl(index + 1), 100);
         }
     }
+    
+    // Start with the first URL format
+    trySwishUrl(0);
 }
 </script>
-
-
 
 </body>
 </html>
