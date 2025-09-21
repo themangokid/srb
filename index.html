@@ -588,5 +588,31 @@
             lastTouchEnd = now;
         }, false);
     </script>
+
+<!-- Swish-->
+
+<script>
+function openSwish() {
+    const swishUrl = "swish://paymentrequest?token=c28a4061470f4af48973bd2a4642b4fa&callbackurl=merchant%253A%252F%252F";
+    
+    try {
+        window.location.href = swishUrl;
+    } catch (error) {
+        try {
+            window.location = swishUrl;
+        } catch (error2) {
+            try {
+                window.open(swishUrl, '_self');
+            } catch (error3) {
+                // Silent fallback - do nothing rather than show error
+                console.log('Swish could not be opened');
+            }
+        }
+    }
+}
+</script>
+
+
+
 </body>
 </html>
