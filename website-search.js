@@ -295,9 +295,9 @@ class WebsiteSearch {
         this.results.innerHTML = `
             <div class="empty-state">
                 <i class="fas fa-globe"></i>
-                <p>Börja skriva för att söka på webbplatsen...</p>
+                <h1><p>Börja skriva för att söka på webbplatsen...</p></h1>
                 <div class="search-hints">
-                    <span>Försök med: "bibel", "Mat1:17", "joh3:16"</span>
+                    <h2><span>Försök med: "bibel", "Mat1:17", "joh3:16", "textus", "youtube" </span></h2>
                 </div>
             </div>
         `;

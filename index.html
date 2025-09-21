@@ -26,7 +26,10 @@
     <!-- Enhanced Search Scripts - Load in correct order -->
     <script src="bible-search-data.js"></script> <!-- Add this line -->
     <script src="enhanced-bible-search.js" defer></script> <!-- Replace website-search.js -->
-    
+   
+    <!-- QR-code -->
+    <script src="swish-qr-code-expand.js"></script>
+
     <!-- Add enhanced search styles -->
     <link rel="stylesheet" href="bible-search-styles.css">
 </head>
@@ -74,23 +77,32 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section id="hem" class="hero fade-in">
-        <div class="hero-content">
-            <h1><span class="title-part1">Svenska Reformations</span><span class="title-break"></span><span
-                    class="title-part2">bibeln</span></h1>
-            <p class="hero-subtitle">En Bibel i Tiden</p>
-            <div class="hero-description">
-                Reformationsbibeln är en modern svensk översättning av Karl XII:s Bibel från 1703 baserad på Textus
-                Receptus.
-                Nuvarande prognos är att kunna skicka hela <b> Bibelns text till tryckning i början av 2026</b>. <b>
-                    Förbön och ekonomiskt stöd är mycket angeläget</b>. Ny PDF-fil av <b>GT är publicerad 8 september
-                    2025</b>.
-            </div>
+<!-- Hero Section -->
+<section id="hem" class="hero fade-in">
+    <div class="hero-content">
+        <h1><span class="title-part1">Svenska Reformations</span><span class="title-break"></span><span
+                class="title-part2">bibeln</span></h1>
+        <p class="hero-subtitle">En Bibel i Tiden</p>
+        <div class="hero-container-flex">
+        <div class="hero-item">
+        <div class="hero-description">
+            Reformationsbibeln är en modern svensk översättning av Karl XII:s Bibel från 1703 baserad på Textus
+            Receptus.
+            Nuvarande prognos är att kunna skicka hela <b> Bibelns text till tryckning i början av 2026</b>. <b>
+                Förbön och ekonomiskt stöd är mycket angeläget</b>.<b> GT är publicerad 8 september
+                2025</b>.
+                </div>
+        <div class="hero-item">
+        <img src="img/swish.png" width="40%" height="40%" >
+        <div>
         </div>
-    </section>
+        </div>
+    </div>
+</section>
 
-    <!-- Main Content -->
+
+    
+<!-- Main Content -->
     <main class="main-content">
         <!-- Quick Access Section -->
         <section class="quick-access scroll-fade">
@@ -125,6 +137,22 @@
                     <h3 class="card-title">Bibeltexten</h3>
                     <div class="card-links">
                         <div class="main-link">
+                            <span>PDF-nedladdningar</span>
+                            <button class="expand-btn" data-target="pdf-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="pdf-sub">
+                            <a href="http://www.bibel.se/objfiles/PDF_books/SRBgrundtextski_-2024961626.pdf"
+                                target="_blank"> <b>Grundtextskillnader NT</b></a>
+                            <a href="https://bibel.se/wordpress/index.php/2022/01/18/oversatta-bibelbocker/"
+                                target="_blank">PDF-versioner</a>
+                            <a href="http://www.bibel.se/objfiles/1/SRBNTmedUNfotno_1604169176.pdf" target="_blank">NT
+                                med fotnoter</a>
+                            <a href="http://www.bibel.se/objfiles/1/SRBNTmedUNnoter_-774953843.pdf" target="_blank">NT
+                                utan noter</a>
+                            <a href="http://www.bibel.se/objfiles/1/SRBGTSartryckav_1200036187.pdf" target="_blank">GT
+                                särtryck</a>
+                        </div>
+                        <div class="main-link">
                             <span>Digital Bibelläsare</span>
                             <button class="expand-btn" data-target="bibelonline-sub">+</button>
                         </div>
@@ -146,22 +174,6 @@
                                 target="_blank">YouVersion Parallel läsning</a>
                         </div>
 
-                        <div class="main-link">
-                            <span>PDF-nedladdningar</span>
-                            <button class="expand-btn" data-target="pdf-sub">+</button>
-                        </div>
-                        <div class="sub-links" id="pdf-sub">
-                            <a href="http://www.bibel.se/objfiles/PDF_books/SRBgrundtextski_-2024961626.pdf"
-                                target="_blank">PDF-nedladdningar</a>
-                            <a href="https://drive.google.com/drive/folders/1N-suLiCB4gOavhUg04P0xGzSDlCSntgo"
-                                target="_blank">PDF-nedladdningar</a>
-                            <a href="http://www.bibel.se/objfiles/1/SRBNTmedUNfotno_1604169176.pdf" target="_blank">NT
-                                med fotnoter</a>
-                            <a href="http://www.bibel.se/objfiles/1/SRBNTmedUNnoter_-774953843.pdf" target="_blank">NT
-                                utan noter</a>
-                            <a href="http://www.bibel.se/objfiles/1/SRBGTSartryckav_1200036187.pdf" target="_blank">GT
-                                särtryck</a>
-                        </div>
                     </div>
                 </div>
 
@@ -283,11 +295,18 @@
                         </div>
 
                         <div class="main-link">
-                            <span>Online Bibelsökning</span>
+                            <span>Bibelstudieprogram online</span>
                             <button class="expand-btn" data-target="sokning-sub">+</button>
                         </div>
                         <div class="sub-links" id="sokning-sub">
-                            <a href="https://bibelonline.se/biblereader.php" target="_blank">Online Bibelsökning</a>
+                            <a href="https://bibelonline.se/studyb.php" target="_blank">Studera bibeln</a>
+                            <a href="https://bibelonline.se/textfind.php" target="_blank">Sök i bibeln</a>
+                            <a href="https://bibelonline.se/showref.php" target="_blank">Visa valda verser</a>
+                            <a href="https://bibelonline.se/showtema.php" target="_blank">Visa tema</a>
+                            <a href="https://bibelonline.se/showstrong.php" target="_blank">Sök strongs nummer</a>
+                            <a href="https://bibelonline.se/bibeladvanced.php" target="_blank">Extra funktioner</a>
+                            <a href="https://bibelonline.se/settings.php" target="_blank">Inställningar</a>
+                            <a href="https://bibelonline.se/showinfo.php" target="_blank">Aktuell information</a>
                         </div>
 
                         <div class="main-link">
@@ -404,7 +423,8 @@
         <div class="footer-content">
             <h3>Svenska Reformationsbibeln</h3>
             <p>© 2025 Svenska Reformationsbibelsällskapet</p>
-            <p>En moderniserad version av Karl XII:s Bibel från 1703, baserad på Textus Receptus</p>
+            <p>En modern version av Karl XII:s Bibel från 1703, baserad på Textus Receptus</p>
+            <p>Reformationsbibeln | Bankgiro: 5808-7446 | Swish: 1233882669 | Tel. 0761 70 80 44 | E-post post@bibel.se</p>
             <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(244, 240, 224, 0.3);">
             </div>
         </div>
