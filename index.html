@@ -589,38 +589,76 @@
             lastTouchEnd = now;
         }, false);
     </script>
-    
+
 <script>
 function openSwish() {
-    const swishNumber = "1233882669"; // Company Swish number (no country code needed)
+    const swishNumber = "1233882669";
     const message = "Donation Svenska Reformationsbibeln";
     
-    // Simple approach - let user enter amount in Swish app
-    const swishUrls = [
+    // Method 1: Working JSON format for mobile (based on Ruby SwishUri gem)
+    const swishData = {
+        "version": 1,
+        "payee": {
+            "value": swishNumber,
+            "editable": false
+        },
+        "message": {
+            "value": message,
+            "editable": false
+        }
+        // Amount intentionally omitted so user can enter their own
+    };
+    
+    const jsonUrl = `swish://payment?data=${encodeURIComponent(JSON.stringify(swishData))}`;
+    
+    try {
+        // Try the working JSON format first
+        window.location.href = jsonUrl;
+        return;
+    } catch (error) {
+        console.log('JSON format failed:', error);
+    }
+    
+    // Method 2: Fallback URLs for older versions
+    const fallbackUrls = [
         `swish://payment?phone=${swishNumber}&message=${encodeURIComponent(message)}`,
-        `swish://payment?phone=${swishNumber}`,
         `swish://paymentrequest?phone=${swishNumber}&message=${encodeURIComponent(message)}`,
+        `swish://payment?phone=${swishNumber}`,
         `swish://paymentrequest?phone=${swishNumber}`
     ];
     
-    // Try each URL format
-    for (let i = 0; i < swishUrls.length; i++) {
+    for (let url of fallbackUrls) {
         try {
-            window.location.href = swishUrls[i];
+            window.location.href = url;
             return;
         } catch (error) {
-            console.log(`Swish URL ${i+1} failed:`, error);
+            console.log('Fallback failed:', error);
         }
     }
     
-    // Final fallback using window.location
+    // Method 3: Final fallback - just open Swish app
     try {
-        window.location = swishUrls[0];
+        window.location.href = "swish://";
     } catch (error) {
-        console.log('All Swish methods failed:', error);
+        console.log('Could not open Swish app');
     }
 }
-</script>
 
+// Alternative: Generate QR code button for maximum compatibility
+function showSwishQR() {
+    const swishNumber = "1233882669";
+    const message = "Donation Svenska Reformationsbibeln";
+    
+    // Create QR code data (format: C<number>;<amount>;<message>;<editable_flags>)
+    // editable_flags: 6 = amount(2) + message(4) editable, payee locked
+    const qrData = `C${swishNumber};;${encodeURIComponent(message)};6`;
+    
+    // For development/testing, you could also use the official Swish QR API:
+    // https://mpc.getswish.net/qrg-swish/api/v1/prefilled
+    
+    // Display QR data or redirect to QR generator
+    alert(`QR Code data: ${qrData}\n\nSwish number: ${swishNumber}\nMessage: ${message}`);
+}
+</script>
 </body>
 </html>
