@@ -1,5 +1,9 @@
 ## TDL
 
++ Om det finns fler bilder på människor från sällskapet, på BH, på annat så hade det nog hjälpt för
++ man vill ju veta vilka man skickar pengarna till
+
+
 + Bilden längst ned behöver mobilanpassas
 + Logotypen längst till vänster bör ha lite mer margin 1-2px
 + Bug: Ladda JSON filen, Frågor & Svar (QNA)

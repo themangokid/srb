@@ -1597,3 +1597,173 @@ img[src*="qr"].expanded {
         padding: 10px;
     }
 }
+.donation-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.donation-button {
+    background: none;
+    border: 2px dashed #AE3337;
+    padding: 1rem;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+}
+
+.donation-button:hover {
+    border-color: rgba(139, 105, 20, 0.7);
+    background: rgba(139, 105, 20, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(74, 52, 38, 0.2);
+}
+
+.donation-title {
+    color: #AE3337;
+    font-family: 'EB Garamond', Garamond, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.bible-purchase {
+    width: 100%;
+    max-width: 300px;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bible-input-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--primary-text);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.input-row input {
+    width: 60px;
+    padding: 0.5rem;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.input-row input:focus {
+    outline: none;
+    border-color: #AE3337;
+}
+
+.total {
+    flex: 1;
+    font-weight: 600;
+    color: #AE3337;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.buy-btn {
+    background: #AE3337;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.buy-btn:hover {
+    background: #8B2A2E;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+    .donation-section {
+        padding: 0 1rem;
+    }
+    
+    .bible-purchase {
+        max-width: 100%;
+    }
+    
+    .input-row {
+        flex-wrap: wrap;
+        gap: 0.3rem;
+    }
+    
+    .input-row input {
+        width: 50px;
+    }
+    
+    .total {
+        min-width: 80px;
+    }
+    
+    .buy-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Notification styles */
+.bible-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #AE3337;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 10001;
+    font-size: 14px;
+    font-weight: 500;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bible-notification.show {
+    transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+    .bible-notification {
+        right: 10px;
+        left: 10px;
+        transform: translateY(-100px);
+    }
+    
+    .bible-notification.show {
+        transform: translateY(0);
+    }
+}

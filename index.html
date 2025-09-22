@@ -89,14 +89,32 @@
                         Förbön och ekonomiskt stöd är mycket angeläget</b>. 
                 </div>
             </div>
-            <div class="hero-item">
-                <button onclick="openSwish()" type="button" class="donation-button">
-                    <img src="img/swish.webp" width="40%" height="40%" alt="Swish betalning">
-                    <br>
-                    <br>
-                    <h2 class="donation-title">Donera</h2>
-                </button>
+<div class="hero-item">
+    <div class="donation-section">
+        <!-- Main donation button -->
+        <button onclick="openSwish()" type="button" class="donation-button">
+            <img src="img/swish.webp" width="40%" height="40%" alt="Swish betalning">
+            <br>
+            <br>
+            <h2 class="donation-title">Donera</h2>
+        </button>
+        
+        <!-- Bible purchase section -->
+        <div class="bible-purchase">
+            <div class="bible-input-group">
+                <label for="bibleQuantity">Köp Bibel (200 kr/st):</label>
+                <div class="input-row">
+                    <input type="number" id="bibleQuantity" value="1" min="1" max="100" onchange="updateTotal()">
+                    <span class="total" id="bibleTotal">= 200 kr</span>
+                    <button onclick="buyBibles()" class="buy-btn">
+                        <i class="fas fa-shopping-cart"></i> Köp
+                    </button>
+                </div>
             </div>
+        </div>
+    </div>
+</div>
+
         </div>
     </div>
 </section>
@@ -590,29 +608,46 @@
     </script>
 
 <script>
-function openSwish() {
-    const swishNumber = "1233882669";
-    const message = "Donation Svenska Reformationsbibeln";
+function updateTotal() {
+    const quantity = parseInt(document.getElementById('bibleQuantity').value) || 1;
+    const total = quantity * 200;
+    document.getElementById('bibleTotal').textContent = `= ${total} kr`;
+}
+
+function buyBibles() {
+    const quantity = parseInt(document.getElementById('bibleQuantity').value) || 1;
+    const total = quantity * 200;
+    const transactionId = generateTransactionId();
+    const description = `Köp ${quantity} Bibel${quantity > 1 ? 'ar' : ''}`;
+    const fullMessage = `${description} - ID: ${transactionId}`;
     
-    // Method 1: Working JSON format for mobile (based on Ruby SwishUri gem)
+    console.log(`Bible Purchase: ${quantity} x 200kr = ${total}kr - ID: ${transactionId}`);
+    
+    // Use the same Swish opening logic as your original function
+    const swishNumber = "1233882669";
+    
+    // Method 1: Working JSON format for mobile
     const swishData = {
         "version": 1,
         "payee": {
             "value": swishNumber,
             "editable": false
         },
+        "amount": {
+            "value": total,
+            "editable": false
+        },
         "message": {
-            "value": message,
+            "value": fullMessage,
             "editable": false
         }
-        // Amount intentionally omitted so user can enter their own
     };
     
     const jsonUrl = `swish://payment?data=${encodeURIComponent(JSON.stringify(swishData))}`;
     
     try {
-        // Try the working JSON format first
         window.location.href = jsonUrl;
+        showBibleNotification(`Öppnar Swish för köp av ${quantity} Bibel${quantity > 1 ? 'ar' : ''} (${total}kr)`);
         return;
     } catch (error) {
         console.log('JSON format failed:', error);
@@ -620,10 +655,70 @@ function openSwish() {
     
     // Method 2: Fallback URLs for older versions
     const fallbackUrls = [
-        `swish://payment?phone=${swishNumber}&message=${encodeURIComponent(message)}`,
-        `swish://paymentrequest?phone=${swishNumber}&message=${encodeURIComponent(message)}`,
-        `swish://payment?phone=${swishNumber}`,
-        `swish://paymentrequest?phone=${swishNumber}`
+        `swish://payment?phone=${swishNumber}&amount=${total}&message=${encodeURIComponent(fullMessage)}`,
+        `swish://paymentrequest?phone=${swishNumber}&amount=${total}&message=${encodeURIComponent(fullMessage)}`,
+        `swish://payment?phone=${swishNumber}&amount=${total}`,
+        `swish://payment?phone=${swishNumber}`
+    ];
+    
+    for (let url of fallbackUrls) {
+        try {
+            window.location.href = url;
+            showBibleNotification(`Öppnar Swish för köp av ${quantity} Bibel${quantity > 1 ? 'ar' : ''} (${total}kr)`);
+            return;
+        } catch (error) {
+            console.log('Fallback failed:', error);
+        }
+    }
+    
+    // Method 3: Final fallback - just open Swish app
+    try {
+        window.location.href = "swish://";
+        showBibleNotification(`Öppnar Swish för köp av ${quantity} Bibel${quantity > 1 ? 'ar' : ''} (${total}kr)`);
+    } catch (error) {
+        console.log('Could not open Swish app');
+        alert('Kunde inte öppna Swish. Kontrollera att Swish-appen är installerad.');
+    }
+}
+
+function generateTransactionId() {
+    const timestamp = Date.now().toString(36);
+    const randomPart = Math.random().toString(36).substr(2, 5);
+    return `SRB-${timestamp}-${randomPart}`.toUpperCase();
+}
+
+function openSwishWithAmount(swishNumber, amount, message) {
+    const swishData = {
+        "version": 1,
+        "payee": {
+            "value": swishNumber,
+            "editable": false
+        },
+        "amount": {
+            "value": amount,
+            "editable": false
+        },
+        "message": {
+            "value": message,
+            "editable": false
+        }
+    };
+    
+    const jsonUrl = `swish://payment?data=${encodeURIComponent(JSON.stringify(swishData))}`;
+    
+    try {
+        window.location.href = jsonUrl;
+        return;
+    } catch (error) {
+        console.log('JSON format failed:', error);
+    }
+    
+    // Fallback methods
+    const fallbackUrls = [
+        `swish://payment?phone=${swishNumber}&amount=${amount}&message=${encodeURIComponent(message)}`,
+        `swish://paymentrequest?phone=${swishNumber}&amount=${amount}&message=${encodeURIComponent(message)}`,
+        `swish://payment?phone=${swishNumber}&amount=${amount}`,
+        `swish://payment?phone=${swishNumber}`
     ];
     
     for (let url of fallbackUrls) {
@@ -635,7 +730,6 @@ function openSwish() {
         }
     }
     
-    // Method 3: Final fallback - just open Swish app
     try {
         window.location.href = "swish://";
     } catch (error) {
@@ -643,21 +737,35 @@ function openSwish() {
     }
 }
 
-// Alternative: Generate QR code button for maximum compatibility
-function showSwishQR() {
-    const swishNumber = "1233882669";
-    const message = "Donation Svenska Reformationsbibeln";
+function showBibleNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'bible-notification';
+    notification.innerHTML = `
+        <i class="fas fa-check"></i>
+        <span>${message}</span>
+    `;
     
-    // Create QR code data (format: C<number>;<amount>;<message>;<editable_flags>)
-    // editable_flags: 6 = amount(2) + message(4) editable, payee locked
-    const qrData = `C${swishNumber};;${encodeURIComponent(message)};6`;
+    document.body.appendChild(notification);
     
-    // For development/testing, you could also use the official Swish QR API:
-    // https://mpc.getswish.net/qrg-swish/api/v1/prefilled
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
     
-    // Display QR data or redirect to QR generator
-    alert(`QR Code data: ${qrData}\n\nSwish number: ${swishNumber}\nMessage: ${message}`);
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
 }
+
+// Initialize total on page load
+document.addEventListener('DOMContentLoaded', function() {
+    updateTotal();
+});
 </script>
+
 </body>
 </html>
