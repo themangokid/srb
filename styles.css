@@ -1453,3 +1453,145 @@ img[src*="qr"].expanded {
         padding: 10px;
     }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   RED BRAND COLOR INTEGRATION
+   ═══════════════════════════════════════════════════════════ */
+
+/* Option 1: Red section title underlines */
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #AE3337 !important;
+    border-radius: 2px;
+}
+
+/* Option 3: Red donation button styling */
+.donation-title {
+    color: #4A3427;
+    font-family: garamond;
+    background: none;
+    border: 2px dashed #AE3337 !important;
+    padding: 12px;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.donation-button:hover .donation-title {
+    border: 2px solid #AE3337 !important;
+    background: rgba(174, 51, 55, 0.1) !important;
+    color: #AE3337 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO CONTAINER & DONATION SECTION
+   ═══════════════════════════════════════════════════════════ */
+
+.hero-container-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.hero-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Donation Button Styling */
+.donation-button {
+    background: none;
+    border: none;
+    padding: 12px;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.donation-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(74, 52, 38, 0.2);
+}
+
+.donation-button:active {
+    transform: translateY(0);
+}
+
+.donation-button img {
+    padding: 5px;
+    transition: transform 0.2s ease;
+}
+
+.donation-button:hover img {
+    transform: scale(1.05);
+}
+
+.donation-title {
+    color: #4A3427;
+    font-family: garamond;
+    background: none;
+    border: 2px dashed rgba(139, 105, 20, 0.4);
+    padding: 12px;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.donation-button:hover .donation-title {
+    border-color: rgba(139, 105, 20, 0.7);
+    background: rgba(139, 105, 20, 0.05);
+}
+
+/* Responsive adjustments for hero container */
+@media (min-width: 768px) {
+    .hero-container-flex {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 3rem;
+        margin-top: 2rem;
+    }
+    
+    .hero-item:first-child {
+        flex: 2;
+        text-align: left;
+    }
+    
+    .hero-item:last-child {
+        flex: 1;
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .donation-button img {
+        width: 60%;
+        height: auto;
+    }
+    
+    .donation-title {
+        font-size: 1.1rem;
+        padding: 10px;
+    }
+}
