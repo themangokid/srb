@@ -609,6 +609,65 @@
     </script>
 
 <script>
+// DONATION FUNCTIONS
+function openDonationSwish() {
+    // Prompt user for donation amount
+    const amount = prompt("Ange donationsbelopp (kr):");
+    
+    // Validate input
+    if (amount === null) {
+        // User cancelled
+        return;
+    }
+    
+    const parsedAmount = parseInt(amount);
+    if (isNaN(parsedAmount) || parsedAmount <= 0) {
+        alert("Vänligen ange ett giltigt belopp.");
+        return;
+    }
+    
+    // Generate transaction ID for donation
+    const transactionId = generateDonationId();
+    const message = `Donation - ID: ${transactionId}`;
+    
+    console.log(`Donation: ${parsedAmount}kr - ID: ${transactionId}`);
+    
+    // Use Swish opening logic
+    openSwishWithAmount("1233882669", parsedAmount, message);
+    showDonationNotification(`Öppnar Swish för donation på ${parsedAmount}kr`);
+}
+
+function generateDonationId() {
+    const timestamp = Date.now().toString(36);
+    const randomPart = Math.random().toString(36).substr(2, 5);
+    return `SRD-${timestamp}-${randomPart}`.toUpperCase();
+}
+
+function showDonationNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'donation-notification';
+    notification.innerHTML = `
+        <i class="fas fa-heart"></i>
+        <span>${message}</span>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
+}
+
+// BIBLE PURCHASE FUNCTIONS (unchanged)
 function updateTotal() {
     const quantity = parseInt(document.getElementById('bibleQuantity').value) || 1;
     const total = quantity * 200;
@@ -624,62 +683,9 @@ function buyBibles() {
     
     console.log(`Bible Purchase: ${quantity} x 200kr = ${total}kr - ID: ${transactionId}`);
     
-    // Use the same Swish opening logic as your original function
-    const swishNumber = "1233882669";
-    
-    // Method 1: Working JSON format for mobile
-    const swishData = {
-        "version": 1,
-        "payee": {
-            "value": swishNumber,
-            "editable": false
-        },
-        "amount": {
-            "value": total,
-            "editable": false
-        },
-        "message": {
-            "value": fullMessage,
-            "editable": false
-        }
-    };
-    
-    const jsonUrl = `swish://payment?data=${encodeURIComponent(JSON.stringify(swishData))}`;
-    
-    try {
-        window.location.href = jsonUrl;
-        showBibleNotification(`Öppnar Swish för köp av ${quantity} Bibel${quantity > 1 ? 'ar' : ''} (${total}kr)`);
-        return;
-    } catch (error) {
-        console.log('JSON format failed:', error);
-    }
-    
-    // Method 2: Fallback URLs for older versions
-    const fallbackUrls = [
-        `swish://payment?phone=${swishNumber}&amount=${total}&message=${encodeURIComponent(fullMessage)}`,
-        `swish://paymentrequest?phone=${swishNumber}&amount=${total}&message=${encodeURIComponent(fullMessage)}`,
-        `swish://payment?phone=${swishNumber}&amount=${total}`,
-        `swish://payment?phone=${swishNumber}`
-    ];
-    
-    for (let url of fallbackUrls) {
-        try {
-            window.location.href = url;
-            showBibleNotification(`Öppnar Swish för köp av ${quantity} Bibel${quantity > 1 ? 'ar' : ''} (${total}kr)`);
-            return;
-        } catch (error) {
-            console.log('Fallback failed:', error);
-        }
-    }
-    
-    // Method 3: Final fallback - just open Swish app
-    try {
-        window.location.href = "swish://";
-        showBibleNotification(`Öppnar Swish för köp av ${quantity} Bibel${quantity > 1 ? 'ar' : ''} (${total}kr)`);
-    } catch (error) {
-        console.log('Could not open Swish app');
-        alert('Kunde inte öppna Swish. Kontrollera att Swish-appen är installerad.');
-    }
+    // Use Swish opening logic
+    openSwishWithAmount("1233882669", total, fullMessage);
+    showBibleNotification(`Öppnar Swish för köp av ${quantity} Bibel${quantity > 1 ? 'ar' : ''} (${total}kr)`);
 }
 
 function generateTransactionId() {
@@ -688,6 +694,31 @@ function generateTransactionId() {
     return `SRB-${timestamp}-${randomPart}`.toUpperCase();
 }
 
+function showBibleNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'bible-notification';
+    notification.innerHTML = `
+        <i class="fas fa-check"></i>
+        <span>${message}</span>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
+}
+
+// SHARED SWISH FUNCTION
 function openSwishWithAmount(swishNumber, amount, message) {
     const swishData = {
         "version": 1,
@@ -735,31 +766,8 @@ function openSwishWithAmount(swishNumber, amount, message) {
         window.location.href = "swish://";
     } catch (error) {
         console.log('Could not open Swish app');
+        alert('Kunde inte öppna Swish. Kontrollera att Swish-appen är installerad.');
     }
-}
-
-function showBibleNotification(message) {
-    const notification = document.createElement('div');
-    notification.className = 'bible-notification';
-    notification.innerHTML = `
-        <i class="fas fa-check"></i>
-        <span>${message}</span>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.classList.add('show');
-    }, 100);
-    
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.parentNode.removeChild(notification);
-            }
-        }, 300);
-    }, 3000);
 }
 
 // Initialize total on page load
@@ -767,6 +775,5 @@ document.addEventListener('DOMContentLoaded', function() {
     updateTotal();
 });
 </script>
-
 </body>
 </html>
