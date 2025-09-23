@@ -874,6 +874,7 @@ img[src*="qr"] {
 .flag-image {
     width: 50%;
     height: auto;
+    max-width: 400px; /* Reasonable max size for flag */
     margin: 0 auto;
     display: block;
 }
