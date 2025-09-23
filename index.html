@@ -18,7 +18,7 @@
         rel="stylesheet">
     <!-- Add Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Enhanced Search Scripts - DISABLED -->
     <!-- <script src="search-data.js"></script> -->
     <!-- <script src="website-search.js" defer></script> -->
@@ -75,33 +75,39 @@
     </header>
 
 
-<section id="hem" class="hero fade-in">
-    <div class="hero-content">
-        <h1><span class="title-part1">Svenska Reformations</span><span class="title-break"></span><span
-                class="title-part2">bibeln</span></h1>
-        <p class="hero-subtitle">En bibel i tiden</p>
-        <div class="hero-container-flex">
-            <div class="hero-item">
-                <div class="hero-description">
-                    Reformationsbibeln är en modern svensk översättning av Karl XII:s Bibel från 1703 baserad på Textus
-                    Receptus.
-                    Nuvarande prognos är att kunna skicka hela Bibelns text till tryckning i början av 2026. <b>
-                    Förbön och ekonomiskt stöd är mycket angeläget</b>. 
-                    <br>
-                    <br>
+    <section id="hem" class="hero fade-in">
+        <div class="hero-content">
+            <h1><span class="title-part1">Svenska Reformations</span><span class="title-break"></span><span
+                    class="title-part2">bibeln</span></h1>
+            <p class="hero-subtitle">En bibel i tiden</p>
+            <div class="hero-container-flex">
+                <div class="hero-item">
+                    <div class="hero-description">
+                        Reformationsbibeln är en modern svensk översättning av Karl XII:s Bibel från 1703 baserad på
+                        Textus
+                        Receptus.
+                        Nuvarande prognos är att kunna skicka hela Bibelns text till tryckning i början av 2026. <b>
+                            Förbön och ekonomiskt stöd är mycket angeläget</b>.
+                        <div style="padding-top:25px;"></div>
+                        <a href="https://bibel.se/wordpress/wp-content/uploads/2023/01/SRB_Kanal10_221125_800kbps.mp4"
+                            target="_blank">
+                            <img src="img/kanal_10.png">
+                        </a>
+                    
+                        <p>Intervju: Bo Hagstedt gästar Kanal 10.</p>
+                    </div>
                 </div>
-            </div>
-<!-- Updated HTML section for the hero area -->
-<div class="hero-item">
-    <div class="donation-section">
-        <!-- Donation button -->
-        <h2>Stöd gärna översättningsarbetet!</h2>
-            <img src="img/swish.png" width="40%" height="40%" alt="Swish betalning">
-        <button onclick="openDonationSwish()" type="button" class="donation-button">
-            <h3 class="donation-title">Donera <i class="fas fa-donate"></i></h3>
-        </button>
-        
-        <!-- Bible purchase section 
+                <!-- Updated HTML section for the hero area -->
+                <div class="hero-item">
+                    <div class="donation-section">
+                        <!-- Donation button -->
+                        <h2>Stöd gärna översättningsarbetet!</h2>
+                        <img src="img/swish.png" width="40%" height="40%" alt="Swish betalning">
+                        <button onclick="openDonationSwish()" type="button" class="donation-button">
+                            <h3 class="donation-title">Donera <i class="fas fa-donate"></i></h3>
+                        </button>
+
+                        <!-- Bible purchase section 
         <div class="bible-purchase">
             <div class="bible-input-group">
                 <div class="input-row">
@@ -111,15 +117,15 @@
                 </div>
             </div>
         </div> -->
-    </div>
-</div>
+                    </div>
+                </div>
 
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-    
-<!-- Main Content -->
+
+    <!-- Main Content -->
     <main class="main-content">
         <!-- Quick Access Section -->
         <section class="quick-access scroll-fade">
@@ -248,8 +254,8 @@
                         </div>
 
                         <div class="sub-links" id="youtube-sub-2">
-                            <a href="https://www.youtube.com/watch?v=tkIZ8z9HKNk"
-                                target="_blank">Ljudbibel av Kristofer Aspén</a>
+                            <a href="https://www.youtube.com/watch?v=tkIZ8z9HKNk" target="_blank">Ljudbibel av Kristofer
+                                Aspén</a>
                         </div>
 
                     </div>
@@ -447,9 +453,10 @@
             <h3>Svenska Reformationsbibeln</h3>
             <p>© 2025 Svenska Reformationsbibelsällskapet</p>
             <p>En modern version av Karl XII:s Bibel från 1703, baserad på Textus Receptus</p>
-            <p>Reformationsbibeln | Bankgiro: 5808-7446 | Swish: 1233882669 | Tel. 0761 70 80 44 | E-post post@bibel.se</p>
+            <p>Reformationsbibeln | Bankgiro: 5808-7446 | Swish: 1233882669 | Tel. 0761 70 80 44 | E-post post@bibel.se
+            </p>
             <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(244, 240, 224, 0.3);">
-        <img src="img/dragen_ut_får_svensk_flagg_01.png" class="flag-image" alt="Swedish Flag">
+                <img src="img/dragen_ut_får_svensk_flagg_01.png" class="flag-image" alt="Swedish Flag">
             </div>
         </div>
     </footer>
@@ -611,179 +618,173 @@
         }, false);
     </script>
 
-<script>
+    <script>
+        // DONATION FUNCTIONS
+        function openDonationSwish() {
+            // Prompt user for donation amount
+            const amount = prompt("Ange donationsbelopp (kr):");
 
+            // Validate input
+            if (amount === null) {
+                // User cancelled
+                return;
+            }
 
+            const parsedAmount = parseInt(amount);
+            if (isNaN(parsedAmount) || parsedAmount <= 0) {
+                alert("Vänligen ange ett giltigt belopp.");
+                return;
+            }
 
-// DONATION FUNCTIONS
-function openDonationSwish() {
-    // Prompt user for donation amount
-    const amount = prompt("Ange donationsbelopp (kr):");
-    
-    // Validate input
-    if (amount === null) {
-        // User cancelled
-        return;
-    }
-    
-    const parsedAmount = parseInt(amount);
-    if (isNaN(parsedAmount) || parsedAmount <= 0) {
-        alert("Vänligen ange ett giltigt belopp.");
-        return;
-    }
-    
-    // Generate transaction ID for donation
-    const transactionId = generateDonationId();
-    const message = `Donation - ID: ${transactionId}`;
-    
-    console.log(`Donation: ${parsedAmount}kr - ID: ${transactionId}`);
-    
-    // Use Swish opening logic
-    openSwishWithAmount("1233882669", parsedAmount, message);
-    showDonationNotification(`Öppnar Swish för donation på ${parsedAmount}kr`);
-}
+            // Generate transaction ID for donation
+            const transactionId = generateDonationId();
+            const message = `Donation - ID: ${transactionId}`;
 
-function generateDonationId() {
-    const timestamp = Date.now().toString(36);
-    const randomPart = Math.random().toString(36).substr(2, 5);
-    return `SRD-${timestamp}-${randomPart}`.toUpperCase();
-}
+            console.log(`Donation: ${parsedAmount}kr - ID: ${transactionId}`);
 
-function showDonationNotification(message) {
-    const notification = document.createElement('div');
-    notification.className = 'donation-notification';
-    notification.innerHTML = `
+            // Use Swish opening logic
+            openSwishWithAmount("1233882669", parsedAmount, message);
+            showDonationNotification(`Öppnar Swish för donation på ${parsedAmount}kr`);
+        }
+
+        function generateDonationId() {
+            const timestamp = Date.now().toString(36);
+            const randomPart = Math.random().toString(36).substr(2, 5);
+            return `SRD-${timestamp}-${randomPart}`.toUpperCase();
+        }
+
+        function showDonationNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'donation-notification';
+            notification.innerHTML = `
         <i class="fas fa-heart"></i>
         <span>${message}</span>
     `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.classList.add('show');
-    }, 100);
-    
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.parentNode.removeChild(notification);
-            }
-        }, 300);
-    }, 3000);
-}
 
-// BIBLE PURCHASE FUNCTIONS (unchanged)
-function updateTotal() {
-    const quantity = parseInt(document.getElementById('bibleQuantity').value) || 1;
-    const total = quantity * 200;
-    document.getElementById('bibleTotal').textContent = `= ${total} kr`;
-}
+            document.body.appendChild(notification);
 
-function buyBibles() {
-    const quantity = parseInt(document.getElementById('bibleQuantity').value) || 1;
-    const total = quantity * 200;
-    const transactionId = generateTransactionId();
-    const description = `Köp ${quantity} Bibel${quantity > 1 ? 'ar' : ''}`;
-    const fullMessage = `${description} - ID: ${transactionId}`;
-    
-    console.log(`Bible Purchase: ${quantity} x 200kr = ${total}kr - ID: ${transactionId}`);
-    
-    // Use Swish opening logic
-    openSwishWithAmount("1233882669", total, fullMessage);
-    showBibleNotification(`Öppnar Swish för köp av ${quantity} Bibel${quantity > 1 ? 'ar' : ''} (${total}kr)`);
-}
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
 
-function generateTransactionId() {
-    const timestamp = Date.now().toString(36);
-    const randomPart = Math.random().toString(36).substr(2, 5);
-    return `SRB-${timestamp}-${randomPart}`.toUpperCase();
-}
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
 
-function showBibleNotification(message) {
-    const notification = document.createElement('div');
-    notification.className = 'bible-notification';
-    notification.innerHTML = `
+        // BIBLE PURCHASE FUNCTIONS (unchanged)
+        function updateTotal() {
+            const quantity = parseInt(document.getElementById('bibleQuantity').value) || 1;
+            const total = quantity * 200;
+            document.getElementById('bibleTotal').textContent = `= ${total} kr`;
+        }
+
+        function buyBibles() {
+            const quantity = parseInt(document.getElementById('bibleQuantity').value) || 1;
+            const total = quantity * 200;
+            const transactionId = generateTransactionId();
+            const description = `Köp ${quantity} Bibel${quantity > 1 ? 'ar' : ''}`;
+            const fullMessage = `${description} - ID: ${transactionId}`;
+
+            console.log(`Bible Purchase: ${quantity} x 200kr = ${total}kr - ID: ${transactionId}`);
+
+            // Use Swish opening logic
+            openSwishWithAmount("1233882669", total, fullMessage);
+            showBibleNotification(`Öppnar Swish för köp av ${quantity} Bibel${quantity > 1 ? 'ar' : ''} (${total}kr)`);
+        }
+
+        function generateTransactionId() {
+            const timestamp = Date.now().toString(36);
+            const randomPart = Math.random().toString(36).substr(2, 5);
+            return `SRB-${timestamp}-${randomPart}`.toUpperCase();
+        }
+
+        function showBibleNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'bible-notification';
+            notification.innerHTML = `
         <i class="fas fa-check"></i>
         <span>${message}</span>
     `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.classList.add('show');
-    }, 100);
-    
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.parentNode.removeChild(notification);
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // SHARED SWISH FUNCTION
+        function openSwishWithAmount(swishNumber, amount, message) {
+            const swishData = {
+                "version": 1,
+                "payee": {
+                    "value": swishNumber,
+                    "editable": false
+                },
+                "amount": {
+                    "value": amount,
+                    "editable": false
+                },
+                "message": {
+                    "value": message,
+                    "editable": false
+                }
+            };
+
+            const jsonUrl = `swish://payment?data=${encodeURIComponent(JSON.stringify(swishData))}`;
+
+            try {
+                window.location.href = jsonUrl;
+                return;
+            } catch (error) {
+                console.log('JSON format failed:', error);
             }
-        }, 300);
-    }, 3000);
-}
 
-// SHARED SWISH FUNCTION
-function openSwishWithAmount(swishNumber, amount, message) {
-    const swishData = {
-        "version": 1,
-        "payee": {
-            "value": swishNumber,
-            "editable": false
-        },
-        "amount": {
-            "value": amount,
-            "editable": false
-        },
-        "message": {
-            "value": message,
-            "editable": false
+            // Fallback methods
+            const fallbackUrls = [
+                `swish://payment?phone=${swishNumber}&amount=${amount}&message=${encodeURIComponent(message)}`,
+                `swish://paymentrequest?phone=${swishNumber}&amount=${amount}&message=${encodeURIComponent(message)}`,
+                `swish://payment?phone=${swishNumber}&amount=${amount}`,
+                `swish://payment?phone=${swishNumber}`
+            ];
+
+            for (let url of fallbackUrls) {
+                try {
+                    window.location.href = url;
+                    return;
+                } catch (error) {
+                    console.log('Fallback failed:', error);
+                }
+            }
+
+            try {
+                window.location.href = "swish://";
+            } catch (error) {
+                console.log('Could not open Swish app');
+                alert('Kunde inte öppna Swish. Kontrollera att Swish-appen är installerad.');
+            }
         }
-    };
-    
-    const jsonUrl = `swish://payment?data=${encodeURIComponent(JSON.stringify(swishData))}`;
-    
-    try {
-        window.location.href = jsonUrl;
-        return;
-    } catch (error) {
-        console.log('JSON format failed:', error);
-    }
-    
-    // Fallback methods
-    const fallbackUrls = [
-        `swish://payment?phone=${swishNumber}&amount=${amount}&message=${encodeURIComponent(message)}`,
-        `swish://paymentrequest?phone=${swishNumber}&amount=${amount}&message=${encodeURIComponent(message)}`,
-        `swish://payment?phone=${swishNumber}&amount=${amount}`,
-        `swish://payment?phone=${swishNumber}`
-    ];
-    
-    for (let url of fallbackUrls) {
-        try {
-            window.location.href = url;
-            return;
-        } catch (error) {
-            console.log('Fallback failed:', error);
-        }
-    }
-    
-    try {
-        window.location.href = "swish://";
-    } catch (error) {
-        console.log('Could not open Swish app');
-        alert('Kunde inte öppna Swish. Kontrollera att Swish-appen är installerad.');
-    }
-}
 
-// Initialize total on page load
-document.addEventListener('DOMContentLoaded', function() {
-    updateTotal();
-});
-
-
-
-
-</script>
+        // Initialize total on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            updateTotal();
+        });
+    </script>
 </body>
+
 </html>
