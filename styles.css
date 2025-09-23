@@ -842,3 +842,50 @@ img[src*="qr"] {
     .nav-grid { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
     .hero { padding: 3.5rem 2.5rem; }
 }
+
+/* Images that were  */
+
+/* Image sizing classes */
+.img-40 {
+    width: 40%;
+    height: auto; /* Maintain aspect ratio */
+}
+
+.img-50 {
+    width: 50%;
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Responsive image base class */
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Specific image styling for your use cases */
+.swish-logo {
+    width: 40%;
+    height: auto;
+    max-width: 120px; /* Prevent it from getting too large on desktop */
+    margin: 0 auto;
+}
+
+.flag-image {
+    width: 50%;
+    height: auto;
+    max-width: 200px; /* Reasonable max size for flag */
+    margin: 0 auto;
+    display: block;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .img-40, .swish-logo {
+        width: 60%; /* Slightly larger on mobile for better visibility */
+    }
+    
+    .img-50, .flag-image {
+        width: 70%; /* Slightly larger on mobile */
+    }
+}
