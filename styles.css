@@ -898,7 +898,7 @@ img[src*="qr"] {
 /* Style for the video reference image */
 img[src*="kanal_10"] {
     width: 100%;
-    max-width: 500px;
+    max-width: 900px;
     height: auto;
     border-radius: 16px;
     box-shadow: 0 6px 20px rgba(74, 52, 38, 0.2);
@@ -948,7 +948,7 @@ img[src*="kanal_10"]:hover {
 
 /* Target just the caption paragraph if you wrap it in a p tag */
 .hero-description p {
-    margin-left:0.5em;
-    font-size: 0.9rem; /* 5% smaller than parent */
+    margin-left:0.1em;
+    font-size: 1.3rem; /* 5% smaller than parent */
     margin-top: 0.5rem;
 }
