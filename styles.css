@@ -478,7 +478,7 @@ kbd {
 }
 
 .nav-card {
-    background: var(--card-bg);
+
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 4px 20px var(--shadow-color);
@@ -959,15 +959,9 @@ img[src*="kanal_10"]:hover {
     }
 }
 
-
-
-
-
-
 /* Target just the caption paragraph if you wrap it in a p tag */
 .hero-description p {
     color:#4a3426bc;
-    margin-left:0.2em;
     font-size: 1.3rem; /* 5% smaller than parent */
     margin-top: 0.5rem;
 }
