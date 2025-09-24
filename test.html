@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+    <meta name="description" content="Svenska Reformationsbibeln - En modern svensk översättning av Karl XII:s Bibel från 1703 baserad på Textus Receptus.">
+
+    <!-- Icons-->
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+
+    <!-- Fonts and styles-->
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <title>Svenska Reformationsbibeln - En bibel i tiden</title>
+
+    <style>
+        /* ═══════════════════════════════════════════════════════════
+           ENHANCED VERSION OF ORIGINAL DESIGN
+           ═══════════════════════════════════════════════════════════ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Keep original color scheme but refined */
+            --primary-bg: #f4f0e0;
+            --secondary-bg: #faf8f0;
+            --card-bg: #fefcf5;
+            --primary-text: #4a3426;
+            --secondary-text: #6d4c36;
+            --accent-color: #8b6914;
+            --hover-color: #6d4c36;
+            --border-color: #d4c5a9;
+            --shadow-color: rgba(74, 52, 38, 0.12);
+            --gradient-gold: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            --red-accent: #AE3337;
+            --red-hover: #8B2A2E;
+            
+            /* Improved typography scale */
+            --font-serif: 'EB Garamond', Garamond, serif;
+            --text-xs: 0.8rem;
+            --text-sm: 0.9rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            
+            /* Consistent spacing */
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-12: 3rem;
+            
+            /* Improved shadows */
+            --shadow-sm: 0 2px 4px rgba(74, 52, 38, 0.08);
+            --shadow-md: 0 4px 12px rgba(74, 52, 38, 0.12);
+            --shadow-lg: 0 8px 24px rgba(74, 52, 38, 0.15);
+            
+            /* Smooth transitions */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: var(--font-serif);
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            font-size: var(--text-base);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           IMPROVED HEADER - Better mobile, cleaner logo
+           ═══════════════════════════════════════════════════════════ */
+
+        .header {
+            background: rgba(244, 240, 224, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-4) var(--space-6);
+            min-height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 180px;
+            height: 180px;
+            background: url("img/main_srb_v16_lower_text_innershadow.webp") center/contain no-repeat;
+            transition: var(--transition);
+        }
+
+        .logo-icon:hover {
+            transform: scale(1.02);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: var(--space-8);
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--primary-text);
+            text-decoration: none;
+            font-size: var(--text-lg);
+            font-weight: 600;
+            padding: var(--space-2) var(--space-3);
+            border-radius: 6px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-gold);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a:hover {
+            color: var(--hover-color);
+            background: rgba(139, 105, 20, 0.08);
+        }
+
+        .nav-menu a:hover::after {
+            width: 80%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: var(--space-2);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .hamburger:hover {
+            background: rgba(139, 105, 20, 0.1);
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--primary-text);
+            margin: 3px 0;
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           ENHANCED HERO - Better layout, improved mobile
+           ═══════════════════════════════════════════════════════════ */
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-bg) 0%, #ede7d3 100%);
+            padding: var(--space-8) var(--space-4);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            color: var(--primary-text);
+            margin-bottom: var(--space-4);
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 4px rgba(74, 52, 38, 0.1);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: var(--accent-color);
+            margin-bottom: var(--space-8);
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .hero-container-flex {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: var(--space-12);
+            align-items: start;
+            margin-top: var(--space-8);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-description {
+            font-size: var(--text-lg);
+            line-height: 1.7;
+            margin-bottom: var(--space-8);
+            max-width: 65ch;
+            text-align: left;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           MUCH BETTER DONATION SECTION - Cleaner, more professional
+           ═══════════════════════════════════════════════════════════ */
+
+        .donation-section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: var(--space-8);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            max-width: 320px;
+            min-width: 280px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .donation-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-gold);
+        }
+
+        .donation-section h2 {
+            font-size: var(--text-xl);
+            color: var(--primary-text);
+            margin-bottom: var(--space-6);
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .progress-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+
+        .stat-box {
+            background: rgba(212, 175, 55, 0.08);
+            padding: var(--space-4);
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--accent-color);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: var(--text-sm);
+            color: var(--secondary-text);
+            font-weight: 500;
+            margin-top: var(--space-2);
+        }
+
+        .donation-button {
+            background: linear-gradient(135deg, var(--red-accent) 0%, var(--red-hover) 100%);
+            color: white;
+            border: none;
+            padding: var(--space-4) var(--space-6);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            font-family: inherit;
+            font-size: var(--text-lg);
+            font-weight: 600;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .donation-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .donation-button:hover::before {
+            left: 100%;
+        }
+
+        .donation-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(174, 51, 55, 0.3);
+        }
+
+        .donation-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-3);
+        }
+
+        .payment-info {
+            margin-top: var(--space-6);
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .payment-info p {
+            font-size: var(--text-sm);
+            color: var(--secondary-text);
+            margin-bottom: var(--space-2);
+            text-align: center;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           IMPROVED VIDEO SECTION - Better presentation
+           ═══════════════════════════════════════════════════════════ */
+
+        .video-section {
+            margin-top: var(--space-8);
+        }
+
+        .video-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 3px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .video-thumbnail:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(74, 52, 38, 0.2);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(212, 175, 55, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-text);
+            font-size: 2rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .video-wrapper:hover .play-overlay {
+            background: var(--gradient-gold);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-caption {
+            font-style: italic;
+            color: var(--secondary-text);
+            margin-top: var(--space-4);
+            text-align: center;
+            font-size: var(--text-lg);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           ENHANCED QUICK ACCESS - Much better visual hierarchy
+           ═══════════════════════════════════════════════════════════ */
+
+        .quick-access {
+            background: linear-gradient(135deg, var(--secondary-bg) 0%, #f0ebe0 100%);
+            border-radius: 20px;
+            padding: var(--space-12) var(--space-6);
+            text-align: center;
+            margin: var(--space-12) auto;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-access::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 600;
+            color: var(--primary-text);
+            text-align: center;
+            margin-bottom: var(--space-6);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-gold);
+            border-radius: 2px;
+        }
+
+        .quick-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quick-btn {
+            background: var(--gradient-gold);
+            color: var(--primary-text);
+            text-decoration: none;
+            padding: var(--space-4) var(--space-8);
+            border-radius: 50px;
+            font-size: var(--text-lg);
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            min-height: 56px;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .quick-btn:hover::before {
+            left: 100%;
+        }
+
+        .quick-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .quick-btn i {
+            font-size: 1.3rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           ENHANCED NAVIGATION CARDS - Keep original functionality but better design
+           ═══════════════════════════════════════════════════════════ */
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-12) var(--space-4);
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-8);
+        }
+
+        .nav-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: var(--space-8);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--gradient-gold);
+            transition: var(--transition);
+        }
+
+        .nav-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .nav-card:hover::before {
+            height: 100%;
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-6);
+            font-size: 2rem;
+            color: var(--primary-text);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .nav-card:hover .card-icon {
+            transform: scale(1.05);
+        }
+
+        .card-title {
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--primary-text);
+            text-align: center;
+            margin-bottom: var(--space-6);
+            line-height: 1.3;
+        }
+
+        .card-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        .main-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-4);
+            background: rgba(139, 105, 20, 0.06);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: var(--transition);
+            gap: var(--space-4);
+        }
+
+        .main-link:hover {
+            background: rgba(139, 105, 20, 0.12);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .main-link span {
+            color: var(--primary-text);
+            font-weight: 500;
+            font-size: var(--text-lg);
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .expand-btn {
+            background: rgba(139, 105, 20, 0.2);
+            color: var(--primary-text);
+            border: none;
+            padding: var(--space-3);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: var(--text-lg);
+            font-weight: bold;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .expand-btn:hover {
+            background: rgba(139, 105, 20, 0.3);
+            transform: scale(1.1);
+        }
+
+        .sub-links {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-left: var(--space-4);
+            border-left: 2px solid rgba(212, 175, 55, 0.3);
+            padding-left: var(--space-4);
+        }
+
+        .sub-links.expanded {
+            padding-bottom: var(--space-4);
+        }
+
+        .sub-links a {
+            font-size: var(--text-lg);
+            font-weight: 500;
+            color: var(--primary-text);
+            text-decoration: none;
+            padding: var(--space-3) var(--space-4);
+            margin: var(--space-2) 0;
+            display: block;
+            transition: var(--transition);
+            line-height: 1.5;
+            border-bottom: 1px solid rgba(212, 197, 169, 0.2);
+            border-radius: 6px;
+        }
+
+        .sub-links a:hover {
+            color: var(--hover-color);
+            transform: translateX(6px);
+            background: rgba(139, 105, 20, 0.08);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           IMPROVED FOOTER - Better organization
+           ═══════════════════════════════════════════════════════════ */
+
+        .footer {
+            background: var(--primary-text);
+            color: var(--primary-bg);
+            text-align: center;
+            padding: var(--space-12) var(--space-4) var(--space-8);
+            margin-top: var(--space-12);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-4);
+            color: var(--accent-color);
+        }
+
+        .footer p {
+            font-size: var(--text-lg);
+            line-height: 1.7;
+            margin-bottom: var(--space-3);
+            opacity: 0.9;
+        }
+
+        .flag-image {
+            width: 30%;
+            max-width: 200px;
+            height: auto;
+            margin: var(--space-8) auto 0;
+            display: block;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .flag-image:hover {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           MUCH BETTER RESPONSIVE DESIGN
+           ═══════════════════════════════════════════════════════════ */
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: var(--space-4);
+            }
+
+            .logo-icon {
+                width: 140px;
+                height: 140px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: var(--card-bg);
+                width: 100%;
+                text-align: center;
+                transition: var(--transition);
+                box-shadow: var(--shadow-lg);
+                padding: var(--space-8) var(--space-4);
+                z-index: 999;
+                gap: var(--space-4);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu a {
+                font-size: var(--text-xl);
+                padding: var(--space-4);
+                border-radius: 8px;
+                background: rgba(139, 105, 20, 0.05);
+            }
+
+            .hero {
+                padding: var(--space-8) var(--space-4);
+                text-align: center;
+            }
+
+            .hero-container-flex {
+                grid-template-columns: 1fr;
+                gap: var(--space-8);
+                text-align: center;
+            }
+
+            .hero-description {
+                text-align: center;
+            }
+
+            .donation-section {
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-4);
+                padding: 0 var(--space-4);
+            }
+
+            .quick-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .quick-btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: clamp(2rem, 8vw, 2.5rem);
+            }
+
+            .donation-section {
+                padding: var(--space-6);
+            }
+
+            .progress-stats {
+                gap: var(--space-3);
+            }
+
+            .stat-box {
+                padding: var(--space-3);
+            }
+
+            .stat-number {
+                font-size: var(--text-2xl);
+            }
+
+            .nav-card {
+                padding: var(--space-6);
+            }
+
+            .main-link {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--space-3);
+            }
+
+            .expand-btn {
+                align-self: center;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           ACCESSIBILITY & ANIMATION IMPROVEMENTS
+           ═══════════════════════════════════════════════════════════ */
+
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Focus states for accessibility */
+        *:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Notification improvements */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--red-accent);
+            color: white;
+            padding: var(--space-4);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            z-index: 10000;
+            font-weight: 500;
+            transform: translateX(400px);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            max-width: 300px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .donation-notification {
+            background: var(--gradient-gold);
+            color: var(--primary-text);
+        }
+
+        /* Hamburger animation */
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+    </style>
+
+    <!-- QR-code script -->
+    <script>
+        // Enhanced Swish QR Code functionality
+        function expandQRCode(element) {
+            element.style.transform = 'scale(1.1)';
+            element.style.transition = 'transform 0.3s ease';
+            
+            setTimeout(() => {
+                element.style.transform = 'scale(1)';
+            }, 200);
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="#hem">
+                    <div class="logo-icon"></div>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="QnA.html">Frågor & Svar</a></li>
+                <li><a href="#resurser">Resurser</a></li>
+                <li><a href="https://bibel.se" target="_blank">Bibel.se</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hem" class="hero fade-in">
+        <div class="hero-content">
+            <h1>Svenska Reformationsbibeln</h1>
+            <p class="hero-subtitle">En bibel i tiden</p>
+            
+            <div class="hero-container-flex">
+                <div class="hero-item">
+                    <div class="hero-description">
+                        Reformationsbibeln är en modern svensk översättning av Karl XII:s Bibel från 1703 baserad på
+                        Textus Receptus. Nuvarande prognos är att kunna skicka hela Bibelns text till tryckning i början av 2026. 
+                        <strong>Förbön och ekonomiskt stöd är mycket angeläget</strong>.
+                    </div>
+
+                    <div class="video-section">
+                        <div class="video-wrapper">
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2023/01/SRB_Kanal10_221125_800kbps.mp4" target="_blank">
+                                <img src="img/kanal_10.png" alt="Bo Hagstedt gästar Kanal 10" class="video-thumbnail">
+                                <div class="play-overlay">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <p class="video-caption">Bo Hagstedt gästar Kanal 10</p>
+                    </div>
+                </div>
+
+                <!-- Enhanced Support Section -->
+                <div class="hero-item">
+                    <div class="donation-section">
+                        <h2>Stöd gärna översättningsarbetet!</h2>
+                        
+                        <div class="progress-stats">
+                            <div class="stat-box">
+                                <span class="stat-number">95%</span>
+                                <span class="stat-label">Färdigt</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number">2026</span>
+                                <span class="stat-label">Måldatum</span>
+                            </div>
+                        </div>
+
+                        <button onclick="openDonationSwish()" type="button" class="donation-button">
+                            <div class="donation-title">
+                                <i class="fas fa-heart"></i>
+                                Stöd med donation
+                            </div>
+                        </button>
+
+                        <div class="payment-info">
+                            <p><strong>Bankgiro:</strong> 5808-7446</p>
+                            <p><strong>Swish:</strong> 1233882669</p>
+                            <p><strong>E-post:</strong> post@bibel.se</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Enhanced Quick Access Section -->
+        <section class="quick-access scroll-fade">
+            <h2 class="section-title">Snabbåtkomst</h2>
+            <div class="quick-buttons">
+                <a href="https://bibelonline.se/biblereader.php" target="_blank" class="quick-btn">
+                    <i class="fas fa-book-open"></i> Läs Online
+                </a>
+                <a href="https://bibel.se/wordpress/index.php/2022/01/22/bestalla-reformationsbibeln/" target="_blank" class="quick-btn">
+                    <i class="fas fa-shopping-cart"></i> Beställ Bibel
+                </a>
+                <a href="https://bibel.se/wordpress/index.php/2022/01/18/oversatta-bibelbocker/" target="_blank" class="quick-btn">
+                    <i class="fas fa-file-pdf"></i> PDF-Versioner
+                </a>
+            </div>
+        </section>
+
+        <!-- Enhanced Navigation Grid -->
+        <section id="resurser" class="section scroll-fade">
+            <h2 class="section-title">Våra resurser</h2>
+            <div class="nav-grid">
+
+                <!-- Bible Reading Section -->
+                <div id="bibeln" class="nav-card">
+                    <div class="card-icon"><i class="fas fa-bible"></i></div>
+                    <h3 class="card-title">Bibeltexten</h3>
+                    <div class="card-links">
+                        <div class="main-link">
+                            <span>PDF-nedladdningar</span>
+                            <button class="expand-btn" data-target="pdf-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="pdf-sub">
+                            <a href="http://www.bibel.se/objfiles/PDF_books/SRBgrundtextski_-2024961626.pdf" target="_blank"><strong>Grundtextskillnader NT</strong></a>
+                            <a href="https://bibel.se/wordpress/index.php/2022/01/18/oversatta-bibelbocker/" target="_blank">PDF-versioner</a>
+                            <a href="http://www.bibel.se/objfiles/1/SRBNTmedUNfotno_1604169176.pdf" target="_blank">NT med fotnoter</a>
+                            <a href="http://www.bibel.se/objfiles/1/SRBNTmedUNnoter_-774953843.pdf" target="_blank">NT utan noter</a>
+                            <a href="http://www.bibel.se/objfiles/1/SRBGTSartryckav_1200036187.pdf" target="_blank">GT särtryck</a>
+                        </div>
+                        
+                        <div class="main-link">
+                            <span>Digital bibelläsare</span>
+                            <button class="expand-btn" data-target="bibelonline-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="bibelonline-sub">
+                            <a href="https://bibelonline.se/biblereader.php" target="_blank">Digital bibelläsare</a>
+                            <a href="https://bibelonline.se/biblereader.php?book=40" target="_blank">Nya Testamentet</a>
+                            <a href="https://bibelonline.se/biblereader.php?book=1" target="_blank">Gamla Testamentet</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>YouVersion</span>
+                            <button class="expand-btn" data-target="youversion-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="youversion-sub">
+                            <a href="https://www.bible.com/bible/3413/MAT.1.SRB16" target="_blank">YouVersion (SRB16)</a>
+                            <a href="https://www.bible.com/bible/3413/MAT.1.SRB16?parallel=154" target="_blank">YouVersion Parallel läsning</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Media and Resources -->
+                <div class="nav-card">
+                    <div class="card-icon"><i class="fas fa-video"></i></div>
+                    <h3 class="card-title">Videoserie och YouTube-kanal</h3>
+                    <div class="card-links">
+                        <div class="main-link">
+                            <span>Alla videor</span>
+                            <button class="expand-btn" data-target="media-hub-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="media-hub-sub">
+                            <a href="https://bibel.se/wordpress/index.php/media/" target="_blank">Alla videor</a>
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2023/01/SRB_Kanal10_221125_800kbps.mp4" target="_blank">SRB Kanal 10 intervju</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Serie: En felaktig grundtext (5 delar)</span>
+                            <button class="expand-btn" data-target="grundtext-serie-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="grundtext-serie-sub">
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2022/03/Bibeln%20-%20En%20felaktig%20grundtext%20-%20del%201%20av%205-wjJ1fK6101g.mp4" target="_blank">Del 1 av 5</a>
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2022/03/Bibeln%20-%20En%20felaktig%20grundtext%20-%20del%202%20av%205-J9UiqtUW7bQ.mp4" target="_blank">Del 2 av 5</a>
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2022/03/Bibeln%20-%20En%20felaktig%20grundtext%20-%20del%203%20av%205-Cnjy3vO48ck.mp4" target="_blank">Del 3 av 5</a>
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2022/03/Bibeln%20-%20En%20felaktig%20grundtext%20-%20del%204%20av%205-bOuNPYwl5rQ.mp4" target="_blank">Del 4 av 5</a>
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2022/03/Bibeln%20-%20En%20felaktig%20grundtext%20-%20del%205%20av%205-W_Iw9DSrEdE.mp4" target="_blank">Del 5 av 5</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Reformationsbibeln-serien</span>
+                            <button class="expand-btn" data-target="reformations-serie-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="reformations-serie-sub">
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2022/03/Reformationsbibeln%20del%201%202%20-PAvs5sATZBA.mp4" target="_blank">Reformationsbibeln del 1-2</a>
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2022/03/Reformationsbibeln%20del%203%20-eoRo6hsQooM.mp4" target="_blank">Reformationsbibeln del 3</a>
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2022/03/Bakgrunden%20till%20revideringen%20av%20Karl%20XIIs%20Bibel-84807534.mp4" target="_blank">Bakgrund till revideringen</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>YouTube-kanal</span>
+                            <button class="expand-btn" data-target="youtube-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="youtube-sub">
+                            <a href="https://www.youtube.com/@reformationsbibeln9676/videos" target="_blank">Ljudbibel</a>
+                            <a href="https://www.youtube.com/watch?v=tkIZ8z9HKNk" target="_blank">Ljudbibel av Kristofer Aspén</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bible Translations Section -->
+                <div class="nav-card">
+                    <div class="card-icon"><i class="fas fa-exchange-alt"></i></div>
+                    <h3 class="card-title">Bibelöversättningar</h3>
+                    <div class="card-links">
+                        <div class="main-link">
+                            <span>Karl XII:s Bibel 1703</span>
+                            <button class="expand-btn" data-target="karl-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="karl-sub">
+                            <a href="https://bibel.se/wordpress/index.php/andra-bibeloversattningar/" target="_blank">Lista över andra översättningar</a>
+                            <a href="https://www.bibel.se/objfiles/1/KXIIBibel1703he_-1499304058.pdf" target="_blank">Karl XII:s Bibel 1703</a>
+                            <a href="https://bibel.se/wordpress/index.php/2022/01/22/staves-revidering-1923-nt/" target="_blank">Staves revidering 1923 NT</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Åkesons översättning</span>
+                            <button class="expand-btn" data-target="akeson-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="akeson-sub">
+                            <a href="http://www.bibel.se/bibeln/andra-bibeloversattningar/fragor-om-bibeloversattningar/akesons-oversattning/bk-1861-nt_1059" target="_blank">Åkesons översättning</a>
+                            <a href="http://www.bibel.se/bibeln/andra-bibeloversattningar/fragor-om-bibeloversattningar/akesons-oversattning/bk-1861-nt_1059" target="_blank">Om översättaren</a>
+                            <a href="http://www.bibel.se/bibeln/andra-bibeloversattningar/fragor-om-bibeloversattningar/akesons-oversattning/staves-revidering-1923-nt_1061" target="_blank">Staves revidering</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Översättningshistoria</span>
+                            <button class="expand-btn" data-target="historia-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="historia-sub">
+                            <a href="https://sv.wikipedia.org/wiki/Reformationsbibeln" target="_blank">Översättningshistoria</a>
+                            <a href="http://www.bibel.se/bibeln/andra-bibeloversattningar/bk-1861-nt_1059" target="_blank">Bibelkommissionen 1861</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bible Study Tools -->
+                <div class="nav-card">
+                    <div class="card-icon"><i class="fas fa-search"></i></div>
+                    <h3 class="card-title">Studieverktyg</h3>
+                    <div class="card-links">
+                        <div class="main-link">
+                            <span>Illustrerat bibellexikon</span>
+                            <button class="expand-btn" data-target="lexikon-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="lexikon-sub">
+                            <a href="https://www.bibel.se/bibellexikon" target="_blank">Illustrerat Bibellexikon</a>
+                            <a href="http://www.bibel.se/bibellexikon/uppslagsdel-a-o_802" target="_blank">Uppslagsdel A-Ö</a>
+                            <a href="https://www.bibel.se/bibellexikon/ovrig-uppslagsdel_803" target="_blank">Övrig uppslagsdel</a>
+                            <a href="http://www.bibel.se/bibellexikon/bilder-illustrerat-bibellexikon_987" target="_blank">Bilder från lexikon</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Bibelstudieprogram online</span>
+                            <button class="expand-btn" data-target="sokning-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="sokning-sub">
+                            <a href="https://bibelonline.se/studyb.php" target="_blank">Studera bibeln</a>
+                            <a href="https://bibelonline.se/textfind.php" target="_blank">Sök i bibeln</a>
+                            <a href="https://bibelonline.se/showref.php" target="_blank">Visa valda verser</a>
+                            <a href="https://bibelonline.se/showtema.php" target="_blank">Visa tema</a>
+                            <a href="https://bibelonline.se/showstrong.php" target="_blank">Sök Strong's nummer</a>
+                            <a href="https://bibelonline.se/bibeladvanced.php" target="_blank">Extra funktioner</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Referensmaterial – Google Drive</span>
+                            <button class="expand-btn" data-target="material-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="material-sub">
+                            <a href="https://drive.google.com/drive/folders/1N-suLiCB4gOavhUg04P0xGzSDlCSntgo" target="_blank">Referensmaterial</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Questions and Answers -->
+                <div class="nav-card">
+                    <div class="card-icon"><i class="fas fa-question-circle"></i></div>
+                    <h3 class="card-title">Frågor och svar</h3>
+                    <div class="card-links">
+                        <div class="main-link">
+                            <span>Frågor & svar</span>
+                            <button class="expand-btn" data-target="qna-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="qna-sub">
+                            <a href="QnA.html">Frågor & svar</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>SRB:s bibelsyn</span>
+                            <button class="expand-btn" data-target="bibelsyn-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="bibelsyn-sub">
+                            <a href="http://www.bibel.se/om-oss/fragor-och-svar/den-helige-ande-med-stor-bokstav/reformationbibeln-nya-testamentet_787" target="_blank">SRB:s bibelsyn</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Grundtext i GT</span>
+                            <button class="expand-btn" data-target="grundtext-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="grundtext-sub">
+                            <a href="https://www.bibel.se/om-oss/fragor-och-svar/vilken-grundtext-anvander-srb-i-gt" target="_blank">Grundtext i GT</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Textus Receptus vs Majoritet</span>
+                            <button class="expand-btn" data-target="textus-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="textus-sub">
+                            <a href="http://www.bibel.se/om-oss/fragor-och-svar/skillnader-mellan-textus-receptus-och-majoritetstexten" target="_blank">Textus Receptus vs Majoritet</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Articles and Teaching -->
+                <div class="nav-card">
+                    <div class="card-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3 class="card-title">Artiklar och undervisning</h3>
+                    <div class="card-links">
+                        <div class="main-link">
+                            <span>Artiklar</span>
+                            <button class="expand-btn" data-target="artiklar-main-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="artiklar-main-sub">
+                            <a href="https://bibel.se/wordpress/index.php/artiklar/" target="_blank">Artiklar</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Debatt</span>
+                            <button class="expand-btn" data-target="debatt-main-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="debatt-main-sub">
+                            <a href="https://bibel.se/wordpress/index.php/2021/12/04/debatt/" target="_blank">Debatt</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Vad har hänt med Bibeln?</span>
+                            <button class="expand-btn" data-target="bibeln-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="bibeln-sub">
+                            <a href="http://www.bibel.se/artiklar/vad-har-hant-med-bibeln_1193" target="_blank">Vad har hänt med Bibeln?</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Klassiska Debattartiklar</span>
+                            <button class="expand-btn" data-target="klassisk-debatt-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="klassisk-debatt-sub">
+                            <a href="http://www.bibel.se/artiklar/debatt" target="_blank">Klassiska Debattartiklar</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Uppslagsartiklar</span>
+                            <button class="expand-btn" data-target="uppslagsartiklar-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="uppslagsartiklar-sub">
+                            <a href="https://www.bibel.se/bibellexikon/ovrig-uppslagsdel_803" target="_blank">Uppslagsartiklar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Swedish Flag -->
+        <div style="margin-top: var(--space-8); padding-top: var(--space-8); border-top: 1px solid rgba(244, 240, 224, 0.3); text-align: center;">
+            <img src="img/dragen_ut_får_svensk_flagg_01.png" class="flag-image" alt="Swedish Flag">
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="kontakt" class="footer">
+        <div class="footer-content">
+            <h3>© 2025 Svenska Reformationsbibelsällskapet</h3>
+            <p>En modern version av Karl XII:s Bibel från 1703, baserad på Textus Receptus</p>
+            <p>Bankgiro: 5808-7446 | Swish: 1233882669 | E-post: post@bibel.se</p>
+        </div>
+    </footer>
+
+    <!-- Enhanced JavaScript -->
+    <script>
+        // Mobile menu toggle functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+
+            // Close menu when clicking on a link
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+        }
+
+        // Enhanced Sub-link expansion functionality
+        document.addEventListener('click', (e) => {
+            const mainLink = e.target.closest('.main-link');
+            if (mainLink) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const button = mainLink.querySelector('.expand-btn');
+                if (button) {
+                    const targetId = button.getAttribute('data-target');
+                    const subLinks = document.getElementById(targetId);
+
+                    if (subLinks) {
+                        const isExpanded = subLinks.classList.contains('expanded');
+
+                        // Close other expanded sections in the same card
+                        const parentCard = mainLink.closest('.nav-card');
+                        parentCard.querySelectorAll('.sub-links.expanded').forEach(section => {
+                            if (section !== subLinks) {
+                                section.classList.remove('expanded');
+                                const otherButton = parentCard.querySelector(`[data-target="${section.id}"]`);
+                                if (otherButton) otherButton.textContent = '+';
+                                section.style.maxHeight = '0px';
+                            }
+                        });
+
+                        if (isExpanded) {
+                            subLinks.classList.remove('expanded');
+                            button.textContent = '+';
+                            subLinks.style.maxHeight = '0px';
+                        } else {
+                            subLinks.classList.add('expanded');
+                            button.textContent = '−';
+                            const scrollHeight = subLinks.scrollHeight;
+                            subLinks.style.maxHeight = scrollHeight + 'px';
+
+                            // Smooth scroll to expanded section on mobile
+                            if (window.innerWidth <= 768) {
+                                setTimeout(() => {
+                                    mainLink.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'nearest'
+                                    });
+                                }, 100);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-fade').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced donation functionality
+        function openDonationSwish() {
+            const amount = prompt("Ange donationsbelopp (kr):");
+
+            if (amount === null) return;
+
+            const parsedAmount = parseInt(amount);
+            if (isNaN(parsedAmount) || parsedAmount <= 0) {
+                alert("Vänligen ange ett giltigt belopp.");
+                return;
+            }
+
+            const transactionId = generateDonationId();
+            const message = `Donation SRB - ${transactionId}`;
+
+            console.log(`Donation: ${parsedAmount}kr - ID: ${transactionId}`);
+
+            openSwishWithAmount("1233882669", parsedAmount, message);
+            showDonationNotification(`Öppnar Swish för donation på ${parsedAmount} kr`);
+        }
+
+        function generateDonationId() {
+            const timestamp = Date.now().toString(36);
+            const randomPart = Math.random().toString(36).substr(2, 5);
+            return `SRD-${timestamp}-${randomPart}`.toUpperCase();
+        }
+
+        function openSwishWithAmount(swishNumber, amount, message) {
+            const swishData = {
+                "version": 1,
+                "payee": {"value
