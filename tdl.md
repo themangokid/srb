@@ -14,3 +14,8 @@
 
  
 + Ladda ner allt material som är lätt att hantera (PDF:er) och länka sedan till dem på github
+# TDL
+
++ Lite mindre size på titeln
++ Menyn ska ha större text
++ Ta bort grejen vid botten på swish:en (Done)
