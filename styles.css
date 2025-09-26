@@ -2,11 +2,12 @@
  ╔═══════════════════════════════════════════════════════╗
  ║             Svenska Reformationsbibeln CSS            ║
  ║                    Version 2.4 (2025)                 ║
+ ║                     Reorganized                        ║
  ╚═══════════════════════════════════════════════════════╝
 */
 
 /* ═══════════════════════════════════════════════════════════
-   RESET & BASE STYLES
+   1. RESET, VARIABLES & BASE STYLES
    ═══════════════════════════════════════════════════════════ */
 
 * {
@@ -16,16 +17,19 @@
 }
 
 :root {
+    /* Color Variables */
     --primary-bg: #f4f0e0;
     --primary-text: #4a3426;
     --accent-color: #8b6914;
     --hover-color: #6d4c36;
     --border-color: #d4c5a9;
     --shadow-color: rgba(74, 52, 38, 0.1);
-    --gradient-gold: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
     --card-bg: #faf8f0;
     --red-accent: #AE3337;
     --red-hover: #8B2A2E;
+    
+    /* Gradient Variables */
+    --gradient-gold: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
 }
 
 body {
@@ -38,7 +42,9 @@ body {
     font-size: 14px;
 }
 
-p { font-size: 14px; }
+p { 
+    font-size: 14px; 
+}
 
 kbd {
     display: inline-block;
@@ -52,7 +58,7 @@ kbd {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   HEADER & NAVIGATION
+   2. HEADER & NAVIGATION
    ═══════════════════════════════════════════════════════════ */
 
 .header {
@@ -125,7 +131,7 @@ kbd {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   HERO SECTION
+   3. HERO SECTION
    ═══════════════════════════════════════════════════════════ */
 
 .hero {
@@ -167,24 +173,19 @@ kbd {
 .hero-description {
     font-size: clamp(1.7rem, 2.5vw, 1.2rem);
     line-height: 1.6;
-    margin-bottom: 1rem; /* Reduced from 2rem */
+    margin-bottom: 1rem;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Video caption styling - optimized */
 .hero-description i p {
     text-align: center;
     color: #4a3426bc;
     font-size: 1.1rem;
     margin-top: 0.5rem;
-    margin-bottom: 0; /* Remove bottom margin to reduce spacing */
+    margin-bottom: 0;
 }
-
-/* ═══════════════════════════════════════════════════════════
-   HERO CONTAINER & DONATION SECTION
-   ═══════════════════════════════════════════════════════════ */
 
 .hero-container-flex {
     display: flex;
@@ -203,7 +204,7 @@ kbd {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   FLAT DONATION & PURCHASE SECTION
+   4. DONATION & PURCHASE COMPONENTS
    ═══════════════════════════════════════════════════════════ */
 
 .donation-section {
@@ -351,14 +352,14 @@ kbd {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   VIDEO PLAY BUTTON STYLING - OPTIMIZED
+   5. VIDEO COMPONENTS
    ═══════════════════════════════════════════════════════════ */
 
 .video-container {
     position: relative;
     display: block;
     cursor: pointer;
-    margin: 15px auto 5px; /* Reduced margins: top 15px, bottom 5px */
+    margin: 15px auto 5px;
     border-radius: 16px;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -376,7 +377,7 @@ kbd {
 }
 
 .video-container img {
-    width: 100%;
+    width: 10rem;
     height: auto;
     display: block;
     border-radius: 8px;
@@ -435,7 +436,7 @@ kbd {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   MAIN CONTENT & SECTIONS
+   6. MAIN CONTENT & SECTIONS
    ═══════════════════════════════════════════════════════════ */
 
 .main-content {
@@ -470,7 +471,58 @@ kbd {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   NAVIGATION CARDS & GRID
+   7. QUICK ACCESS SECTION
+   ═══════════════════════════════════════════════════════════ */
+
+.quick-access {
+    background: linear-gradient(135deg, #f8f4e6 0%, #ede7d3 100%);
+    border-radius: 15px;
+    padding: 1rem;
+    text-align: center;
+    margin: 3rem 0;
+    box-shadow: 0 6px 25px var(--shadow-color);
+}
+
+.quick-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.quick-btn {
+    cursor: pointer;
+    background: var(--gradient-gold);
+    color: rgb(43, 29, 0);
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    border-radius: 25px;
+    font-size: clamp(1.5rem, 2.5vw, 1.1rem);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 50px;
+    min-width: 120px;
+    text-align: center;
+}
+
+.quick-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.quick-btn i {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   8. NAVIGATION CARDS & GRID
    ═══════════════════════════════════════════════════════════ */
 
 .nav-grid {
@@ -608,103 +660,9 @@ kbd {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   QUICK ACCESS SECTION
+   9. IMAGE UTILITIES
    ═══════════════════════════════════════════════════════════ */
 
-.quick-access {
-    background: linear-gradient(135deg, #f8f4e6 0%, #ede7d3 100%);
-    border-radius: 15px;
-    padding: 1rem;
-    text-align: center;
-    margin: 3rem 0;
-    box-shadow: 0 6px 25px var(--shadow-color);
-}
-
-.quick-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
-}
-
-.quick-btn {
-    cursor: pointer;
-    background: var(--gradient-gold);
-    color: rgb(43, 29, 0);
-    text-decoration: none;
-    padding: 1rem 1.5rem;
-    border-radius: 25px;
-    font-size: clamp(1.5rem, 2.5vw, 1.1rem);
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    min-height: 50px;
-    min-width: 120px;
-    text-align: center;
-}
-
-.quick-btn:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-}
-
-.quick-btn i {
-    margin-right: 0.5rem;
-    font-size: 1.2rem;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   FOOTER
-   ═══════════════════════════════════════════════════════════ */
-
-.footer {
-    background: var(--primary-text);
-    color: var(--primary-bg);
-    text-align: center;
-    padding: 2.5rem 2rem;
-    margin-top: 3rem;
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.footer h3 {
-    font-size: clamp(1.3rem, 4vw, 1.6rem);
-    margin-bottom: 1rem;
-}
-
-.footer p {
-    font-size: clamp(0.9rem, 2.5vw, 1rem);
-    line-height: 1.6;
-    margin-bottom: 0.5rem;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   ANIMATIONS & UTILITIES
-   ═══════════════════════════════════════════════════════════ */
-
-.fade-in,
-.scroll-fade,
-.scroll-fade.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Link overrides */
-.nav-card a,
-.main-link span {
-    color: var(--primary-text) !important;
-    text-decoration: none !important;
-}
-
-/* QR Code and image styling - consolidated */
 .hero-description img,
 img[src*="swish"],
 img[src*="qr"] {
@@ -719,7 +677,6 @@ img[src*="qr"] {
     user-select: none;
 }
 
-/* Image sizing classes */
 .img-40, .swish-logo {
     width: 40%;
     height: auto;
@@ -741,7 +698,40 @@ img[src*="qr"] {
     display: block;
 }
 
-/* Notifications */
+/* ═══════════════════════════════════════════════════════════
+   9.1 IMAGE UTILITIES
+   ═══════════════════════════════════════════════════════════ */
+
+.hero-description img,
+img[src*="swish"],
+img[src*="qr"] {
+    width: 200px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+img[src*="kanal_10"] {
+    width: 400px;
+    height: auto;
+    max-width: 90%;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin: 15px auto;
+    display: block;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   10. NOTIFICATIONS
+   ═══════════════════════════════════════════════════════════ */
+
 .bible-notification,
 .donation-notification {
     position: fixed;
@@ -773,7 +763,53 @@ img[src*="qr"] {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   RESPONSIVE DESIGN - CONSOLIDATED
+   11. FOOTER
+   ═══════════════════════════════════════════════════════════ */
+
+.footer {
+    background: var(--primary-text);
+    color: var(--primary-bg);
+    text-align: center;
+    padding: 2.5rem 2rem;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer h3 {
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
+    margin-bottom: 1rem;
+}
+
+.footer p {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   12. ANIMATIONS & UTILITIES
+   ═══════════════════════════════════════════════════════════ */
+
+.fade-in,
+.scroll-fade,
+.scroll-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Link overrides */
+.nav-card a,
+.main-link span {
+    color: var(--primary-text) !important;
+    text-decoration: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   13. RESPONSIVE DESIGN
    ═══════════════════════════════════════════════════════════ */
 
 /* Title breaks for smaller screens */
@@ -787,18 +823,42 @@ img[src*="qr"] {
     }
 }
 
-/* Mobile */
+/* Mobile Devices (768px and below) */
 @media (max-width: 768px) {
-    body { font-size: 16px; line-height: 1.4; }
-    .hero { background: #f4f0e0 !important; }
+    body { 
+        font-size: 16px; 
+        line-height: 1.4; 
+    }
     
-    .nav-container { padding: 0.6rem 1rem; }
-    .logo-icon { width: 140px; height: 140px; }
-    .hamburger { display: flex; }
+    .hero { 
+        background: #f4f0e0 !important; 
+    }
     
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+    /* Navigation */
+    .nav-container { 
+        padding: 0.6rem 1rem; 
+    }
+    
+    .logo-icon { 
+        width: 140px; 
+        height: 140px; 
+    }
+    
+    .hamburger { 
+        display: flex; 
+    }
+    
+    .hamburger.active span:nth-child(1) { 
+        transform: rotate(45deg) translate(5px, 5px); 
+    }
+    
+    .hamburger.active span:nth-child(2) { 
+        opacity: 0; 
+    }
+    
+    .hamburger.active span:nth-child(3) { 
+        transform: rotate(-45deg) translate(7px, -6px); 
+    }
     
     .nav-menu {
         position: fixed;
@@ -814,18 +874,53 @@ img[src*="qr"] {
         z-index: 999;
     }
     
-    .nav-menu.active { left: 0; }
-    .nav-menu a { font-size: 1.2rem; padding: 14px 18px; min-height: 50px; }
+    .nav-menu.active { 
+        left: 0; 
+    }
     
-    .hero { padding: 2rem 1rem; }
-    .main-content { padding: 2rem 0.5rem; }
-    .nav-grid { grid-template-columns: 1fr; gap: 1.2rem; }
-    .nav-card { padding: 1.3rem; }
+    .nav-menu a { 
+        font-size: 1.2rem; 
+        padding: 14px 18px; 
+        min-height: 50px; 
+    }
     
-    .hero-container-flex { flex-direction: column; gap: 1.5rem; }
-    .donation-section { padding: 0 1rem; max-width: 100%; }
-    .donation-button { max-width: 100%; padding: 0.8rem; }
-    .bible-purchase { max-width: 100%; }
+    /* Layout adjustments */
+    .hero { 
+        padding: 2rem 1rem; 
+    }
+    
+    .main-content { 
+        padding: 2rem 0.5rem; 
+    }
+    
+    .nav-grid { 
+        grid-template-columns: 1fr; 
+        gap: 1.2rem; 
+    }
+    
+    .nav-card { 
+        padding: 1.3rem; 
+    }
+    
+    /* Hero container */
+    .hero-container-flex { 
+        flex-direction: column; 
+        gap: 1.5rem; 
+    }
+    
+    .donation-section { 
+        padding: 0 1rem; 
+        max-width: 100%; 
+    }
+    
+    .donation-button { 
+        max-width: 100%; 
+        padding: 0.8rem; 
+    }
+    
+    .bible-purchase { 
+        max-width: 100%; 
+    }
     
     /* Video responsive adjustments */
     .video-container {
@@ -846,22 +941,50 @@ img[src*="qr"] {
         margin-left: 4px;
     }
 
-    .img-40, .swish-logo { width: 60%; }
-    .img-50, .flag-image { width: 70%; }
-    
-    .bible-notification, .donation-notification {
-        right: 10px; left: 10px; transform: translateY(-100px);
+    /* Image adjustments */
+    .img-40, .swish-logo { 
+        width: 60%; 
     }
-    .bible-notification.show, .donation-notification.show { transform: translateY(0); }
+    
+    .img-50, .flag-image { 
+        width: 70%; 
+    }
+    
+    /* Notifications */
+    .bible-notification, .donation-notification {
+        right: 10px; 
+        left: 10px; 
+        transform: translateY(-100px);
+    }
+    
+    .bible-notification.show, .donation-notification.show { 
+        transform: translateY(0); 
+    }
 }
 
-/* Small mobile */
+/* Small Mobile Devices (480px and below) */
 @media (max-width: 480px) {
-    .main-content { padding: 0 !important; }
-    .nav-container { padding: 0.6rem 1rem !important; min-height: 75px !important; }
-    .logo-icon { width: 130px !important; height: 130px !important; }
-    .nav-grid { padding: 0 0.5rem !important; }
-    .quick-access { margin: 1rem 0.5rem !important; }
+    .main-content { 
+        padding: 0 !important; 
+    }
+    
+    .nav-container { 
+        padding: 0.6rem 1rem !important; 
+        min-height: 75px !important; 
+    }
+    
+    .logo-icon { 
+        width: 130px !important; 
+        height: 130px !important; 
+    }
+    
+    .nav-grid { 
+        padding: 0 0.5rem !important; 
+    }
+    
+    .quick-access { 
+        margin: 1rem 0.5rem !important; 
+    }
     
     .video-container {
         max-width: 320px;
@@ -881,14 +1004,34 @@ img[src*="qr"] {
         margin-left: 3px;
     }
     
-    .donation-button img { width: 35%; }
-    .bible-input-group label { text-align: center; font-size: 0.85rem; }
-    .input-row { justify-content: space-between; gap: 0.3rem; }
-    .input-row input { width: 45px; padding: 0.3rem; font-size: 0.85rem; }
-    .buy-btn { padding: 0.3rem 0.5rem; font-size: 0.75rem; min-width: 50px; }
+    .donation-button img { 
+        width: 35%; 
+    }
+    
+    .bible-input-group label { 
+        text-align: center; 
+        font-size: 0.85rem; 
+    }
+    
+    .input-row { 
+        justify-content: space-between; 
+        gap: 0.3rem; 
+    }
+    
+    .input-row input { 
+        width: 45px; 
+        padding: 0.3rem; 
+        font-size: 0.85rem; 
+    }
+    
+    .buy-btn { 
+        padding: 0.3rem 0.5rem; 
+        font-size: 0.75rem; 
+        min-width: 50px; 
+    }
 }
 
-/* Very small screens */
+/* Very Small Screens (360px and below) */
 @media (max-width: 360px) {
     .video-container {
         max-width: 280px;
@@ -909,7 +1052,7 @@ img[src*="qr"] {
     }
 }
 
-/* Desktop */
+/* Desktop Layouts (768px and above) */
 @media (min-width: 768px) {
     .hero-container-flex {
         flex-direction: row;
@@ -918,12 +1061,31 @@ img[src*="qr"] {
         gap: 3rem;
         margin-top: 2rem;
     }
-    .hero-item:first-child { flex: 2; text-align: left; }
-    .hero-item:last-child { flex: 1; min-width: 200px; }
+    
+    .hero-item:first-child { 
+        flex: 2; 
+        text-align: left; 
+    }
+    
+    .hero-item:last-child { 
+        flex: 1; 
+        min-width: 200px; 
+    }
 }
 
+/* Large Desktop (1025px and above) */
 @media (min-width: 1025px) {
-    .main-content { max-width: 1300px; padding: 3.5rem 2.5rem; }
-    .nav-grid { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
-    .hero { padding: 3.5rem 2.5rem; }
+    .main-content { 
+        max-width: 1300px; 
+        padding: 3.5rem 2.5rem; 
+    }
+    
+    .nav-grid { 
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+        gap: 2rem; 
+    }
+    
+    .hero { 
+        padding: 3.5rem 2.5rem; 
+    }
 }

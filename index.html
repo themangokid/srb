@@ -19,39 +19,15 @@
     <!-- Add Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Enhanced Search Scripts - DISABLED -->
-    <!-- <script src="search-data.js"></script> -->
-    <!-- <script src="website-search.js" defer></script> -->
 
     <!-- QR-code -->
     <script src="swish-qr-code-expand.js"></script>
 
-    <!-- Add enhanced search styles - DISABLED -->
-    <!-- <link rel="stylesheet" href="bible-search-styles.css"> -->
+    
+    
 </head>
 
 <body>
-    <!-- Website Search Overlay - DISABLED -->
-    <!-- 
-    <div class="overlay" id="searchOverlay">
-        <div class="search-box">
-            <div class="search-header">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-input" id="searchInput" 
-                       placeholder="Sök på webbplatsen..." 
-                       autocomplete="off" spellcheck="false">
-                <span class="close-hint">ESC</span>
-            </div>
-            <div class="search-results" id="searchResults">
-                <div class="empty-state">
-                    <i class="fas fa-globe"></i>
-                    <p>Börja skriva för att söka på webbplatsen...</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
-
     <!-- Header -->
     <header class="header">
         <nav class="nav-container">
@@ -61,7 +37,7 @@
                 </a>
             </div>
             <ul class="nav-menu">
-                <li><a href="QnA.html">Frågor & Svar</a></li>
+                <li><a href="QnA.html">Frågor & svar</a></li>
                 <li><a href="#resurser">Resurser</a></li>
                 <li><a href="https://bibel.se" target="_blank">Bibel.se</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
@@ -73,7 +49,6 @@
             </div>
         </nav>
     </header>
-
 
     <section id="hem" class="hero fade-in">
         <div class="hero-content">
@@ -93,7 +68,7 @@
                             target="_blank">
                             <img src="img/kanal_10.png">
                         </a>
-                       <i><p>Bo Hagstedt gästar Kanal 10.</p></i>
+                       <i><p>Ordförande för sällskapet Bo Hagstedt gästar Kanal 10.</p></i>
                     </div>
                 </div>
                 <!-- Updated HTML section for the hero area -->
@@ -783,44 +758,6 @@
             updateTotal();
         });
     </script>
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
 </body>
 
 </html>
