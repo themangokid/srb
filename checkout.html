@@ -15,8 +15,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="checkout.css">
     <title>Svenska Reformationsbibeln - Beställning</title>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Add Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -36,6 +35,7 @@
                 <li><a href="index.html#resurser">Resurser</a></li>
                 <li><a href="https://bibel.se" target="_blank">Bibel.se</a></li>
                 <li><a href="index.html#kontakt">Kontakt</a></li>
+                <li><a href="#" id="settingsBtn"><i class="fas fa-cog"></i> Inställningar</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -52,13 +52,17 @@
 
         <!-- Step Indicator -->
         <div class="step-indicator">
-            <div class="step active" data-step="1">
+            <div class="step active clickable" data-step="1">
                 <div class="step-number">1</div>
-                <span>Beställning</span>
+                <span>Formulär</span>
             </div>
-            <div class="step" data-step="2">
+            <div class="step clickable" data-step="2">
                 <div class="step-number">2</div>
-                <span>Bekräftelse</span>
+                <span>Swish (Betala)</span>
+            </div>
+            <div class="step clickable" data-step="3">
+                <div class="step-number">3</div>
+                <span>Skicka info via e-post</span>
             </div>
         </div>
 
@@ -169,53 +173,128 @@
                 <div class="btn-group">
                     <div></div>
                     <button type="button" class="btn btn-primary" id="nextStepBtn">
-                        Granska beställning <i class="fas fa-check"></i>
+                        Nästa steg <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Step 2: Confirmation -->
+            <!-- Step 2: Swish Payment -->
             <div class="form-section" data-section="2">
-                <h2><i class="fas fa-check-circle"></i> Bekräfta beställning</h2>
+                <div style="text-align: center; padding: 2rem;">
+                    <i class="fas fa-mobile-alt" style="font-size: 4rem; color: #2d5f3f; margin-bottom: 1.5rem;"></i>
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Betala via Swish</h2>
+                    <p style="font-size: 1.3rem; margin-bottom: 1.5rem;">Swish-appen öppnas automatiskt för betalning</p>
+                    
+                    <div style="background: rgba(46, 125, 50, 0.1); border: 2px solid #2d5f3f; border-radius: 12px; padding: 1.5rem; margin: 1.5rem auto; max-width: 500px;">
+                        <p style="font-size: 1.1rem; margin: 0;"><strong>Ordernummer:</strong> <span id="orderNumberStep2"></span></p>
+                        <p style="font-size: 1.1rem; margin: 0.5rem 0 0 0;"><strong>Belopp:</strong> <span id="totalAmountStep2"></span> kr</p>
+                    </div>
 
-                <div class="order-summary" id="orderSummary">
-                    <!-- Order summary will be populated by JavaScript -->
-                </div>
-
-                <div class="info-box">
-                    <p><strong>Betalning:</strong> Efter att du skickat beställningen får du en Swish-förfrågan till det telefonnummer du angett. Betalning sker via Swish (1233882669).</p>
-                </div>
-
-                <div class="info-box">
-                    <p><strong>Leverans:</strong> Din beställning skickas inom 3-5 arbetsdagar efter mottagen betalning. Du får en bekräftelse via e-post.</p>
-                </div>
-
-                <div class="btn-group">
-                    <button type="button" class="btn btn-secondary" id="prevStepBtn">
-                        <i class="fas fa-arrow-left"></i> Tillbaka
-                    </button>
-                    <button type="button" class="btn btn-primary" id="submitOrderBtn">
-                        <i class="fas fa-credit-card"></i> Skicka beställning & betala
-                    </button>
+                    <div class="btn-group" style="margin-top: 2rem;">
+                        <button type="button" class="btn btn-secondary" id="prevStepBtn">
+                            <i class="fas fa-arrow-left"></i> Tillbaka
+                        </button>
+                        <button type="button" class="btn btn-primary" id="proceedToEmailBtn">
+                            Betalning klar - Nästa steg <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Success Message -->
-            <div class="form-section" data-section="success" style="display: none;">
-                <div class="confirmation-message">
-                    <i class="fas fa-check-circle"></i>
-                    <h2>Tack för din beställning!</h2>
-                    <p>Din beställning har skickats och du kommer snart att få en Swish-förfrågan.</p>
-                    <p><strong>Ordernummer:</strong> <span id="orderNumber"></span></p>
-                    <p>En bekräftelse kommer att skickas till din e-postadress.</p>
+            <!-- Step 3: Send Email -->
+            <div class="form-section" data-section="3">
+                <div style="text-align: center; padding: 2rem;">
+                    <i class="fas fa-envelope" style="font-size: 4rem; color: #d4af37; margin-bottom: 1.5rem;"></i>
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Skicka orderbekräftelse</h2>
+                    <p style="font-size: 1.3rem; margin-bottom: 1.5rem;">Välj hur du vill skicka beställningen till oss</p>
                     
-                    <div style="margin: 2rem 0; display: flex; flex-direction: column; gap: 1rem; max-width: 400px; margin-left: auto; margin-right: auto;">
-                        <button id="sendEmailBtn" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 1.5rem;">
-                            <i class="fas fa-envelope"></i> Skicka beställning via e-post
+                    <div style="background: rgba(139, 105, 20, 0.1); border: 2px solid var(--primary-gold); border-radius: 12px; padding: 1.5rem; margin: 1.5rem auto; max-width: 500px;">
+                        <p style="font-size: 1.1rem; margin: 0;"><strong>Ordernummer:</strong> <span id="orderNumberStep3"></span></p>
+                        <p style="font-size: 1rem; margin: 0.5rem 0 0 0;">Till: post@bibel.se</p>
+                    </div>
+
+                    <!-- Email Options -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        
+                        <!-- Gmail -->
+                        <button class="email-option-btn" data-service="gmail">
+                            <i class="fab fa-google" style="color: #EA4335;"></i>
+                            <span>Gmail</span>
                         </button>
-                        <a href="index.html" class="btn btn-secondary" style="font-size: 1rem; padding: 0.8rem 1.2rem; text-decoration: none; display: inline-block; text-align: center;">
-                            <i class="fas fa-home"></i> Tillbaka till startsidan
-                        </a>
+
+                        <!-- Outlook -->
+                        <button class="email-option-btn" data-service="outlook">
+                            <i class="fab fa-microsoft" style="color: #0078D4;"></i>
+                            <span>Outlook</span>
+                        </button>
+
+                        <!-- Yahoo -->
+                        <button class="email-option-btn" data-service="yahoo">
+                            <i class="fab fa-yahoo" style="color: #720E9E;"></i>
+                            <span>Yahoo</span>
+                        </button>
+
+                        <!-- Apple Mail -->
+                        <button class="email-option-btn" data-service="apple">
+                            <i class="fab fa-apple" style="color: #000;"></i>
+                            <span>Apple Mail</span>
+                        </button>
+
+                        <!-- Default Email App -->
+                        <button class="email-option-btn" data-service="default">
+                            <i class="fas fa-envelope" style="color: #666;"></i>
+                            <span>E-postapp</span>
+                        </button>
+
+                        <!-- Copy to Clipboard -->
+                        <button class="email-option-btn" data-service="copy">
+                            <i class="fas fa-copy" style="color: #28a745;"></i>
+                            <span>Kopiera</span>
+                        </button>
+                    </div>
+
+                    <div class="btn-group" style="margin-top: 2rem;">
+                        <button type="button" class="btn btn-secondary" id="prevStepBtn2">
+                            <i class="fas fa-arrow-left"></i> Tillbaka
+                        </button>
+                        <button type="button" class="btn btn-success" id="completeOrderBtn">
+                            <i class="fas fa-check"></i> Beställning klar
+                        </button>
+                    </div>
+
+                    <div style="background: rgba(46, 125, 50, 0.1); border-left: 4px solid #2d5f3f; padding: 1rem; margin: 1.5rem auto; border-radius: 0 8px 8px 0; max-width: 500px; text-align: left;">
+                        <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;"><i class="fas fa-check-circle" style="color: #2d5f3f; margin-right: 0.5rem;"></i>Efter e-post skickad:</h4>
+                        <p style="margin: 0; font-size: 1rem;">Din beställning behandlas och skickas inom 3-5 arbetsdagar. Du får en bekräftelse när ordern är på väg.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-cog"></i> Beställningsinställningar</h2>
+                <span class="close" id="closeSettings">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="settings-section">
+                    <h3><i class="fas fa-history"></i> Tidigare beställningar</h3>
+                    <div id="ordersList" class="orders-list">
+                        <!-- Orders will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3><i class="fas fa-tools"></i> Åtgärder</h3>
+                    <div class="settings-actions">
+                        <button class="btn btn-secondary" id="newOrderBtn">
+                            <i class="fas fa-plus"></i> Ny beställning
+                        </button>
+                        <button class="btn btn-warning" id="clearDataBtn">
+                            <i class="fas fa-trash"></i> Rensa all data
+                        </button>
                     </div>
                 </div>
             </div>
@@ -231,12 +310,280 @@
         </div>
     </footer>
 
+    <style>
+        /* Email option buttons */
+        .email-option-btn {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-text);
+            text-decoration: none;
+        }
+
+        .email-option-btn:hover {
+            background: var(--hover-bg);
+            border-color: var(--primary-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 105, 20, 0.2);
+        }
+
+        .email-option-btn i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .email-option-btn span {
+            font-size: 0.9rem;
+        }
+
+        /* Copy success feedback */
+        .copy-success {
+            background: #d4edda !important;
+            border-color: #c3e6cb !important;
+            color: #155724 !important;
+        }
+
+        .copy-success i {
+            color: #28a745 !important;
+        }
+
+        /* Clickable step indicators */
+        .step.clickable {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .step.clickable:hover {
+            transform: scale(1.05);
+        }
+
+        .step.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: var(--primary-text);
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: var(--primary-gold);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .settings-section {
+            margin-bottom: 3rem;
+        }
+
+        .settings-section h3 {
+            color: var(--primary-text);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .orders-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .order-card {
+            background: rgba(139, 105, 20, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .order-card:hover {
+            background: rgba(139, 105, 20, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 105, 20, 0.15);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .order-number {
+            font-weight: bold;
+            color: var(--primary-gold);
+            font-size: 1.1rem;
+        }
+
+        .order-date {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+        }
+
+        .order-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .order-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-step1 { background: #fef3cd; color: #856404; }
+        .status-step2 { background: #d1ecf1; color: #0c5460; }
+        .status-step3 { background: #d4edda; color: #155724; }
+
+        .order-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .settings-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(135deg, #218838 0%, #1e7e34 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+            color: #212529;
+            border: none;
+        }
+
+        .btn-warning:hover {
+            background: linear-gradient(135deg, #e0a800 0%, #dc6545 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--secondary-text);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+            }
+
+            .modal-header {
+                padding: 1.5rem 1.5rem 1rem;
+            }
+
+            .modal-body {
+                padding: 1.5rem;
+            }
+
+            .order-details {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+
     <script>
-        // Order state management
+        // Order state management with session persistence
         let orderState = {
             quantity: 1,
             currentStep: 1,
-            formData: {}
+            formData: {},
+            orderNumber: null,
+            totalAmount: null,
+            sessionId: null
         };
 
         // Pricing configuration
@@ -249,9 +596,368 @@
         // DOM elements - will be initialized after DOM loads
         let quantityDisplay, summaryQuantity, subtotal, shipping, total, errorMessage;
 
+        // Generate truly unique order number with better entropy
+        function generateUniqueOrderNumber() {
+            const now = new Date();
+            const year = now.getFullYear().toString().slice(-2);
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hour = String(now.getHours()).padStart(2, '0');
+            const minute = String(now.getMinutes()).padStart(2, '0');
+            
+            // Generate random string
+            const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let randomString = '';
+            for (let i = 0; i < 6; i++) {
+                randomString += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+            }
+            
+            // Combine timestamp and random for uniqueness
+            const timestamp = Date.now().toString(36).toUpperCase();
+            
+            return `SRB-${year}${month}${day}-${hour}${minute}-${randomString}-${timestamp}`;
+        }
+
+        // Session management
+        function createOrResumeSession() {
+            // Check if there's an existing session in URL or localStorage
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlOrderNumber = urlParams.get('order');
+            
+            // Try to get existing session
+            let existingSession = null;
+            if (urlOrderNumber) {
+                existingSession = loadSessionByOrderNumber(urlOrderNumber);
+            } else {
+                existingSession = loadLastSession();
+            }
+            
+            if (existingSession) {
+                // Resume existing session
+                console.log('Resuming existing session:', existingSession.orderNumber);
+                orderState = { ...orderState, ...existingSession };
+                restoreFormFromSession();
+                updateAllDisplays();
+                return true;
+            } else {
+                // Create new session
+                const newOrderNumber = generateUniqueOrderNumber();
+                orderState.orderNumber = newOrderNumber;
+                orderState.sessionId = newOrderNumber;
+                console.log('Created new session:', newOrderNumber);
+                saveSession();
+                return false;
+            }
+        }
+
+        function saveSession() {
+            const sessionData = {
+                ...orderState,
+                timestamp: new Date().toISOString(),
+                lastActivity: Date.now()
+            };
+            
+            try {
+                localStorage.setItem(`order_${orderState.orderNumber}`, JSON.stringify(sessionData));
+                localStorage.setItem('lastOrderNumber', orderState.orderNumber);
+                console.log('Session saved:', orderState.orderNumber);
+                
+                // Update URL without page reload
+                const url = new URL(window.location);
+                url.searchParams.set('order', orderState.orderNumber);
+                window.history.replaceState({}, '', url);
+            } catch (e) {
+                console.error('Failed to save session:', e);
+            }
+        }
+
+        function loadSessionByOrderNumber(orderNumber) {
+            try {
+                const sessionData = localStorage.getItem(`order_${orderNumber}`);
+                if (sessionData) {
+                    return JSON.parse(sessionData);
+                }
+            } catch (e) {
+                console.error('Failed to load session:', e);
+            }
+            return null;
+        }
+
+        function loadLastSession() {
+            try {
+                const lastOrderNumber = localStorage.getItem('lastOrderNumber');
+                if (lastOrderNumber) {
+                    return loadSessionByOrderNumber(lastOrderNumber);
+                }
+            } catch (e) {
+                console.error('Failed to load last session:', e);
+            }
+            return null;
+        }
+
+        function restoreFormFromSession() {
+            if (orderState.formData && Object.keys(orderState.formData).length > 0) {
+                // Restore form fields
+                const fields = [
+                    'firstName', 'lastName', 'email', 'phone',
+                    'street', 'postalCode', 'city', 'country'
+                ];
+                
+                fields.forEach(field => {
+                    const element = document.getElementById(field);
+                    if (element && orderState.formData[field]) {
+                        element.value = orderState.formData[field];
+                    }
+                });
+                
+                // Restore quantity
+                if (orderState.quantity) {
+                    updateQuantityDisplay();
+                    updatePricing();
+                }
+                
+                console.log('Form restored from session');
+            }
+        }
+
+        function updateAllDisplays() {
+            // Update step indicator
+            updateStepIndicator();
+            
+            // Show current step
+            showFormSection(orderState.currentStep);
+            
+            // Update order number displays
+            const orderNumberElements = [
+                'orderNumberStep2',
+                'orderNumberStep3'
+            ];
+            
+            orderNumberElements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element && orderState.orderNumber) {
+                    element.textContent = orderState.orderNumber;
+                }
+            });
+            
+            // Update total amount displays
+            if (orderState.totalAmount) {
+                const totalElement = document.getElementById('totalAmountStep2');
+                if (totalElement) {
+                    totalElement.textContent = orderState.totalAmount;
+                }
+            }
+            
+            // FIX: Prepare email data if we're on step 3 and don't have it
+            if (orderState.currentStep === 3 && !storedEmailData) {
+                console.log('Preparing email data for resumed session');
+                prepareEmailStep();
+            }
+        }
+
+        // Settings and orders management
+        function getAllOrders() {
+            const orders = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && key.startsWith('order_')) {
+                    try {
+                        const orderData = JSON.parse(localStorage.getItem(key));
+                        orders.push(orderData);
+                    } catch (e) {
+                        console.error('Failed to parse order:', key, e);
+                    }
+                }
+            }
+            
+            // Sort by timestamp, newest first
+            return orders.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        }
+
+        function displayOrders() {
+            const ordersList = document.getElementById('ordersList');
+            const orders = getAllOrders();
+            
+            if (orders.length === 0) {
+                ordersList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Inga tidigare beställningar hittades.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            ordersList.innerHTML = orders.map(order => {
+                const date = new Date(order.timestamp).toLocaleDateString('sv-SE');
+                const time = new Date(order.timestamp).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
+                const stepText = ['Formulär', 'Swish (Betala)', 'Skicka info via e-post'][order.currentStep - 1] || 'Okänt';
+                const statusClass = `status-step${order.currentStep}`;
+                
+                return `
+                    <div class="order-card">
+                        <div class="order-header">
+                            <div class="order-number">${order.orderNumber}</div>
+                            <div class="order-date">${date} ${time}</div>
+                        </div>
+                        
+                        <div class="order-details">
+                            <div><strong>Kund:</strong> ${order.formData?.fullName || 'Ej angivet'}</div>
+                            <div><strong>Antal:</strong> ${order.quantity || 1} st</div>
+                            <div><strong>E-post:</strong> ${order.formData?.email || 'Ej angivet'}</div>
+                            <div><strong>Totalt:</strong> ${((order.quantity || 1) * BIBLE_PRICE) + SHIPPING_COST} kr</div>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <span class="order-status ${statusClass}">Steg ${order.currentStep}: ${stepText}</span>
+                        </div>
+                        
+                        <div class="order-actions">
+                            <button class="btn btn-primary btn-small" onclick="resumeOrder('${order.orderNumber}')">
+                                <i class="fas fa-play"></i> Fortsätt
+                            </button>
+                            <button class="btn btn-secondary btn-small" onclick="duplicateOrder('${order.orderNumber}')">
+                                <i class="fas fa-copy"></i> Kopiera
+                            </button>
+                            <button class="btn btn-warning btn-small" onclick="deleteOrder('${order.orderNumber}')">
+                                <i class="fas fa-trash"></i> Ta bort
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function resumeOrder(orderNumber) {
+            const orderData = loadSessionByOrderNumber(orderNumber);
+            if (orderData) {
+                orderState = { ...orderState, ...orderData };
+                restoreFormFromSession();
+                updateAllDisplays();
+                closeSettingsModal();
+                
+                // Update URL
+                const url = new URL(window.location);
+                url.searchParams.set('order', orderNumber);
+                window.history.replaceState({}, '', url);
+                
+                console.log('Resumed order:', orderNumber);
+            }
+        }
+
+        function duplicateOrder(orderNumber) {
+            const orderData = loadSessionByOrderNumber(orderNumber);
+            if (orderData) {
+                // Create new order with same data but new order number and reset to step 1
+                const newOrderNumber = generateUniqueOrderNumber();
+                const duplicatedOrder = {
+                    ...orderData,
+                    orderNumber: newOrderNumber,
+                    sessionId: newOrderNumber,
+                    currentStep: 1,
+                    timestamp: new Date().toISOString(),
+                    lastActivity: Date.now()
+                };
+                
+                orderState = duplicatedOrder;
+                restoreFormFromSession();
+                updateAllDisplays();
+                saveSession();
+                closeSettingsModal();
+                
+                console.log('Duplicated order as:', newOrderNumber);
+            }
+        }
+
+        function deleteOrder(orderNumber) {
+            if (confirm(`Är du säker på att du vill ta bort beställning ${orderNumber}?`)) {
+                localStorage.removeItem(`order_${orderNumber}`);
+                
+                // If this was the current order, start a new one
+                if (orderState.orderNumber === orderNumber) {
+                    startNewOrder();
+                }
+                
+                // Refresh the orders list
+                displayOrders();
+                console.log('Deleted order:', orderNumber);
+            }
+        }
+
+        function startNewOrder() {
+            // Clear current order state
+            orderState = {
+                quantity: 1,
+                currentStep: 1,
+                formData: {},
+                orderNumber: generateUniqueOrderNumber(),
+                totalAmount: null,
+                sessionId: null
+            };
+            
+            // Clear form fields
+            const fields = ['firstName', 'lastName', 'email', 'phone', 'street', 'postalCode', 'city'];
+            fields.forEach(field => {
+                const element = document.getElementById(field);
+                if (element) element.value = '';
+            });
+            
+            // Reset country to Sverige
+            const countryElement = document.getElementById('country');
+            if (countryElement) countryElement.value = 'Sverige';
+            
+            // Reset displays
+            updateQuantityDisplay();
+            updatePricing();
+            updateAllDisplays();
+            saveSession();
+            
+            // Clear URL
+            const url = new URL(window.location);
+            url.searchParams.delete('order');
+            window.history.replaceState({}, '', url);
+            
+            closeSettingsModal();
+            console.log('Started new order:', orderState.orderNumber);
+        }
+
+        function clearAllData() {
+            if (confirm('Är du säker på att du vill ta bort ALLA beställningar? Detta kan inte ångras.')) {
+                // Remove all order data
+                const keysToRemove = [];
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key && (key.startsWith('order_') || key === 'lastOrderNumber' || key === 'lastOrder' || key === 'lastEmailData')) {
+                        keysToRemove.push(key);
+                    }
+                }
+                
+                keysToRemove.forEach(key => localStorage.removeItem(key));
+                
+                // Start fresh
+                startNewOrder();
+                displayOrders();
+                
+                alert('All beställningsdata har raderats.');
+            }
+        }
+
+        // Settings modal functions
+        function openSettingsModal() {
+            displayOrders();
+            document.getElementById('settingsModal').style.display = 'block';
+        }
+
+        function closeSettingsModal() {
+            document.getElementById('settingsModal').style.display = 'none';
+        }
+
         // Initialize DOM elements and set up event listeners
         function initializeApp() {
             console.log('Initializing app...');
+            
+            // Create or resume session first
+            const isResumedSession = createOrResumeSession();
             
             // Get DOM elements
             quantityDisplay = document.getElementById('quantityDisplay');
@@ -267,13 +973,14 @@
                 return;
             }
 
-            // Add event listeners for buttons - with null checks
+            // Add event listeners for buttons
             const decreaseBtn = document.getElementById('decreaseBtn');
             const increaseBtn = document.getElementById('increaseBtn');
             const nextStepBtn = document.getElementById('nextStepBtn');
             const prevStepBtn = document.getElementById('prevStepBtn');
-            const submitOrderBtn = document.getElementById('submitOrderBtn');
-            const sendEmailBtn = document.getElementById('sendEmailBtn');
+            const prevStepBtn2 = document.getElementById('prevStepBtn2');
+            const proceedToEmailBtn = document.getElementById('proceedToEmailBtn');
+            const completeOrderBtn = document.getElementById('completeOrderBtn');
 
             if (decreaseBtn) {
                 decreaseBtn.addEventListener('click', () => {
@@ -303,21 +1010,79 @@
                 });
             }
 
-            if (submitOrderBtn) {
-                submitOrderBtn.addEventListener('click', () => {
-                    console.log('Submit order button clicked');
-                    submitOrder();
+            if (prevStepBtn2) {
+                prevStepBtn2.addEventListener('click', () => {
+                    console.log('Previous step button 2 clicked');
+                    prevStep();
                 });
             }
 
-            if (sendEmailBtn) {
-                sendEmailBtn.addEventListener('click', () => {
-                    console.log('Send email button clicked');
-                    sendOrderEmail();
+            if (proceedToEmailBtn) {
+                proceedToEmailBtn.addEventListener('click', () => {
+                    console.log('Proceed to email button clicked');
+                    nextStep();
                 });
-            } else {
-                console.log('Send email button not found (this is normal until success page)');
             }
+
+            if (completeOrderBtn) {
+                completeOrderBtn.addEventListener('click', () => {
+                    console.log('Complete order button clicked');
+                    if (confirm('Markera beställningen som klar?')) {
+                        startNewOrder();
+                    }
+                });
+            }
+
+            // Settings modal event listeners
+            const settingsBtn = document.getElementById('settingsBtn');
+            const closeSettings = document.getElementById('closeSettings');
+            const newOrderBtn = document.getElementById('newOrderBtn');
+            const clearDataBtn = document.getElementById('clearDataBtn');
+            const settingsModal = document.getElementById('settingsModal');
+
+            if (settingsBtn) {
+                settingsBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openSettingsModal();
+                });
+            }
+
+            if (closeSettings) {
+                closeSettings.addEventListener('click', closeSettingsModal);
+            }
+
+            if (newOrderBtn) {
+                newOrderBtn.addEventListener('click', startNewOrder);
+            }
+
+            if (clearDataBtn) {
+                clearDataBtn.addEventListener('click', clearAllData);
+            }
+
+            // Close modal when clicking outside
+            if (settingsModal) {
+                settingsModal.addEventListener('click', (e) => {
+                    if (e.target === settingsModal) {
+                        closeSettingsModal();
+                    }
+                });
+            }
+
+            // Add clickable step indicators
+            document.querySelectorAll('.step.clickable').forEach(step => {
+                step.addEventListener('click', () => {
+                    const targetStep = parseInt(step.dataset.step);
+                    navigateToStep(targetStep);
+                });
+            });
+
+            // Add email option button listeners
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.email-option-btn')) {
+                    const service = e.target.closest('.email-option-btn').dataset.service;
+                    handleEmailService(service);
+                }
+            });
 
             // Mobile menu functionality
             const hamburger = document.querySelector('.hamburger');
@@ -354,12 +1119,78 @@
             console.log('App initialized successfully');
         }
 
+        // Step navigation
+        function navigateToStep(targetStep) {
+            console.log(`Attempting to navigate to step ${targetStep} from step ${orderState.currentStep}`);
+            
+            if (targetStep === orderState.currentStep) {
+                return; // Already on this step
+            }
+            
+            // If going forward, validate current step
+            if (targetStep > orderState.currentStep && !validateCurrentStep()) {
+                showError('Vänligen fyll i alla obligatoriska fält innan du går vidare.');
+                setTimeout(hideError, 3000);
+                return;
+            }
+            
+            // Save current step data if going forward
+            if (targetStep > orderState.currentStep) {
+                saveCurrentStepData();
+            }
+            
+            orderState.currentStep = targetStep;
+            
+            // Handle step-specific actions
+            if (orderState.currentStep === 2) {
+                if (!orderState.orderNumber) {
+                    orderState.orderNumber = generateUniqueOrderNumber();
+                }
+                
+                const total = (orderState.formData.quantity * BIBLE_PRICE) + SHIPPING_COST;
+                orderState.totalAmount = total;
+                
+                const orderNumberStep2 = document.getElementById('orderNumberStep2');
+                const totalAmountStep2 = document.getElementById('totalAmountStep2');
+                
+                if (orderNumberStep2) {
+                    orderNumberStep2.textContent = orderState.orderNumber;
+                }
+                if (totalAmountStep2) {
+                    totalAmountStep2.textContent = total;
+                }
+                
+                saveSession();
+                
+                setTimeout(() => {
+                    const message = `Bibel beställning ${orderState.orderNumber}`;
+                    openSwishPayment(total, message);
+                }, 1000);
+                
+            } else if (orderState.currentStep === 3) {
+                prepareEmailStep();
+                saveSession();
+            }
+            
+            updateStepIndicator();
+            showFormSection(orderState.currentStep);
+            saveSession();
+            
+            document.querySelector('.order-form').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+            
+            console.log(`Successfully navigated to step ${targetStep}`);
+        }
+
         // Quantity management
         function changeQuantity(delta) {
             const newQuantity = Math.max(1, orderState.quantity + delta);
             orderState.quantity = newQuantity;
             updateQuantityDisplay();
             updatePricing();
+            saveSession();
         }
 
         function updateQuantityDisplay() {
@@ -385,7 +1216,7 @@
             const steps = document.querySelectorAll('.step');
             steps.forEach((step, index) => {
                 const stepNumber = index + 1;
-                step.classList.remove('active', 'completed');
+                step.classList.remove('active', 'completed', 'disabled');
                 
                 if (stepNumber < orderState.currentStep) {
                     step.classList.add('completed');
@@ -411,444 +1242,27 @@
             const targetSection = document.querySelector(`[data-section="${stepNumber}"]`);
             if (targetSection) {
                 targetSection.style.display = 'block';
-                // Use setTimeout to ensure display is set before adding class for animation
                 setTimeout(() => {
                     targetSection.classList.add('active');
-                    
-                    // If showing step 2, ensure order summary is generated
-                    if (stepNumber === 2) {
-                        setTimeout(() => {
-                            console.log('Re-generating order summary after section display');
-                            generateOrderSummary();
-                        }, 100);
-                    }
                 }, 10);
             }
         }
 
         function nextStep() {
-            console.log('Next step called, current step:', orderState.currentStep);
-            
-            if (!validateCurrentStep()) {
-                console.log('Validation failed');
-                return;
-            }
-            
-            hideError();
-            saveCurrentStepData();
-            
-            orderState.currentStep++;
-            console.log('Moving to step:', orderState.currentStep);
-            
-            // Generate order summary when moving TO step 2
-            if (orderState.currentStep === 2) {
-                console.log('Generating order summary for step 2');
-                generateOrderSummary();
-            }
-            
-            updateStepIndicator();
-            showFormSection(orderState.currentStep);
-            
-            // Scroll to top of form
-            document.querySelector('.order-form').scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
-            });
+            navigateToStep(orderState.currentStep + 1);
         }
 
         function prevStep() {
-            console.log('Previous step called, current step:', orderState.currentStep);
-            
-            hideError();
             if (orderState.currentStep > 1) {
-                orderState.currentStep--;
-                console.log('Moving to step:', orderState.currentStep);
-                updateStepIndicator();
-                showFormSection(orderState.currentStep);
-                
-                // Scroll to top of form
-                document.querySelector('.order-form').scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'start' 
-                });
+                navigateToStep(orderState.currentStep - 1);
             }
         }
 
-        // Validation
-        function validateCurrentStep() {
-            console.log('Validating step:', orderState.currentStep);
+        function prepareEmailStep() {
+            const totalAmount = (orderState.formData.quantity * BIBLE_PRICE) + SHIPPING_COST;
             
-            switch (orderState.currentStep) {
-                case 1:
-                    return validateAllFormData();
-                case 2:
-                    return true;
-                default:
-                    return false;
-            }
-        }
-
-        function validateAllFormData() {
-            console.log('Validating all form data');
-            
-            // Validate quantity
-            if (orderState.quantity <= 0) {
-                showError('Vänligen välj antal biblar.');
-                return false;
-            }
-
-            // Validate contact info
-            const firstName = document.getElementById('firstName').value.trim();
-            const lastName = document.getElementById('lastName').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-
-            if (!firstName || !lastName || !email || !phone) {
-                showError('Vänligen fyll i alla obligatoriska kontaktfält.');
-                return false;
-            }
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                showError('Vänligen ange en giltig e-postadress.');
-                return false;
-            }
-
-            const phoneRegex = /^[\d\s\-\+\(\)]+$/;
-            if (!phoneRegex.test(phone)) {
-                showError('Vänligen ange ett giltigt telefonnummer.');
-                return false;
-            }
-
-            // Validate delivery info
-            const street = document.getElementById('street').value.trim();
-            const postalCode = document.getElementById('postalCode').value.trim();
-            const city = document.getElementById('city').value.trim();
-
-            if (!street || !postalCode || !city) {
-                showError('Vänligen fyll i alla obligatoriska adressfält.');
-                return false;
-            }
-
-            const postalCodeRegex = /^\d{3}\s?\d{2}$/;
-            if (!postalCodeRegex.test(postalCode)) {
-                showError('Vänligen ange ett giltigt postnummer (t.ex. 123 45).');
-                return false;
-            }
-
-            console.log('All validation passed');
-            return true;
-        }
-
-        // Data management
-        function saveCurrentStepData() {
-            console.log('Saving data for step:', orderState.currentStep);
-            
-            if (orderState.currentStep === 1) {
-                // Save all data from step 1
-                orderState.formData.quantity = orderState.quantity;
-                orderState.formData.firstName = document.getElementById('firstName').value.trim();
-                orderState.formData.lastName = document.getElementById('lastName').value.trim();
-                orderState.formData.fullName = `${orderState.formData.firstName} ${orderState.formData.lastName}`;
-                orderState.formData.email = document.getElementById('email').value.trim();
-                orderState.formData.phone = document.getElementById('phone').value.trim();
-                orderState.formData.street = document.getElementById('street').value.trim();
-                orderState.formData.postalCode = document.getElementById('postalCode').value.trim();
-                orderState.formData.city = document.getElementById('city').value.trim();
-                orderState.formData.country = document.getElementById('country').value;
-                
-                console.log('Saved all form data:', orderState.formData);
-            }
-        }
-
-        // Order summary generation
-        function generateOrderSummary() {
-            console.log('Generating order summary');
-            console.log('Current form data:', orderState.formData);
-            
-            // Ensure all data is available
-            if (!orderState.formData.quantity) {
-                orderState.formData.quantity = orderState.quantity;
-            }
-            
-            const data = orderState.formData;
-            const subtotalAmount = data.quantity * BIBLE_PRICE;
-            const totalAmount = subtotalAmount + SHIPPING_COST;
-
-            console.log('Summary calculation:', {
-                quantity: data.quantity,
-                subtotal: subtotalAmount,
-                shipping: SHIPPING_COST,
-                total: totalAmount
-            });
-
-            const summaryHTML = `
-                <h3 style="color: var(--primary-text); margin-bottom: 1rem;">Orderöversikt</h3>
-                
-                <div class="price-line">
-                    <strong>Produkt:</strong> Svenska Reformationsbibeln
-                </div>
-                <div class="price-line">
-                    <strong>Antal:</strong> ${data.quantity} st
-                </div>
-                <div class="price-line">
-                    <strong>Pris per bok:</strong> ${BIBLE_PRICE} kr
-                </div>
-                <div class="price-line">
-                    <strong>Frakt:</strong> ${SHIPPING_COST} kr
-                </div>
-                <div class="price-line total">
-                    <strong>Totalt:</strong> ${totalAmount} kr
-                </div>
-
-                <hr style="margin: 1.5rem 0; border: 1px solid var(--border-color);">
-
-                <h4 style="color: var(--primary-text); margin-bottom: 1rem;">Kontaktuppgifter</h4>
-                <p><strong>Namn:</strong> ${data.firstName || 'Ej angivet'} ${data.lastName || ''}</p>
-                <p><strong>E-post:</strong> ${data.email || 'Ej angivet'}</p>
-                <p><strong>Telefon:</strong> ${data.phone || 'Ej angivet'}</p>
-
-                <h4 style="color: var(--primary-text); margin: 1rem 0;">Leveransadress</h4>
-                <p>${data.street || 'Ej angivet'}<br>
-                ${data.postalCode || ''} ${data.city || ''}<br>
-                ${data.country || 'Sverige'}</p>
-            `;
-
-            const summaryElement = document.getElementById('orderSummary');
-            if (summaryElement) {
-                summaryElement.innerHTML = summaryHTML;
-                console.log('Order summary generated and inserted successfully');
-            } else {
-                console.error('Order summary element not found');
-            }
-        }
-
-        // Email composition
-        function composeOrderEmail(orderData) {
-            const subject = `Ny beställning - ${orderData.orderNumber}`;
-            
-            const emailBody = `Hej!
-
-En ny beställning har inkommit via hemsidan.
-
-ORDERNUMMER: ${orderData.orderNumber}
-DATUM: ${new Date(orderData.timestamp).toLocaleString('sv-SE')}
-
-KUND:
-Namn: ${orderData.customer.fullName}
-E-post: ${orderData.customer.email}
-Telefon: ${orderData.customer.phone}
-
-LEVERANSADRESS:
-${orderData.delivery.street}
-${orderData.delivery.postalCode} ${orderData.delivery.city}
-${orderData.delivery.country}
-
-BESTÄLLNING:
-${orderData.items.map(item => `${item.quantity} x ${item.product} à ${item.unitPrice} kr = ${item.subtotal} kr`).join('\n')}
-
-Frakt: ${orderData.pricing.shipping} kr
-TOTALT: ${orderData.pricing.total} kr
-
-Betalning kommer via Swish (${orderData.customer.phone}).
-
-Med vänliga hälsningar,
-Automatisk orderhantering`;
-
-            // Create mailto link with obfuscated email
-            const mailtoLink = `mailto:postATbibel.se?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-            
-            return { subject, emailBody, mailtoLink };
-        }
-
-        // Email sending function with multiple client support
-        function sendOrderEmail() {
-            if (!storedEmailData) {
-                alert('Ingen beställningsdata hittades. Vänligen kontakta postATbibel.se manuellt.');
-                return;
-            }
-
-            console.log('Attempting to open email compose...');
-            
-            const orderNumber = document.getElementById('orderNumber').textContent;
-            
-            // Try Gmail first (most common)
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=postATbibel.se&su=${encodeURIComponent(storedEmailData.subject)}&body=${encodeURIComponent(storedEmailData.emailBody)}`;
-            
-            // Try Outlook as backup
-            const outlookUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=postATbibel.se&subject=${encodeURIComponent(storedEmailData.subject)}&body=${encodeURIComponent(storedEmailData.emailBody)}`;
-            
-            // Create a promise-based approach to try each method
-            function tryEmailClient(url, clientName) {
-                return new Promise((resolve, reject) => {
-                    console.log(`Trying ${clientName}...`);
-                    try {
-                        const newWindow = window.open(url, '_blank');
-                        if (newWindow) {
-                            resolve(clientName);
-                        } else {
-                            reject(`${clientName} blocked by popup blocker`);
-                        }
-                    } catch (error) {
-                        reject(`${clientName} failed: ${error.message}`);
-                    }
-                });
-            }
-
-            // Try Gmail first
-            tryEmailClient(gmailUrl, 'Gmail')
-                .then((success) => {
-                    console.log(`${success} opened successfully`);
-                })
-                .catch(() => {
-                    console.log('Gmail failed, trying Outlook...');
-                    
-                    // Try Outlook as fallback
-                    tryEmailClient(outlookUrl, 'Outlook')
-                        .then((success) => {
-                            console.log(`${success} opened successfully`);
-                        })
-                        .catch(() => {
-                            console.log('Outlook failed, trying mailto...');
-                            
-                            // Try mailto as final fallback
-                            try {
-                                window.location.href = storedEmailData.mailtoLink;
-                                console.log('Mailto link used');
-                            } catch (mailtoError) {
-                                console.log('All email methods failed, showing manual instructions');
-                                
-                                // Show manual copy dialog
-                                showManualEmailDialog(orderNumber);
-                            }
-                        });
-                });
-        }
-
-        // Show manual email instructions if all automated methods fail
-        function showManualEmailDialog(orderNumber) {
-            const emailContent = `
-Ämne: ${storedEmailData.subject}
-
-Till: postATbibel.se
-
-Meddelande:
-${storedEmailData.emailBody}
-            `.trim();
-
-            // Create a modal-like dialog
-            const dialog = document.createElement('div');
-            dialog.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.5);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10000;
-            `;
-
-            dialog.innerHTML = `
-                <div style="
-                    background: white;
-                    padding: 2rem;
-                    border-radius: 12px;
-                    max-width: 600px;
-                    max-height: 80vh;
-                    overflow-y: auto;
-                    margin: 1rem;
-                    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-                ">
-                    <h3 style="color: var(--primary-text); margin-bottom: 1rem;">
-                        <i class="fas fa-envelope"></i> Skicka e-post manuellt
-                    </h3>
-                    <p style="margin-bottom: 1rem; color: var(--primary-text);">
-                        E-postklienten kunde inte öppnas automatiskt. Kopiera texten nedan och skicka ett e-post till <strong>postATbibel.se</strong>:
-                    </p>
-                    <textarea readonly style="
-                        width: 100%;
-                        height: 300px;
-                        padding: 1rem;
-                        border: 2px solid var(--border-color);
-                        border-radius: 6px;
-                        font-family: monospace;
-                        font-size: 0.9rem;
-                        resize: vertical;
-                        background: #f9f9f9;
-                    ">${emailContent}</textarea>
-                    <div style="margin-top: 1rem; display: flex; gap: 1rem; justify-content: flex-end;">
-                        <button onclick="copyEmailContent()" style="
-                            background: var(--gradient-gold);
-                            color: #2b1d00;
-                            border: none;
-                            padding: 0.8rem 1.2rem;
-                            border-radius: 6px;
-                            cursor: pointer;
-                            font-weight: 600;
-                        ">
-                            <i class="fas fa-copy"></i> Kopiera text
-                        </button>
-                        <button onclick="closeEmailDialog()" style="
-                            background: rgba(139, 105, 20, 0.1);
-                            color: var(--primary-text);
-                            border: 2px solid var(--border-color);
-                            padding: 0.8rem 1.2rem;
-                            border-radius: 6px;
-                            cursor: pointer;
-                            font-weight: 600;
-                        ">
-                            Stäng
-                        </button>
-                    </div>
-                </div>
-            `;
-
-            document.body.appendChild(dialog);
-            
-            // Store dialog reference for cleanup
-            window.currentEmailDialog = dialog;
-
-            // Add global functions for the dialog buttons
-            window.copyEmailContent = function() {
-                const textarea = dialog.querySelector('textarea[readonly]');
-                if (textarea) {
-                    textarea.select();
-                    textarea.setSelectionRange(0, 99999); // For mobile devices
-                    
-                    try {
-                        document.execCommand('copy');
-                        alert('E-postinnehåll kopierat! Klistra in i din e-postklient och skicka till postATbibel.se');
-                    } catch (err) {
-                        console.log('Copy failed:', err);
-                        alert('Kunde inte kopiera automatiskt. Markera och kopiera texten manuellt.');
-                    }
-                }
-            };
-
-            window.closeEmailDialog = function() {
-                if (window.currentEmailDialog) {
-                    document.body.removeChild(window.currentEmailDialog);
-                    window.currentEmailDialog = null;
-                }
-            };
-        }
-
-        // Order submission
-        function submitOrder() {
-            console.log('Submitting order...');
-            
-            // Generate order number
-            const orderNumber = 'SRB-' + Date.now().toString(36).toUpperCase();
-            
-            // Calculate total
-            const total = (orderState.formData.quantity * BIBLE_PRICE) + SHIPPING_COST;
-            
-            // Create complete order object
             const orderData = {
-                orderNumber,
+                orderNumber: orderState.orderNumber,
                 timestamp: new Date().toISOString(),
                 customer: {
                     fullName: orderState.formData.fullName,
@@ -872,57 +1286,225 @@ ${storedEmailData.emailBody}
                 pricing: {
                     subtotal: orderState.formData.quantity * BIBLE_PRICE,
                     shipping: SHIPPING_COST,
-                    total: total
+                    total: totalAmount
                 }
             };
             
-            // Generate email data and store it
             const emailData = composeOrderEmail(orderData);
             storedEmailData = emailData;
             
-            // In a real application, this would submit to a server
-            console.log('Order data:', orderData);
-            console.log('Email data stored for manual sending');
+            const orderNumberStep3 = document.getElementById('orderNumberStep3');
+            if (orderNumberStep3) {
+                orderNumberStep3.textContent = orderState.orderNumber;
+            }
             
-            // Store in localStorage for demo purposes
             try {
                 localStorage.setItem('lastOrder', JSON.stringify(orderData));
                 localStorage.setItem('lastEmailData', JSON.stringify(emailData));
-                console.log('Order and email data saved to localStorage');
+                console.log('Order and email data saved');
             } catch (e) {
                 console.log('Could not save to localStorage:', e);
             }
+        }
 
-            // Show success message
-            const orderNumberElement = document.getElementById('orderNumber');
-            if (orderNumberElement) {
-                orderNumberElement.textContent = orderNumber;
+        // Validation
+        function validateCurrentStep() {
+            console.log('Validating step:', orderState.currentStep);
+            
+            switch (orderState.currentStep) {
+                case 1:
+                    return validateAllFormData();
+                case 2:
+                    return true;
+                case 3:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        function validateAllFormData() {
+            console.log('Validating all form data');
+            
+            if (orderState.quantity <= 0) {
+                showError('Vänligen välj antal biblar.');
+                return false;
+            }
+
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            if (!firstName || !lastName || !email || !phone) {
+                showError('Vänligen fyll i alla obligatoriska kontaktfält.');
+                return false;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showError('Vänligen ange en giltig e-postadress.');
+                return false;
+            }
+
+            const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+            if (!phoneRegex.test(phone)) {
+                showError('Vänligen ange ett giltigt telefonnummer.');
+                return false;
+            }
+
+            const street = document.getElementById('street').value.trim();
+            const postalCode = document.getElementById('postalCode').value.trim();
+            const city = document.getElementById('city').value.trim();
+
+            if (!street || !postalCode || !city) {
+                showError('Vänligen fyll i alla obligatoriska adressfält.');
+                return false;
+            }
+
+            const postalCodeRegex = /^\d{3}\s?\d{2}$/;
+            if (!postalCodeRegex.test(postalCode)) {
+                showError('Vänligen ange ett giltigt postnummer (t.ex. 123 45).');
+                return false;
+            }
+
+            console.log('All validation passed');
+            return true;
+        }
+
+        function saveCurrentStepData() {
+            console.log('Saving data for step:', orderState.currentStep);
+            
+            if (orderState.currentStep === 1) {
+                orderState.formData.quantity = orderState.quantity;
+                orderState.formData.firstName = document.getElementById('firstName').value.trim();
+                orderState.formData.lastName = document.getElementById('lastName').value.trim();
+                orderState.formData.fullName = `${orderState.formData.firstName} ${orderState.formData.lastName}`;
+                orderState.formData.email = document.getElementById('email').value.trim();
+                orderState.formData.phone = document.getElementById('phone').value.trim();
+                orderState.formData.street = document.getElementById('street').value.trim();
+                orderState.formData.postalCode = document.getElementById('postalCode').value.trim();
+                orderState.formData.city = document.getElementById('city').value.trim();
+                orderState.formData.country = document.getElementById('country').value;
+                
+                console.log('Saved all form data:', orderState.formData);
+            }
+        }
+
+        // MINIMIZED EMAIL COMPOSITION
+        function composeOrderEmail(orderData) {
+            const orderNumber = orderData.orderNumber;
+            const totalAmount = orderData.pricing.total;
+            
+            const subject = `Beställning ${orderNumber}`;
+            
+            const emailBody = `Beställning: ${orderNumber}
+Datum: ${new Date().toLocaleDateString('sv-SE')}
+
+Kund: ${orderData.customer.fullName}
+E-post: ${orderData.customer.email}
+Telefon: ${orderData.customer.phone}
+
+Adress:
+${orderData.delivery.street}
+${orderData.delivery.postalCode} ${orderData.delivery.city}
+${orderData.delivery.country}
+
+Beställning: ${orderData.items[0].quantity} x Svenska Reformationsbibeln
+Totalt: ${totalAmount} kr (inkl frakt)
+
+Swish-betalning genomförd till: ${orderData.customer.phone}`;
+
+            return { subject, emailBody };
+        }
+
+        // Email service handler
+        function handleEmailService(service) {
+            if (!storedEmailData) {
+                alert('Ingen beställningsdata hittades.');
+                return;
+            }
+
+            const subject = encodeURIComponent(storedEmailData.subject);
+            const body = encodeURIComponent(storedEmailData.emailBody);
+            const recipient = 'post@bibel.se';
+
+            switch (service) {
+                case 'gmail':
+                    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${subject}&body=${body}`, '_blank');
+                    break;
+                    
+                case 'outlook':
+                    window.open(`https://outlook.live.com/mail/0/deeplink/compose?to=${recipient}&subject=${subject}&body=${body}`, '_blank');
+                    break;
+                    
+                case 'yahoo':
+                    window.open(`https://compose.mail.yahoo.com/?to=${recipient}&subject=${subject}&body=${body}`, '_blank');
+                    break;
+                    
+                case 'apple':
+                    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+                    break;
+                    
+                case 'default':
+                    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+                    break;
+                    
+                case 'copy':
+                    copyToClipboard(`Till: ${recipient}
+Ämne: ${storedEmailData.subject}
+
+${storedEmailData.emailBody}`);
+                    break;
+            }
+        }
+
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showCopySuccess();
+                }).catch(() => {
+                    fallbackCopyToClipboard(text);
+                });
+            } else {
+                fallbackCopyToClipboard(text);
+            }
+        }
+
+        function fallbackCopyToClipboard(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showCopySuccess();
+            } catch (err) {
+                alert('Kunde inte kopiera automatiskt. Markera och kopiera texten manuellt.');
             }
             
-            // Hide all form sections and show success
-            document.querySelectorAll('.form-section').forEach(section => {
-                section.style.display = 'none';
-                section.classList.remove('active');
-            });
-            
-            const successSection = document.querySelector('[data-section="success"]');
-            if (successSection) {
-                successSection.style.display = 'block';
-                successSection.classList.add('active');
+            document.body.removeChild(textArea);
+        }
+
+        function showCopySuccess() {
+            const copyBtn = document.querySelector('[data-service="copy"]');
+            if (copyBtn) {
+                copyBtn.classList.add('copy-success');
+                copyBtn.innerHTML = '<i class="fas fa-check" style="color: #28a745;"></i><span>Kopierat!</span>';
+                
+                setTimeout(() => {
+                    copyBtn.classList.remove('copy-success');
+                    copyBtn.innerHTML = '<i class="fas fa-copy" style="color: #28a745;"></i><span>Kopiera</span>';
+                }, 2000);
             }
-
-            // Update step indicator to show completion
-            document.querySelectorAll('.step').forEach(step => {
-                step.classList.remove('active');
-                step.classList.add('completed');
-                step.querySelector('.step-number').innerHTML = '<i class="fas fa-check"></i>';
-            });
-
-            // Open Swish payment after a delay
-            setTimeout(() => {
-                const message = `Bibel beställning ${orderNumber}`;
-                openSwishPayment(total, message);
-            }, 2000);
+            
+            alert('E-postinnehåll kopierat! Klistra in i din e-postklient och skicka till post@bibel.se');
         }
 
         // Swish payment integration
@@ -955,7 +1537,6 @@ ${storedEmailData.emailBody}
                 console.log('JSON format failed:', error);
             }
 
-            // Fallback methods
             const fallbackUrls = [
                 `swish://payment?phone=1233882669&amount=${amount}&message=${encodeURIComponent(message)}`,
                 `swish://paymentrequest?phone=1233882669&amount=${amount}&message=${encodeURIComponent(message)}`,
@@ -1000,32 +1581,10 @@ ${storedEmailData.emailBody}
             initializeApp();
         });
 
-        // Smooth scrolling for internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const headerHeight = document.querySelector('.header').offsetHeight;
-                    const targetPosition = target.offsetTop - headerHeight - 20;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Prevent zoom on double-tap for iOS Safari
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function (event) {
-            const now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
+        // Global functions for order management (called from HTML)
+        window.resumeOrder = resumeOrder;
+        window.duplicateOrder = duplicateOrder;
+        window.deleteOrder = deleteOrder;
     </script>
 </body>
 

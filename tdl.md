@@ -19,3 +19,5 @@
 + Lite mindre size på titeln
 + Menyn ska ha större text
 + Ta bort grejen vid botten på swish:en (Done)
+
+
