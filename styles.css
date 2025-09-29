@@ -179,7 +179,7 @@ kbd {
     margin-bottom: 1rem;
     max-width: 900px;
     margin-left: auto;
-    margin-right: auto;
+    margin-ight: auto;
 }
 
 .hero-description i p {
@@ -188,6 +188,7 @@ kbd {
     font-size: 1.1rem;
     margin-top: 0.5rem;
     margin-bottom: 0;
+    text-align: left;
 }
 
 .hero-container-flex {
@@ -211,7 +212,6 @@ kbd {
     display: block;
     margin: 0;
     padding: 0;
-    max-width: 100%;
     height: auto;
 }
 
@@ -742,7 +742,6 @@ img[src*="kanal_10"] {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     cursor: pointer;
-    margin: 15px auto;
     display: block;
 }
 
@@ -1107,3 +1106,4 @@ img[src*="kanal_10"] {
         padding: 3.5rem 2.5rem; 
     }
 }
+

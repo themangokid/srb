@@ -24,9 +24,15 @@
 + Gör en indikation till att du har öppnat mail-appen
 + Lägg till en playknapp till bilden på första sidan
 + Det finns fortfarande bilder som har inline 40% 40%
++ Ta bort underline för länken
++ När man expanderar kategorierna så hänger andra divar som ej skall expandera
++ Logotypen är lite förstor
++ Menyn innehåller knappar men det är inte alla som är relevanta
++ Se om du ska ha en punkt under bilden som är på FP
 
 
 
+## Bugs
 + Bilden längst ned behöver mobilanpassas
 + Logotypen längst till vänster bör ha lite mer margin 1-2px
 + Bug: Ladda JSON filen, Frågor & Svar (QNA)
@@ -34,24 +40,4 @@
 + Den röda färgen på logotypen kanske kan vara med på något annat ställe på hemsidan. (Done)
 + Ikonerna skulle kunna vara snabbknappar i en meny eller liknande åtminstånde användas igen på något sätt i framtiden
 + Lägg till mer alternativ för swish och generera QR-kod
-
- 
-+ Ladda ner allt material som är lätt att hantera (PDF:er) och länka sedan till dem på github
-# TDL
-
-+ Lite mindre size på titeln
-+ Menyn ska ha större text
-+ Ta bort grejen vid botten på swish:en (Done)
-
-# TDL
-+ Gör det tydligt med "Beställ" knappen
-+ Se till att du får ett bra flöde på köpet
-+ Minimera alternativen
-+ Gör en knapp som döljer alternativ
-+ Kopiera text från original hemsidan
-
-
-
-
-
 
