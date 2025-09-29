@@ -69,7 +69,12 @@
         <!-- Order Form -->
         <div class="order-form">
             <div class="error-message" id="errorMessage"></div>
-
+                <div style="background: rgba(139, 105, 20, 0.05); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid var(--border-color);"> 
+                <h2><i class="fas fa-circle-info"></i> Endast förskottsbetalning</h2>
+                <br>
+                    <h3>För att förenkla administration och utskick från vårt lager i Haparanda, så återgår vi till förskottsbetalning.</h3>
+                </div>
+        
             <!-- Step 1: Complete Order Form -->
             <div class="form-section active" data-section="1">
                 <h2><i class="fas fa-shopping-cart"></i> Beställningsuppgifter</h2>
@@ -81,7 +86,8 @@
                     </h3>
                     
                     <div class="info-box">
-                        <p><strong>Svenska Reformationsbibeln</strong> - En modern översättning av Karl XII:s Bibel från 1703, baserad på Textus Receptus. Pris: 200 kr per exemplar + frakt.</p>
+                        <p><strong>Svenska Reformationsbibeln</strong> - En modern översättning av Karl XII:s Bibel från 1703, baserad på Textus Receptus. 
+                           <strong> Pris: 200 kr per exemplar + frakt.</strong></p>
                     </div>
 
                     <div class="quantity-selector">
@@ -184,6 +190,8 @@
                     <i class="fas fa-mobile-alt" style="font-size: 4rem; color: #2d5f3f; margin-bottom: 1.5rem;"></i>
                     <h2 style="font-size: 2rem; margin-bottom: 1rem;">Betala via Swish</h2>
                     <p style="font-size: 1.3rem; margin-bottom: 1.5rem;">Swish-appen öppnas automatiskt för betalning</p>
+
+                    <!-- <img src="img/swish.png"> -->
                     
                     <div style="background: rgba(46, 125, 50, 0.1); border: 2px solid #2d5f3f; border-radius: 12px; padding: 1.5rem; margin: 1.5rem auto; max-width: 500px;">
                         <p style="font-size: 1.1rem; margin: 0;"><strong>Ordernummer:</strong> <span id="orderNumberStep2"></span></p>
@@ -206,11 +214,11 @@
                 <div style="text-align: center; padding: 2rem;">
                     <i class="fas fa-envelope" style="font-size: 4rem; color: #d4af37; margin-bottom: 1.5rem;"></i>
                     <h2 style="font-size: 2rem; margin-bottom: 1rem;">Skicka orderbekräftelse</h2>
-                    <p style="font-size: 1.3rem; margin-bottom: 1.5rem;">Välj hur du vill skicka beställningen till oss</p>
+                    <p style="font-size: 1.3rem; margin-bottom: 1.8rem;">Välj hur du vill skicka beställningen till oss</p>
                     
                     <div style="background: rgba(139, 105, 20, 0.1); border: 2px solid var(--primary-gold); border-radius: 12px; padding: 1.5rem; margin: 1.5rem auto; max-width: 500px;">
-                        <p style="font-size: 1.1rem; margin: 0;"><strong>Ordernummer:</strong> <span id="orderNumberStep3"></span></p>
-                        <p style="font-size: 1rem; margin: 0.5rem 0 0 0;">Till: post@bibel.se</p>
+                        <p style="font-size: 1.2rem; margin: 0;"><strong>Ordernummer:</strong> <span id="orderNumberStep3"></span></p>
+                        <p style="font-size: 1.3rem; margin: 0.5rem 0 0 0;"> <strong> Till: </strong> post@bibel.se </p>
                     </div>
 
                     <!-- Email Options -->
@@ -226,18 +234,6 @@
                         <button class="email-option-btn" data-service="outlook">
                             <i class="fab fa-microsoft" style="color: #0078D4;"></i>
                             <span>Outlook</span>
-                        </button>
-
-                        <!-- Yahoo -->
-                        <button class="email-option-btn" data-service="yahoo">
-                            <i class="fab fa-yahoo" style="color: #720E9E;"></i>
-                            <span>Yahoo</span>
-                        </button>
-
-                        <!-- Apple Mail -->
-                        <button class="email-option-btn" data-service="apple">
-                            <i class="fab fa-apple" style="color: #000;"></i>
-                            <span>Apple Mail</span>
                         </button>
 
                         <!-- Default Email App -->
@@ -264,7 +260,7 @@
 
                     <div style="background: rgba(46, 125, 50, 0.1); border-left: 4px solid #2d5f3f; padding: 1rem; margin: 1.5rem auto; border-radius: 0 8px 8px 0; max-width: 500px; text-align: left;">
                         <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;"><i class="fas fa-check-circle" style="color: #2d5f3f; margin-right: 0.5rem;"></i>Efter e-post skickad:</h4>
-                        <p style="margin: 0; font-size: 1rem;">Din beställning behandlas och skickas inom 3-5 arbetsdagar. Du får en bekräftelse när ordern är på väg.</p>
+                        <!-- <p style="margin: 0; font-size: 1rem;">Din beställning behandlas och skickas inom 3-5 arbetsdagar. Du får en bekräftelse när ordern är på väg.</p> -->
                     </div>
                 </div>
             </div>
@@ -302,13 +298,6 @@
     </div>
 
     <!-- Footer -->
-    <footer id="kontakt" class="footer">
-        <div class="footer-content">
-            <h3>© 2025 Svenska Reformationsbibelsällskapet</h3>
-            <p>En modern version av Karl XII:s Bibel från 1703, baserad på Textus Receptus</p>
-            <p>Bankgiro: 5808-7446 | Swish: 1233882669 | E-post: post@bibel.se</p>
-        </div>
-    </footer>
 
     <style>
         /* Email option buttons */

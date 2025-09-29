@@ -20,4 +20,10 @@
 + Menyn ska ha större text
 + Ta bort grejen vid botten på swish:en (Done)
 
+# TDL
++ Gör det tydligt med "Beställ" knappen
++ Se till att du får ett bra flöde på köpet
++ Minimera alternativen
++ Gör en knapp som döljer alternativ
++ Kopiera text från original hemsidan
 
