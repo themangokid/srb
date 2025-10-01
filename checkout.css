@@ -570,3 +570,23 @@
 }
 
 
+#swishQRCode {
+    border-radius: 8px;
+}
+
+#openSwishAppBtn:hover {
+    background: #1e4029;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(45, 95, 63, 0.3);
+}
+
+#openSwishAppBtn:active {
+    transform: translateY(0);
+}
+
+/* Hide mobile button on desktop */
+@media (min-width: 768px) {
+    #openSwishAppBtn {
+        display: none !important;
+    }
+}
