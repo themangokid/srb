@@ -342,20 +342,20 @@ function generateSwishQRCode(amount, message, payeeNumber = "1233882669") {
         return null;
     }
 }
-        function openSwishApp() {
-            if (!orderState.orderNumber || !orderState.totalAmount) {
-                alert('Beställningsdata saknas');
-                return;
-            }
-            
-            const amount = orderState.totalAmount;
-            const message = `Bibel ${orderState.quantity}x${BIBLE_PRICE}kr ${orderState.orderNumber}`;
-            const payeeNumber = "1233882669";
-            const basicUrl = `swish://payment?phone=${payeeNumber}&amount=${amount}&message=${encodeURIComponent(message)}`;
-            
-            console.log('Opening Swish app:', basicUrl);
-            window.location.href = basicUrl;
-        }
+function openSwishApp() {
+    if (!orderState.orderNumber || !orderState.totalAmount) {
+        alert('Beställningsdata saknas');
+        return;
+    }
+    
+    const amount = orderState.totalAmount;
+    const message = `Bibel ${orderState.quantity}st ${orderState.orderNumber}`;
+    const payeeNumber = "1233882669";
+    const basicUrl = `swish://payment?phone=${payeeNumber}&amount=${amount}&message=${encodeURIComponent(message)}`;
+    
+    console.log('Opening Swish app:', basicUrl);
+    window.location.href = basicUrl;
+}
 
         function createOrResumeSession() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -464,15 +464,6 @@ function generateSwishQRCode(amount, message, payeeNumber = "1233882669") {
                     prepareEmailStep();
                 }
             }
-if (orderState.currentStep === 2 && orderState.orderNumber && orderState.totalAmount) {
-    setTimeout(() => {
-        const message = `Bibel ${orderState.quantity}st ${orderState.orderNumber}`;
-        generateSwishQRCode(orderState.totalAmount, message);
-        const msgDisplay = document.getElementById('swishMessageDisplay');
-        if (msgDisplay) msgDisplay.textContent = message;
-    }, 200);
-}
-
         function getAllOrders() {
             const orders = [];
             for (let i = 0; i < localStorage.length; i++) {

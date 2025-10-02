@@ -1139,3 +1139,28 @@ input[type="number"] {
         display: none !important;
     }
 }
+
+
+/* Hide number input arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Center and size the quantity input */
+.quantity-display {
+    width: 80px !important;
+    text-align: center !important;
+}
+
+/* Hide QR code on mobile */
+@media (max-width: 767px) {
+    #qrCodeContainer {
+        display: none !important;
+    }
+}
