@@ -351,10 +351,12 @@ function openSwishApp() {
     const amount = orderState.totalAmount;
     const message = `Bibel ${orderState.quantity}st ${orderState.orderNumber}`;
     const payeeNumber = "1233882669";
-    const basicUrl = `swish://payment?phone=${payeeNumber}&amount=${amount}&message=${encodeURIComponent(message)}`;
     
-    console.log('Opening Swish app:', basicUrl);
-    window.location.href = basicUrl;
+    // Correct Swish URL format
+    const swishUrl = `swish://paymentrequest?token=&callbackurl=&payee=${payeeNumber}&amount=${amount}&message=${encodeURIComponent(message)}`;
+    
+    console.log('Opening Swish app:', swishUrl);
+    window.location.href = swishUrl;
 }
 
         function createOrResumeSession() {
