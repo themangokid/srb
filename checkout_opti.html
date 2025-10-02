@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <title>Svenska Reformationsbibeln - Beställning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="checkout.css">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <div class="logo-icon"></div>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Hem</a></li>
+                <li><a href="QnA.html">Frågor & svar</a></li>
+                <li><a href="index.html#resurser">Resurser</a></li>
+                <li><a href="https://bibel.se" target="_blank" rel="noopener">Bibel.se</a></li>
+                <li><a href="index.html#kontakt">Kontakt</a></li>
+                <li><a href="#" id="settingsBtn"><i class="fas fa-cog"></i> Inställningar</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+    <div class="order-container">
+        <h1 style="text-align: center; color: var(--primary-text); margin-bottom: 2rem; font-size: 2.5rem;">Beställ Svenska Reformationsbibeln</h1>
+        <div class="step-indicator">
+            <div class="step active clickable" data-step="1">
+                <div class="step-number">1</div>
+                <span>Formulär</span>
+            </div>
+            <div class="step clickable" data-step="2">
+                <div class="step-number">2</div>
+                <span>Swish (Betala)</span>
+            </div>
+            <div class="step clickable" data-step="3">
+                <div class="step-number">3</div>
+                <span>Skicka info via e-post</span>
+            </div>
+        </div>
+        <div class="order-form">
+            <div class="error-message" id="errorMessage"></div>
+            <div class="form-section active" data-section="1">
+                <h2><i class="fas fa-shopping-cart"></i> Beställningsuppgifter</h2>
+                <div style="background: rgba(139, 105, 20, 0.05); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid var(--border-color);">
+                    <h3 style="color: var(--primary-text); margin-bottom: 1rem; font-size: 1.3rem;"><i class="fas fa-book"></i> Välj antal</h3>
+                    <div class="info-box">
+                        <p><strong>Endast förskottsbetalning</strong> – För att förenkla administration så återgår vi till förskottsinbetalning.</p>
+                    </div>
+                    <div class="info-box">
+                        <p><strong>Svenska Reformationsbibeln</strong> - En modern översättning av Karl XII:s Bibel från 1703, baserad på Textus Receptus. <strong> Pris: 200 kr per exemplar + frakt.</strong></p>
+                    </div>
+                    <div class="quantity-selector">
+                        <button type="button" class="quantity-btn" id="decreaseBtn">−</button>
+                        <div class="quantity-display" id="quantityDisplay">1</div>
+                        <button type="button" class="quantity-btn" id="increaseBtn">+</button>
+                    </div>
+                    <div class="price-summary">
+                        <div class="price-line">
+                            <span>Biblar (<span id="summaryQuantity">1</span> st):</span>
+                            <span id="subtotal">200 kr</span>
+                        </div>
+                        <div class="price-line">
+                            <span>Frakt:</span>
+                            <span id="shipping">49 kr</span>
+                        </div>
+                        <div class="price-line total">
+                            <span>Totalt:</span>
+                            <span id="total">249 kr</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: rgba(139, 105, 20, 0.05); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid var(--border-color);">
+                    <h3 style="color: var(--primary-text); margin-bottom: 1rem; font-size: 1.3rem;"><i class="fas fa-user"></i> Kontaktuppgifter</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group required">
+                            <label for="firstName">Förnamn</label>
+                            <input type="text" id="firstName" name="given-name" autocomplete="given-name" required>
+                        </div>
+                        <div class="form-group required">
+                            <label for="lastName">Efternamn</label>
+                            <input type="text" id="lastName" name="family-name" autocomplete="family-name" required>
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label for="email">E-postadress</label>
+                        <input type="email" id="email" name="email" autocomplete="email" required>
+                    </div>
+                    <div class="form-group required">
+                        <label for="phone">Telefonnummer (för Swish-betalning)</label>
+                        <input type="tel" id="phone" name="tel" autocomplete="tel" placeholder="070-123 45 67" required>
+                    </div>
+                </div>
+                <div style="background: rgba(139, 105, 20, 0.05); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid var(--border-color);">
+                    <h3 style="color: var(--primary-text); margin-bottom: 1rem; font-size: 1.3rem;"><i class="fas fa-truck"></i> Leveransadress</h3>
+                    <div class="form-group required">
+                        <label for="street">Gatuadress</label>
+                        <input type="text" id="street" name="address-line1" autocomplete="address-line1" placeholder="Gatunamn och nummer" required>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 1rem;">
+                        <div class="form-group required">
+                            <label for="postalCode">Postnummer</label>
+                            <input type="text" id="postalCode" name="postal-code" autocomplete="postal-code" placeholder="123 45" pattern="[0-9]{3}\s?[0-9]{2}" required>
+                        </div>
+                        <div class="form-group required">
+                            <label for="city">Ort</label>
+                            <input type="text" id="city" name="address-level2" autocomplete="address-level2" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Land</label>
+                        <select id="country" name="country" autocomplete="country">
+                            <option value="Sverige" selected>Sverige</option>
+                            <option value="Norge">Norge</option>
+                            <option value="Danmark">Danmark</option>
+                            <option value="Finland">Finland</option>
+                            <option value="Island">Island</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <div></div>
+                    <button type="button" class="btn btn-primary" id="nextStepBtn">Nästa steg <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="form-section" data-section="2">
+                <div style="background: rgba(212, 175, 55, 0.05); border: 2px solid var(--primary-gold); border-radius: 12px; padding: 2rem; margin: 2rem auto; max-width: 600px;">
+                    <div style="text-align: center;">
+                        <i class="fas fa-mobile-alt" style="font-size: 4rem; color: #2d5f3f; margin-bottom: 1.5rem;"></i>
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Betala med Swish</h2>
+                        <p style="font-size: 1.3rem; margin-bottom: 1.5rem;">Skanna QR-koden för att betala</p>
+                        <div style="position: relative; display: inline-block; margin: 20px 0;">
+                            <img src="img/swish_clean_01.png" alt="Swish betalning" loading="lazy" width="340" height="auto" style="display: block; margin-right:1.7rem; margin-top:5.8rem; width: 340px; height: auto; border-radius: 12px;">
+                            <canvas id="swishQRCode" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: block; border-radius: 8px;"></canvas>
+                        </div>
+                        <div style="background: rgba(46, 125, 50, 0.1); border: 2px solid #2d5f3f; border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem;">
+                            <p style="font-size: 1.1rem; margin: 0;"><strong>Ordernummer:</strong> <span id="orderNumberStep2"></span></p>
+                            <p style="font-size: 1.1rem; margin: 0.5rem 0 0 0;"><strong>Belopp:</strong> <span id="totalAmountStep2"></span> kr</p>
+                            <p style="font-size: 1.1rem; margin: 0.5rem 0 0 0;"><strong>Meddelande:</strong> <span id="swishMessageDisplay"></span></p>
+                        </div>
+                        <button id="openSwishAppBtn" style="margin-top: 1.5rem; width: 100%; padding: 15px; background: #2d5f3f; color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <i class="fas fa-mobile-alt"></i>Öppna Swish-appen
+                        </button>
+                    </div>
+                </div>
+                <div class="btn-group" style="margin-top: 2rem;">
+                    <button type="button" class="btn btn-secondary" id="prevStepBtn"><i class="fas fa-arrow-left"></i> Tillbaka</button>
+                    <button type="button" class="btn btn-primary" id="proceedToEmailBtn">Betalning klar - Nästa steg <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="form-section" data-section="3">
+                <div style="text-align: center; padding: 2rem;">
+                    <i class="fas fa-envelope" style="font-size: 4rem; color: #d4af37; margin-bottom: 1.5rem;"></i>
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Skicka orderbekräftelse</h2>
+                    <p style="font-size: 1.3rem; margin-bottom: 1.8rem;">Välj hur du vill skicka beställningen till oss.<br> Dubbelkolla i "skickade mail" så att ordern säkert har</p>
+                    <div style="background: rgba(139, 105, 20, 0.1); border: 2px solid var(--primary-gold); border-radius: 12px; padding: 1.5rem; margin: 1.5rem auto; max-width: 500px;">
+                        <p style="font-size: 1.2rem; margin: 0;"><strong>Ordernummer:</strong> <span id="orderNumberStep3"></span></p>
+                        <p style="font-size: 1.3rem; margin: 0.5rem 0 0 0;"> <strong> Till: </strong> post@bibel.se </p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        <button class="email-option-btn email-option-recommended" data-service="default">
+                            <span class="recommended-badge">Rekommenderat</span>
+                            <i class="fas fa-envelope" style="color: #d4af37;"></i>
+                            <span>E-postapp (Mejlprogram)</span>
+                        </button>
+                        <button class="email-option-btn" data-service="gmail">
+                            <i class="fab fa-google" style="color: #EA4335;"></i>
+                            <span>Gmail</span>
+                        </button>
+                        <button class="email-option-btn" data-service="outlook">
+                            <i class="fab fa-microsoft" style="color: #0078D4;"></i>
+                            <span>Outlook</span>
+                        </button>
+                        <button class="email-option-btn" data-service="copy">
+                            <i class="fas fa-copy" style="color: #28a745;"></i>
+                            <span>Kopiera</span>
+                        </button>
+                    </div>
+                    <div class="btn-group" style="margin-top: 2rem;">
+                        <button type="button" class="btn btn-secondary" id="prevStepBtn2"><i class="fas fa-arrow-left"></i> Tillbaka</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-cog"></i> Beställningsinställningar</h2>
+                <span class="close" id="closeSettings">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="settings-section">
+                    <h3><i class="fas fa-history"></i> Tidigare beställningar</h3>
+                    <div id="ordersList" class="orders-list"></div>
+                </div>
+                <div class="settings-section">
+                    <h3><i class="fas fa-tools"></i> Åtgärder</h3>
+                    <div class="settings-actions">
+                        <button class="btn btn-secondary" id="newOrderBtn"><i class="fas fa-plus"></i> Ny beställning</button>
+                        <button class="btn btn-warning" id="clearDataBtn"><i class="fas fa-trash"></i> Rensa all data</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+#openSwishAppBtn:hover{background:#1e4029;transform:translateY(-2px);box-shadow:0 4px 8px rgba(45,95,63,0.3);transition:all 0.2s}
+#openSwishAppBtn:active{transform:translateY(0)}
+@media (min-width:768px){#openSwishAppBtn{display:none!important}}
+    </style>
+    <script>
+let os={quantity:1,currentStep:1,formData:{},orderNumber:null,totalAmount:null,sessionId:null};const BP=200,SC=49;let sed=null,qd,sq,st,sh,tt,em;function genON(){const n=new Date(),y=n.getFullYear().toString().slice(-2),m=String(n.getMonth()+1).padStart(2,'0'),d=String(n.getDate()).padStart(2,'0'),h=String(n.getHours()).padStart(2,'0'),mi=String(n.getMinutes()).padStart(2,'0'),rc='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';let rs='';for(let i=0;i<4;i++)rs+=rc.charAt(Math.floor(Math.random()*rc.length));return`SRB-${y}${m}${d}-${h}${mi}-${rs}`}function genQR(a,m,pn="1233882669"){const fa=parseFloat(a).toFixed(2).replace('.',','),em=encodeURIComponent(m),sd=`C${pn};${fa};${em};0`;console.log('Generating Swish QR:',sd);try{const c=document.getElementById('swishQRCode');if(!c){console.error('QR canvas not found');return null}const qr=new QRious({element:c,value:sd,size:250,level:'M',foreground:'#000000',background:'transparent',padding:0});console.log('QR generated successfully');return qr}catch(e){console.error('QR generation error:',e);return null}}function openSA(){if(!os.orderNumber||!os.totalAmount){alert('Beställningsdata saknas');return}const a=os.totalAmount,m=`Bibel beställning ${os.orderNumber}`,pn="1233882669",bu=`swish://payment?phone=${pn}&amount=${a}&message=${encodeURIComponent(m)}`;console.log('Opening Swish app:',bu);window.location.href=bu}function crs(){const up=new URLSearchParams(window.location.search),uon=up.get('order');let es=null;if(uon)es=lsbon(uon);else es=lls();if(es){console.log('Resuming session:',es.orderNumber);os={...os,...es};rff();uad();return true}else{const non=genON();os.orderNumber=non;os.sessionId=non;console.log('New session:',non);ss();return false}}function ss(){const sd={...os,timestamp:new Date().toISOString(),lastActivity:Date.now()};try{localStorage.setItem(`order_${os.orderNumber}`,JSON.stringify(sd));localStorage.setItem('lastOrderNumber',os.orderNumber);const u=new URL(window.location);u.searchParams.set('order',os.orderNumber);window.history.replaceState({},'',u)}catch(e){console.error('Save session failed:',e)}}function lsbon(on){try{const sd=localStorage.getItem(`order_${on}`);return sd?JSON.parse(sd):null}catch(e){return null}}function lls(){try{const lon=localStorage.getItem('lastOrderNumber');return lon?lsbon(lon):null}catch(e){return null}}function rff(){if(os.formData&&Object.keys(os.formData).length>0){const f=['firstName','lastName','email','phone','street','postalCode','city','country'];f.forEach(fi=>{const el=document.getElementById(fi);if(el&&os.formData[fi])el.value=os.formData[fi]});if(os.quantity){uqd();upr()}}}function uad(){usi();sfs(os.currentStep);['orderNumberStep2','orderNumberStep3'].forEach(id=>{const el=document.getElementById(id);if(el&&os.orderNumber)el.textContent=os.orderNumber});if(os.totalAmount){const te=document.getElementById('totalAmountStep2');if(te)te.textContent=os.totalAmount}if(os.currentStep===2&&os.orderNumber&&os.totalAmount){setTimeout(()=>{const m=`Bibel beställning ${os.orderNumber}`;genQR(os.totalAmount,m);const md=document.getElementById('swishMessageDisplay');if(md)md.textContent=m},200)}if(os.currentStep===3&&!sed)pes()}function gao(){const ord=[];for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith('order_')){try{ord.push(JSON.parse(localStorage.getItem(k)))}catch(e){}}}return ord.sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp))}function diso(){const ol=document.getElementById('ordersList'),ord=gao();if(ord.length===0){ol.innerHTML='<div class="empty-state"><i class="fas fa-shopping-cart"></i><p>Inga tidigare beställningar hittades.</p></div>';return}ol.innerHTML=ord.map(o=>{const da=new Date(o.timestamp).toLocaleDateString('sv-SE'),ti=new Date(o.timestamp).toLocaleTimeString('sv-SE',{hour:'2-digit',minute:'2-digit'}),stx=['Formulär','Swish (Betala)','Skicka info via e-post'][o.currentStep-1]||'Okänt',stc=`status-step${o.currentStep}`;return`<div class="order-card"><div class="order-header"><div class="order-number">${o.orderNumber}</div><div class="order-date">${da} ${ti}</div></div><div class="order-details"><div><strong>Kund:</strong> ${o.formData?.fullName||'Ej angivet'}</div><div><strong>Antal:</strong> ${o.quantity||1} st</div><div><strong>E-post:</strong> ${o.formData?.email||'Ej angivet'}</div><div><strong>Totalt:</strong> ${((o.quantity||1)*BP)+SC} kr</div></div><div style="margin: 1rem 0;"><span class="order-status ${stc}">Steg ${o.currentStep}: ${stx}</span></div><div class="order-actions"><button class="btn btn-primary btn-small" onclick="ro('${o.orderNumber}')"><i class="fas fa-play"></i> Fortsätt</button><button class="btn btn-secondary btn-small" onclick="duo('${o.orderNumber}')"><i class="fas fa-copy"></i> Kopiera</button><button class="btn btn-warning btn-small" onclick="delo('${o.orderNumber}')"><i class="fas fa-trash"></i> Ta bort</button></div></div>`}).join('')}function ro(on){const od=lsbon(on);if(od){os={...os,...od};rff();uad();csm();const u=new URL(window.location);u.searchParams.set('order',on);window.history.replaceState({},'',u)}}function duo(on){const od=lsbon(on);if(od){const non=genON();os={...od,orderNumber:non,sessionId:non,currentStep:1,timestamp:new Date().toISOString(),lastActivity:Date.now()};rff();uad();ss();csm()}}function delo(on){if(confirm(`Är du säker på att du vill ta bort beställning ${on}?`)){localStorage.removeItem(`order_${on}`);if(os.orderNumber===on)sno();diso()}}function sno(){os={quantity:1,currentStep:1,formData:{},orderNumber:genON(),totalAmount:null,sessionId:null};['firstName','lastName','email','phone','street','postalCode','city'].forEach(fi=>{const el=document.getElementById(fi);if(el)el.value=''});const ce=document.getElementById('country');if(ce)ce.value='Sverige';uqd();upr();uad();ss();const u=new URL(window.location);u.searchParams.delete('order');window.history.replaceState({},'',u);csm()}function cad(){if(confirm('Är du säker på att du vill ta bort ALLA beställningar? Detta kan inte ångras.')){const ktr=[];for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&(k.startsWith('order_')||k==='lastOrderNumber'||k==='lastOrder'||k==='lastEmailData'))ktr.push(k)}ktr.forEach(k=>localStorage.removeItem(k));sno();diso();alert('All beställningsdata har raderats.')}}function osm(){diso();document.getElementById('settingsModal').style.display='block'}function csm(){document.getElementById('settingsModal').style.display='none'}function ia(){console.log('Initializing...');crs();qd=document.getElementById('quantityDisplay');sq=document.getElementById('summaryQuantity');st=document.getElementById('subtotal');sh=document.getElementById('shipping');tt=document.getElementById('total');em=document.getElementById('errorMessage');if(!qd||!sq||!st||!sh||!tt){console.error('Critical DOM elements not found');return}const db=document.getElementById('decreaseBtn'),ib=document.getElementById('increaseBtn'),nsb=document.getElementById('nextStepBtn'),psb=document.getElementById('prevStepBtn'),psb2=document.getElementById('prevStepBtn2'),peb=document.getElementById('proceedToEmailBtn'),osab=document.getElementById('openSwishAppBtn');if(db)db.addEventListener('click',()=>cq(-1));if(ib)ib.addEventListener('click',()=>cq(1));if(nsb)nsb.addEventListener('click',ns);if(psb)psb.addEventListener('click',ps);if(psb2)psb2.addEventListener('click',ps);if(peb)peb.addEventListener('click',ns);if(osab)osab.addEventListener('click',openSA);const sb=document.getElementById('settingsBtn'),cs=document.getElementById('closeSettings'),nob=document.getElementById('newOrderBtn'),cdb=document.getElementById('clearDataBtn'),sm=document.getElementById('settingsModal');if(sb)sb.addEventListener('click',e=>{e.preventDefault();osm()});if(cs)cs.addEventListener('click',csm);if(nob)nob.addEventListener('click',sno);if(cdb)cdb.addEventListener('click',cad);if(sm)sm.addEventListener('click',e=>{if(e.target===sm)csm()});document.querySelectorAll('.step.clickable').forEach(s=>s.addEventListener('click',()=>nts(parseInt(s.dataset.step))));document.addEventListener('click',e=>{if(e.target.closest('.email-option-btn'))hes(e.target.closest('.email-option-btn').dataset.service)});const hb=document.querySelector('.hamburger'),nm=document.querySelector('.nav-menu');if(hb&&nm){hb.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();nm.classList.toggle('active');hb.classList.toggle('active')});document.querySelectorAll('.nav-menu a').forEach(l=>l.addEventListener('click',()=>{nm.classList.remove('active');hb.classList.remove('active')}));document.addEventListener('click',e=>{if(!hb.contains(e.target)&&!nm.contains(e.target)){nm.classList.remove('active');hb.classList.remove('active')}})}uqd();upr();usi();console.log('App initialized')}function nts(ts){if(ts===os.currentStep)return;if(ts>os.currentStep&&!vcs()){ser('Vänligen fyll i alla obligatoriska fält innan du går vidare.');setTimeout(her,3000);return}if(ts>os.currentStep)scsd();os.currentStep=ts;if(os.currentStep===2){if(!os.orderNumber)os.orderNumber=genON();const to=(os.formData.quantity*BP)+SC;os.totalAmount=to;const m=`Bibel beställning ${os.orderNumber}`,on2=document.getElementById('orderNumberStep2'),ta2=document.getElementById('totalAmountStep2'),smd=document.getElementById('swishMessageDisplay');if(on2)on2.textContent=os.orderNumber;if(ta2)ta2.textContent=to;if(smd)smd.textContent=m;ss();setTimeout(()=>genQR(to,m),100)}else if(os.currentStep===3){pes();ss()}usi();sfs(os.currentStep);ss();document.querySelector('.order-form').scrollIntoView({behavior:'smooth',block:'start'})}function cq(d){os.quantity=Math.max(1,os.quantity+d);uqd();upr();ss()}function uqd(){if(qd&&sq){qd.textContent=os.quantity;sq.textContent=os.quantity}}function upr(){const sa=os.quantity*BP,ta=sa+SC;if(st&&sh&&tt){st.textContent=`${sa} kr`;sh.textContent=`${SC} kr`;tt.textContent=`${ta} kr`}}function usi(){document.querySelectorAll('.step').forEach((s,i)=>{const sn=i+1;s.classList.remove('active','completed','disabled');if(sn<os.currentStep){s.classList.add('completed');s.querySelector('.step-number').innerHTML='<i class="fas fa-check"></i>'}else if(sn===os.currentStep){s.classList.add('active');s.querySelector('.step-number').textContent=sn}else{s.querySelector('.step-number').textContent=sn}})}function sfs(sn){document.querySelectorAll('.form-section').forEach(se=>{se.classList.remove('active');se.style.display='none'});const ts=document.querySelector(`[data-section="${sn}"]`);if(ts){ts.style.display='block';setTimeout(()=>ts.classList.add('active'),10)}}function ns(){nts(os.currentStep+1)}function ps(){if(os.currentStep>1)nts(os.currentStep-1)}function pes(){const ta=(os.formData.quantity*BP)+SC,od={orderNumber:os.orderNumber,timestamp:new Date().toISOString(),customer:{fullName:os.formData.fullName,firstName:os.formData.firstName,lastName:os.formData.lastName,email:os.formData.email,phone:os.formData.phone},delivery:{street:os.formData.street,postalCode:os.formData.postalCode,city:os.formData.city,country:os.formData.country},items:[{product:'Svenska Reformationsbibeln',quantity:os.formData.quantity,unitPrice:BP,subtotal:os.formData.quantity*BP}],pricing:{subtotal:os.formData.quantity*BP,shipping:SC,total:ta}},ed=coe(od);sed=ed;const on3=document.getElementById('orderNumberStep3');if(on3)on3.textContent=os.orderNumber;try{localStorage.setItem('lastOrder',JSON.stringify(od));localStorage.setItem('lastEmailData',JSON.stringify(ed))}catch(e){}}function vcs(){return os.currentStep===1?vafd():true}function vafd(){if(os.quantity<=0){ser('Vänligen välj antal biblar.');return false}const fn=document.getElementById('firstName').value.trim(),ln=document.getElementById('lastName').value.trim(),e=document.getElementById('email').value.trim(),p=document.getElementById('phone').value.trim();if(!fn||!ln||!e||!p){ser('Vänligen fyll i alla obligatoriska kontaktfält.');return false}if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){ser('Vänligen ange en giltig e-postadress.');return false}if(!/^[\d\s\-\+\(\)]+$/.test(p)){ser('Vänligen ange ett giltigt telefonnummer.');return false}const st=document.getElementById('street').value.trim(),pc=document.getElementById('postalCode').value.trim(),c=document.getElementById('city').value.trim();if(!st||!pc||!c){ser('Vänligen fyll i alla obligatoriska adressfält.');return false}if(!/^\d{3}\s?\d{2}$/.test(pc)){ser('Vänligen ange ett giltigt postnummer (t.ex. 123 45).');return false}return true}function scsd(){if(os.currentStep===1){os.formData.quantity=os.quantity;os.formData.firstName=document.getElementById('firstName').value.trim();os.formData.lastName=document.getElementById('lastName').value.trim();os.formData.fullName=`${os.formData.firstName} ${os.formData.lastName}`;os.formData.email=document.getElementById('email').value.trim();os.formData.phone=document.getElementById('phone').value.trim();os.formData.street=document.getElementById('street').value.trim();os.formData.postalCode=document.getElementById('postalCode').value.trim();os.formData.city=document.getElementById('city').value.trim();os.formData.country=document.getElementById('country').value}}function coe(od){const su=`Beställning ${od.orderNumber}`,eb=`Beställning: ${od.orderNumber}\nDatum: ${new Date().toLocaleDateString('sv-SE')}\n\nKund: ${od.customer.fullName}\nE-post: ${od.customer.email}\nTelefon: ${od.customer.phone}\n\nAdress:\n${od.delivery.street}\n${od.delivery.postalCode} ${od.delivery.city}\n${od.delivery.country}\n\nBeställning: ${od.items[0].quantity} x Svenska Reformationsbibeln\nTotalt: ${od.pricing.total} kr (inkl frakt)\n\nSwish-betalning genomförd till: ${od.customer.phone}`;return{subject:su,emailBody:eb}}function hes(sv){if(!sed){alert('Ingen beställningsdata hittades.');return}const su=encodeURIComponent(sed.subject),bo=encodeURIComponent(sed.emailBody),re='post@bibel.se';switch(sv){case'gmail':window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${re}&su=${su}&body=${bo}`,'_blank');break;case'outlook':window.open(`https://outlook.live.com/mail/0/deeplink/compose?to=${re}&subject=${su}&body=${bo}`,'_blank');break;case'default':window.location.href=`mailto:${re}?subject=${su}&body=${bo}`;break;case'copy':ctc(`Till: ${re}\nÄmne: ${sed.subject}\n\n${sed.emailBody}`);break}}function ctc(tx){if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(tx).then(()=>scs()).catch(()=>fctc(tx));else fctc(tx)}function fctc(tx){const ta=document.createElement('textarea');ta.value=tx;ta.style.position='fixed';ta.style.left='-999999px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');scs()}catch(er){alert('Kunde inte kopiera.')}document.body.removeChild(ta)}function scs(){const cb=document.querySelector('[data-service="copy"]');if(cb){cb.innerHTML='<i class="fas fa-check" style="color: #28a745;"></i><span>Kopierat!</span>';setTimeout(()=>cb.innerHTML='<i class="fas fa-copy" style="color: #28a745;"></i><span>Kopiera</span>',2000)}}function ser(m){if(em){em.textContent=m;em.style.display='block';em.scrollIntoView({behavior:'smooth',block:'nearest'})}}function her(){if(em)em.style.display='none'}document.addEventListener('DOMContentLoaded',ia);window.ro=ro;window.duo=duo;window.delo=delo;
+    </script>
+</body>
+</html>

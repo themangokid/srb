@@ -1120,3 +1120,22 @@ img[src*="kanal_10"] {
     }
 }
 
+
+
+
+/* Hide number input spinner arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+@media (max-width: 767px) {
+    #qrCodeContainer {
+        display: none !important;
+    }
+}
