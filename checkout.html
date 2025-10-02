@@ -352,13 +352,26 @@ function openSwishApp() {
     const message = `Bibel ${orderState.quantity}st ${orderState.orderNumber}`;
     const payeeNumber = "1233882669";
     
-    // Correct Swish URL format
-    const swishUrl = `swish://paymentrequest?token=&callbackurl=&payee=${payeeNumber}&amount=${amount}&message=${encodeURIComponent(message)}`;
+    // Try the standard payment format first
+    const swishUrl = `swish://payment?data=${encodeURIComponent(JSON.stringify({
+        version: 1,
+        payee: {
+            value: payeeNumber,
+            editable: false
+        },
+        amount: {
+            value: amount,
+            editable: false
+        },
+        message: {
+            value: message,
+            editable: false
+        }
+    }))}`;
     
     console.log('Opening Swish app:', swishUrl);
     window.location.href = swishUrl;
 }
-
         function createOrResumeSession() {
             const urlParams = new URLSearchParams(window.location.search);
             const urlOrderNumber = urlParams.get('order');
