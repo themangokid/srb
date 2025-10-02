@@ -194,7 +194,7 @@
             
             <button id="openSwishAppBtn" style="margin-top: 1.5rem; width: 100%; padding: 15px; background: #2d5f3f; color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;">
                 <i class="fas fa-mobile-alt"></i>
-                Öppna Swish
+                Öppna Swish-appen
             </button>
         </div>
     </div>
@@ -345,20 +345,20 @@ function generateSwishQRCode(amount, message, payeeNumber = "1233882669") {
         return null;
     }
 }
-function openSwishApp() {
-    if (!orderState.orderNumber || !orderState.totalAmount) {
-        alert('Beställningsdata saknas');
-        return;
-    }
-    
-    const amount = orderState.totalAmount;
-    const message = `Bibel ${orderState.quantity}st ${orderState.orderNumber}`;
-    const payeeNumber = "1233882669";
-    const basicUrl = `swish://payment?phone=${payeeNumber}&amount=${amount}&message=${encodeURIComponent(message)}`;
-    
-    console.log('Opening Swish app:', basicUrl);
-    window.location.href = basicUrl;
-}
+        function openSwishApp() {
+            if (!orderState.orderNumber || !orderState.totalAmount) {
+                alert('Beställningsdata saknas');
+                return;
+            }
+            
+            const amount = orderState.totalAmount;
+            const message = `Bibel ${orderState.quantity}x${BIBLE_PRICE}kr ${orderState.orderNumber}`;
+            const payeeNumber = "1233882669";
+            const basicUrl = `swish://payment?phone=${payeeNumber}&amount=${amount}&message=${encodeURIComponent(message)}`;
+            
+            console.log('Opening Swish app:', basicUrl);
+            window.location.href = basicUrl;
+        }
 
         function createOrResumeSession() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -438,18 +438,35 @@ function openSwishApp() {
                 }
             }
         }
+            function updateAllDisplays() {
+                updateStepIndicator();
+                showFormSection(orderState.currentStep);
+                
+                ['orderNumberStep2', 'orderNumberStep3'].forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element && orderState.orderNumber) {
+                        element.textContent = orderState.orderNumber;
+                    }
+                });
 
-        function updateAllDisplays() {
-            updateStepIndicator();
-            showFormSection(orderState.currentStep);
-            
-            ['orderNumberStep2', 'orderNumberStep3'].forEach(id => {
-                const element = document.getElementById(id);
-                if (element && orderState.orderNumber) {
-                    element.textContent = orderState.orderNumber;
+                if (orderState.totalAmount) {
+                    const totalElement = document.getElementById('totalAmountStep2');
+                    if (totalElement) totalElement.textContent = orderState.totalAmount;
                 }
-            });
 
+                if (orderState.currentStep === 2 && orderState.orderNumber && orderState.totalAmount) {
+                    setTimeout(() => {
+                        const message = `Bibel ${orderState.quantity}st ${orderState.orderNumber}`;
+                        generateSwishQRCode(orderState.totalAmount, message);
+                        const msgDisplay = document.getElementById('swishMessageDisplay');
+                        if (msgDisplay) msgDisplay.textContent = message;
+                    }, 200);
+                }
+
+                if (orderState.currentStep === 3 && !storedEmailData) {
+                    prepareEmailStep();
+                }
+            }
 if (orderState.currentStep === 2 && orderState.orderNumber && orderState.totalAmount) {
     setTimeout(() => {
         const message = `Bibel ${orderState.quantity}st ${orderState.orderNumber}`;
@@ -458,12 +475,6 @@ if (orderState.currentStep === 2 && orderState.orderNumber && orderState.totalAm
         if (msgDisplay) msgDisplay.textContent = message;
     }, 200);
 }
-
-
-            if (orderState.currentStep === 3 && !storedEmailData) {
-                prepareEmailStep();
-            }
-        }
 
         function getAllOrders() {
             const orders = [];
