@@ -187,7 +187,7 @@
 </div>
             
             <div style="background: rgba(46, 125, 50, 0.1); border: 2px solid #2d5f3f; border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem;">
-                <p style="font-size: 1.1rem; margin: 0;"><strong>Ordernummer:</strong> <span id="orderNumberStep2"></span></p>
+                <!-- <p style="font-size: 1.1rem; margin: 0;"><strong>Ordernummer:</strong> <span id="orderNumberStep2"></span></p>-->
                 <p style="font-size: 1.1rem; margin: 0.5rem 0 0 0;"><strong>Belopp:</strong> <span id="totalAmountStep2"></span> kr</p>
                 <p style="font-size: 1.1rem; margin: 0.5rem 0 0 0;"><strong>Meddelande:</strong> <span id="swishMessageDisplay"></span></p>
             </div>
@@ -308,21 +308,10 @@
 
 function generateUniqueOrderNumber() {
     const now = new Date();
-    const year = now.getFullYear().toString().slice(-2);
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    const hour = String(now.getHours()).padStart(2, '0');
-    const minute = String(now.getMinutes()).padStart(2, '0');
+    const datePart = now.toISOString().slice(2, 10).replace(/-/g, '');
+    const randomPart = Math.random().toString(36).substring(2, 6).toUpperCase();
     
-    // Shorter random: just 4 characters instead of 6
-    const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let randomString = '';
-    for (let i = 0; i < 4; i++) {
-        randomString += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
-    }
-    
-    // Format: SRB-YYMMDD-HHMM-XXXX (removes the timestamp part)
-    return `SRB-${year}${month}${day}-${hour}${minute}-${randomString}`;
+    return `SRB-${datePart}-${randomPart}`;
 }
 
 function generateSwishQRCode(amount, message, payeeNumber = "1233882669") {
@@ -363,7 +352,7 @@ function generateSwishQRCode(amount, message, payeeNumber = "1233882669") {
             }
             
             const amount = orderState.totalAmount;
-            const message = `Bibel beställning ${orderState.orderNumber}`;
+            const message = `Bibel ${orderState.quantity}x${BIBLE_PRICE}kr ${orderState.orderNumber}`;
             const payeeNumber = "1233882669";
             const basicUrl = `swish://payment?phone=${payeeNumber}&amount=${amount}&message=${encodeURIComponent(message)}`;
             
@@ -466,14 +455,15 @@ function generateSwishQRCode(amount, message, payeeNumber = "1233882669") {
                 if (totalElement) totalElement.textContent = orderState.totalAmount;
             }
 
-            if (orderState.currentStep === 2 && orderState.orderNumber && orderState.totalAmount) {
-                setTimeout(() => {
-                    const message = `Bibel beställning ${orderState.orderNumber}`;
-                    generateSwishQRCode(orderState.totalAmount, message);
-                    const msgDisplay = document.getElementById('swishMessageDisplay');
-                    if (msgDisplay) msgDisplay.textContent = message;
-                }, 200);
-            }
+if (orderState.currentStep === 2 && orderState.orderNumber && orderState.totalAmount) {
+    setTimeout(() => {
+        const message = `Bibel ${orderState.quantity}x${BIBLE_PRICE}kr ${orderState.orderNumber}`;
+
+        generateSwishQRCode(orderState.totalAmount, message);
+        const msgDisplay = document.getElementById('swishMessageDisplay');
+        if (msgDisplay) msgDisplay.textContent = message;
+    }, 200);
+}
 
             if (orderState.currentStep === 3 && !storedEmailData) {
                 prepareEmailStep();
@@ -742,23 +732,24 @@ if (quantityDisplay) {
 
             orderState.currentStep = targetStep;
 
-            if (orderState.currentStep === 2) {
-                if (!orderState.orderNumber) orderState.orderNumber = generateUniqueOrderNumber();
+if (orderState.currentStep === 2) {
+    if (!orderState.orderNumber) orderState.orderNumber = generateUniqueOrderNumber();
 
-                const total = (orderState.formData.quantity * BIBLE_PRICE) + SHIPPING_COST;
-                orderState.totalAmount = total;
-                const message = `Bibel beställning ${orderState.orderNumber}`;
+    const total = (orderState.formData.quantity * BIBLE_PRICE) + SHIPPING_COST;
+    orderState.totalAmount = total;
+    const message = `Bibel ${orderState.quantity}st ${orderState.orderNumber}`;
 
-                const orderNumberStep2 = document.getElementById('orderNumberStep2');
-                const totalAmountStep2 = document.getElementById('totalAmountStep2');
-                const swishMessageDisplay = document.getElementById('swishMessageDisplay');
 
-                if (orderNumberStep2) orderNumberStep2.textContent = orderState.orderNumber;
-                if (totalAmountStep2) totalAmountStep2.textContent = total;
-                if (swishMessageDisplay) swishMessageDisplay.textContent = message;
+    const orderNumberStep2 = document.getElementById('orderNumberStep2');
+    const totalAmountStep2 = document.getElementById('totalAmountStep2');
+    const swishMessageDisplay = document.getElementById('swishMessageDisplay');
 
-                saveSession();
-                setTimeout(() => generateSwishQRCode(total, message), 100);
+    if (orderNumberStep2) orderNumberStep2.textContent = orderState.orderNumber;
+    if (totalAmountStep2) totalAmountStep2.textContent = total;
+    if (swishMessageDisplay) swishMessageDisplay.textContent = message;
+
+    saveSession();
+    setTimeout(() => generateSwishQRCode(total, message), 100);
 
             } else if (orderState.currentStep === 3) {
                 prepareEmailStep();
@@ -959,7 +950,18 @@ ${orderData.delivery.country}
 Beställning: ${orderData.items[0].quantity} x Svenska Reformationsbibeln
 Totalt: ${orderData.pricing.total} kr (inkl frakt)
 
-Swish-betalning genomförd till: ${orderData.customer.phone}`;
+Swish-betalning genomförd till: ${orderData.customer.phone}
+
+
+${orderData.delivery.street}
+${orderData.delivery.postalCode} ${orderData.delivery.city}
+${orderData.delivery.country}
+
+${orderData.customer.fullName}
+${orderData.customer.email}
+${orderData.customer.phone}
+
+`;
 
             return { subject, emailBody };
         }
