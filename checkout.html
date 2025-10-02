@@ -194,7 +194,7 @@
             
             <button id="openSwishAppBtn" style="margin-top: 1.5rem; width: 100%; padding: 15px; background: #2d5f3f; color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;">
                 <i class="fas fa-mobile-alt"></i>
-                Öppna Swish-appen
+                Öppna Swish
             </button>
         </div>
     </div>
@@ -459,15 +459,6 @@ if (orderState.currentStep === 2 && orderState.orderNumber && orderState.totalAm
     }, 200);
 }
 
-if (orderState.currentStep === 2 && orderState.orderNumber && orderState.totalAmount) {
-    setTimeout(() => {
-        const message = `Bibel ${orderState.quantity}x${BIBLE_PRICE}kr ${orderState.orderNumber}`;
-
-        generateSwishQRCode(orderState.totalAmount, message);
-        const msgDisplay = document.getElementById('swishMessageDisplay');
-        if (msgDisplay) msgDisplay.textContent = message;
-    }, 200);
-}
 
             if (orderState.currentStep === 3 && !storedEmailData) {
                 prepareEmailStep();
