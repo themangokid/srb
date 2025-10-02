@@ -93,6 +93,16 @@ kbd {
     border-radius: 2px;
 }
 
+/* Changes the logo to a version with the sword from the video on the main page*/
+/*
+.logo-icon:hover {
+    width: 230px;
+    height: 230px;
+    background: url("img/sword_logo.png") center/100% no-repeat;
+    border-radius: 2px;
+}
+*/
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -859,6 +869,9 @@ img[src*="kanal_10"] {
     .logo-icon { 
         width: 140px; 
         height: 140px; 
+    }
+    .logo-icon:hover{
+
     }
     
     .hamburger { 
