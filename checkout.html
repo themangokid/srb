@@ -708,9 +708,13 @@ function openSwishApp() {
                 });
             }
 
-            // Add this event listener in your initializeApp() function
+// Add this event listener in your initializeApp() function
 if (quantityDisplay) {
-    quantityDisplay.addEventListener('input', (e) => {
+    quantityDisplay.addEventListener('focus', (e) => {
+        e.target.select();
+    });
+    
+    quantityDisplay.addEventListener('blur', (e) => {
         let value = parseInt(e.target.value) || 1;
         value = Math.max(1, value);
         orderState.quantity = value;
@@ -718,8 +722,15 @@ if (quantityDisplay) {
         updatePricing();
         saveSession();
     });
+    
+    quantityDisplay.addEventListener('input', (e) => {
+        const value = parseInt(e.target.value);
+        if (!isNaN(value) && value >= 1) {
+            orderState.quantity = value;
+            updatePricing();
+        }
+    });
 }
-
 
             updateQuantityDisplay();
             updatePricing();
