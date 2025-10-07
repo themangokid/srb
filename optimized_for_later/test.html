@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Svenska Reformationsbibeln - Beställning (Redigerbar)</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* SASS-inspired variables */
+        :root {
+            --primary-gold: #d4af37;
+            --secondary-gold: #b8960f;
+            --dark-green: #2d5f3f;
+            --light-bg: #fefefe;
+            --text-dark: #2c3e50;
+            --text-muted: #6c757d;
+            --border-light: #e0e0e0;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.2);
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'EB Garamond', 'Georgia', serif;
+            background: linear-gradient(135deg, #f5f5f0 0%, #e8e4d8 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+        
+        /* Header & Navigation */
+        .header {
+            background: white;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-sm) var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-md);
+        }
+        
+        .nav-menu a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+        
+        .nav-menu a:hover { color: var(--primary-gold); }
+        
+        /* Container */
+        .order-container {
+            max-width: 1200px;
+            margin: var(--spacing-lg) auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        h1 {
+            text-align: center;
+            color: var(--text-dark);
+            margin-bottom: var(--spacing-lg);
+            font-size: clamp(2rem, 5vw, 3rem);
+        }
+        
+        /* Step Indicator */
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-xs);
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all var(--transition);
+        }
+        
+        .step.active .step-number {
+            background: var(--primary-gold);
+            color: white;
+        }
+        
+        .step.completed .step-number {
+            background: var(--dark-green);
+            color: white;
+        }
+        
+        /* Form sections */
+        .order-form {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .form-section {
+            display: none;
+        }
+        
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h2 {
+            color: var(--primary-gold);
+            margin-bottom: var(--spacing-md);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+        
+        h3 {
+            color: var(--text-dark);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.3rem;
+        }
+        
+        /* Info boxes */
+        .info-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid var(--primary-gold);
+            padding: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+            border-radius: var(--radius-sm);
+        }
+        
+        /* Quantity selector */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+        }
+        
+        .quantity-btn {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--primary-gold);
+            background: white;
+            color: var(--primary-gold);
+            font-size: 1.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        
+        .quantity-btn:hover {
+            background: var(--primary-gold);
+            color: white;
+        }
+        
+        .quantity-display {
+            font-size: 2rem;
+            font-weight: bold;
+            min-width: 60px;
+            text-align: center;
+        }
+        
+        /* Price summary */
+        .price-summary {
+            background: rgba(139, 105, 20, 0.05);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-top: var(--spacing-md);
+        }
+        
+        .price-line {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-xs) 0;
+            font-size: 1.1rem;
+        }
+        
+        .price-line.total {
+            border-top: 2px solid var(--primary-gold);
+            margin-top: var(--spacing-xs);
+            padding-top: var(--spacing-sm);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        /* Form inputs */
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        input, select {
+            width: 100%;
+            padding: var(--spacing-sm);
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color var(--transition);
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        
+        .btn-primary {
+            background: var(--primary-gold);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary-gold);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-secondary {
+            background: var(--text-muted);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--spacing-lg);
+        }
+        
+        /* Swish section */
+        .swish-container {
+            text-align: center;
+            background: rgba(212, 175, 55, 0.05);
+            border: 2px solid var(--primary-gold);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+        }
+        
+        #swishQRCode {
+            margin: var(--spacing-md) auto;
+            display: block;
+        }
+        
+        /* Email options */
+        .email-option-btn {
+            background: white;
+            border: 2px solid var(--border-light);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        
+        .email-option-btn:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .email-option-btn i {
+            font-size: 2rem;
+        }
+        
+        /* Draggable items */
+        .draggable-item {
+            position: relative;
+            margin-bottom: var(--spacing-md);
+            transition: all var(--transition);
+        }
+        
+        .draggable-item.edit-mode {
+            cursor: move;
+        }
+        
+        .draggable-item.edit-mode:hover {
+            outline: 3px dashed var(--primary-gold);
+            outline-offset: 5px;
+        }
+        
+        .draggable-item.dragging {
+            opacity: 0.4;
+        }
+        
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 35px;
+            height: 35px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            opacity: 0;
+            transition: all var(--transition);
+            z-index: 10;
+        }
+        
+        .draggable-item.edit-mode:hover .delete-btn {
+            opacity: 1;
+        }
+        
+        .delete-btn:hover {
+            background: #c82333;
+            transform: scale(1.1);
+        }
+        
+        /* Badge */
+        .edit-badge {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--dark-green);
+            color: white;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            transition: all var(--transition);
+        }
+        
+        .edit-badge.inactive {
+            background: var(--text-muted);
+        }
+        
+        /* Undo notification */
+        .undo-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--text-dark);
+            color: white;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        /* Grid layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .nav-menu { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="edit-badge" :class="{ inactive: !editMode }">
+            {{ editMode ? '✏️ EDIT MODE - Drag & Delete' : '🔒 View Mode' }}
+        </div>
+        
+        <div class="undo-notification" v-if="deletedItems.length > 0">
+            <span>{{ deletedItems.length }} objekt raderade</span>
+            <button class="btn btn-primary" @click="undoDelete">↶ Ångra</button>
+        </div>
+        
+        <div 
+            v-for="(item, index) in items" 
+            :key="item.id"
+            :class="['draggable-item', { 'edit-mode': editMode, 'dragging': draggedIndex === index }]"
+            :draggable="editMode"
+            @dragstart="handleDragStart(index, $event)"
+            @dragend="handleDragEnd"
+            @dragover.prevent="handleDragOver(index)"
+            @drop="handleDrop(index)">
+            
+            <button class="delete-btn" v-if="editMode" @click="deleteItem(index)">×</button>
+            
+            <component :is="item.type" v-bind="item.props" v-html="item.content"></component>
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        
+        createApp({
+            data() {
+                return {
+                    editMode: false,
+                    draggedIndex: null,
+                    deletedItems: [],
+                    quantity: 1,
+                    currentStep: 1,
+                    items: [
+                        {
+                            id: 1,
+                            type: 'header',
+                            props: { class: 'header' },
+                            content: `
+                                <nav class="nav-container">
+                                    <div class="logo">
+                                        <a href="#">
+                                            <div class="logo-icon"></div>
+                                        </a>
+                                    </div>
+                                    <ul class="nav-menu">
+                                        <li><a href="#">Hem</a></li>
+                                        <li><a href="#">Frågor & svar</a></li>
+                                        <li><a href="#">Resurser</a></li>
+                                        <li><a href="#">Bibel.se</a></li>
+                                        <li><a href="#">Kontakt</a></li>
+                                        <li><a href="#" onclick="app.toggleEditMode()"><i class="fas fa-cog"></i> Redigera</a></li>
+                                    </ul>
+                                </nav>
+                            `
+                        },
+                        {
+                            id: 2,
+                            type: 'div',
+                            props: { class: 'order-container' },
+                            content: `
+                                <h1>Beställ Svenska Reformationsbibeln</h1>
+                            `
+                        },
+                        {
+                            id: 3,
+                            type: 'div',
+                            props: { class: 'order-container' },
+                            content: `
+                                <div class="step-indicator">
+                                    <div class="step active">
+                                        <div class="step-number">1</div>
+                                        <span>Formulär</span>
+                                    </div>
+                                    <div class="step">
+                                        <div class="step-number">2</div>
+                                        <span>Swish (Betala)</span>
+                                    </div>
+                                    <div class="step">
+                                        <div class="step-number">3</div>
+                                        <span>Skicka info via e-post</span>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            id: 4,
+                            type: 'div',
+                            props: { class: 'order-container' },
+                            content: `
+                                <div class="order-form">
+                                    <div class="form-section active">
+                                        <h2><i class="fas fa-shopping-cart"></i> Beställningsuppgifter</h2>
+                                        <div class="info-box">
+                                            <p><strong>Endast förskottsbetalning</strong> – För att förenkla administration så återgår vi till förskottsinbetalning.</p>
+                                        </div>
+                                        <div class="info-box">
+                                            <p><strong>Svenska Reformationsbibeln</strong> - En modern översättning av Karl XII:s Bibel från 1703, baserad på Textus Receptus. <strong>Pris: 200 kr per exemplar + frakt.</strong></p>
+                                        </div>
+                                        
+                                        <h3><i class="fas fa-book"></i> Välj antal</h3>
+                                        <div class="quantity-selector">
+                                            <button type="button" class="quantity-btn" onclick="app.decreaseQuantity()">−</button>
+                                            <div class="quantity-display">{{ quantity }}</div>
+                                            <button type="button" class="quantity-btn" onclick="app.increaseQuantity()">+</button>
+                                        </div>
+                                        
+                                        <div class="price-summary">
+                                            <div class="price-line">
+                                                <span>Biblar ({{ quantity }} st):</span>
+                                                <span>{{ quantity * 200 }} kr</span>
+                                            </div>
+                                            <div class="price-line">
+                                                <span>Frakt:</span>
+                                                <span>49 kr</span>
+                                            </div>
+                                            <div class="price-line total">
+                                                <span>Totalt:</span>
+                                                <span>{{ (quantity * 200) + 49 }} kr</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            id: 5,
+                            type: 'div',
+                            props: { class: 'order-container' },
+                            content: `
+                                <div class="order-form">
+                                    <h3><i class="fas fa-user"></i> Kontaktuppgifter</h3>
+                                    <div class="grid-2">
+                                        <div class="form-group">
+                                            <label for="firstName">Förnamn</label>
+                                            <input type="text" id="firstName" placeholder="Ditt förnamn">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lastName">Efternamn</label>
+                                            <input type="text" id="lastName" placeholder="Ditt efternamn">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">E-postadress</label>
+                                        <input type="email" id="email" placeholder="din@epost.se">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Telefonnummer (för Swish-betalning)</label>
+                                        <input type="tel" id="phone" placeholder="070-123 45 67">
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            id: 6,
+                            type: 'div',
+                            props: { class: 'order-container' },
+                            content: `
+                                <div class="order-form">
+                                    <h3><i class="fas fa-truck"></i> Leveransadress</h3>
+                                    <div class="form-group">
+                                        <label for="street">Gatuadress</label>
+                                        <input type="text" id="street" placeholder="Gatunamn och nummer">
+                                    </div>
+                                    <div class="grid-2">
+                                        <div class="form-group">
+                                            <label for="postalCode">Postnummer</label>
+                                            <input type="text" id="postalCode" placeholder="123 45">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="city">Ort</label>
+                                            <input type="text" id="city" placeholder="Din stad">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="country">Land</label>
+                                        <select id="country">
+                                            <option value="Sverige" selected>Sverige</option>
+                                            <option value="Norge">Norge</option>
+                                            <option value="Danmark">Danmark</option>
+                                            <option value="Finland">Finland</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            id: 7,
+                            type: 'div',
+                            props: { class: 'order-container' },
+                            content: `
+                                <div class="order-form">
+                                    <div class="btn-group">
+                                        <button class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Tillbaka</button>
+                                        <button class="btn btn-primary">Nästa steg <i class="fas fa-arrow-right"></i></button>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            id: 8,
+                            type: 'div',
+                            props: { class: 'order-container' },
+                            content: `
+                                <div class="order-form">
+                                    <div class="swish-container">
+                                        <i class="fas fa-mobile-alt" style="font-size: 4rem; color: var(--dark-green); margin-bottom: 1rem;"></i>
+                                        <h2>Betala med Swish</h2>
+                                        <p style="font-size: 1.2rem; margin-bottom: 1rem;">Skanna QR-koden för att betala</p>
+                                        <canvas id="swishQRCode" width="250" height="250"></canvas>
+                                        <div class="info-box" style="margin-top: 1rem;">
+                                            <p><strong>Ordernummer:</strong> SRB-2025-001</p>
+                                            <p><strong>Belopp:</strong> 249 kr</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            id: 9,
+                            type: 'div',
+                            props: { class: 'order-container' },
+                            content: `
+                                <div class="order-form">
+                                    <div style="text-align: center;">
+                                        <i class="fas fa-envelope" style="font-size: 4rem; color: var(--primary-gold); margin-bottom: 1rem;"></i>
+                                        <h2>Skicka orderbekräftelse</h2>
+                                        <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">Välj hur du vill skicka beställningen till oss</p>
+                                        
+                                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; max-width: 600px; margin: 0 auto;">
+                                            <button class="email-option-btn">
+                                                <i class="fas fa-envelope"></i>
+                                                <span>E-postapp</span>
+                                            </button>
+                                            <button class="email-option-btn">
+                                                <i class="fab fa-google" style="color: #EA4335;"></i>
+                                                <span>Gmail</span>
+                                            </button>
+                                            <button class="email-option-btn">
+                                                <i class="fab fa-microsoft" style="color: #0078D4;"></i>
+                                                <span>Outlook</span>
+                                            </button>
+                                            <button class="email-option-btn">
+                                                <i class="fas fa-copy" style="color: #28a745;"></i>
+                                                <span>Kopiera</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `
+                        }
+                    ]
+                }
+            },
+            methods: {
+                toggleEditMode() {
+                    this.editMode = !this.editMode;
+                    console.log('Edit mode:', this.editMode ? 'ON' : 'OFF');
+                },
+                handleDragStart(index, event) {
+                    this.draggedIndex = index;
+                    event.dataTransfer.effectAllowed = 'move';
+                },
+                handleDragEnd() {
+                    this.draggedIndex = null;
+                },
+                handleDragOver(index) {
+                    if (this.draggedIndex === null || this.draggedIndex === index) return;
+                },
+                handleDrop(dropIndex) {
+                    if (this.draggedIndex === null) return;
+                    
+                    const draggedItem = this.items[this.draggedIndex];
+                    const newItems = [...this.items];
+                    
+                    newItems.splice(this.draggedIndex, 1);
+                    const insertIndex = this.draggedIndex < dropIndex ? dropIndex - 1 : dropIndex;
+                    newItems.splice(insertIndex, 0, draggedItem);
+                    
+                    this.items = newItems;
+                    this.draggedIndex = null;
+                },
+                deleteItem(index) {
+                    const deletedItem = { ...this.items[index], originalIndex: index };
+                    this.deletedItems.push(deletedItem);
+                    this.items.splice(index, 1);
+                },
+                undoDelete() {
+                    if (this.deletedItems.length === 0) return;
+                    
+                    const lastDeleted = this.deletedItems.pop();
+                    const restoreIndex = Math.min(lastDeleted.originalIndex, this.items.length);
+                    this.items.splice(restoreIndex, 0, lastDeleted);
+                },
+                increaseQuantity() {
+                    this.quantity++;
+                },
+                decreaseQuantity() {
+                    if (this.quantity > 1) this.quantity--;
+                }
+            },
+            mounted() {
+                window.app = this;
+                console.log('✅ Svenska Reformationsbibeln beställningssida laddad!');
+                console.log('Klicka på "Redigera" för att aktivera drag & drop-läge');
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
