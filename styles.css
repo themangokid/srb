@@ -867,8 +867,8 @@ img[src*="kanal_10"] {
     }
     
     .logo-icon { 
-        width: 140px; 
-        height: 140px; 
+        width: 10.2rem; 
+        height: 10.2rem; 
     }
     .logo-icon:hover{
 
@@ -993,8 +993,13 @@ img[src*="kanal_10"] {
 }
 
 /* Small Mobile Devices (480px and below) */
+
+
+
+
 @media (max-width: 480px) {
     .main-content { 
+        font-size:5px;
         padding: 0 !important; 
     }
     
@@ -1122,7 +1127,6 @@ img[src*="kanal_10"] {
 
 
 
-
 /* Hide number input spinner arrows */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
@@ -1162,5 +1166,64 @@ input[type="number"] {
 @media (max-width: 767px) {
     #qrCodeContainer {
         display: none !important;
+    }
+}
+/* Mobile Devices (768px and below) */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: clamp(2.2rem, 5vw, 2.8rem) !important;
+    }
+    
+    .title-part1,
+    .title-part2 {
+        font-size: inherit !important;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(1.2rem, 2.5vw, 1rem) !important;
+    }
+    
+    .hero-container-flex {
+        gap: 1rem !important;
+        margin-top: 0.5rem !important;
+    }
+    
+    .hero-item {
+        max-width: 100% !important;
+    }
+    
+    .hero-description {
+        font-size: clamp(1.5rem, 2vw, 1rem) !important;
+        line-height: 1.4;
+    }
+}
+
+/* Small Mobile Devices (480px and below) */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: clamp(1.8rem, 4.5vw, 2.2rem) !important;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem !important;
+    }
+    
+    .hero-description {
+        font-size: 1.2rem !important;
+    }
+}
+
+/* Very Small Screens (360px and below) */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: clamp(1.5rem, 4vw, 1.8rem) !important;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem !important;
+    }
+    
+    .hero-description {
+        font-size: 0.8rem !important;
     }
 }
