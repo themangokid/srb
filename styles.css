@@ -87,9 +87,10 @@ kbd {
 }
 
 .logo-icon {
-    width: 230px;
-    height: 230px;
+    width: 10rem;
+    height: 10rem;
     background: url("img/main_srb_v16_lower_text_innershadow.webp") center/100% no-repeat;
+    background: url("img/srb_bold_dampended_red_not_done.png") center/100% no-repeat;
     border-radius: 2px;
 }
 
