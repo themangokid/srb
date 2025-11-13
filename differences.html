@@ -582,8 +582,7 @@
 <body>
     <header class="header" id="main-header">
         <div class="nav-container">
-            <h1 class="main-title">Textvarianter mellan Textus Receptus 1894 och UBS 1975</h1>
-            <p class="subtitle">Komplett analys av alla 1200+ kritiska skillnader i den grekiska grundtexten</p>
+            <h1 class="main-title">Textus Receptus från 1894 vs UN</h1>
             
             <div class="search-controls">
                 <input type="text" id="searchInput" class="search-box" placeholder="Sök efter vers, text eller påverkan...">
@@ -619,6 +618,7 @@
             </div>
         </div>
     </header>
+    <!--Instruction-->
 
     <main class="main-content">
         <div class="loading" id="loading">Laddar all variant-data...</div>
@@ -649,6 +649,12 @@
 
         <div class="summary-section">
             <h2 class="category-title">Slutsats och kritiska områden</h2>
+            
+            <h3><a style="color: var(--accent-color);" href="https://www.bibel.se/objfiles/PDF_books/SRBgrundtextski_-2024961626.pdf">
+               Grundtextskillnader (PDF)
+            </a></h3>
+            <br>
+            <p>U betyder United Bible Societies grekiska grundtext, som gavs ut 1975. N betyder Nestle-Alands grekiska text, som gavs ut 1979. Dessa två utgåvor av grekisk text, 1975 och 1979, har samma grekiska text. De ligger till grund för alla svenska bibelutgåvor efter 1981 förutom Reformationsbibeln som följer Textus Receptus från 1894. </p>
             <p style="font-size: 1.2rem; margin-bottom: 1.5rem; font-style: italic; text-align: center; color: var(--accent-color);">
                 De mest kritiska varianterna påverkar grundläggande kristna läror:
             </p>
@@ -1110,7 +1116,7 @@
             {category: "acts", verse: "Apg 25:7", tr_text: "mot Paulus", un_text: "Utelämnar \"mot Paulus\"", impact: "Mindre specifikt"},
             {category: "acts", verse: "Apg 25:8", tr_text: "Paulus försvarade sig", un_text: "han", impact: "Mindre specifikt"},
             {category: "acts", verse: "Apg 25:16", tr_text: "till att dö", un_text: "Utelämnar frasen", impact: "Mindre dramatiskt"},
-            {category: "acts", verse: "Apg 25:18", tr_text: "", un_text: "Tillägger \"brott\"", impact: "UN mer specifikt"},
+            {category: "acts", verse: "Apg 25:18", tr_text: "då anklagarna kom fram, kom de inte med någon anklagelse mot honom", un_text: "Tillägger \"brott\"", impact: "UN mer specifikt"},
             {category: "acts", verse: "Apg 26:7", tr_text: "Agrippa", un_text: "Utelämnar \"Agrippa\"", impact: "Namn borttaget"},
             {category: "acts", verse: "Apg 26:15", tr_text: "han sa", un_text: "Herren", impact: "Annorlunda subjekt"},
             {category: "acts", verse: "Apg 26:25", tr_text: "Paulus", un_text: "han", impact: "Mindre specifikt"},
@@ -1329,8 +1335,8 @@
                 <table class="variant-table">
                     <thead>
                         <tr>
-                            <th style="width: 15%">Vers</th>
-                            <th style="width: 35%">Textus Receptus</th>
+                            <th style="width: 15%">Vers & YouVersion länk</th>
+                            <th style="width: 35%">Utdrag (SRB baserat på Textus Receptus)</th>
                             <th style="width: 35%">UN-text</th>
                             <th style="width: 15%">Påverkan</th>
                         </tr>
