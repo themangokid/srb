@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-title" content="Textvarianter">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#8b6914">
-    <title>Textvarianter: TR vs UBS - Mobil App</title>
+    <title>Grundtextskillnader TR vs UN</title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -577,12 +577,169 @@
                 width: 100px;
             }
         }
+
+        /* Mobile Responsive Override Styles */
+        @media (max-width: 768px) {
+            /* Hide table on mobile and show card layout instead */
+            .variant-table {
+                display: none !important;
+            }
+            
+            /* Create card-based layout for mobile */
+            .mobile-card-container {
+                display: block !important;
+                width: 100%;
+            }
+            
+            .variant-card {
+                background: white;
+                border: 1px solid var(--border-color);
+                border-radius: 12px;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                position: relative;
+            }
+            
+            .variant-card:nth-child(even) {
+                background-color: var(--row-even);
+            }
+            
+            /* Card header with verse and link */
+            .card-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 2px solid var(--border-color);
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .card-verse {
+                font-weight: 600;
+                color: var(--primary-text);
+                font-size: 1rem;
+            }
+            
+            .card-youversion-link {
+                background: var(--red-accent);
+                color: white;
+                padding: 0.3rem 0.6rem;
+                border-radius: 6px;
+                text-decoration: none;
+                font-size: 0.8rem;
+                font-weight: 500;
+                transition: background 0.3s ease;
+                white-space: nowrap;
+            }
+            
+            .card-youversion-link:hover {
+                background: var(--red-hover);
+                transform: translateY(-1px);
+            }
+            
+            /* Card content sections */
+            .card-content {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .card-section {
+                border-left: 3px solid var(--accent-color);
+                padding-left: 0.8rem;
+            }
+            
+            .card-section-title {
+                font-weight: 600;
+                color: var(--accent-color);
+                font-size: 0.85rem;
+                margin-bottom: 0.3rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+            
+            .card-section-content {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+            
+            /* Different colors for different content types */
+            .card-section.tr-section {
+                border-left-color: var(--primary-text);
+            }
+            
+            .card-section.tr-section .card-section-content {
+                color: var(--primary-text);
+                font-style: italic;
+            }
+            
+            .card-section.un-section {
+                border-left-color: var(--red-accent);
+            }
+            
+            .card-section.un-section .card-section-content {
+                color: var(--red-accent);
+                font-style: italic;
+            }
+            
+            .card-section.impact-section {
+                border-left-color: var(--hover-color);
+            }
+            
+            .card-section.impact-section .card-section-content {
+                color: var(--hover-color);
+                font-weight: 500;
+            }
+            
+            /* Override existing mobile styles for better card layout */
+            .search-controls {
+                flex-direction: column !important;
+                gap: 0.8rem !important;
+                padding: 0 0.5rem;
+            }
+            
+            .mobile-filter-dropdown {
+                width: 100% !important;
+            }
+        }
+        
+        /* Extra small devices adjustments */
+        @media (max-width: 480px) {
+            .variant-card {
+                margin: 0 0.25rem 1rem 0.25rem;
+                padding: 0.8rem;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            
+            .card-verse {
+                font-size: 0.95rem;
+            }
+            
+            .card-section-content {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Ensure mobile cards are hidden on desktop */
+        @media (min-width: 769px) {
+            .mobile-card-container {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
     <header class="header" id="main-header">
         <div class="nav-container">
-            <h1 class="main-title">Textus Receptus från 1894 vs UN</h1>
+            <h1 class="main-title">Grundtextskillnader TR vs UN</h1>
             
             <div class="search-controls">
                 <input type="text" id="searchInput" class="search-box" placeholder="Sök efter vers, text eller påverkan...">
@@ -1204,13 +1361,19 @@
 
         function loadAllCategories() {
             console.log('Loading all categories...');
-            const container = document.getElementById('content-container');
+            const container = document.querySelector('.main-content');
             if (!container) {
                 console.error('Content container not found!');
                 return;
             }
             console.log('Content container found, clearing innerHTML...');
+            
+            // Clear everything except the loading div
+            const loadingElement = container.querySelector('#loading');
             container.innerHTML = '';
+            if (loadingElement) {
+                container.appendChild(loadingElement);
+            }
 
             const categoryData = groupVariantsByCategory();
             console.log('Category data:', categoryData);
@@ -1326,10 +1489,41 @@
                 `;
             }).join('');
 
+            // Create mobile cards
+            const mobileCards = categoryData.variants.map(variant => {
+                const bibleUrl = generateBibleLink(variant.verse);
+                const youVersionLink = bibleUrl 
+                    ? `<a href="${bibleUrl}" target="_blank" class="card-youversion-link" rel="noopener">📖 YouVersion</a>`
+                    : `<span class="card-youversion-link">📖 YouVersion</span>`;
+                
+                return `
+                    <div class="variant-card">
+                        <div class="card-header">
+                            <div class="card-verse">${variant.verse}</div>
+                            ${youVersionLink}
+                        </div>
+                        <div class="card-content">
+                            <div class="card-section tr-section">
+                                <div class="card-section-title">Utdrag</div>
+                                <div class="card-section-content">${variant.tr_text}</div>
+                            </div>
+                            <div class="card-section un-section">
+                                <div class="card-section-title">UN-text</div>
+                                <div class="card-section-content">${variant.un_text}</div>
+                            </div>
+                            <div class="card-section impact-section">
+                                <div class="card-section-title">Påverkan</div>
+                                <div class="card-section-content">${variant.impact}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
             section.innerHTML = `
                 <h2 class="category-title">${categoryData.title}</h2>
                 <div class="category-info">
-                    <span>${categoryData.variants.length} varianter i denna kategori</span>
+                    <span>${categoryData.variants.length} verser i denna kategori</span>
                 </div>
                 
                 <table class="variant-table">
@@ -1345,6 +1539,10 @@
                         ${variantRows}
                     </tbody>
                 </table>
+                
+                <div class="mobile-card-container">
+                    ${mobileCards}
+                </div>
             `;
 
             return section;
