@@ -10,6 +10,7 @@
     <meta name="theme-color" content="#8b6914">
     <title>Grundtextskillnader TR vs UN</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -54,7 +55,7 @@
 
         .main-title {
             text-align: center;
-            font-size: clamp(1.6rem, 4vw, 1.2rem);
+            font-size: clamp(1.5rem, 4vw, 1.2rem);
             font-weight: 700;
             color: var(--primary-text);
             margin-bottom: 0.5rem;
@@ -740,8 +741,8 @@
 <body>
     <header class="header" id="main-header">
         <div class="nav-container">
-            <h1 class="main-title">Grundtextskillnader (TR vs UN) i Reformationsbibeln</h1>
-            <p style="font-size:15px;"> Baserat på <a style="text-align:center; color:#4a3426;" href="https://www.bibel.se/objfiles/PDF_books/SRBgrundtextski_-2024961626.pdf">denna PDF</a> från bibel.se</p>
+            <h1 class="main-title">Grundtextskillnader (TR vs UN) i Reformationsbibeln <p style="font-size:15px;"> Baserat på <a style="text-align:center; color:#4a3426;" href="https://www.bibel.se/objfiles/PDF_books/SRBgrundtextski_-2024961626.pdf">denna PDF</a> från bibel.se</p> </h1>
+
             </h2>
             
             <div class="search-controls">
@@ -1479,7 +1480,7 @@
             const variantRows = categoryData.variants.map(variant => {
                 const bibleUrl = generateBibleLink(variant.verse);
                 const verseLink = bibleUrl 
-                    ? `<a href="${bibleUrl}" target="_blank" class="verse-link" rel="noopener">${variant.verse}</a>`
+                    ? `<a href="${bibleUrl}" target="_blank" class="verse-link" rel="noopener">${variant.verse}</a> <a href="${bibleUrl}?parallel=154" target="_blank" class="verse-link" rel="noopener"><i class="fa-solid fa-book-bible"></i> / <i class="fa-solid fa-book-bible"></i></a>`
                     : `<span class="verse-link">${variant.verse}</span>`;
                 
                 return `
