@@ -137,6 +137,9 @@
             color: #2b1d00;
         }
 
+
+
+        
         /* Simple compact mode - no transitions */
         .header.compact {
             box-shadow: 0 1px 4px var(--shadow-color);
@@ -741,12 +744,34 @@
                 display: none !important;
             }
         }
+
+.logo {
+    display: flex;
+    justify-content: center;
+}
+
+.logo-icon {
+    width: 5rem;
+    height: 5rem;
+    background: url("img/main_srb_v16_lower_text_innershadow.webp") center/100% no-repeat;
+    background: url("img/srb_bold_dampended_red_not_done.png") center/100% no-repeat;
+}
+
+
     </style>
 </head>
 <body>
     <header class="header" id="main-header">
+         <div class="logo">
+                <a href="#hem">
+                    <div class="logo-icon"></div>
+                </a>
+            </div>
+            </div>
         <div class="nav-container">
-            <h1 class="main-title">Grundtextskillnader (TR vs UN) i Reformationsbibeln <p style="font-size:15px;"> Baserat på <a target="_blank" style="text-align:center; color:#4a3426;" href="https://www.bibel.se/objfiles/PDF_books/SRBgrundtextski_-2024961626.pdf">denna PDF</a> från bibel.se</p> </h1>
+            
+            <h1 class="main-title"> Grundtextskillnader (TR vs UN) i Reformationsbibeln <p style="font-size:15px;"> Baserat på <a target="_blank" style="text-align:center; color:#4a3426;" href="https://www.bibel.se/objfiles/PDF_books/SRBgrundtextski_-2024961626.pdf">denna PDF</a> från bibel.se</p> </h1>
+            <!--<img style="padding-right:1.2rem;" width="8%" height="8%" src="img/srb_bold_dampended_red_not_done_no_under_text.png">-->
 
             </h2>
             
