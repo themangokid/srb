@@ -21,6 +21,8 @@
 
     <!-- QR-code -->
     <script src="swish-qr-code-expand.js"></script>
+
+
 </head>
 
 <body>
@@ -50,7 +52,7 @@
         <div class="hero-content">
             <h1><span class="title-part1">Svenska Reformations</span><span class="title-break"></span><span
                     class="title-part2">bibeln</span></h1>
-            <p class="hero-subtitle">En bibel i tiden</p>
+                <!--            <p class="hero-subtitle">En bibel i tiden</p> -->
             <div class="hero-container-flex">
                 <div class="hero-item">
                     <div class="hero-description">
@@ -776,6 +778,22 @@
             updateTotal();
         });
     </script>
+    <!--
+    <script>
+        // Add this to your existing JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // Set data attributes for grainy text shadow effect
+    const titlePart1 = document.querySelector('.title-part1');
+    const titlePart2 = document.querySelector('.title-part2');
+    
+    if (titlePart1) {
+        titlePart1.setAttribute('data-text', titlePart1.textContent);
+    }
+    if (titlePart2) {
+        titlePart2.setAttribute('data-text', titlePart2.textContent);
+    }
+});
+    </script>-->
 </body>
 
 </html>
