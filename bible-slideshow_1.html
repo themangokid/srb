@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Illustrerat Bibellexikon - Bildspel</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'EB Garamond', Garamond, serif;
+            background-color: #f4f0e0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .slideshow-container {
+            max-width: 1000px;
+            width: 100%;
+            background: #faf8f0;
+            border-radius: 12px;
+            box-shadow: 0 6px 25px rgba(74, 52, 38, 0.15);
+            overflow: hidden;
+            border: 2px solid #d4c5a9;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #2b1d00;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .slide-counter {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        .slide-content {
+            padding: 40px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #faf8f0;
+        }
+
+        .slide-title {
+            font-size: 24px;
+            color: #4a3426;
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        .pdf-embed {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #d4c5a9;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(74, 52, 38, 0.1);
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 600px;
+            font-size: 18px;
+            color: #8b6914;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 40px;
+            background: linear-gradient(135deg, #f8f4e6 0%, #ede7d3 100%);
+            border-top: 2px solid #d4c5a9;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-family: inherit;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(74, 52, 38, 0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-prev {
+            background: #6d4c36;
+            color: #f4f0e0;
+        }
+
+        .btn-prev:hover:not(:disabled) {
+            background: #5a3d2b;
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #2b1d00;
+        }
+
+        .btn-next:hover:not(:disabled) {
+            background: linear-gradient(135deg, #b8941f 0%, #d4af37 100%);
+        }
+
+        .btn-link {
+            padding: 10px 20px;
+            background: #8b6914;
+            color: #f4f0e0;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-link:hover {
+            background: #6d4c36;
+            transform: translateY(-2px);
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: #e0d5b7;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37 0%, #b8941f 100%);
+            transition: width 0.3s ease;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: flex;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(74, 52, 38, 0.8);
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: #faf8f0;
+            border: 3px solid #d4c5a9;
+            border-radius: 12px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            box-shadow: 0 10px 40px rgba(74, 52, 38, 0.3);
+            animation: slideDown 0.4s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-content h2 {
+            color: #4a3426;
+            font-size: 24px;
+            margin: 0;
+            padding: 30px 40px 20px 40px;
+            text-align: center;
+            font-weight: 600;
+            border-bottom: 2px solid #d4af37;
+            flex-shrink: 0;
+        }
+
+        .modal-body {
+            color: #4a3426;
+            line-height: 1.8;
+            padding: 30px 40px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .modal-body p {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .modal-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .modal-body strong,
+        .modal-body b {
+            font-weight: 700 !important;
+            font-family: 'EB Garamond', Garamond, serif !important;
+        }
+
+        /* Custom scrollbar for modal */
+        .modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-body::-webkit-scrollbar-track {
+            background: #e0d5b7;
+            border-radius: 4px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb {
+            background: #b8941f;
+            border-radius: 4px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+
+        .modal-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #2b1d00;
+            border: none;
+            padding: 12px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 30px auto;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            flex-shrink: 0;
+        }
+
+        .modal-btn:hover {
+            background: linear-gradient(135deg, #b8941f 0%, #d4af37 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(139, 105, 20, 0.3);
+        }
+
+        .modal-btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .slide-title {
+                font-size: 18px;
+            }
+
+            .slide-content {
+                padding: 20px;
+            }
+
+            .controls {
+                padding: 20px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .pdf-embed {
+                height: 400px;
+            }
+
+            .modal-content {
+                width: 95%;
+                max-height: 85vh;
+            }
+
+            .modal-content h2 {
+                font-size: 20px;
+                padding: 20px 25px 15px 25px;
+            }
+
+            .modal-body {
+                padding: 20px 25px;
+            }
+
+            .modal-body p {
+                font-size: 14px;
+            }
+
+            .modal-btn {
+                padding: 10px 30px;
+                font-size: 14px;
+                margin: 20px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Modal -->
+    <div id="copyrightModal" class="modal">
+        <div class="modal-content">
+            <h2>Illustrerat Bibellexikon - Användningsvillkor</h2>
+            <div class="modal-body">
+                <p>Svenska Reformationsbibelsällskapet har förvärvat tillstånd av Toralf Gilbrants son, Helge Terje Gilbrant, att skanna in hela lexikonet och göra det tillgängligt på Internet. Svenska Reformationsbibelsällskapet har skannat, OCR-behandlat och gjort i stort sett all text elektroniskt sökbar och tillhandahålls gratis till alla intresserade i form av pdf-filer. Det är tillåtet att fritt kopiera och skriva ut textmaterial för att användas i olika sammanhang, t.ex. skolarbete etc.</p>
+                
+                <p><b>Det är däremot inte tillåtet att ladda ner hela lexikonet på egen hårddisk, CD, DVD-skivor eller annan media. Det är inte heller tillåtet att sprida eller sälja detta elektroniska verk till någon annan och det är inte heller tillåtet att kopiera över detta lexikon till någon annan server eller lägga detta material på en annan webb-sida på Internet.</b> Var god ange att bilden kommer från Illustrerat Bibel-Lexikon Vid användande av de skannade fotografierna.</p>
+                
+                <p>Det mesta av texten är elektroniskt sökbar, vilket möjliggör för den intresserade att markera önskad text med muspekaren och kopiera över önskat material till sitt eget dokument. Vissa sidor har dataprogrammet haft svårt att tolka rätt, varför vissa sidor har blivit skannade med annan teknik. Observera att OCR-tekniken möjliggör att man utan problem kan kopiera svensk text, men inte hebreisk eller grekisk text.</p>
+            </div>
+            <button class="modal-btn" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <div class="slideshow-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        
+        <div class="header">
+            <h1 id="slideTitle">Illustrerat Bibellexikon</h1>
+            <div class="slide-counter">
+                <span id="currentSlide">1</span> / <span id="totalSlides">0</span>
+            </div>
+        </div>
+
+        <div class="slide-content">
+            <div class="loading" id="loading">Laddar bildspel...</div>
+            <iframe id="pdfViewer" class="pdf-embed" style="display: none;"></iframe>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-prev" id="prevBtn" onclick="previousSlide()">
+                ← Föregående
+            </button>
+            
+            <a href="#" class="btn-link" id="openLink" target="_blank" style="display: none;">
+                Öppna PDF
+            </a>
+            
+            <button class="btn btn-next" id="nextBtn" onclick="nextSlide()">
+                Nästa →
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const slides = [
+            { title: "Akvedukt från turktiden i Acko", url: "http://www.bibel.se/objfiles/1/Akveduktfrantur_557513774.pdf" },
+            { title: "Alla nationers kyrka i Getsemane", url: "http://www.bibel.se/objfiles/1/Allanationersky_1273211985.pdf" },
+            { title: "Alla nationers kyrka vid Getsemane Örtagård", url: "http://www.bibel.se/objfiles/1/Allanationersky_1333154365.pdf" },
+            { title: "Amman, huvudstaden i Jordanien", url: "http://www.bibel.se/objfiles/1/Ammanhuvudstade_1416148310.pdf" },
+            { title: "Arabkvinna som bär en kruka", url: "http://www.bibel.se/objfiles/1/Arabkvinnasomba_1424426325.pdf" },
+            { title: "Arkeologiska museet i Jerusalem", url: "http://www.bibel.se/objfiles/1/Arkeologiskamus_1453265908.pdf" },
+            { title: "Artemistemplet vid Jerash", url: "http://www.bibel.se/objfiles/1/Artemistempletv_2079447552.pdf" },
+            { title: "Avgudatempel", url: "http://www.bibel.se/objfiles/1/Avgudatempelvid_2134859806.pdf" },
+            { title: "Babylon", url: "http://www.bibel.se/objfiles/1/Babylonvidkolum_2140335559.pdf" },
+            { title: "BASAN - En dryserby på Golanhöjderna", url: "http://www.bibel.se/objfiles/1/BASANEndryserby_-2127936955.pdf" },
+            { title: "Basargator i Jerusalem", url: "http://www.bibel.se/objfiles/1/BasargatoriJeru_-2098351554.pdf" },
+            { title: "Beerseba", url: "http://www.bibel.se/objfiles/1/Beersebavidkolu_-2040262201.pdf" },
+            { title: "Berget Tabor", url: "http://www.bibel.se/objfiles/1/BergetTaborvidk_-2015087847.pdf" },
+            { title: "Berglandskap i Juda öken", url: "http://www.bibel.se/objfiles/1/BerglandskapiJu_-1295819702.pdf" },
+            { title: "Betania", url: "http://www.bibel.se/objfiles/1/Betaniavidkolum_-1212761373.pdf" },
+            { title: "Betania där Lasarus bodde", url: "http://www.bibel.se/objfiles/1/BetaniadarLasar_-1188775594.pdf" },
+            { title: "Betestda-dammen i Jerusalem", url: "http://www.bibel.se/objfiles/1/Betestdadammeni_-1160923915.pdf" },
+            { title: "Betlehem sett från födelsekyrkans torn", url: "http://www.bibel.se/objfiles/1/Betlehemsettfra_-1154400773.pdf" },
+            { title: "Bibeln, böckernas bok", url: "http://www.bibel.se/objfiles/1/Bibelnbockernas_-1103661739.pdf" },
+            { title: "Bilder från Betfage och Betania", url: "http://www.bibel.se/objfiles/1/BilderfranBetfa_-1097227105.pdf" },
+            { title: "Byblos", url: "http://www.bibel.se/objfiles/1/Byblosvidkolumm_-439802014.pdf" },
+            { title: "Bäcken Kidron", url: "http://www.bibel.se/objfiles/1/BackenKidronvid_-301297981.pdf" },
+            { title: "Colosseum", url: "http://www.bibel.se/objfiles/1/ColosseumvidKol_-243890844.pdf" },
+            { title: "Damaskusporten i Jerusalem", url: "http://www.bibel.se/objfiles/1/Damaskusporteni_-239340516.pdf" },
+            { title: "De fyra evangelisterna", url: "http://www.bibel.se/objfiles/1/Defyraevangelis_-207851149.pdf" },
+            { title: "Den barmhärtige samaritens härbärge", url: "http://www.bibel.se/objfiles/1/Denbarmhartiges_470850019.pdf" },
+            { title: "Den heliga trappan", url: "http://www.bibel.se/objfiles/1/Denheligatrappa_476330822.pdf" },
+            { title: "Det ortodoxa Elia-klostret nära Betlehem", url: "http://www.bibel.se/objfiles/1/DetortodoxaElia_502186552.pdf" },
+            { title: "Druser i norra delen av Israel", url: "http://www.bibel.se/objfiles/1/Druserinorradel_528109504.pdf" },
+            { title: "Efesus", url: "http://www.bibel.se/objfiles/1/Efesusvidkolumm_642799859.pdf" },
+            { title: "En Beduinfamilj", url: "http://www.bibel.se/objfiles/1/EnBeduinfamiljv_671312697.pdf" },
+            { title: "En del av Amman i Jordanien", url: "http://www.bibel.se/objfiles/1/EndelavAmmaniJo_677661313.pdf" },
+            { title: "En del av Jisreel-slätten, Megiddo", url: "http://www.bibel.se/objfiles/1/EndelavJisreels_703669594.pdf" },
+            { title: "En målning av Elias offer på Karmel", url: "http://www.bibel.se/objfiles/1/EnmalningavElia_1359428095.pdf" },
+            { title: "Fadervårkyrkan på Oljeberget i Jerusalem", url: "http://www.bibel.se/objfiles/1/Fadervarkyrkanp_1365746827.pdf" },
+            { title: "Filistéerstaden Askelon", url: "http://www.bibel.se/objfiles/1/Filisteerstaden_1394495023.pdf" },
+            { title: "Fiskegarn upphängda till tork i Acko", url: "http://www.bibel.se/objfiles/1/Fiskegarnupphan_1422945460.pdf" },
+            { title: "Forum Romanum i Rom", url: "http://www.bibel.se/objfiles/1/ForumRomanumiRo_1447935302.pdf" },
+            { title: "Frestelsens berg i närheten av Jeriko", url: "http://www.bibel.se/objfiles/1/Frestelsensberg_1479337992.pdf" },
+            { title: "Från byn Siloa, söder om Jerusalem", url: "http://www.bibel.se/objfiles/1/FranbynSiloasod_1538352162.pdf" },
+            { title: "Från den gamla filistéerstaden Askelon", url: "http://www.bibel.se/objfiles/1/Frandengamlafil_1587384123.pdf" },
+            { title: "Fårskötsel i Israel", url: "http://www.bibel.se/objfiles/1/FarskotseliIsra_-2045351443.pdf" },
+            { title: "Födelsekykan Betlehem", url: "http://www.bibel.se/objfiles/1/FodelsekykanBet_-2019408102.pdf" },
+            { title: "Födelsekyrkan i Betlehem", url: "http://www.bibel.se/objfiles/1/FodelsekyrkaniB_-2012256490.pdf" },
+            { title: "Galiléen", url: "http://www.bibel.se/objfiles/1/Galileenvidkolu_-1985360772.pdf" },
+            { title: "Gamla jordbruksmetoder med oxar", url: "http://www.bibel.se/objfiles/1/Gamlajordbruksm_-1956727994.pdf" },
+            { title: "Gamla staden i Jerusalem", url: "http://www.bibel.se/objfiles/1/GamlastadeniJer_-1931821536.pdf" },
+            { title: "Garvaren Simons hus i Joppe", url: "http://www.bibel.se/objfiles/1/GarvarenSimonsh_-1903130113.pdf" },
+            { title: "Gennesaret", url: "http://www.bibel.se/objfiles/1/Gennesaretvidko_1298957275.pdf" },
+            { title: "Getsemane", url: "http://www.bibel.se/objfiles/1/Getsemanevidkol_1302916753.pdf" },
+            { title: "Getsemane örtagård", url: "http://www.bibel.se/objfiles/1/Getsemaneortaga_1384125007.pdf" },
+            { title: "Gudastoder från 14.- 13. årh. f. Kr.", url: "http://www.bibel.se/objfiles/1/Gudastoderfran1_1392287735.pdf" },
+            { title: "Guldkyrkan vid Paulus grav", url: "http://www.bibel.se/objfiles/1/GuldkyrkanvidPa_2042453438.pdf" },
+            { title: "Helgedomens mur", url: "http://www.bibel.se/objfiles/1/Helgedomensmurv_2047996417.pdf" },
+            { title: "Herdarnas ängd utanför Betlehem", url: "http://www.bibel.se/objfiles/1/Herdarnasangdut_2072120466.pdf" },
+            { title: "Illustration över Assyriska trupper", url: "http://www.bibel.se/objfiles/1/Illustrationove_2100574716.pdf" },
+            { title: "Ingång Heliga gravens kyrka", url: "http://www.bibel.se/objfiles/1/IngangHeligagra_2105461434.pdf" },
+            { title: "Ingången till Davids grav på Sions berg", url: "http://www.bibel.se/objfiles/1/IngangentillDav_2131047807.pdf" },
+            { title: "Interiör av den nya kyrkan i Nasaret", url: "http://www.bibel.se/objfiles/1/Interioravdenny_2136710053.pdf" },
+            { title: "Israelitisk jordbrukare ber sin morgonbön", url: "http://www.bibel.se/objfiles/1/Iraelitiskjordb_-2080563251.pdf" },
+            { title: "Jabbok, nuv Nahr ez-Zerga", url: "http://www.bibel.se/objfiles/1/JabboknuvNahrez_-1307721162.pdf" },
+            { title: "Jerikos gamla fästningsmur", url: "http://www.bibel.se/objfiles/1/Jerikosgamlafas_-1220881442.pdf" },
+            { title: "Jerusalems gamla basargator", url: "http://www.bibel.se/objfiles/1/Jerusalemsgamla_-1193270859.pdf" },
+            { title: "Jerusalems stadsmur", url: "http://www.bibel.se/objfiles/1/Jerusalemsstads_-1187605733.pdf" },
+            { title: "Jesus smörjes i Betania", url: "http://www.bibel.se/objfiles/1/JesussmorjesiBe_-1107323018.pdf" },
+            { title: "Jesus talar med Marta", url: "http://www.bibel.se/objfiles/1/JesustalarmedMa_-1100940931.pdf" },
+            { title: "Jordan", url: "http://www.bibel.se/objfiles/1/Jordanvidkolumm_-474740024.pdf" },
+            { title: "Jordan", url: "http://www.bibel.se/objfiles/1/Jordanvidkolumm_-469104666.pdf" },
+            { title: "Jordanbygden", url: "http://www.bibel.se/objfiles/1/Jordanbygdenvid_443275685.pdf" },
+            { title: "Jungfru Maria kyrka nära Nasaret", url: "http://www.bibel.se/objfiles/1/JungfruMariakyr_496955005.pdf" },
+            { title: "Kapellet i Den Heliga Gravens kyrka", url: "http://www.bibel.se/objfiles/1/KapelletiDenHel_1419339166.pdf" },
+            { title: "Kapernaum", url: "http://www.bibel.se/objfiles/1/Kapernaumvidkol_1443563125.pdf" },
+            { title: "Karta över Israels vandring till Kanaan", url: "http://www.bibel.se/objfiles/1/KartaoverIsrael_1505291013.pdf" },
+            { title: "Klagomuren", url: "http://www.bibel.se/objfiles/1/Klagomurenvidko_1532963008.pdf" },
+            { title: "Klippan som man tror Mose slog på", url: "http://www.bibel.se/objfiles/1/Klippansommantr_-1103179043.pdf" },
+            { title: "Klippmosken, Tempelplatsen i Jerusalem", url: "http://www.bibel.se/objfiles/1/KlippmoskenTemp_-1044223613.pdf" },
+            { title: "Korint", url: "http://www.bibel.se/objfiles/1/Korintvidkolumm_-326557241.pdf" },
+            { title: "Korint", url: "http://www.bibel.se/objfiles/1/Korintvidkolumm_-301528152.pdf" },
+            { title: "Kristus i Emmaus", url: "http://www.bibel.se/objfiles/1/KristusiEmmausv_-271268182.pdf" },
+            { title: "Krukmakare i arbete", url: "http://www.bibel.se/objfiles/1/Krukmakareiarbe_-246237819.pdf" },
+            { title: "Kung Davids grav på Sion", url: "http://www.bibel.se/objfiles/1/KungDavidsgravp_-241591452.pdf" },
+            { title: "Kung Salomos pelare vid Esjon-Geber", url: "http://www.bibel.se/objfiles/1/KungSalomospela_-183324070.pdf" },
+            { title: "Kvarn från Jesu tid, Kapernaum", url: "http://www.bibel.se/objfiles/1/KvarnfranJesuti_-155613540.pdf" },
+            { title: "Landskap i närheten av Nasaret", url: "http://www.bibel.se/objfiles/1/Landskapinarhet_-98355271.pdf" },
+            { title: "Landsväg i öknen", url: "http://www.bibel.se/objfiles/1/Landsvagioknenv_644149790.pdf" },
+            { title: "Lasaruskyrkan", url: "http://www.bibel.se/objfiles/1/Lasaruskyrkanvi_732725062.pdf" },
+            { title: "Maalua, en stad i nordligaste Palestina", url: "http://www.bibel.se/objfiles/1/Maaluaenstadino_813034839.pdf" },
+            { title: "Mamres terebintlund", url: "http://www.bibel.se/objfiles/1/Mamresterebintl_-1388898589.pdf" },
+            { title: "Maria Magdalena-kyrkan i Getsemane", url: "http://www.bibel.se/objfiles/1/MariaMagdalenak_-1190400129.pdf" },
+            { title: "Marmorsten Pontius Pilatus", url: "http://www.bibel.se/objfiles/1/MarmorstenPonti_-1135731819.pdf" },
+            { title: "Masada-fästningen vid Döda havet", url: "http://www.bibel.se/objfiles/1/Masadafastninge_-504965947.pdf" },
+            { title: "Massada", url: "http://www.bibel.se/objfiles/1/Massadavidkolum_-474466691.pdf" },
+            { title: "Megiddos slätt, Jisreelslätten", url: "http://www.bibel.se/objfiles/1/MegiddosslattJi_-445897060.pdf" },
+            { title: "Modell av Jerusalem under Herodes tid", url: "http://www.bibel.se/objfiles/1/ModellavJerusal_-420039592.pdf" },
+            { title: "Mosaiksmyckade kapellet på Golgataklippan", url: "http://www.bibel.se/objfiles/1/Mosaiksmyckader_-394174086.pdf" },
+            { title: "Mullbärsfikonträd i staden Jeriko", url: "http://www.bibel.se/objfiles/1/Mullbarsfikontr_-387865281.pdf" },
+            { title: "Muren på Sions berg i Jerusalem", url: "http://www.bibel.se/objfiles/1/MurenpaSionsber_-363849864.pdf" },
+            { title: "Nabatéerstaden Petra", url: "http://www.bibel.se/objfiles/1/NabateerstadenP_-359020837.pdf" },
+            { title: "Nattvardssalen", url: "http://www.bibel.se/objfiles/1/Nattvardssalenv_-334090515.pdf" },
+            { title: "Oljeberget", url: "http://www.bibel.se/objfiles/1/Oljebergetvidko_-329588197.pdf" },
+            { title: "Ortodoxa judar i Jerusalem", url: "http://www.bibel.se/objfiles/1/OrtodoxajudariJ_-305606591.pdf" },
+            { title: "Parthenon, Akropolis i Aten", url: "http://www.bibel.se/objfiles/1/Parthenongudinn_-301858419.pdf" },
+            { title: "Pergamus", url: "http://www.bibel.se/objfiles/1/Pergamusvidkolu_-277815346.pdf" },
+            { title: "Petra, klippstaden", url: "http://www.bibel.se/objfiles/1/Petraklippstade_-252076906.pdf" },
+            { title: "Platsen där man tror att Jesus döptes", url: "http://www.bibel.se/objfiles/1/Platsendarmantr_410178912.pdf" },
+            { title: "Profeten Elia på berget Karmel", url: "http://www.bibel.se/objfiles/1/ProfetenEliapab_435975961.pdf" },
+            { title: "Pyramid och sfinx i Gosen", url: "http://www.bibel.se/objfiles/1/Pyramidochsfinx_470213540.pdf" },
+            { title: "Påskfirande i Israelistiskt hem", url: "http://www.bibel.se/objfiles/1/PaskfirandeiIsr_497048688.pdf" },
+            { title: "Qumran", url: "http://www.bibel.se/objfiles/1/Qumranvidkolumm_522075049.pdf" },
+            { title: "Raka gatan", url: "http://www.bibel.se/objfiles/1/Rakagatanvidkol_526693589.pdf" },
+            { title: "Ramses i Egypten", url: "http://www.bibel.se/objfiles/1/RamsesiEgyptenA_551393053.pdf" },
+            { title: "Rester av bysantinsk kyrka vid berget Nebo", url: "http://www.bibel.se/objfiles/1/Resteravbysanti_579181549.pdf" },
+            { title: "Rester av Qumran-sektens klosteranläggning", url: "http://www.bibel.se/objfiles/1/ResteravQumrans_585676826.pdf" },
+            { title: "Rester av trappa till Betesdadammen", url: "http://www.bibel.se/objfiles/1/Resteravtrappat_612398482.pdf" },
+            { title: "Rester från den romerska staden Sebaste", url: "http://www.bibel.se/objfiles/1/Resterfrandenro_643741499.pdf" },
+            { title: "Ruiner av Korasin", url: "http://www.bibel.se/objfiles/1/RuineravKorasin_1271828773.pdf" },
+            { title: "Ruinstaden Petra, Jordan", url: "http://www.bibel.se/objfiles/1/RuinstadenPetra_1297833503.pdf" },
+            { title: "Rysk ortodoxa kyrkan på Oljeberget", url: "http://www.bibel.se/objfiles/1/Ryskortodoxakyr_1323544063.pdf" },
+            { title: "S. Anna-kyrkan norr om Tempelplatsen", url: "http://www.bibel.se/objfiles/1/SAnnakyrkannorr_1353120789.pdf" },
+            { title: "Salomos dammar söder om Betlehem", url: "http://www.bibel.se/objfiles/1/Salomosdammarso_1358516897.pdf" },
+            { title: "Salomos tempel samt en bokrulle från Jesaja", url: "http://www.bibel.se/objfiles/1/Salomostempelsa_1385297213.pdf" },
+            { title: "Samariter från Nablus", url: "http://www.bibel.se/objfiles/1/SamariterfranNa_1410326266.pdf" },
+            { title: "Sinai berg", url: "http://www.bibel.se/objfiles/1/Sinaibergvidkol_1415896228.pdf" },
+            { title: "Tempelrester från Jupiter-templet i Baalbek", url: "http://www.bibel.se/objfiles/1/Tempelresterfra_1440920570.pdf" },
+            { title: "Trakten kring hamnstaden Akaba", url: "http://www.bibel.se/objfiles/1/Traktenkringham_1466749558.pdf" },
+            { title: "Trappa upp till Megidda", url: "http://www.bibel.se/objfiles/1/TrappaupptillMe_1495261405.pdf" },
+            { title: "Trädgårdsgraven", url: "http://www.bibel.se/objfiles/1/Tradgardsgraven_-2140375322.pdf" },
+            { title: "Tyska lutherska kyrkan i Jerusalem", url: "http://www.bibel.se/objfiles/1/Tyskalutherskak_-2113563307.pdf" },
+            { title: "Utsikt från tyska lutherska kyrkan", url: "http://www.bibel.se/objfiles/1/Utsiktfrantorne_-2107810759.pdf" },
+            { title: "Utsikt över Döda havet", url: "http://www.bibel.se/objfiles/1/UtsiktoverDodah_-2082966181.pdf" },
+            { title: "Vatten reservoarer vid sjön Gennesaret", url: "http://www.bibel.se/objfiles/1/Vattenreservoar_-2078354277.pdf" },
+            { title: "Via Dolorosa, korsets väg", url: "http://www.bibel.se/objfiles/1/ViaDolorosakors_-2053293285.pdf" },
+            { title: "Vägen från Jerusalem till Jeriko", url: "http://www.bibel.se/objfiles/1/VagenfranJerusa_-2027702911.pdf" },
+            { title: "Örtagårdsgraven, Gordons golgata", url: "http://www.bibel.se/objfiles/1/Ortagardsgraven_-2023798338.pdf" }
+        ];
+
+        let currentIndex = 0;
+        const preloadedIframes = {};
+
+        function preloadPDF(index) {
+            if (index < 0 || index >= slides.length || preloadedIframes[index]) {
+                return;
+            }
+            
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = slides[index].url;
+            document.body.appendChild(iframe);
+            preloadedIframes[index] = iframe;
+        }
+
+        function updateSlide() {
+            const slide = slides[currentIndex];
+            document.getElementById('slideTitle').textContent = slide.title;
+            document.getElementById('currentSlide').textContent = currentIndex + 1;
+            document.getElementById('totalSlides').textContent = slides.length;
+            
+            // Update progress bar
+            const progress = ((currentIndex + 1) / slides.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            
+            // Update PDF viewer
+            const pdfViewer = document.getElementById('pdfViewer');
+            const loading = document.getElementById('loading');
+            const openLink = document.getElementById('openLink');
+            
+            loading.style.display = 'flex';
+            pdfViewer.style.display = 'none';
+            
+            pdfViewer.src = slide.url;
+            openLink.href = slide.url;
+            openLink.style.display = 'inline-block';
+            
+            // Show PDF after a short delay
+            setTimeout(() => {
+                loading.style.display = 'none';
+                pdfViewer.style.display = 'block';
+            }, 500);
+            
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentIndex === 0;
+            document.getElementById('nextBtn').disabled = currentIndex === slides.length - 1;
+            
+            // Preload next and previous PDFs
+            preloadPDF(currentIndex + 1);
+            preloadPDF(currentIndex - 1);
+        }
+
+        function nextSlide() {
+            if (currentIndex < slides.length - 1) {
+                currentIndex++;
+                updateSlide();
+            }
+        }
+
+        function previousSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlide();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+
+        // Initialize
+        window.onload = () => {
+            updateSlide();
+            // Show modal on page load
+            document.getElementById('copyrightModal').style.display = 'flex';
+        };
+
+        // Modal functions
+        function closeModal() {
+            const modal = document.getElementById('copyrightModal');
+            modal.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('copyrightModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+
+        // Add fadeOut animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                from {
+                    opacity: 1;
+                }
+                to {
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
