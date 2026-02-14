@@ -45,18 +45,36 @@ body {
 .header.compact .search-controls { gap: 0.8rem; }
 .header.compact .mobile-filter-dropdown { width: 180px; }
 
+/* ===== Logo and Header Grid Layout ===== */
 .nav-container {
     max-width: 1800px;
     margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 20px;
+}
+
+.logo-link {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    z-index: 10;
+    display: block;
+    line-height: 0;
+}
+
+.header-logo {
+    height: 70px;
+    width: auto;
+    display: block;
 }
 
 .main-title {
+    margin: 0 0 20px 0;
+    padding: 0;
     text-align: center;
+    width: 100%;
     font-size: clamp(1.5rem, 4vw, 1.2rem);
     font-weight: 700;
     color: var(--primary-text);
-    margin-bottom: 0.5rem;
     letter-spacing: 1px;
 }
 
@@ -64,18 +82,22 @@ body {
     color: var(--primary-text);
 }
 
+.title-text {
+    display: inline-block;
+}
+
 /* ===== Search Controls ===== */
 .search-controls {
     display: flex;
+    flex-direction: row;
     gap: 1rem;
+    align-items: center;
     justify-content: center;
-    align-items: stretch;
-    max-width: 900px;
-    margin: 0 auto;
 }
 
 .search-box {
     flex: 1;
+    max-width: 700px;
     padding: 0.9rem 1.2rem;
     border: 2px solid var(--border-color);
     border-radius: 12px;
@@ -94,7 +116,7 @@ body {
 /* ===== Filter Dropdown ===== */
 .mobile-filter-dropdown {
     position: relative;
-    width: 220px;
+    width: 250px;
     flex-shrink: 0;
 }
 
@@ -333,31 +355,65 @@ body {
     margin: 1.5rem 0;
 }
 
-/* ===== Mobile Responsive ===== */
+/* ===== Responsive Layout ===== */
+@media (max-width: 1024px) {
+    .header-logo {
+        height: 60px;
+    }
+}
+
 @media (max-width: 768px) {
     .main-content { padding: 1rem; }
-    .nav-container { padding: 0.8rem 1rem; }
-    .header.compact .nav-container { padding: 0.3rem 1rem; }
+    
+    .nav-container { 
+        padding: 15px;
+    }
+    
+    .logo-link {
+        left: 15px;
+        top: 15px;
+    }
+    
+    .header.compact .nav-container { 
+        padding: 0.3rem 1rem; 
+    }
+    
+    .header-logo {
+        height: 50px;
+    }
+    
+    .main-title {
+        font-size: 1.3rem;
+    }
+    
+    .header.compact .main-title {
+        font-size: 1.1rem;
+    }
     
     .search-controls { 
         flex-direction: column;
         gap: 0.8rem;
-        max-width: 100%;
     }
     
     .search-box { 
         min-height: 48px;
         font-size: 16px; /* Prevent iOS zoom */
         padding: 0.8rem 1rem;
+        max-width: 100%;
     }
     
     .mobile-filter-dropdown {
         width: 100%;
+        max-width: 700px;
     }
     
     .filter-dropdown-btn {
         padding: 0.8rem 1rem;
         min-height: 48px;
+    }
+    
+    .header.compact .mobile-filter-dropdown {
+        width: 100%;
     }
     
     .variant-table {
@@ -471,23 +527,26 @@ body {
     }
     
     body { font-size: 16px; }
-    
-    .main-title {
-        font-size: clamp(1.3rem, 5vw, 1.8rem);
-        margin-bottom: 0.3rem;
-        line-height: 1.2;
-    }
-    
-    .header.compact .main-title {
-        font-size: 1.1rem;
-    }
-    
-    .header.compact .mobile-filter-dropdown {
-        width: 100%;
-    }
 }
 
 @media (max-width: 480px) {
+    .logo-link {
+        left: 10px;
+        top: 12px;
+    }
+    
+    .nav-container {
+        padding: 12px;
+    }
+    
+    .header-logo {
+        height: 40px;
+    }
+    
+    .main-title {
+        font-size: 1.1rem;
+    }
+    
     .variant-card {
         margin: 0 0.25rem 1rem 0.25rem;
         padding: 0.8rem;
@@ -501,56 +560,5 @@ body {
     
     .card-section-content {
         font-size: 0.85rem;
-    }
-    
-    .main-title {
-        font-size: clamp(1.2rem, 6vw, 1.6rem);
-    }
-}
-
-/* Logo and Header Styles */
-.header-logo {
-    position: absolute;
-    left: 20px;
-    top: 10px;
-    height: 75px;
-    width: auto;
-    z-index: 1;
-}
-
-.main-title {
-    position: relative;
-    margin: 0;
-    padding: 0 0 0 200px;
-    text-align: center;
-    width: 100%;
-}
-
-.title-text {
-    display: inline-block;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .header-logo {
-        left: 15px;
-        height: 50px;
-    }
-    
-    .main-title {
-        font-size: 1.2rem;
-        padding-left: 180px;
-    }
-}
-
-@media (max-width: 480px) {
-    .header-logo {
-        left: 10px;
-        height: 40px;
-    }
-    
-    .main-title {
-        font-size: 1rem;
-        padding-left: 150px;
     }
 }
