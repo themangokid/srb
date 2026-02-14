@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Icons-->
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+
+    <title>Svenska Reformationsbibeln - En bibel i tiden</title>
+
+    <!-- Optimized font loading with display swap -->
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Defer non-critical CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    
+    <!-- Critical CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="#hem">
+                    <div class="logo-icon"></div>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="QnA.html">Frågor & svar</a></li>
+                <li><a href="#resurser">Resurser</a></li>
+                <li><a href="https://bibel.se" target="_blank" rel="noopener">Bibel.se</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="hem" class="hero fade-in">
+        <div class="hero-content">
+            <h1><span class="title-part1">Svenska Reformations</span><span class="title-break"></span><span
+                    class="title-part2">bibeln</span></h1>
+            <div class="hero-container-flex">
+                <div class="hero-item">
+                    <div class="hero-description">
+                        Reformationsbibeln är en modern svensk översättning av Karl XII:s Bibel från 1703 baserad på
+                        Textus
+                        Receptus.
+                        Nuvarande prognos för tryck är i början av 2026. <b>
+                            Förbön och ekonomiskt stöd är mycket angeläget</b>.
+                        <div style="padding-top:25px;"></div>
+
+                        <div class="video-container">
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2023/01/SRB_Kanal10_221125_800kbps.mp4"
+                                target="_blank" rel="noopener">
+                                <img src="img/kanal_10.webp" alt="Kanal 10 intervju" loading="lazy">
+                                <div class="play-button-overlay">
+                                    <div class="play-icon"></div>
+                                </div>
+                            </a>
+                        </div>
+                        <i>
+                            <p style="margin-top:15px;">Ordförande för sällskapet Bo Hagstedt gästar Kanal 10.</p>
+                        </i>
+                    </div>
+                </div>
+                
+                <div class="hero-item">
+                    <div class="donation-section">
+                        <h2>Beställ en helbibel idag!</h2>
+                        <a href="https://bibel.se/wordpress/index.php/bestalla-reformationsbibeln/" rel="noopener">
+                            <img src="img/swish.png" style="display: block; margin-left: 0;" width="40%" height="40%"
+                                alt="Swish betalning" loading="lazy">
+                        </a>
+                        <a href="https://bibel.se/wordpress/index.php/bestalla-reformationsbibeln/" class="donation-button" rel="noopener">
+                            <h3 class="donation-title" style="text-decoration: none !important;">Beställ Bibel <i
+                                    class="fas fa-shopping-cart"></i></h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Quick Access Section -->
+        <section class="quick-access scroll-fade">
+            <h2 class="section-title">Snabbåtkomst</h2>
+            <div class="quick-buttons">
+                <a href="https://bibelonline.se/biblereader.php" target="_blank" class="quick-btn" rel="noopener">
+                    <i class="fas fa-book-open"></i> Läs Online
+                </a>
+                <a href="./vers_differences/diff.html" target="_blank" class="quick-btn" rel="noopener">
+                    <i class="fas fa-file-pdf"></i> Grundtextskillnader
+                </a>
+                <a href="https://bibel.se/wordpress/index.php/2022/01/18/oversatta-bibelbocker/" target="_blank"
+                    class="quick-btn" rel="noopener">
+                    <i class="fas fa-file-pdf"></i> PDF-Versioner
+                </a>
+            </div>
+        </section>
+
+        <!-- Navigation Grid -->
+        <section id="resurser" class="section scroll-fade">
+            <h2 class="section-title">Våra resurser</h2>
+            <div class="nav-grid">
+
+                <!-- Bible Reading Section -->
+                <div id="bibeln" class="nav-card">
+                    <div class="card-icon"><i class="fas fa-bible"></i></div>
+                    <h3 class="card-title">Bibeltexten</h3>
+                    <div class="card-links">
+                        <div class="main-link">
+                            <span>PDF-nedladdningar</span>
+                            <button class="expand-btn" data-target="pdf-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="pdf-sub">
+                            <a href="http://www.bibel.se/objfiles/PDF_books/SRBgrundtextski_-2024961626.pdf"
+                                target="_blank" rel="noopener"> <b>Grundtextskillnader NT</b></a>
+                            <a href="https://bibel.se/wordpress/index.php/2022/01/18/oversatta-bibelbocker/"
+                                target="_blank" rel="noopener">PDF-versioner</a>
+                            <a href="http://www.bibel.se/objfiles/1/SRBNTmedUNfotno_1604169176.pdf" target="_blank" rel="noopener">NT
+                                med fotnoter</a>
+                            <a href="http://www.bibel.se/objfiles/1/SRBNTmedUNnoter_-774953843.pdf" target="_blank" rel="noopener">NT
+                                utan noter</a>
+                            <a href="http://www.bibel.se/objfiles/1/SRBGTSartryckav_1200036187.pdf" target="_blank" rel="noopener">GT
+                                särtryck</a>
+                        </div>
+                        <div class="main-link">
+                            <span>Digital bibelläsare</span>
+                            <button class="expand-btn" data-target="bibelonline-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="bibelonline-sub">
+                            <a href="https://bibelonline.se/biblereader.php" target="_blank" rel="noopener">Digital bibelläsare</a>
+                            <a href="https://bibelonline.se/biblereader.php?book=40" target="_blank" rel="noopener">Nya Testamentet</a>
+                            <a href="https://bibelonline.se/biblereader.php?book=1" target="_blank" rel="noopener">Gamla
+                                Testamentet</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>You version</span>
+                            <button class="expand-btn" data-target="youversion-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="youversion-sub">
+                            <a href="https://www.bible.com/bible/3413/MAT.1.SRB16" target="_blank" rel="noopener">You version (SRB16)
+                            </a>
+                            <a href="https://www.bible.com/bible/3413/MAT.1.SRB16?parallel=154"
+                                target="_blank" rel="noopener">YouVersion Parallel läsning</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Media and Resources -->
+                <div class="nav-card">
+                    <div class="card-icon"><i class="fas fa-video"></i></div>
+                    <h3 class="card-title">Videoserie och youtube-kanal</h3>
+                    <div class="card-links">
+                        <div class="sub-links" id="media-hub-sub">
+                            <a href="https://bibel.se/wordpress/index.php/media/" target="_blank" rel="noopener">Alla videor</a>
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2023/01/SRB_Kanal10_221125_800kbps.mp4"
+                                target="_blank" rel="noopener">SRB Kanal 10 intervju</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Serie: En felaktig grundtext (5 delar)</span>
+                            <button class="expand-btn" data-target="grundtext-serie-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="grundtext-serie-sub">
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2022/03/Bibeln%20-%20En%20felaktig%20grundtext%20-%20del%201%20av%205-wjJ1fK6101g.mp4"
+                                target="_blank" rel="noopener">Del 1 av 5</a>
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2022/03/Bibeln%20-%20En%20felaktig%20grundtext%20-%20del%202%20av%205-J9UiqtUW7bQ.mp4"
+                                target="_blank" rel="noopener">Del 2 av 5</a>
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2022/03/Bibeln%20-%20En%20felaktig%20grundtext%20-%20del%203%20av%205-Cnjy3vO48ck.mp4"
+                                target="_blank" rel="noopener">Del 3 av 5</a>
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2022/03/Bibeln%20-%20En%20felaktig%20grundtext%20-%20del%204%20av%205-bOuNPYwl5rQ.mp4"
+                                target="_blank" rel="noopener">Del 4 av 5</a>
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2022/03/Bibeln%20-%20En%20felaktig%20grundtext%20-%20del%205%20av%205-W_Iw9DSrEdE.mp4"
+                                target="_blank" rel="noopener">Del 5 av 5</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Reformationsbibeln-serien</span>
+                            <button class="expand-btn" data-target="reformations-serie-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="reformations-serie-sub">
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2022/03/Reformationsbibeln%20del%201%202%20-PAvs5sATZBA.mp4"
+                                target="_blank" rel="noopener">Reformationsbibeln del 1-2</a>
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2022/03/Reformationsbibeln%20del%203%20-eoRo6hsQooM.mp4"
+                                target="_blank" rel="noopener">Reformationsbibeln del 3</a>
+                            <a href="https://bibel.se/wordpress/wp-content/uploads/2022/03/Bakgrunden%20till%20revideringen%20av%20Karl%20XIIs%20Bibel-84807534.mp4"
+                                target="_blank" rel="noopener">Bakgrund till revideringen</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>YouTube-kanal</span>
+                            <button class="expand-btn" data-target="youtube-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="youtube-sub">
+                            <a href="https://www.youtube.com/@reformationsbibeln9676/videos"
+                                target="_blank" rel="noopener">Ljudbibel</a>
+                        </div>
+
+                        <div class="sub-links" id="youtube-sub-2">
+                            <a href="https://www.youtube.com/watch?v=tkIZ8z9HKNk" target="_blank" rel="noopener">Ljudbibel av Kristofer
+                                Aspén</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bible Translations Section -->
+                <div class="nav-card">
+                    <div class="card-icon"><i class="fas fa-exchange-alt"></i></div>
+                    <h3 class="card-title">Bibelöversättningar</h3>
+                    <div class="card-links">
+                        <div class="main-link">
+                            <span>Karl XII:s Bibel 1703</span>
+                            <button class="expand-btn" data-target="karl-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="karl-sub">
+                            <a href="https://bibel.se/wordpress/index.php/andra-bibeloversattningar/"
+                                target="_blank" rel="noopener">Lista över andra översättningar</a>
+                            <a href="https://www.bibel.se/objfiles/1/KXIIBibel1703he_-1499304058.pdf"
+                                target="_blank" rel="noopener">Karl XII:s Bibel 1703</a>
+                            <a href="https://bibel.se/wordpress/index.php/2022/01/22/staves-revidering-1923-nt/"
+                                target="_blank" rel="noopener">Staves revidering 1923 NT</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Åkesons översättning</span>
+                            <button class="expand-btn" data-target="akeson-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="akeson-sub">
+                            <a href="http://www.bibel.se/bibeln/andra-bibeloversattningar/fragor-om-bibeloversattningar/akesons-oversattning/bk-1861-nt_1059"
+                                target="_blank" rel="noopener">Åkesons översättning</a>
+                            <a href="http://www.bibel.se/bibeln/andra-bibeloversattningar/fragor-om-bibeloversattningar/akesons-oversattning/bk-1861-nt_1059"
+                                target="_blank" rel="noopener">Om översättaren</a>
+                            <a href="http://www.bibel.se/bibeln/andra-bibeloversattningar/fragor-om-bibeloversattningar/akesons-oversattning/staves-revidering-1923-nt_1061"
+                                target="_blank" rel="noopener">Staves revidering</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Översättningshistoria</span>
+                            <button class="expand-btn" data-target="historia-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="historia-sub">
+                            <a href="https://sv.wikipedia.org/wiki/Reformationsbibeln"
+                                target="_blank" rel="noopener">Översättningshistoria</a>
+                            <a href="http://www.bibel.se/bibeln/andra-bibeloversattningar/bk-1861-nt_1059"
+                                target="_blank" rel="noopener">Bibelkommissionen 1861</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bible Study Tools -->
+                <div class="nav-card">
+                    <div class="card-icon"><i class="fas fa-search"></i></div>
+                    <h3 class="card-title">Studieverktyg</h3>
+                    <div class="card-links">
+                        <div class="main-link">
+                            <span>Illustrerat bibellexikon</span>
+                            <button class="expand-btn" data-target="lexikon-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="lexikon-sub">
+                            <a href="https://www.bibel.se/bibellexikon" target="_blank" rel="noopener">Illustrerat Bibellexikon</a>
+                            <a href="http://www.bibel.se/bibellexikon/uppslagsdel-a-o_802" target="_blank" rel="noopener">Uppslagsdel
+                                A-Ö</a>
+                            <a href="https://www.bibel.se/bibellexikon/ovrig-uppslagsdel_803" target="_blank" rel="noopener">Övrig
+                                uppslagsdel</a>
+                            <a href="http://www.bibel.se/bibellexikon/bilder-illustrerat-bibellexikon_987"
+                                target="_blank" rel="noopener">Bilder från lexikon</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Bibelstudieprogram online</span>
+                            <button class="expand-btn" data-target="sokning-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="sokning-sub">
+                            <a href="https://bibelonline.se/studyb.php" target="_blank" rel="noopener">Studera bibeln</a>
+                            <a href="https://bibelonline.se/textfind.php" target="_blank" rel="noopener">Sök i bibeln</a>
+                            <a href="https://bibelonline.se/showref.php" target="_blank" rel="noopener">Visa valda verser</a>
+                            <a href="https://bibelonline.se/showtema.php" target="_blank" rel="noopener">Visa tema</a>
+                            <a href="https://bibelonline.se/showstrong.php" target="_blank" rel="noopener">Sök strongs nummer</a>
+                            <a href="https://bibelonline.se/bibeladvanced.php" target="_blank" rel="noopener">Extra funktioner</a>
+                            <a href="https://bibelonline.se/settings.php" target="_blank" rel="noopener">Inställningar</a>
+                            <a href="https://bibelonline.se/showinfo.php" target="_blank" rel="noopener">Aktuell information</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Referens material – Google drive </span>
+                            <button class="expand-btn" data-target="material-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="material-sub">
+                            <a href="https://drive.google.com/drive/folders/1N-suLiCB4gOavhUg04P0xGzSDlCSntgo"
+                                target="_blank" rel="noopener">Referensmaterial</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Questions and Answers -->
+                <div class="nav-card">
+                    <div class="card-icon"><i class="fas fa-question-circle"></i></div>
+                    <h3 class="card-title">Frågor och svar</h3>
+                    <div class="card-links">
+                        <div class="main-link">
+                            <span>Frågor & svar</span>
+                            <button class="expand-btn" data-target="qna-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="qna-sub">
+                            <a href="QnA.html" target="_blank">Frågor & svar</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>SRB:s bibelsyn</span>
+                            <button class="expand-btn" data-target="bibelsyn-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="bibelsyn-sub">
+                            <a href="http://www.bibel.se/om-oss/fragor-och-svar/den-helige-ande-med-stor-bokstav/reformationbibeln-nya-testamentet_787"
+                                target="_blank" rel="noopener">SRB:s bibelsyn</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Grundtext i GT</span>
+                            <button class="expand-btn" data-target="grundtext-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="grundtext-sub">
+                            <a href="https://www.bibel.se/om-oss/fragor-och-svar/vilken-grundtext-anvander-srb-i-gt"
+                                target="_blank" rel="noopener">Grundtext i GT</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Textus Receptus vs Majoritet</span>
+                            <button class="expand-btn" data-target="textus-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="textus-sub">
+                            <a href="http://www.bibel.se/om-oss/fragor-och-svar/skillnader-mellan-textus-receptus-och-majoritetstexten"
+                                target="_blank" rel="noopener">Textus Receptus vs Majoritet</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Articles and Teaching -->
+                <div class="nav-card">
+                    <div class="card-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3 class="card-title">Artiklar och undervisning</h3>
+                    <div class="card-links">
+                        <div class="main-link">
+                            <span>Artiklar</span>
+                            <button class="expand-btn" data-target="artiklar-main-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="artiklar-main-sub">
+                            <a href="https://bibel.se/wordpress/index.php/artiklar/" target="_blank" rel="noopener">Artiklar</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Debatt</span>
+                            <button class="expand-btn" data-target="debatt-main-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="debatt-main-sub">
+                            <a href="https://bibel.se/wordpress/index.php/2021/12/04/debatt/" target="_blank" rel="noopener">Debatt</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Vad har hänt med Bibeln?</span>
+                            <button class="expand-btn" data-target="bibeln-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="bibeln-sub">
+                            <a href="http://www.bibel.se/artiklar/vad-har-hant-med-bibeln_1193" target="_blank" rel="noopener">Vad har
+                                hänt med Bibeln?</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Klassiska Debattartiklar</span>
+                            <button class="expand-btn" data-target="klassisk-debatt-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="klassisk-debatt-sub">
+                            <a href="http://www.bibel.se/artiklar/debatt" target="_blank" rel="noopener">Klassiska Debattartiklar</a>
+                        </div>
+
+                        <div class="main-link">
+                            <span>Uppslagsartiklar</span>
+                            <button class="expand-btn" data-target="uppslagsartiklar-sub">+</button>
+                        </div>
+                        <div class="sub-links" id="uppslagsartiklar-sub">
+                            <a href="https://www.bibel.se/bibellexikon/ovrig-uppslagsdel_803"
+                                target="_blank" rel="noopener">Uppslagsartiklar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SheepAndFlag logo-->
+        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(244, 240, 224, 0.3);">
+            <img src="img/dragen_ut_får_svensk_flagg_01.webp" class="flag-image" alt="Swedish Flag" loading="lazy">
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="kontakt" class="footer">
+        <div class="footer-content">
+            <h3>© 2025 Svenska Reformationsbibelsällskapet</h3>
+            <p>En modern version av Karl XII:s Bibel från 1703, baserad på Textus Receptus</p>
+            <p>Bankgiro: 5808-7446 | Swish: 1233882669 | E-post post@bibel.se</p>
+        </div>
+    </footer>
+
+    <!-- Optimized main site functionality script -->
+    <script>
+        (function() {
+            'use strict';
+            
+            // Mobile menu toggle functionality
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    navMenu.classList.toggle('active');
+                    hamburger.classList.toggle('active');
+                });
+
+                // Close menu when clicking on a link
+                const navLinks = document.querySelectorAll('.nav-menu a');
+                navLinks.forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    });
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    }
+                });
+            }
+
+            // Enhanced Sub-link expansion functionality
+            document.addEventListener('click', function(e) {
+                const mainLink = e.target.closest('.main-link');
+                if (mainLink) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const button = mainLink.querySelector('.expand-btn');
+                    if (button) {
+                        const targetId = button.getAttribute('data-target');
+                        const subLinks = document.getElementById(targetId);
+
+                        if (subLinks) {
+                            const isExpanded = subLinks.classList.contains('expanded');
+
+                            // Close other expanded sections
+                            const expandedSections = document.querySelectorAll('.sub-links.expanded');
+                            expandedSections.forEach(function(section) {
+                                if (section !== subLinks) {
+                                    section.classList.remove('expanded');
+                                    const otherButton = document.querySelector('[data-target="' + section.id + '"]');
+                                    if (otherButton) otherButton.textContent = '+';
+                                    section.style.maxHeight = '0px';
+                                }
+                            });
+
+                            if (isExpanded) {
+                                subLinks.classList.remove('expanded');
+                                button.textContent = '+';
+                                subLinks.style.maxHeight = '0px';
+                            } else {
+                                subLinks.classList.add('expanded');
+                                button.textContent = '−';
+                                subLinks.style.maxHeight = subLinks.scrollHeight + 'px';
+
+                                // Smooth scroll on mobile
+                                if (window.innerWidth <= 768) {
+                                    setTimeout(function() {
+                                        mainLink.scrollIntoView({
+                                            behavior: 'smooth',
+                                            block: 'nearest'
+                                        });
+                                    }, 100);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Smooth scrolling for internal links
+            const internalLinks = document.querySelectorAll('a[href^="#"]');
+            internalLinks.forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const headerHeight = document.querySelector('.header').offsetHeight;
+                        const targetPosition = target.offsetTop - headerHeight - 20;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            const scrollFadeElements = document.querySelectorAll('.scroll-fade');
+            scrollFadeElements.forEach(function(el) {
+                observer.observe(el);
+            });
+
+            // Viewport height fix for mobile browsers
+            function setViewportHeight() {
+                const vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', vh + 'px');
+            }
+
+            setViewportHeight();
+
+            // Debounced resize handler
+            let resizeTimeout;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(setViewportHeight, 250);
+            });
+
+            // Add loading animation to cards with staggered timing
+            setTimeout(function() {
+                const navCards = document.querySelectorAll('.nav-card');
+                navCards.forEach(function(card, index) {
+                    setTimeout(function() {
+                        card.classList.add('fade-in');
+                    }, index * 100);
+                });
+            }, 300);
+
+            // Prevent zoom on double-tap for iOS
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function(event) {
+                const now = Date.now();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+        })();
+    </script>
+</body>
+</html>
