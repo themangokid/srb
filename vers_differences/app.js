@@ -133,7 +133,7 @@ function createCategorySection(categoryKey, data) {
                 <thead>
                     <tr>
                         <th style="width: 15%">Vers & Parallel jämförelse</th>
-                        <th style="width: 35%">Utdrag (Ej citat!)</th>
+                        <th style="width: 35%">Utdrag från PDF</th>
                         <th style="width: 35%">UN-text</th>
                         <th style="width: 15%">Påverkan</th>
                     </tr>
