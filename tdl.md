@@ -59,3 +59,8 @@
 + [ ] Den röda färgen på logotypen kanske kan vara med på något annat ställe på hemsidan. (Done)
 + [ ] Ikonerna skulle kunna vara snabbknappar i en meny eller liknande åtminstånde användas igen på något sätt i framtiden
 + [ ] Lägg till mer alternativ för swish och generera QR-kod
+
+
+
+## Difference file:
++ Note that you can just remove the thing that minimizes the searchbar in the diff.html file.
