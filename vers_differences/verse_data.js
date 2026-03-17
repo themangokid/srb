@@ -1,3 +1,13 @@
+// INSTRUCTIONS: Replace this sample data with your full dataset
+// Each variant should have these 5 properties:
+// - category: "critical", "significant", "jesus", "god", "spirit", "family", "miracles", 
+//             "ethics", "names", "church", "resurrection", "prophecy", "sin", "ministry", 
+//             "eschatology", "minor", "john", "acts"
+// - verse: Bible reference like "1 Tim 3:16" or "1 Joh 5:7-8"
+// - tr_text: Text from Textus Receptus
+// - un_text: Text from UBS/Nestle-Aland
+// - impact: Description of the theological impact
+
 const allVariants = [
   {category: "critical", verse: "1 Joh 4:3", tr_text: "Men varje ande som inte bekänner att Jesus Kristus har kommit i köttet, är inte från Gud. Det är antikrists ande...", un_text: "utelämnar: Kristus har kommit i köttet.", impact: "UN utelämnar: Kristus har kommit i köttet"},
   {category: "critical", verse: "1 Tim 3:16", tr_text: "Och erkänt stor är gudaktighetens hemlig- het: Gud blev uppenbarad i köttet...", un_text: "Han.", impact: "Han."},
