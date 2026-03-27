@@ -44,7 +44,7 @@ const TYPE_ORDER = ['pap','cod','byz','ver','pat','tr'];
 // ── State ─────────────────────────────────────────────────────────────────────
 let filteredVariants  = [...allVariants];
 let currentFilter     = 'all';
-let witnessColVisible = true;
+let witnessColVisible = false;
 let _rowCounter       = 0;
 
 // ── Utility ───────────────────────────────────────────────────────────────────
@@ -80,14 +80,78 @@ function isRedundantImpact(impact, un_text) {
 
 function nextRowId() { return `wr-${++_rowCounter}`; }
 
+// ── Full names for every siglum ───────────────────────────────────────────────
+const WITNESS_NAMES = {
+    // Papyri
+    'P45':   'Papyrus 45 (Chester Beatty I, ~250 e.Kr.)',
+    'P46':   'Papyrus 46 (Chester Beatty II, ~200 e.Kr.)',
+    'P47':   'Papyrus 47 (Chester Beatty III, ~250 e.Kr.)',
+    'P52':   'Papyrus 52 (Rylands, ~125 e.Kr.)',
+    'P66':   'Papyrus 66 (Bodmer II, ~200 e.Kr.)',
+    'P72':   'Papyrus 72 (Bodmer VII–VIII, ~300 e.Kr.)',
+    'P74':   'Papyrus 74 (Bodmer XVII, ~600 e.Kr.)',
+    'P75':   'Papyrus 75 (Bodmer XIV–XV, ~200 e.Kr.)',
+    'P98':   'Papyrus 98 (~175 e.Kr.)',
+    // Major codices
+    'ℵ':     'Codex Sinaiticus (~350 e.Kr.)',
+    'A':     'Codex Alexandrinus (~425 e.Kr.)',
+    'B':     'Codex Vaticanus (~325 e.Kr.)',
+    'C':     'Codex Ephraemi Rescriptus (~450 e.Kr.)',
+    'D':     'Codex Bezae (~450 e.Kr.)',
+    'D²':    'Codex Claromontanus (~550 e.Kr.)',
+    'L':     'Codex Regius (~750 e.Kr.)',
+    'W':     'Codex Washingtonianus (~425 e.Kr.)',
+    // Byzantine / minuscules
+    '1':     'Minuskel 1 (1100-tal)',
+    '33':    'Minuskel 33 — "Drottningen av minusklerna" (800-tal)',
+    '61':    'Minuskel 61 / Codex Britannicus (~1520)',
+    '69':    'Minuskel 69 (1400-tal)',
+    '2814':  'Minuskel 2814 — Erasmus Upp-handskrift (1100-tal)',
+    '2815':  'Minuskel 2815 — Erasmus bashandskrift',
+    '2816':  'Minuskel 2816 — Erasmus bashandskrift',
+    '2817':  'Minuskel 2817 — Erasmus bashandskrift',
+    'Lect':  'Bysantinska lektionarier (majoritetstexten)',
+    'Comp':  'Complutensiska polyglotten (1514–1517)',
+    'min.36':'Minuskel 36',
+    // Ancient versions
+    'syrp':  'Peshitta — syrisk version (~400 e.Kr.)',
+    'syrh':  'Harklensisk syriska (616 e.Kr.)',
+    'it':    'Itala / Gamla latinska (~200 e.Kr.)',
+    'Vg':    'Vulgata — Hieronymus (~400 e.Kr.)',
+    'arm':   'Armenisk version (~430 e.Kr.)',
+    'got':   'Gotisk version — Wulfila (~350 e.Kr.)',
+    'aeth':  'Etiopisk version (tidiga medeltiden)',
+    // Church Fathers
+    'Iren':  'Irenaeus av Lyon (~130–202 e.Kr.)',
+    'Tert':  'Tertullianus (~155–240 e.Kr.)',
+    'Cypr':  'Cyprianus av Karthago (~210–258 e.Kr.)',
+    'Orig':  'Origenes (~185–254 e.Kr.)',
+    'Ambr':  'Ambrosius av Milano (~339–397 e.Kr.)',
+    'Basil': 'Basilius av Caesarea (~329–379 e.Kr.)',
+    'Chry':  'Johannes Chrysostomos (~347–407 e.Kr.)',
+    'Jer':   'Hieronymus (~347–420 e.Kr.)',
+    'Aug':   'Augustinus av Hippo (~354–430 e.Kr.)',
+    // Printed TR editions
+    'TR-E':  'Erasmus TR 1516–1535',
+    'TR-S':  'Stephanus TR 1546–1551 (Editio Regia)',
+    'TR-B':  'Beza TR 1565–1604 (KJV:s primära källa)',
+    'Elz':   'Elzevir 1624/1633 (myntade "Textus Receptus")',
+    'SCR':   'Scrivener 1894 (KJV:s exakta undertext, TBS)',
+};
+
+// ── Path to the GNT witness registry (sibling file in the same folder) ───────
+const GNT_PATH = 'gnt_v6.html';
+
 // ── Witness chip HTML ─────────────────────────────────────────────────────────
 function chipHtml(w) {
-    const cls = WITNESS_TYPES[w.t]?.cssClass || 'w-byz';
-    const esc = escapeHtml(w.s);
-    const typeLabel = WITNESS_TYPES[w.t]?.label || w.t;
-    return `<a href="gnt_v6.html" target="_blank" rel="noopener"
+    const cls      = WITNESS_TYPES[w.t]?.cssClass || 'w-byz';
+    const fullName = WITNESS_NAMES[w.s] || w.s;
+    const typeLabel= WITNESS_TYPES[w.t]?.label || w.t;
+    // Display name: full name stripped of parenthetical date, or sigla fallback
+    const display  = escapeHtml(fullName.split(' (~')[0].split(' (')[0]);
+    return `<a href="${GNT_PATH}" target="_blank" rel="noopener"
                class="w-chip ${cls}"
-               title="${esc} · ${typeLabel}">${esc}</a>`;
+               title="${escapeHtml(fullName)} · ${typeLabel}">${display}</a>`;
 }
 
 // ── Summary bar (collapsed state) ────────────────────────────────────────────
@@ -144,7 +208,7 @@ function expandedPanelHtml(witnesses, rowId) {
             <span class="w-side-badge w-label-un">UN stöds av</span>
             <div class="w-exp-chips">${unHtml}</div>
         </div>
-        <a href="gnt_v6.html" target="_blank" class="w-reg-link" rel="noopener">
+        <a href="${GNT_PATH}" target="_blank" class="w-reg-link" rel="noopener">
             📖 Öppna Vittnesregister
         </a>
     </div>`;
@@ -173,7 +237,7 @@ function renderWitnessMobile(witnesses) {
     return `<div class="card-section witness-mob-section">
         <div class="card-section-title">
             Handskrifter
-            <a href="gnt_v6.html" target="_blank" class="ms-reg-link" rel="noopener">↗ Vittnesregister</a>
+            <a href="${GNT_PATH}" target="_blank" class="ms-reg-link" rel="noopener">↗ Vittnesregister</a>
         </div>
         <div class="card-section-content">
             <div class="wm-side">
@@ -262,7 +326,7 @@ function createCategorySection(categoryKey, data) {
                 <th style="width:13%">Påverkan</th>
                 <th class="th-witness" style="width:22%">
                     Handskrifter
-                    <a href="gnt_v6.html" target="_blank" class="th-ms-link"
+                    <a href="${GNT_PATH}" target="_blank" class="th-ms-link"
                        rel="noopener" title="Öppna Vittnesregister">↗</a>
                 </th>
             </tr></thead>
@@ -300,6 +364,7 @@ function toggleWitnessColumn() {
     btn.title = witnessColVisible ? 'Dölj handskrifter' : 'Visa handskrifter';
     const label = btn.querySelector('.wtb-label');
     if (label) label.textContent = witnessColVisible ? 'Handskrifter på' : 'Handskrifter av';
+    pushUrlState(currentUiState());
 }
 
 // ── Render ────────────────────────────────────────────────────────────────────
@@ -364,7 +429,10 @@ function setupEventListeners() {
     let searchTimeout;
     searchInput.addEventListener('input', e => {
         clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(() => handleSearch(e.target.value), 250);
+        searchTimeout = setTimeout(() => {
+            handleSearch(e.target.value);
+            pushUrlState(currentUiState());
+        }, 250);
     });
 
     // Filter dropdown
@@ -383,6 +451,7 @@ function setupEventListeners() {
         currentFilterText.textContent = option.textContent.trim();
         handleFilterChange(option.getAttribute('data-category'));
         dropdown.classList.remove('show');
+        pushUrlState(currentUiState());
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
@@ -395,18 +464,154 @@ function setupEventListeners() {
         if ((e.ctrlKey || e.metaKey) && e.key === 'f') { e.preventDefault(); searchInput.focus(); searchInput.select(); }
         if (e.key === 'Escape') {
             if (dropdown.classList.contains('show')) dropdown.classList.remove('show');
-            else if (document.activeElement === searchInput) { searchInput.value = ''; handleSearch(''); searchInput.blur(); }
+            else if (document.activeElement === searchInput) { searchInput.value = ''; handleSearch(''); pushUrlState(currentUiState()); searchInput.blur(); }
         }
     });
+}
+
+// ── URL State Management ──────────────────────────────────────────────────────
+
+/**
+ * Read all relevant params from the current URL.
+ * Supported params:
+ *   ?kategori=critical        – filter by category key
+ *   ?sok=frälsning            – pre-fill search box
+ *   ?handskrifter=1           – show witness column
+ *   ?vers=Matt+5:18           – scroll to a specific verse row
+ */
+function readUrlParams() {
+    const p = new URLSearchParams(window.location.search);
+    return {
+        category:  p.get('kategori')     || 'all',
+        search:    p.get('sok')          || '',
+        witnesses: p.get('handskrifter') === '1',
+        verse:     p.get('vers')         || ''
+    };
+}
+
+/**
+ * Push the current UI state into the URL without reloading the page.
+ * Only adds params that differ from the default to keep URLs clean.
+ */
+function pushUrlState({ category, search, witnesses, verse } = {}) {
+    const p = new URLSearchParams();
+    if (category  && category  !== 'all') p.set('kategori',     category);
+    if (search    && search.trim())        p.set('sok',          search.trim());
+    if (witnesses)                          p.set('handskrifter', '1');
+    if (verse)                              p.set('vers',         verse);
+
+    const qs = p.toString();
+    const newUrl = qs ? `${location.pathname}?${qs}` : location.pathname;
+    history.replaceState(null, '', newUrl);
+}
+
+/** Collect current UI state into one object. */
+function currentUiState() {
+    return {
+        category:  currentFilter,
+        search:    document.getElementById('searchInput')?.value || '',
+        witnesses: witnessColVisible,
+        verse:     ''   // verse param is one-shot (we don't re-encode it after scroll)
+    };
+}
+
+/**
+ * Given a verse string (e.g. "Matt 5:18"), find the first matching <tr> or
+ * mobile card in the rendered DOM and scroll it into view smoothly.
+ * Works for both the desktop table and mobile card layout.
+ */
+function scrollToVerse(verseStr) {
+    if (!verseStr) return;
+    const needle = verseStr.trim().toLowerCase();
+
+    function attempt(retriesLeft) {
+        // On mobile: .card-verse-link is visible; on desktop: .verse-link / .verse-ref
+        const links = document.querySelectorAll('.card-verse-link, .verse-link, .verse-ref');
+        for (const el of links) {
+            if (el.textContent.trim().toLowerCase() === needle) {
+                const row = el.closest('.variant-card') || el.closest('tr');
+                const target = row || el;
+
+                // Make sure the target is actually rendered/visible before scrolling
+                const rect = target.getBoundingClientRect();
+                const isVisible = rect.width > 0 || rect.height > 0 ||
+                                  window.getComputedStyle(target).display !== 'none';
+
+                if (!isVisible && retriesLeft > 0) {
+                    setTimeout(() => attempt(retriesLeft - 1), 150);
+                    return;
+                }
+
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                target.classList.add('url-highlight');
+                setTimeout(() => target.classList.remove('url-highlight'), 2500);
+                return;
+            }
+        }
+        // Element not found yet — retry
+        if (retriesLeft > 0) setTimeout(() => attempt(retriesLeft - 1), 150);
+    }
+
+    // Use rAF to wait for the browser to finish painting, then attempt with retries
+    requestAnimationFrame(() => attempt(5));
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 function init() {
     console.log('Initializing app with', allVariants.length, 'variants');
     document.getElementById('loading').style.display = 'none';
+
+    // ── Read URL params first ──────────────────────────────────────────────────
+    const params = readUrlParams();
+
+    // ── Witness column state (URL overrides default-off) ──────────────────────
+    witnessColVisible = params.witnesses;
+    document.body.classList.toggle('witnesses-hidden', !witnessColVisible);
+    const btn = document.getElementById('witnessToggleBtn');
+    if (btn) {
+        btn.setAttribute('aria-pressed', String(witnessColVisible));
+        btn.classList.toggle('btn-active', witnessColVisible);
+        btn.title = witnessColVisible ? 'Dölj handskrifter' : 'Visa handskrifter';
+        const label = btn.querySelector('.wtb-label');
+        if (label) label.textContent = witnessColVisible ? 'Handskrifter på' : 'Handskrifter av';
+    }
+
     renderFilterDropdown();
-    renderCategories();
+
+    // ── Apply category filter from URL ────────────────────────────────────────
+    if (params.category && params.category !== 'all' && CATEGORIES[params.category]) {
+        currentFilter = params.category;
+        // Mark the correct dropdown option as active
+        const dropdown = document.getElementById('filterDropdown');
+        // Dropdown may not be populated yet — renderFilterDropdown() was just called
+        const opt = dropdown?.querySelector(`[data-category="${params.category}"]`);
+        if (opt) {
+            dropdown.querySelectorAll('.filter-option').forEach(o => o.classList.remove('active'));
+            opt.classList.add('active');
+        }
+        const filterText = document.getElementById('currentFilterText');
+        if (filterText) {
+            const cat = CATEGORIES[params.category];
+            const shortTitle = cat.title.split(': ')[1] || cat.title;
+            filterText.textContent = shortTitle;
+        }
+    }
+
+    // ── Apply search from URL ─────────────────────────────────────────────────
+    const searchInput = document.getElementById('searchInput');
+    if (params.search && searchInput) {
+        searchInput.value = params.search;
+    }
+
+    // Run the combined filter+search to populate filteredVariants
+    handleSearch(params.search);   // also calls renderCategories()
+
     setupEventListeners();
     setupScrollHeader();
+
+    // ── Scroll to verse after render ──────────────────────────────────────────
+    if (params.verse) {
+        scrollToVerse(params.verse);
+    }
 }
 document.addEventListener('DOMContentLoaded', init);

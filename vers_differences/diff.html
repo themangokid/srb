@@ -29,8 +29,7 @@
             </a>
             
             <h1 class="main-title">
-                <span class="title-text">Grundtextskillnader i Reformationsbibeln (Inofficiel)</span>  
-                
+                <span class="title-text">Grundtextskillnader i Reformationsbibeln</span>
             </h1>
             
             <div class="search-controls">
@@ -55,6 +54,11 @@
                     <span class="wtb-label">Handskrifter av</span>
                 </button>
             </div>
+
+            <!-- Hamburger / Settings button -->
+            <button class="settings-btn" id="settingsBtn" title="Inställningar" aria-label="Öppna inställningar">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
@@ -100,6 +104,124 @@
             </p>
         </div>
     </main>
+
+    <!-- Settings overlay -->
+    <div class="settings-overlay" id="settingsOverlay"></div>
+
+    <!-- Settings panel -->
+    <aside class="settings-panel" id="settingsPanel" role="dialog" aria-modal="true" aria-label="Inställningar">
+        <div class="settings-header">
+            <h2>⚙️ Inställningar</h2>
+            <button class="settings-close-btn" id="settingsCloseBtn" aria-label="Stäng">✕</button>
+        </div>
+        <div class="settings-body">
+
+            <!-- UTSEENDE -->
+            <div class="settings-group">
+                <div class="settings-group-title">Utseende</div>
+
+                <div class="setting-row">
+                    <label class="setting-label" for="set-dark">
+                        Mörkt tema
+                        <small>Byt till mörk bakgrund</small>
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="set-dark" data-setting="dark">
+                        <span class="toggle-track"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <label class="setting-label" for="set-sepia">
+                        Sepia-ton
+                        <small>Varm pergamentfärg</small>
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="set-sepia" data-setting="sepia">
+                        <span class="toggle-track"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <label class="setting-label" for="set-large-font">
+                        Större text
+                        <small>Ökar grundstorleken</small>
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="set-large-font" data-setting="large-font">
+                        <span class="toggle-track"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <label class="setting-label" for="set-compact-rows">
+                        Kompakta rader
+                        <small>Tätare tabellrader</small>
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="set-compact-rows" data-setting="compact-rows">
+                        <span class="toggle-track"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- LAYOUT -->
+            <div class="settings-group">
+                <div class="settings-group-title">Layout</div>
+
+                <div class="setting-row">
+                    <label class="setting-label" for="set-minimal-header">
+                        Minimal rubrik
+                        <small>Döljer titeln, kompakt verktygsfält</small>
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="set-minimal-header" data-setting="minimal-header">
+                        <span class="toggle-track"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <label class="setting-label" for="set-hide-impact">
+                        Dölj påverkan-kolumn
+                        <small>Mer plats för texterna</small>
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="set-hide-impact" data-setting="hide-impact">
+                        <span class="toggle-track"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- LÄSHJÄLP -->
+            <div class="settings-group">
+                <div class="settings-group-title">Läshjälp</div>
+
+                <div class="setting-row">
+                    <label class="setting-label" for="set-highlight-tr">
+                        Markera TR-text
+                        <small>Grön bakgrund på TR-kolumnen</small>
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="set-highlight-tr" data-setting="highlight-tr">
+                        <span class="toggle-track"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <label class="setting-label" for="set-always-witnesses">
+                        Visa alltid handskrifter
+                        <small>Expanderar automatiskt (mobil)</small>
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="set-always-witnesses" data-setting="always-witnesses">
+                        <span class="toggle-track"></span>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+        <button class="settings-reset-btn" id="settingsResetBtn">↺ Återställ alla inställningar</button>
+    </aside>
 
     <script src="verse_data.js"></script>
     <script src="app.js"></script>

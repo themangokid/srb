@@ -640,3 +640,16 @@ body.witnesses-hidden .witness-legend-bar { display: none; }
     .main-title { font-size: 1rem; padding: 0 52px; }
     .variant-card { padding: 0.75rem; }
 }
+
+/* ── URL-linked verse highlight ─────────────────────────────────────────────── */
+@keyframes url-highlight-fade {
+    0%   { background-color: rgba(139, 105, 20, 0.25); box-shadow: 0 0 0 3px rgba(139,105,20,0.4); }
+    70%  { background-color: rgba(139, 105, 20, 0.10); box-shadow: 0 0 0 2px rgba(139,105,20,0.2); }
+    100% { background-color: transparent; box-shadow: none; }
+}
+
+tr.url-highlight,
+.variant-card.url-highlight {
+    animation: url-highlight-fade 2.5s ease-out forwards;
+    border-radius: 4px;
+}

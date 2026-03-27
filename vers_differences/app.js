@@ -231,15 +231,21 @@ function renderWitnessCell(witnesses, rowId) {
     </td>`;
 }
 
-// ── Mobile card witness section ───────────────────────────────────────────────
+// ── Mobile card witness section (collapsible) ────────────────────────────────
 function renderWitnessMobile(witnesses) {
     if (!witnesses) return '';
-    return `<div class="card-section witness-mob-section">
+    const allCount = (witnesses.tr?.length || 0) + (witnesses.un?.length || 0);
+    return `<div class="card-section witness-mob-section mob-collapsed">
         <div class="card-section-title">
-            Handskrifter
-            <a href="${GNT_PATH}" target="_blank" class="ms-reg-link" rel="noopener">↗ Vittnesregister</a>
+            Handskrifter (${allCount})
+            <span style="display:flex;gap:8px;align-items:center">
+                <a href="${GNT_PATH}" target="_blank" class="ms-reg-link" rel="noopener">↗ Register</a>
+                <button class="mob-witness-toggle" onclick="toggleMobWitness(this)" aria-expanded="false">
+                    Visa <span class="mob-w-arrow">▾</span>
+                </button>
+            </span>
         </div>
-        <div class="card-section-content">
+        <div class="mob-witness-content">
             <div class="wm-side">
                 <span class="w-side-badge w-label-tr">TR</span>
                 <div class="wm-chips">${sideGroupsHtml(witnesses.tr)}</div>
@@ -556,6 +562,105 @@ function scrollToVerse(verseStr) {
     requestAnimationFrame(() => attempt(5));
 }
 
+// ── Mobile witness row toggle ────────────────────────────────────────────────
+function toggleMobWitness(btn) {
+    const section = btn.closest('.witness-mob-section');
+    if (!section) return;
+    const isCollapsed = section.classList.contains('mob-collapsed');
+    section.classList.toggle('mob-collapsed', !isCollapsed);
+    btn.setAttribute('aria-expanded', isCollapsed ? 'true' : 'false');
+    btn.innerHTML = isCollapsed
+        ? 'Dölj <span class="mob-w-arrow">▾</span>'
+        : 'Visa <span class="mob-w-arrow">▾</span>';
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SETTINGS SYSTEM
+// ═══════════════════════════════════════════════════════════════════════════
+
+const SETTINGS_KEY   = 'diffSettings_v1';
+const SETTINGS_DEFS  = [
+    { id: 'dark',             cls: 'setting-dark' },
+    { id: 'sepia',            cls: 'setting-sepia' },
+    { id: 'large-font',       cls: 'setting-large-font' },
+    { id: 'compact-rows',     cls: 'setting-compact-rows' },
+    { id: 'minimal-header',   cls: 'setting-minimal-header' },
+    { id: 'hide-impact',      cls: 'setting-hide-impact' },
+    { id: 'highlight-tr',     cls: 'setting-highlight-tr' },
+    { id: 'always-witnesses', cls: 'setting-always-witnesses' },
+];
+
+function loadSettings() {
+    try { return JSON.parse(localStorage.getItem(SETTINGS_KEY)) || { 'compact-rows': true, 'hide-impact': true, 'highlight-tr':true}; }
+    catch { return {}; }
+}
+
+function saveSettings(settings) {
+    try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch {}
+}
+
+function applySettings(settings) {
+    SETTINGS_DEFS.forEach(({ id, cls }) => {
+        document.body.classList.toggle(cls, !!settings[id]);
+        const el = document.getElementById(`set-${id}`);
+        if (el) el.checked = !!settings[id];
+    });
+}
+
+function setupSettings() {
+    const panel    = document.getElementById('settingsPanel');
+    const overlay  = document.getElementById('settingsOverlay');
+    const openBtn  = document.getElementById('settingsBtn');
+    const closeBtn = document.getElementById('settingsCloseBtn');
+    const resetBtn = document.getElementById('settingsResetBtn');
+    if (!panel) return;
+
+    // Load and apply saved settings on startup
+    applySettings(loadSettings());
+
+    function openPanel() {
+        panel.classList.add('open');
+        overlay.classList.add('open');
+        openBtn.classList.add('active');
+        openBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closePanel() {
+        panel.classList.remove('open');
+        overlay.classList.remove('open');
+        openBtn.classList.remove('active');
+        openBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    openBtn.addEventListener('click', () =>
+        panel.classList.contains('open') ? closePanel() : openPanel()
+    );
+    closeBtn.addEventListener('click', closePanel);
+    overlay.addEventListener('click', closePanel);
+
+    // Keyboard: Escape closes
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && panel.classList.contains('open')) closePanel();
+    });
+
+    // Individual toggle changes
+    SETTINGS_DEFS.forEach(({ id }) => {
+        const el = document.getElementById(`set-${id}`);
+        if (!el) return;
+        el.addEventListener('change', () => {
+            const settings = loadSettings();
+            settings[id] = el.checked;
+            saveSettings(settings);
+            applySettings(settings);
+        });
+    });
+
+    // Reset all
+    resetBtn.addEventListener('click', () => {
+        saveSettings({});
+        applySettings({});
+    });
+}
+
 // ── Init ──────────────────────────────────────────────────────────────────────
 function init() {
     console.log('Initializing app with', allVariants.length, 'variants');
@@ -608,6 +713,7 @@ function init() {
 
     setupEventListeners();
     setupScrollHeader();
+    setupSettings();
 
     // ── Scroll to verse after render ──────────────────────────────────────────
     if (params.verse) {
