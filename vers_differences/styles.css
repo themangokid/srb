@@ -555,27 +555,65 @@ body.witnesses-hidden .witness-legend-bar { display: none; }
 
 /* Mobile */
 @media (max-width: 768px) {
-    :root { --header-height: 130px; --header-height-compact: 70px; }
+    :root { --header-height: 160px; --header-height-compact: 70px; }
 
     .main-content { padding: 0.75rem; }
-    .nav-container { padding: 10px 56px 8px 12px; }
-    .header.compact .nav-container { padding: 6px 56px 6px 12px; }
-    .logo-link { left: 12px; top: 10px; }
-    .header.compact .logo-link { top: 6px; }
-    .header-logo { height: 44px; }
-    .header.compact .header-logo { height: 34px; }
-    .main-title { font-size: 1.1rem; padding: 0 60px; margin-bottom: 8px; }
-    .header.compact .main-title { font-size: 0.95rem; margin-bottom: 4px; }
 
-    .settings-btn { right: 10px; top: 12px; transform: none; }
-    .header.compact .settings-btn { top: 8px; }
+    /* Logo sits top-left, vertically centred in the nav row */
+    .logo-link { left: 10px; top: 50%; transform: translateY(-50%); position: absolute; }
+    .header-logo { height: 40px; }
+    .header.compact .logo-link { top: 50%; }
+    .header.compact .header-logo { height: 32px; }
 
-    .search-controls { flex-direction: column; gap: 6px; }
-    .search-box { min-height: 44px; font-size: 16px; padding: 0.7rem 1rem; max-width: 100%; }
+    /* Settings btn top-right, vertically centred */
+    .settings-btn { right: 10px; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; }
+
+    /* Nav: leave room for logo (58px) and settings btn (52px) on each side */
+    .nav-container {
+        padding: 10px 58px 10px 58px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        position: relative;
+    }
+    .header.compact .nav-container { padding: 6px 58px; }
+
+    /* Title */
+    .main-title { font-size: 1rem; padding: 0; margin: 0 0 4px 0; text-align: center; }
+    .header.compact .main-title { font-size: 0.9rem; margin-bottom: 0; }
+
+    /* Search controls stack vertically, full width */
+    .search-controls { flex-direction: column; gap: 5px; width: 100%; }
+    .search-box { min-height: 42px; font-size: 16px; padding: 0.6rem 0.9rem; max-width: 100%; width: 100%; }
     .mobile-filter-dropdown { width: 100%; }
-    .filter-dropdown-btn { padding: 0.7rem 1rem; min-height: 44px; font-size: 0.95rem; }
+    .filter-dropdown-btn { padding: 0.6rem 0.9rem; min-height: 42px; font-size: 0.92rem; }
+    .witness-toggle-btn { width: 100%; justify-content: center; min-height: 42px; font-size: 0.88rem; }
 
-    .witness-toggle-btn { width: 100%; justify-content: center; min-height: 44px; font-size: 0.9rem; }
+    /* Minimal header on mobile: hide title, put controls in one compact row */
+    body.setting-minimal-header .nav-container {
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 5px;
+        padding: 5px 52px;
+    }
+    body.setting-minimal-header .search-controls {
+        flex-direction: row;
+        flex: 1;
+        gap: 4px;
+        width: auto;
+        min-width: 0;
+    }
+    body.setting-minimal-header .search-box {
+        min-height: 34px; font-size: 14px; padding: 0.25rem 0.5rem; min-width: 0; flex: 1;
+    }
+    body.setting-minimal-header .mobile-filter-dropdown { width: auto; flex: 1.2; min-width: 0; }
+    body.setting-minimal-header .filter-dropdown-btn { min-height: 34px; padding: 0.25rem 0.5rem; font-size: 0.78rem; }
+    body.setting-minimal-header .witness-toggle-btn {
+        min-height: 34px; padding: 0.25rem 0.4rem; font-size: 0.75rem; width: auto; flex-shrink: 0;
+    }
+    body.setting-minimal-header .wtb-label { display: none; }
 
     /* Switch from table to cards on mobile */
     .variant-table { display: none !important; }
@@ -637,10 +675,12 @@ body.witnesses-hidden .witness-legend-bar { display: none; }
 
 /* Small phones */
 @media (max-width: 480px) {
-    .logo-link { left: 8px; top: 8px; }
-    .header-logo { height: 38px; }
-    .nav-container { padding: 8px 10px; }
-    .main-title { font-size: 1rem; padding: 0 52px; }
+    .logo-link { left: 8px; }
+    .header-logo { height: 36px; }
+    .settings-btn { right: 8px; }
+    .nav-container { padding: 8px 52px; }
+    .header.compact .nav-container { padding: 5px 52px; }
+    .main-title { font-size: 0.9rem; }
     .variant-card { padding: 0.75rem; }
 }
 
@@ -865,20 +905,20 @@ tr.url-highlight,
    SETTINGS-DRIVEN BODY CLASSES
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* ── Minimal header: collapses to a slim bar ── */
-body.setting-minimal-header .header {
-    background: var(--primary-bg);
+/* ── Minimal header: collapses to a slim bar (desktop only) ── */
+@media (min-width: 769px) {
+    body.setting-minimal-header .header { background: var(--primary-bg); }
+    body.setting-minimal-header .main-title { display: none; }
+    body.setting-minimal-header .nav-container { padding: 6px 56px 6px 80px; }
+    body.setting-minimal-header .logo-link { top: 50%; transform: translateY(-50%); }
+    body.setting-minimal-header .header-logo { height: 36px; }
+    body.setting-minimal-header .search-controls { flex-direction: row; gap: 8px; }
+    body.setting-minimal-header .mobile-filter-dropdown { width: 200px; }
+    body.setting-minimal-header .search-box { min-height: 36px; padding: 0.4rem 0.8rem; font-size: 0.88rem; }
+    body.setting-minimal-header .filter-dropdown-btn { min-height: 36px; padding: 0.4rem 0.8rem; font-size: 0.88rem; }
+    body.setting-minimal-header .witness-toggle-btn { min-height: 36px; padding: 0.3rem 0.7rem; font-size: 0.8rem; }
+    body.setting-minimal-header .settings-btn { top: 50%; transform: translateY(-50%); }
 }
-body.setting-minimal-header .main-title { display: none; }
-body.setting-minimal-header .nav-container { padding: 6px 56px 6px 70px; }
-body.setting-minimal-header .logo-link { top: 6px; }
-body.setting-minimal-header .header-logo { height: 36px; }
-body.setting-minimal-header .search-controls { flex-direction: row; gap: 8px; }
-body.setting-minimal-header .mobile-filter-dropdown { width: 200px; }
-body.setting-minimal-header .search-box { min-height: 36px; padding: 0.4rem 0.8rem; font-size: 0.88rem; }
-body.setting-minimal-header .filter-dropdown-btn { min-height: 36px; padding: 0.4rem 0.8rem; font-size: 0.88rem; }
-body.setting-minimal-header .witness-toggle-btn { min-height: 36px; padding: 0.3rem 0.7rem; font-size: 0.8rem; }
-body.setting-minimal-header .settings-btn { top: 50%; }
 
 /* ── Dark mode ── */
 body.setting-dark {
