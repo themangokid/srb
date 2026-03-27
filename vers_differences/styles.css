@@ -558,14 +558,17 @@ body.witnesses-hidden .witness-legend-bar { display: none; }
     :root { --header-height: 130px; --header-height-compact: 70px; }
 
     .main-content { padding: 0.75rem; }
-    .nav-container { padding: 10px 12px 8px 12px; }
-    .header.compact .nav-container { padding: 6px 12px; }
+    .nav-container { padding: 10px 56px 8px 12px; }
+    .header.compact .nav-container { padding: 6px 56px 6px 12px; }
     .logo-link { left: 12px; top: 10px; }
     .header.compact .logo-link { top: 6px; }
     .header-logo { height: 44px; }
     .header.compact .header-logo { height: 34px; }
     .main-title { font-size: 1.1rem; padding: 0 60px; margin-bottom: 8px; }
     .header.compact .main-title { font-size: 0.95rem; margin-bottom: 4px; }
+
+    .settings-btn { right: 10px; top: 12px; transform: none; }
+    .header.compact .settings-btn { top: 8px; }
 
     .search-controls { flex-direction: column; gap: 6px; }
     .search-box { min-height: 44px; font-size: 16px; padding: 0.7rem 1rem; max-width: 100%; }
