@@ -555,63 +555,58 @@ body.witnesses-hidden .witness-legend-bar { display: none; }
 
 /* Mobile */
 @media (max-width: 768px) {
-    :root { --header-height: 160px; --header-height-compact: 70px; }
+    :root { --header-height: 160px; --header-height-compact: 60px; }
 
     .main-content { padding: 0.75rem; }
 
-    /* Logo sits top-left, vertically centred in the nav row */
-    .logo-link { left: 10px; top: 50%; transform: translateY(-50%); position: absolute; }
-    .header-logo { height: 40px; }
-    .header.compact .logo-link { top: 50%; }
-    .header.compact .header-logo { height: 32px; }
-
-    /* Settings btn top-right, vertically centred */
-    .settings-btn { right: 10px; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; }
-
-    /* Nav: leave room for logo (58px) and settings btn (52px) on each side */
+    /* Nav is a flex column; logo and settings btn are absolute anchors */
     .nav-container {
-        padding: 10px 58px 10px 58px;
+        padding: 8px 48px 8px 54px; /* left: logo space, right: settings btn space */
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        gap: 6px;
+        gap: 5px;
         position: relative;
     }
-    .header.compact .nav-container { padding: 6px 58px; }
+    .header.compact .nav-container { padding: 5px 48px 5px 54px; }
 
-    /* Title */
-    .main-title { font-size: 1rem; padding: 0; margin: 0 0 4px 0; text-align: center; }
-    .header.compact .main-title { font-size: 0.9rem; margin-bottom: 0; }
+    /* Logo: absolute top-left */
+    .logo-link { position: absolute; left: 8px; top: 8px; transform: none; }
+    .header-logo { height: 38px; }
+    .header.compact .logo-link { top: 50%; transform: translateY(-50%); }
+    .header.compact .header-logo { height: 30px; }
 
-    /* Search controls stack vertically, full width */
+    /* Settings btn: absolute top-right */
+    .settings-btn { position: absolute; right: 8px; top: 8px; transform: none; width: 36px; height: 36px; }
+    .header.compact .settings-btn { top: 50%; transform: translateY(-50%); }
+
+    /* Title: normal flow, centred */
+    .main-title { font-size: 0.95rem; padding: 0; margin: 0; text-align: center; line-height: 1.3; }
+    .header.compact .main-title { display: none; }
+
+    /* Search controls: full width, stacked */
     .search-controls { flex-direction: column; gap: 5px; width: 100%; }
-    .search-box { min-height: 42px; font-size: 16px; padding: 0.6rem 0.9rem; max-width: 100%; width: 100%; }
+    .search-box { min-height: 40px; font-size: 16px; padding: 0.5rem 0.85rem; max-width: 100%; width: 100%; }
     .mobile-filter-dropdown { width: 100%; }
-    .filter-dropdown-btn { padding: 0.6rem 0.9rem; min-height: 42px; font-size: 0.92rem; }
-    .witness-toggle-btn { width: 100%; justify-content: center; min-height: 42px; font-size: 0.88rem; }
+    .filter-dropdown-btn { padding: 0.5rem 0.85rem; min-height: 40px; font-size: 0.9rem; }
+    .witness-toggle-btn { width: 100%; justify-content: center; min-height: 40px; font-size: 0.88rem; }
 
-    /* Minimal header on mobile: hide title, put controls in one compact row */
+    /* Minimal header on mobile: controls only, no title */
+    body.setting-minimal-header .main-title { display: none; }
     body.setting-minimal-header .nav-container {
-        flex-direction: row;
-        align-items: center;
-        flex-wrap: nowrap;
-        gap: 5px;
-        padding: 5px 52px;
+        flex-direction: row; align-items: center; flex-wrap: nowrap;
+        gap: 4px; padding: 5px 48px 5px 54px;
     }
     body.setting-minimal-header .search-controls {
-        flex-direction: row;
-        flex: 1;
-        gap: 4px;
-        width: auto;
-        min-width: 0;
+        flex-direction: row; flex: 1; gap: 4px; width: auto; min-width: 0;
     }
     body.setting-minimal-header .search-box {
-        min-height: 34px; font-size: 14px; padding: 0.25rem 0.5rem; min-width: 0; flex: 1;
+        min-height: 34px; font-size: 14px; padding: 0.25rem 0.5rem; flex: 1; min-width: 0;
     }
     body.setting-minimal-header .mobile-filter-dropdown { width: auto; flex: 1.2; min-width: 0; }
     body.setting-minimal-header .filter-dropdown-btn { min-height: 34px; padding: 0.25rem 0.5rem; font-size: 0.78rem; }
     body.setting-minimal-header .witness-toggle-btn {
-        min-height: 34px; padding: 0.25rem 0.4rem; font-size: 0.75rem; width: auto; flex-shrink: 0;
+        min-height: 34px; padding: 0.25rem 0.4rem; width: auto; flex-shrink: 0;
     }
     body.setting-minimal-header .wtb-label { display: none; }
 
@@ -675,12 +670,12 @@ body.witnesses-hidden .witness-legend-bar { display: none; }
 
 /* Small phones */
 @media (max-width: 480px) {
-    .logo-link { left: 8px; }
-    .header-logo { height: 36px; }
-    .settings-btn { right: 8px; }
-    .nav-container { padding: 8px 52px; }
-    .header.compact .nav-container { padding: 5px 52px; }
-    .main-title { font-size: 0.9rem; }
+    .logo-link { left: 6px; top: 6px; }
+    .header-logo { height: 34px; }
+    .settings-btn { right: 6px; top: 6px; width: 34px; height: 34px; }
+    .nav-container { padding: 6px 46px 6px 48px; }
+    .header.compact .nav-container { padding: 4px 46px 4px 48px; }
+    .main-title { font-size: 0.88rem; }
     .variant-card { padding: 0.75rem; }
 }
 
