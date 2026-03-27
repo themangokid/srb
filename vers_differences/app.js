@@ -364,6 +364,7 @@ function toggleWitnessColumn() {
     btn.title = witnessColVisible ? 'Dölj handskrifter' : 'Visa handskrifter';
     const label = btn.querySelector('.wtb-label');
     if (label) label.textContent = witnessColVisible ? 'Handskrifter på' : 'Handskrifter av';
+    pushUrlState(currentUiState());
 }
 
 // ── Render ────────────────────────────────────────────────────────────────────
@@ -428,7 +429,10 @@ function setupEventListeners() {
     let searchTimeout;
     searchInput.addEventListener('input', e => {
         clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(() => handleSearch(e.target.value), 250);
+        searchTimeout = setTimeout(() => {
+            handleSearch(e.target.value);
+            pushUrlState(currentUiState());
+        }, 250);
     });
 
     // Filter dropdown
@@ -447,6 +451,7 @@ function setupEventListeners() {
         currentFilterText.textContent = option.textContent.trim();
         handleFilterChange(option.getAttribute('data-category'));
         dropdown.classList.remove('show');
+        pushUrlState(currentUiState());
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
@@ -459,9 +464,81 @@ function setupEventListeners() {
         if ((e.ctrlKey || e.metaKey) && e.key === 'f') { e.preventDefault(); searchInput.focus(); searchInput.select(); }
         if (e.key === 'Escape') {
             if (dropdown.classList.contains('show')) dropdown.classList.remove('show');
-            else if (document.activeElement === searchInput) { searchInput.value = ''; handleSearch(''); searchInput.blur(); }
+            else if (document.activeElement === searchInput) { searchInput.value = ''; handleSearch(''); pushUrlState(currentUiState()); searchInput.blur(); }
         }
     });
+}
+
+// ── URL State Management ──────────────────────────────────────────────────────
+
+/**
+ * Read all relevant params from the current URL.
+ * Supported params:
+ *   ?kategori=critical        – filter by category key
+ *   ?sok=frälsning            – pre-fill search box
+ *   ?handskrifter=1           – show witness column
+ *   ?vers=Matt+5:18           – scroll to a specific verse row
+ */
+function readUrlParams() {
+    const p = new URLSearchParams(window.location.search);
+    return {
+        category:  p.get('kategori')     || 'all',
+        search:    p.get('sok')          || '',
+        witnesses: p.get('handskrifter') === '1',
+        verse:     p.get('vers')         || ''
+    };
+}
+
+/**
+ * Push the current UI state into the URL without reloading the page.
+ * Only adds params that differ from the default to keep URLs clean.
+ */
+function pushUrlState({ category, search, witnesses, verse } = {}) {
+    const p = new URLSearchParams();
+    if (category  && category  !== 'all') p.set('kategori',     category);
+    if (search    && search.trim())        p.set('sok',          search.trim());
+    if (witnesses)                          p.set('handskrifter', '1');
+    if (verse)                              p.set('vers',         verse);
+
+    const qs = p.toString();
+    const newUrl = qs ? `${location.pathname}?${qs}` : location.pathname;
+    history.replaceState(null, '', newUrl);
+}
+
+/** Collect current UI state into one object. */
+function currentUiState() {
+    return {
+        category:  currentFilter,
+        search:    document.getElementById('searchInput')?.value || '',
+        witnesses: witnessColVisible,
+        verse:     ''   // verse param is one-shot (we don't re-encode it after scroll)
+    };
+}
+
+/**
+ * Given a verse string (e.g. "Matt 5:18"), find the first matching <tr> or
+ * mobile card in the rendered DOM and scroll it into view smoothly.
+ */
+function scrollToVerse(verseStr) {
+    if (!verseStr) return;
+    const needle = verseStr.trim().toLowerCase();
+
+    // Look for a verse-link or verse-ref whose text matches
+    const links = document.querySelectorAll('.verse-link, .verse-ref, .card-verse-link');
+    for (const el of links) {
+        if (el.textContent.trim().toLowerCase() === needle) {
+            // Walk up to the <tr> or .variant-card
+            const row = el.closest('tr') || el.closest('.variant-card');
+            const target = row || el;
+            setTimeout(() => {
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Brief highlight so the user can spot it
+                target.classList.add('url-highlight');
+                setTimeout(() => target.classList.remove('url-highlight'), 2500);
+            }, 100);
+            return;
+        }
+    }
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
@@ -469,20 +546,56 @@ function init() {
     console.log('Initializing app with', allVariants.length, 'variants');
     document.getElementById('loading').style.display = 'none';
 
-    // Apply default witness-hidden state before first render
-    document.body.classList.add('witnesses-hidden');
+    // ── Read URL params first ──────────────────────────────────────────────────
+    const params = readUrlParams();
+
+    // ── Witness column state (URL overrides default-off) ──────────────────────
+    witnessColVisible = params.witnesses;
+    document.body.classList.toggle('witnesses-hidden', !witnessColVisible);
     const btn = document.getElementById('witnessToggleBtn');
     if (btn) {
-        btn.setAttribute('aria-pressed', 'false');
-        btn.classList.remove('btn-active');
-        btn.title = 'Visa handskrifter';
+        btn.setAttribute('aria-pressed', String(witnessColVisible));
+        btn.classList.toggle('btn-active', witnessColVisible);
+        btn.title = witnessColVisible ? 'Dölj handskrifter' : 'Visa handskrifter';
         const label = btn.querySelector('.wtb-label');
-        if (label) label.textContent = 'Handskrifter av';
+        if (label) label.textContent = witnessColVisible ? 'Handskrifter på' : 'Handskrifter av';
     }
 
     renderFilterDropdown();
-    renderCategories();
+
+    // ── Apply category filter from URL ────────────────────────────────────────
+    if (params.category && params.category !== 'all' && CATEGORIES[params.category]) {
+        currentFilter = params.category;
+        // Mark the correct dropdown option as active
+        const dropdown = document.getElementById('filterDropdown');
+        // Dropdown may not be populated yet — renderFilterDropdown() was just called
+        const opt = dropdown?.querySelector(`[data-category="${params.category}"]`);
+        if (opt) {
+            dropdown.querySelectorAll('.filter-option').forEach(o => o.classList.remove('active'));
+            opt.classList.add('active');
+        }
+        const filterText = document.getElementById('currentFilterText');
+        if (filterText) {
+            const cat = CATEGORIES[params.category];
+            filterText.textContent = cat.emoji + ' ' + (cat.title.split(': ')[1] || cat.title);
+        }
+    }
+
+    // ── Apply search from URL ─────────────────────────────────────────────────
+    const searchInput = document.getElementById('searchInput');
+    if (params.search && searchInput) {
+        searchInput.value = params.search;
+    }
+
+    // Run the combined filter+search to populate filteredVariants
+    handleSearch(params.search);   // also calls renderCategories()
+
     setupEventListeners();
     setupScrollHeader();
+
+    // ── Scroll to verse after render ──────────────────────────────────────────
+    if (params.verse) {
+        scrollToVerse(params.verse);
+    }
 }
 document.addEventListener('DOMContentLoaded', init);
