@@ -518,27 +518,42 @@ function currentUiState() {
 /**
  * Given a verse string (e.g. "Matt 5:18"), find the first matching <tr> or
  * mobile card in the rendered DOM and scroll it into view smoothly.
+ * Works for both the desktop table and mobile card layout.
  */
 function scrollToVerse(verseStr) {
     if (!verseStr) return;
     const needle = verseStr.trim().toLowerCase();
 
-    // Look for a verse-link or verse-ref whose text matches
-    const links = document.querySelectorAll('.verse-link, .verse-ref, .card-verse-link');
-    for (const el of links) {
-        if (el.textContent.trim().toLowerCase() === needle) {
-            // Walk up to the <tr> or .variant-card
-            const row = el.closest('tr') || el.closest('.variant-card');
-            const target = row || el;
-            setTimeout(() => {
+    function attempt(retriesLeft) {
+        // On mobile: .card-verse-link is visible; on desktop: .verse-link / .verse-ref
+        const links = document.querySelectorAll('.card-verse-link, .verse-link, .verse-ref');
+        for (const el of links) {
+            if (el.textContent.trim().toLowerCase() === needle) {
+                const row = el.closest('.variant-card') || el.closest('tr');
+                const target = row || el;
+
+                // Make sure the target is actually rendered/visible before scrolling
+                const rect = target.getBoundingClientRect();
+                const isVisible = rect.width > 0 || rect.height > 0 ||
+                                  window.getComputedStyle(target).display !== 'none';
+
+                if (!isVisible && retriesLeft > 0) {
+                    setTimeout(() => attempt(retriesLeft - 1), 150);
+                    return;
+                }
+
                 target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                // Brief highlight so the user can spot it
                 target.classList.add('url-highlight');
                 setTimeout(() => target.classList.remove('url-highlight'), 2500);
-            }, 100);
-            return;
+                return;
+            }
         }
+        // Element not found yet — retry
+        if (retriesLeft > 0) setTimeout(() => attempt(retriesLeft - 1), 150);
     }
+
+    // Use rAF to wait for the browser to finish painting, then attempt with retries
+    requestAnimationFrame(() => attempt(5));
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
@@ -577,7 +592,8 @@ function init() {
         const filterText = document.getElementById('currentFilterText');
         if (filterText) {
             const cat = CATEGORIES[params.category];
-            filterText.textContent = cat.emoji + ' ' + (cat.title.split(': ')[1] || cat.title);
+            const shortTitle = cat.title.split(': ')[1] || cat.title;
+            filterText.textContent = shortTitle;
         }
     }
 
