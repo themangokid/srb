@@ -48,7 +48,7 @@ function groupedWitnesses(list) {
         <div class="card-section-content">{{ variant.un_text }}</div>
       </div>
 
-      <div v-if="!impactRedundant" class="card-section impact-section">
+      <div v-if="variant.impact" class="card-section impact-section">
         <div class="card-section-title">Påverkan</div>
         <div class="card-section-content">{{ variant.impact }}</div>
       </div>

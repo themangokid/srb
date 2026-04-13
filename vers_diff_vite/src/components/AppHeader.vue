@@ -28,25 +28,27 @@ const dropdownOpen = ref(false)
 const dropdownEl   = ref(null)
 
 function selectFilter(key) {
-  emit('update:filter', key)
   dropdownOpen.value = false
+  emit('update:filter', key)
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
 function currentLabel() {
-  if (props.filter === 'all') return 'Alla kategorier'
+  if (props.filter === 'all') return 'Kategorier'
   const cat = CATEGORIES[props.filter]
   if (!cat) return props.filter
   const parts = cat.title.split(': ')
-  return (parts[1] || cat.title).substring(0, 30)
+  return (parts[1] || cat.title).substring(0, 28)
 }
 
+// Close dropdown on outside click
 function onDocClick(e) {
-  if (dropdownEl.value && !dropdownEl.value.contains(e.target)) {
+  if (dropdownOpen.value && dropdownEl.value && !dropdownEl.value.contains(e.target)) {
     dropdownOpen.value = false
   }
 }
-onMounted(() => document.addEventListener('click', onDocClick))
-onUnmounted(() => document.removeEventListener('click', onDocClick))
+onMounted(() => document.addEventListener('click', onDocClick, true))
+onUnmounted(() => document.removeEventListener('click', onDocClick, true))
 
 // Keyboard
 function onKeydown(e) {
@@ -91,17 +93,17 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
             :class="{ active: filter !== 'all', open: dropdownOpen }"
             @click.stop="dropdownOpen = !dropdownOpen"
           >
-            <span>{{ currentLabel() }}</span>
+            <span class="filter-btn-text">{{ currentLabel() }}</span>
             <span class="filter-chevron">▼</span>
           </button>
 
-          <div v-if="dropdownOpen" class="filter-dropdown">
+          <div v-if="dropdownOpen" class="filter-dropdown" @click.stop>
             <div
               class="filter-option"
               :class="{ selected: filter === 'all' }"
               @click="selectFilter('all')"
             >
-              Alla kategorier
+              Alla kategorier (visa alla)
             </div>
             <div
               v-for="(cat, key) in CATEGORIES"

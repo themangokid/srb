@@ -13,7 +13,7 @@ export const SETTINGS_DEFS = [
   { id: 'always-witnesses', cls: 'setting-always-witnesses', label: 'Visa alltid handskrifter', desc: 'Expanderar automatiskt (mobil)' },
 ]
 
-const DEFAULTS = { 'compact-rows': true, 'hide-impact': true, 'highlight-tr': true }
+const DEFAULTS = { 'sepia': true, 'large-font': true, 'compact-rows': true, 'minimal-header': true, 'highlight-tr': true }
 
 function load() {
   try { return JSON.parse(localStorage.getItem(SETTINGS_KEY)) || { ...DEFAULTS } }
@@ -43,7 +43,7 @@ export function useSettings() {
   }
 
   function resetSettings() {
-    settings.value = {}
+    settings.value = { ...DEFAULTS }
   }
 
   return { settings, toggle, resetSettings, SETTINGS_DEFS }

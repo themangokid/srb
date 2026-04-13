@@ -160,7 +160,8 @@ a:hover { color: var(--accent-light); text-decoration: underline; }
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 /* Search box */
@@ -942,13 +943,26 @@ a:hover { color: var(--accent-light); text-decoration: underline; }
   .summary-section { padding: 20px 16px; }
 }
 
+/* ─ Hamburger always visible: collapse non-essentials below 640px ─ */
+@media (max-width: 640px) {
+  /* Hide witness toggle — witnesses are still accessible via cards */
+  .witness-toggle-btn { display: none; }
+  /* Let search-controls compress so settings-btn stays in view.
+     NO overflow:hidden here — that would clip the filter dropdown! */
+  .search-controls { flex: 1; min-width: 0; gap: 6px; }
+  .search-box { min-width: 0; flex: 1; max-width: 160px; }
+}
+
 @media (max-width: 600px) {
-  :root { --header-h: 56px; }
-  .nav-container { padding: 0 10px; gap: 6px; }
-  .header-logo { height: 30px; }
-  .search-box { width: 120px; font-size: .8rem; }
-  .search-box:focus { width: 150px; }
-  .filter-btn { font-size: .78rem; padding: 5px 9px; }
+  :root { --header-h: 52px; }
+  .nav-container { padding: 0 8px; gap: 6px; }
+  .header-logo { height: 28px; }
+  .search-box { font-size: .8rem; }
+  .filter-btn { font-size: .78rem; padding: 5px 8px; }
+  /* Shorten filter label on small screens */
+  .filter-btn-text { max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block; }
+  /* Settings button always visible */
+  .settings-btn { flex-shrink: 0; width: 34px; height: 34px; }
   .settings-panel { width: 100%; }
   .main-content { padding: 12px 10px 40px; }
   .summary-section { padding: 16px 12px; }
