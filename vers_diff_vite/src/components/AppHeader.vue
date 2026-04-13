@@ -2,6 +2,8 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { CATEGORIES } from '../constants/index.js'
 
+const baseUrl = import.meta.env.BASE_URL
+
 const props = defineProps({
   search:         { type: String,  default: '' },
   filter:         { type: String,  default: 'all' },
@@ -67,7 +69,7 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
 <template>
   <header class="app-header" :class="{ compact }">
     <div class="nav-container">
-      <a :href="import.meta.env.BASE_URL" class="logo-link">
+      <a :href="baseUrl" class="logo-link">
         <img
           src="/img/srb_bold_dampended_red_not_done.png"
           class="header-logo"
