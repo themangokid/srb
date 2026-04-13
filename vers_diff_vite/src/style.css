@@ -441,8 +441,12 @@ a:hover { color: var(--accent-light); text-decoration: underline; }
   font-weight: 600;
   color: var(--accent);
   white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  text-underline-offset: 2px;
 }
-.verse-link:hover { color: var(--accent-light); }
+.verse-link:hover { color: var(--accent-light); text-decoration-color: var(--accent-light); }
+.verse-link::after { content: ' ↗'; font-size: .7em; opacity: .55; }
 
 .verse-parallel-link {
   display: inline-block;
@@ -476,9 +480,10 @@ a:hover { color: var(--accent-light); text-decoration: underline; }
 }
 .impact-same { color: var(--text-light); }
 
-/* Impact column hide */
+/* Impact column hide — desktop table + mobile cards */
 .setting-hide-impact .col-impact,
-.setting-hide-impact .impact-col { display: none; }
+.setting-hide-impact .impact-col,
+.setting-hide-impact .impact-section { display: none; }
 
 /* Witness column hide */
 .witnesses-hidden .col-witness,
@@ -658,8 +663,15 @@ a:hover { color: var(--accent-light); text-decoration: underline; }
   font-size: .95rem;
 }
 
-.card-verse-link { color: var(--accent); font-weight: 700; }
-.card-verse-link:hover { color: var(--accent-light); }
+.card-verse-link {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  text-underline-offset: 2px;
+}
+.card-verse-link:hover { color: var(--accent-light); text-decoration-color: var(--accent-light); }
+.card-verse-link[href]::after { content: ' ↗'; font-size: .7em; opacity: .55; font-weight: 400; }
 
 .card-content { padding: 10px 14px; display: flex; flex-direction: column; gap: 8px; }
 
@@ -730,7 +742,6 @@ a:hover { color: var(--accent-light); text-decoration: underline; }
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--transition);
-  backdrop-filter: blur(2px);
 }
 .settings-overlay.open {
   opacity: 1;

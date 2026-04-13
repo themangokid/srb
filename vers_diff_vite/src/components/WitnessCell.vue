@@ -112,9 +112,6 @@ function groupedWitnesses(list) {
           </div>
         </div>
 
-        <a :href="GNT_PATH" target="_blank" rel="noopener" class="w-reg-link">
-          📖 Öppna Vittnesregister
-        </a>
       </div>
     </template>
 

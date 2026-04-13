@@ -39,7 +39,12 @@ export function useSettings() {
   }, { deep: true, immediate: true })
 
   function toggle(id) {
-    settings.value = { ...settings.value, [id]: !settings.value[id] }
+    const next = !settings.value[id]
+    const updated = { ...settings.value, [id]: next }
+    // Dark and sepia are mutually exclusive
+    if (id === 'dark'  && next) updated.sepia = false
+    if (id === 'sepia' && next) updated.dark  = false
+    settings.value = updated
   }
 
   function resetSettings() {

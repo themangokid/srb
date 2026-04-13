@@ -5,12 +5,11 @@ import { CATEGORIES } from '../constants/index.js'
 const baseUrl = import.meta.env.BASE_URL
 
 const props = defineProps({
-  search:         { type: String,  default: '' },
-  filter:         { type: String,  default: 'all' },
-  witnessVisible: { type: Boolean, default: false },
+  search: { type: String, default: '' },
+  filter: { type: String, default: 'all' },
 })
 
-const emit = defineEmits(['update:search', 'update:filter', 'toggleWitness', 'openSettings'])
+const emit = defineEmits(['update:search', 'update:filter', 'openSettings'])
 
 // Scroll-compact header
 const compact = ref(false)
@@ -120,16 +119,6 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
           </div>
         </div>
 
-        <button
-          class="witness-toggle-btn"
-          :class="{ active: witnessVisible }"
-          :aria-pressed="witnessVisible"
-          :title="witnessVisible ? 'Dölj handskrifter' : 'Visa handskrifter'"
-          @click="emit('toggleWitness')"
-        >
-          <span>📜</span>
-          <span class="wtb-label">{{ witnessVisible ? 'Handskrifter på' : 'Handskrifter av' }}</span>
-        </button>
       </div>
 
       <button

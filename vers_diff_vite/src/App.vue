@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
-import { allVariants } from './data/verse_data.js'
+import { allVariants } from './data/verse_data_400_with_witnesses.js'
 import { CATEGORIES } from './constants/index.js'
 import { useSettings } from './composables/useSettings.js'
 import { readUrlParams, pushUrlState } from './composables/useUrlState.js'
@@ -9,6 +9,7 @@ import WitnessLegend from './components/WitnessLegend.vue'
 import CategorySection from './components/CategorySection.vue'
 import SummarySection from './components/SummarySection.vue'
 import SettingsPanel from './components/SettingsPanel.vue'
+import BibleViewer  from './components/BibleViewer.vue'
 
 const { settings, toggle, resetSettings } = useSettings()
 
@@ -23,18 +24,23 @@ watch(witnessColVisible, val => {
   document.body.classList.toggle('witnesses-hidden', !val)
 }, { immediate: true })
 
+// Normalize a string: NFC + lower-case + strip soft-hyphens
+function norm(s) {
+  return (s ?? '').normalize('NFC').toLowerCase().replace(/\u00ad/g, '')
+}
+
 // Filtered variants (reactive computed — no manual re-renders needed)
 const filteredVariants = computed(() => {
-  const term = searchTerm.value.toLowerCase().trim()
+  const term = norm(searchTerm.value.trim())
   const base = currentFilter.value === 'all'
     ? allVariants
     : allVariants.filter(v => v.category === currentFilter.value)
   if (!term) return base
   return base.filter(v =>
-    v.verse.toLowerCase().includes(term) ||
-    v.tr_text.toLowerCase().includes(term) ||
-    v.un_text.toLowerCase().includes(term) ||
-    (v.impact && v.impact.toLowerCase().includes(term))
+    norm(v.verse).includes(term) ||
+    norm(v.tr_text).includes(term) ||
+    norm(v.un_text).includes(term) ||
+    norm(v.impact).includes(term)
   )
 })
 
@@ -91,8 +97,6 @@ onMounted(() => {
   <AppHeader
     v-model:search="searchTerm"
     v-model:filter="currentFilter"
-    :witness-visible="witnessColVisible"
-    @toggle-witness="witnessColVisible = !witnessColVisible"
     @open-settings="settingsPanelOpen = true"
   />
 
@@ -121,7 +125,11 @@ onMounted(() => {
   <SettingsPanel
     v-model:open="settingsPanelOpen"
     :settings="settings"
+    :witness-visible="witnessColVisible"
     @toggle="toggle"
     @reset="resetSettings"
+    @toggle-witness="witnessColVisible = !witnessColVisible"
   />
+
+  <BibleViewer />
 </template>

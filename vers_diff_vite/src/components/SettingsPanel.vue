@@ -2,17 +2,19 @@
 import { SETTINGS_DEFS } from '../composables/useSettings.js'
 
 const props = defineProps({
-  open:     { type: Boolean, required: true },
-  settings: { type: Object,  required: true },
+  open:           { type: Boolean, required: true },
+  settings:       { type: Object,  required: true },
+  witnessVisible: { type: Boolean, default: false },
 })
 
-const emit = defineEmits(['update:open', 'toggle', 'reset'])
+const emit = defineEmits(['update:open', 'toggle', 'reset', 'toggleWitness'])
 
 const groups = [
   { title: 'Utseende',  ids: ['dark', 'sepia', 'large-font', 'compact-rows'] },
   { title: 'Layout',    ids: ['minimal-header', 'hide-impact'] },
   { title: 'Läshjälp', ids: ['highlight-tr', 'always-witnesses'] },
 ]
+
 
 function defFor(id) {
   return SETTINGS_DEFS.find(d => d.id === id)
@@ -41,6 +43,26 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
     </div>
 
     <div class="settings-body">
+      <!-- Witness column toggle — moved here from header -->
+      <div class="settings-group">
+        <div class="settings-group-title">Handskrifter</div>
+        <div class="setting-row">
+          <label for="set-witnesses" class="setting-label">
+            Visa handskrifter
+            <small>Visar manuskript­kolumnen i tabellen</small>
+          </label>
+          <label class="toggle-switch">
+            <input
+              type="checkbox"
+              id="set-witnesses"
+              :checked="witnessVisible"
+              @change="emit('toggleWitness')"
+            />
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+      </div>
+
       <div v-for="group in groups" :key="group.title" class="settings-group">
         <div class="settings-group-title">{{ group.title }}</div>
 
