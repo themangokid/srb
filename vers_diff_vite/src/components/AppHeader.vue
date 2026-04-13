@@ -67,7 +67,7 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
 <template>
   <header class="app-header" :class="{ compact }">
     <div class="nav-container">
-      <a href="../index.html" class="logo-link">
+      <a :href="import.meta.env.BASE_URL" class="logo-link">
         <img
           src="/img/srb_bold_dampended_red_not_done.png"
           class="header-logo"
