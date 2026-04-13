@@ -31,9 +31,10 @@ function groupedWitnesses(list) {
 <template>
   <div class="variant-card">
     <div class="card-header">
-      <a v-if="bibleUrl" :href="bibleUrl" target="_blank" rel="noopener" class="card-verse-link">
-        {{ variant.verse }}
-      </a>
+      <template v-if="bibleUrl">
+        <a :href="bibleUrl" target="_blank" rel="noopener" class="card-verse-link">{{ variant.verse }}</a>
+        <a :href="`${bibleUrl}?parallel=154`" target="_blank" rel="noopener" class="verse-parallel-link" title="Parallell jämförelse (SRB / SFB)">⇌</a>
+      </template>
       <span v-else class="card-verse-link">{{ variant.verse }}</span>
     </div>
 

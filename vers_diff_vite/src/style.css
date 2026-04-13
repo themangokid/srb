@@ -451,11 +451,20 @@ a:hover { color: var(--accent-light); text-decoration: underline; }
 .verse-parallel-link {
   display: inline-block;
   margin-left: 5px;
-  font-size: .8rem;
-  color: var(--text-light);
-  transition: color var(--transition);
+  font-size: .72rem;
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  border-radius: 3px;
+  padding: 0 4px;
+  line-height: 1.5;
+  transition: background var(--transition), border-color var(--transition);
+  text-decoration: none;
 }
-.verse-parallel-link:hover { color: var(--accent); text-decoration: none; }
+.verse-parallel-link:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent);
+  text-decoration: none;
+}
 
 .verse-ref {
   font-weight: 600;

@@ -17,9 +17,8 @@ const impactRedundant = computed(() => isRedundantImpact(props.variant.impact, p
     <!-- Verse -->
     <td class="col-verse">
       <template v-if="bibleUrl">
-        <a :href="bibleUrl" target="_blank" rel="noopener" class="verse-link" title="Öppna i YouVersion">
-          {{ variant.verse }}
-        </a>
+        <a :href="bibleUrl" target="_blank" rel="noopener" class="verse-link" title="Öppna i YouVersion">{{ variant.verse }}</a>
+        <a :href="`${bibleUrl}?parallel=154`" target="_blank" rel="noopener" class="verse-parallel-link" title="Parallell jämförelse (SRB / SFB)">⇌</a>
       </template>
       <span v-else class="verse-ref">{{ variant.verse }}</span>
     </td>
