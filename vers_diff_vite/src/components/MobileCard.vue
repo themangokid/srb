@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { generateBibleLink, isRedundantImpact, WITNESS_TYPES, WITNESS_NAMES, TYPE_ORDER } from '../constants/index.js'
-import { useBibleViewer } from '../composables/useBibleViewer.js'
 
 const props = defineProps({
   variant: { type: Object, required: true },
@@ -9,8 +8,7 @@ const props = defineProps({
 
 const witnessExpanded = ref(false)
 
-const bibleUrl        = computed(() => generateBibleLink(props.variant.verse))
-const { open: openViewer } = useBibleViewer()
+const bibleUrl = computed(() => generateBibleLink(props.variant.verse))
 const impactRedundant = computed(() => isRedundantImpact(props.variant.impact, props.variant.un_text))
 const witnessCount    = computed(() => {
   const w = props.variant.witnesses
@@ -33,7 +31,7 @@ function groupedWitnesses(list) {
 <template>
   <div class="variant-card">
     <div class="card-header">
-      <a v-if="bibleUrl" href="#" class="card-verse-link" @click.prevent="openViewer(bibleUrl, variant.verse)">
+      <a v-if="bibleUrl" :href="bibleUrl" target="_blank" rel="noopener" class="card-verse-link">
         {{ variant.verse }}
       </a>
       <span v-else class="card-verse-link">{{ variant.verse }}</span>

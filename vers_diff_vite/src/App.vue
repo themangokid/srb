@@ -9,7 +9,6 @@ import WitnessLegend from './components/WitnessLegend.vue'
 import CategorySection from './components/CategorySection.vue'
 import SummarySection from './components/SummarySection.vue'
 import SettingsPanel from './components/SettingsPanel.vue'
-import BibleViewer  from './components/BibleViewer.vue'
 
 const { settings, toggle, resetSettings } = useSettings()
 
@@ -131,5 +130,4 @@ onMounted(() => {
     @toggle-witness="witnessColVisible = !witnessColVisible"
   />
 
-  <BibleViewer />
 </template>

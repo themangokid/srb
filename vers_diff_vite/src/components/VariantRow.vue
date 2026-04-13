@@ -2,7 +2,6 @@
 import { computed } from 'vue'
 import { generateBibleLink, isRedundantImpact } from '../constants/index.js'
 import WitnessCell from './WitnessCell.vue'
-import { useBibleViewer } from '../composables/useBibleViewer.js'
 
 const props = defineProps({
   variant:        { type: Object,  required: true },
@@ -11,8 +10,6 @@ const props = defineProps({
 
 const bibleUrl        = computed(() => generateBibleLink(props.variant.verse))
 const impactRedundant = computed(() => isRedundantImpact(props.variant.impact, props.variant.un_text))
-
-const { open: openViewer } = useBibleViewer()
 </script>
 
 <template>
@@ -20,12 +17,9 @@ const { open: openViewer } = useBibleViewer()
     <!-- Verse -->
     <td class="col-verse">
       <template v-if="bibleUrl">
-        <a
-          href="#"
-          class="verse-link"
-          title="Öppna i YouVersion"
-          @click.prevent="openViewer(bibleUrl, variant.verse)"
-        >{{ variant.verse }}</a>
+        <a :href="bibleUrl" target="_blank" rel="noopener" class="verse-link" title="Öppna i YouVersion">
+          {{ variant.verse }}
+        </a>
       </template>
       <span v-else class="verse-ref">{{ variant.verse }}</span>
     </td>
