@@ -20,7 +20,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- QR-code -->
-    <script src="swish-qr-code-expand.js"></script>
+    <!-- <script src="swish-qr-code-expand.js"></script> -->
+
+
+
+
+
+
+<script>
+  var SUPA_URL = 'https://lpxrhpaauklyhwjrmfhe.supabase.co/rest/v1/visits_v2';
+  var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxweHJocGFhdWtseWh3anJtZmhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MjkzMjAsImV4cCI6MjA5MjAwNTMyMH0.OhSyj2El2RsHkBddG8EUtqCOrTQUB-99XRrI1XWrync';
+
+  var visitor_id = localStorage.getItem('vid') || crypto.randomUUID();
+  localStorage.setItem('vid', visitor_id);
+
+  fetch(SUPA_URL, {
+    method: 'POST',
+    headers: {
+      'apikey': SUPA_KEY,
+      'Authorization': 'Bearer ' + SUPA_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify({
+      visitor_id: visitor_id,
+      page: location.pathname
+    })
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
   // --- VISITOR ID ---
