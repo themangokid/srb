@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
-import { allVariants } from './data/verse_data_400_with_witnesses.js'
+import { allVariants as variantsStandard } from './data/verse_data_400_with_witnesses.js'
+import { allVariants as variantsFull }     from './data/verse_data_large_set.js'
 import { CATEGORIES } from './constants/index.js'
 import { useSettings } from './composables/useSettings.js'
 import { readUrlParams, pushUrlState } from './composables/useUrlState.js'
@@ -10,7 +11,11 @@ import CategorySection from './components/CategorySection.vue'
 import SummarySection from './components/SummarySection.vue'
 import SettingsPanel from './components/SettingsPanel.vue'
 
-const { settings, toggle, resetSettings } = useSettings()
+const { settings, toggle, resetSettings, datasetId, setDataset } = useSettings()
+
+const activeVariants = computed(() =>
+  datasetId.value === 'full' ? variantsFull : variantsStandard
+)
 
 // UI state
 const searchTerm        = ref('')
@@ -32,8 +37,8 @@ function norm(s) {
 const filteredVariants = computed(() => {
   const term = norm(searchTerm.value.trim())
   const base = currentFilter.value === 'all'
-    ? allVariants
-    : allVariants.filter(v => v.category === currentFilter.value)
+    ? activeVariants.value
+    : activeVariants.value.filter(v => v.category === currentFilter.value)
   if (!term) return base
   return base.filter(v =>
     norm(v.verse).includes(term) ||
@@ -125,9 +130,11 @@ onMounted(() => {
     v-model:open="settingsPanelOpen"
     :settings="settings"
     :witness-visible="witnessColVisible"
+    :dataset-id="datasetId"
     @toggle="toggle"
     @reset="resetSettings"
     @toggle-witness="witnessColVisible = !witnessColVisible"
+    @set-dataset="setDataset"
   />
 
 </template>

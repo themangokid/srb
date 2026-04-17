@@ -1,6 +1,7 @@
 import { ref, watch } from 'vue'
 
 const SETTINGS_KEY = 'diffSettings_v1'
+const DATASET_KEY  = 'diffDataset_v1'
 
 export const SETTINGS_DEFS = [
   { id: 'dark',             cls: 'setting-dark',             label: 'Mörkt tema',          desc: 'Byt till mörk bakgrund' },
@@ -31,7 +32,8 @@ function applyBodyClasses(settings) {
 }
 
 export function useSettings() {
-  const settings = ref(load())
+  const settings  = ref(load())
+  const datasetId = ref(localStorage.getItem(DATASET_KEY) || 'standard')
 
   watch(settings, (val) => {
     save(val)
@@ -51,5 +53,10 @@ export function useSettings() {
     settings.value = { ...DEFAULTS }
   }
 
-  return { settings, toggle, resetSettings, SETTINGS_DEFS }
+  function setDataset(id) {
+    datasetId.value = id
+    try { localStorage.setItem(DATASET_KEY, id) } catch {}
+  }
+
+  return { settings, toggle, resetSettings, SETTINGS_DEFS, datasetId, setDataset }
 }

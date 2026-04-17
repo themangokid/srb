@@ -5,9 +5,17 @@ const props = defineProps({
   open:           { type: Boolean, required: true },
   settings:       { type: Object,  required: true },
   witnessVisible: { type: Boolean, default: false },
+  datasetId:      { type: String,  default: 'standard' },
 })
 
-const emit = defineEmits(['update:open', 'toggle', 'reset', 'toggleWitness'])
+const emit = defineEmits(['update:open', 'toggle', 'reset', 'toggleWitness', 'setDataset'])
+
+const DATASETS = [
+  { id: 'standard', title: 'Utvalda varianter', count: '400 – med handskrifter' },
+  { id: 'full',     title: 'Utökad lista',       count: '~480 varianter' },
+]
+
+const PDF_URL = '/SRBgrundtextskillnader.pdf'
 
 const groups = [
   { title: 'Utseende',  ids: ['dark', 'sepia', 'large-font', 'compact-rows'] },
@@ -43,6 +51,37 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
     </div>
 
     <div class="settings-body">
+      <!-- Dataset selector — most impactful setting, shown first -->
+      <div class="settings-group dataset-group">
+        <div class="settings-group-title">📖 Datamängd</div>
+        <div class="dataset-cards">
+          <button
+            v-for="ds in DATASETS"
+            :key="ds.id"
+            class="dataset-card"
+            :class="{ active: props.datasetId === ds.id }"
+            @click="emit('setDataset', ds.id)"
+          >
+            <span class="dataset-card-check">{{ props.datasetId === ds.id ? '✔' : '' }}</span>
+            <span class="dataset-card-body">
+              <strong class="dataset-card-title">{{ ds.title }}</strong>
+              <span class="dataset-card-count">{{ ds.count }}</span>
+            </span>
+          </button>
+          <a
+            class="dataset-card dataset-card-pdf"
+            :href="PDF_URL"
+            download
+          >
+            <span class="dataset-card-check">↓</span>
+            <span class="dataset-card-body">
+              <strong class="dataset-card-title">Ladda ner PDF</strong>
+              <span class="dataset-card-count">Komplett, 900+ varianter</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
       <!-- Witness column toggle — moved here from header -->
       <div class="settings-group">
         <div class="settings-group-title">Handskrifter</div>

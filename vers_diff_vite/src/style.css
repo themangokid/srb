@@ -872,6 +872,65 @@ a:hover { color: var(--accent-light); text-decoration: underline; }
 .toggle-switch input:checked + .toggle-track { background: var(--accent); }
 .toggle-switch input:checked + .toggle-track::after { transform: translateX(18px); }
 
+/* ── Dataset selector cards ─────────────────────────────────────── */
+.dataset-group { margin-bottom: 16px; }
+
+.dataset-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.dataset-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  transition: border-color var(--transition), background var(--transition);
+  font-family: var(--font-ui);
+  color: var(--text);
+}
+.dataset-card:hover {
+  border-color: var(--accent);
+  background: var(--bg-hover);
+}
+.dataset-card.active {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--bg));
+}
+.dataset-card-check {
+  flex-shrink: 0;
+  width: 1.1rem;
+  font-size: .85rem;
+  color: var(--accent);
+  text-align: center;
+}
+.dataset-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.dataset-card-title {
+  font-size: .8rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.dataset-card-count {
+  font-size: .72rem;
+  color: var(--text-muted);
+  line-height: 1.2;
+}
+.dataset-card-pdf .dataset-card-check { opacity: .7; }
+.dataset-card-pdf:hover .dataset-card-count { color: var(--accent); }
+
 .settings-reset-btn {
   margin: 12px 20px;
   padding: 10px 0;
