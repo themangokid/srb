@@ -1,8 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { CATEGORIES } from '../constants/index.js'
-
-const baseUrl = import.meta.env.BASE_URL
+import { CATEGORIES, HOME_URL } from '../constants/index.js'
 
 const props = defineProps({
   search: { type: String, default: '' },
@@ -68,9 +66,9 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
 <template>
   <header class="app-header" :class="{ compact }">
     <div class="nav-container">
-      <a :href="baseUrl" class="logo-link">
+      <a :href="HOME_URL" class="logo-link">
         <img
-          src="/img/srb_bold_dampended_red_not_done.png"
+          src="/img/main_srb_v16_lower_text_innershadow.webp"
           class="header-logo"
           alt="SRB Logo"
           onerror="this.style.display='none'"

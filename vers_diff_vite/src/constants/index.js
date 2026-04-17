@@ -39,7 +39,8 @@ export const WITNESS_TYPES = {
 
 export const TYPE_ORDER = ['pap', 'cod', 'byz', 'ver', 'pat', 'tr']
 
-export const GNT_PATH = '../vers_differences/gnt_v6.html'
+export const HOME_URL  = 'https://themangokid.github.io/srb'
+export const GNT_PATH  = '../vers_differences/gnt_v6.html'
 
 export const WITNESS_NAMES = {
   'P45':    'Papyrus 45 (Chester Beatty I, ~250 e.Kr.)',
