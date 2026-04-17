@@ -29,3 +29,8 @@ Is there a way I can make this app totally offline? I don't know how to make the
 Add the functionality to change the vers_data file in the settings, it should be at the top and very obvious. 
 
 DO NOT DO ANY DRASTICAL CHANGES TO THE CODE BASE, WE DO NOT WANT TO RISKY TO BREAK ANYTHING.
+
+
+I den utökade finns det 168+79+22+11+10+7+8+11+19+18+11+7+12+9+52+21+13 = 478 verser
+
+I den med mindre verser: 12+13+33+10+7+5+8+9+15+8+8+5+7+7+20+85+75+82 = 409 verser
