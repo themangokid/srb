@@ -18,9 +18,6 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 
-
-
-
 <script>
   fetch('https://lpxrhpaauklyhwjrmfhe.supabase.co/rest/v1/visits_v2', {
     method: 'POST',
@@ -39,60 +36,6 @@
 
 
 
-
-
-<script>
-  // --- VISITOR ID ---
-  let visitor_id = localStorage.getItem('vid');
-  if (!visitor_id) {
-    visitor_id = crypto.randomUUID();
-    localStorage.setItem('vid', visitor_id);
-  }
-
-  let session_id = sessionStorage.getItem('sid');
-  if (!session_id) {
-    session_id = crypto.randomUUID();
-    sessionStorage.setItem('sid', session_id);
-  }
-
-  const startTime = Date.now();
-
-  const device = {
-    screen_width: screen.width,
-    screen_height: screen.height,
-    window_width: window.innerWidth,
-    window_height: window.innerHeight,
-    user_agent: navigator.userAgent,
-    language: navigator.language,
-    platform: navigator.platform,
-    is_online: navigator.onLine,
-    pixel_ratio: window.devicePixelRatio,
-    connection_type: navigator.connection?.effectiveType || null,
-    connection_speed: navigator.connection?.downlink || null,
-  };
-
-  window.addEventListener('beforeunload', () => {
-    const seconds_spent = Math.round((Date.now() - startTime) / 1000);
-
-    fetch('https://lpxrhpaauklyhwjrmfhe.supabase.co/rest/v1/visits_v2', {
-      method: 'POST',
-      headers: {
-        'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxweHJocGFhdWtseWh3anJtZmhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MjkzMjAsImV4cCI6MjA5MjAwNTMyMH0.OhSyj2El2RsHkBddG8EUtqCOrTQUB-99XRrI1XWrync',
-        'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxweHJocGFhdWtseWh3anJtZmhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MjkzMjAsImV4cCI6MjA5MjAwNTMyMH0.OhSyj2El2RsHkBddG8EUtqCOrTQUB-99XRrI1XWrync',
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
-      },
-      body: JSON.stringify({
-        visitor_id,
-        session_id,
-        seconds_spent,
-        page: location.pathname,
-        referrer: document.referrer,
-        ...device
-      })
-    });
-  });
-</script>
 
 
 
