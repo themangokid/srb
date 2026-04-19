@@ -1,6 +1,32 @@
-Change so that the logo redirects to the main-page.
-Change the logo to the logo without the text below it. (i will provide an exakt URL)
+Add a tutorial feature that shows information when you hover over areas or text. 
+This shall server as a one time simple tutorial that can be re-enabled in the settings?
+0. A modal that explains the textual differences and what this page is all about
+1. Show vers and that it opens in an external page
+2. Explains that if you click on a category you see the pattern that emerges from the other codexes (UN)
+and 
 
+TDL: 
+Find a replacement for emojies and make them look more integrated
+Add more contrasts to the text and try to find a better way for you to show the text
+Resolve the different types of fonts
+Add margin to the logo and make the logo a bit smaller on the main page
+Remove the modal / info page that is rendered at the bottom of each page and move it to the info panels
+Perhpas make the emojies smaller
+
+
+Not so important TDL:
+    Clean up the repo
+    Fix 404 errors
+    Optimize the entire project
+    Remove unnecessary files
+    Remove the shopping cart
+
+
+Bug: The PDF with grundtextskillnader is incorrectly linked
+
+Done:
+    1. Change so that the logo redirects to the main-page.
+    2. Change the logo to the logo without the text below it. (i will provide an exakt URL)
 
 
 
@@ -34,3 +60,6 @@ DO NOT DO ANY DRASTICAL CHANGES TO THE CODE BASE, WE DO NOT WANT TO RISKY TO BRE
 I den utökade finns det 168+79+22+11+10+7+8+11+19+18+11+7+12+9+52+21+13 = 478 verser
 
 I den med mindre verser: 12+13+33+10+7+5+8+9+15+8+8+5+7+7+20+85+75+82 = 409 verser
+
+
+

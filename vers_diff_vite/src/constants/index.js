@@ -100,7 +100,7 @@ export function generateBibleLink(verse) {
   const [, book, chapter, startVerse] = match
   const bookCode = BOOK_MAP[book]
   if (!bookCode) return null
-  return `https://www.bible.com/bible/3413/${bookCode}.${chapter}.${startVerse}`
+  return `https://www.bible.com/bible/4709/${bookCode}.${chapter}.${startVerse}`
 }
 
 export function isRedundantImpact(impact, un_text) {
