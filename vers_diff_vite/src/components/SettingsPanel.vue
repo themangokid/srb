@@ -8,7 +8,7 @@ const props = defineProps({
   datasetId:      { type: String,  default: 'standard' },
 })
 
-const emit = defineEmits(['update:open', 'toggle', 'reset', 'toggleWitness', 'setDataset'])
+const emit = defineEmits(['update:open', 'toggle', 'reset', 'toggleWitness', 'setDataset', 'resetIntro'])
 
 const DATASETS = [
   { id: 'standard', title: 'Utvalda varianter', count: '400 – med handskrifter' },
@@ -128,6 +128,10 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
         </div>
       </div>
     </div>
+
+    <button class="settings-intro-btn" @click="emit('resetIntro'); emit('update:open', false)">
+      Visa intro igen
+    </button>
 
     <button class="settings-reset-btn" @click="emit('reset')">
       ↺ Återställ alla inställningar

@@ -19,7 +19,8 @@ const props = defineProps({
     :data-category="categoryKey"
   >
     <h2 class="category-title">
-      {{ categoryData.emoji }} {{ categoryData.title }}
+      <span class="cat-emoji" aria-hidden="true">{{ categoryData.emoji }}</span>
+      {{ categoryData.title }}
     </h2>
     <div class="category-info">
       {{ variants.length }} {{ variants.length === 1 ? 'vers' : 'verser' }} i denna kategori

@@ -1,3 +1,13 @@
+Currently the citations of both UN and TR is not linked. It should be both integrated and externaly linked.
+Meaning that when I read either of them, the text should be citations not extracts. 
+
+The issue is that Folkbibeln is rather close to SRB sometimes which is something that is claimed that it is not. 
+This is only an issue if it says that it is not. The solution is to use B2000 as base for UN. 
+Ask Bo how to pedgogically solve this issue, since folkbibeln has a much closer text than B2000.
+
+
+
+
 Add a tutorial feature that shows information when you hover over areas or text. 
 This shall server as a one time simple tutorial that can be re-enabled in the settings?
 0. A modal that explains the textual differences and what this page is all about
@@ -6,12 +16,24 @@ This shall server as a one time simple tutorial that can be re-enabled in the se
 and 
 
 TDL: 
-Find a replacement for emojies and make them look more integrated
+Make the emojies look more integrated, or at least make them look better.
 Add more contrasts to the text and try to find a better way for you to show the text
 Resolve the different types of fonts
-Add margin to the logo and make the logo a bit smaller on the main page
+Add margin to the logo from the top, perhpas just a feeew pixels.
 Remove the modal / info page that is rendered at the bottom of each page and move it to the info panels
 Perhpas make the emojies smaller
+Add automatical night mode, using system settings
+Walk through the current categories and find off verses
+Re-generate all of the verses and categorise them again (all 1200)
+Lägg till en tredje länk till youversion där man kan för sv: https://www.bible.com/sv/bible/compare/MAT.4.12
+Lägg också till detta i tutorialen, som har info rutor som grund med info
+"Större text" does not do what it says is should do, it only increase the text of a heading on a different place than the colum/main list.
+"sv" need to be cleaned up and purposed and coherent to the rest of the app, it is now
+very random and it does not have a clear purpose
+
+
+
+
 
 
 Not so important TDL:

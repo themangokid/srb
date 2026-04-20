@@ -14,10 +14,14 @@ export const SETTINGS_DEFS = [
   { id: 'always-witnesses', cls: 'setting-always-witnesses', label: 'Visa alltid handskrifter', desc: 'Expanderar automatiskt (mobil)' },
 ]
 
-const DEFAULTS = { 'sepia': true, 'large-font': true, 'compact-rows': true, 'minimal-header': true, 'highlight-tr': true }
+const DEFAULTS = { 'sepia': true, 'large-font': true, 'compact-rows': true, 'minimal-header': true, 'highlight-tr': true, 'hide-impact': false }
 
 function load() {
-  try { return JSON.parse(localStorage.getItem(SETTINGS_KEY)) || { ...DEFAULTS } }
+  try {
+    const saved = JSON.parse(localStorage.getItem(SETTINGS_KEY))
+    // Merge: DEFAULTS fills any missing keys; saved settings win for everything else
+    return saved ? { ...DEFAULTS, ...saved } : { ...DEFAULTS }
+  }
   catch { return { ...DEFAULTS } }
 }
 
@@ -29,6 +33,8 @@ function applyBodyClasses(settings) {
   SETTINGS_DEFS.forEach(({ id, cls }) => {
     document.body.classList.toggle(cls, !!settings[id])
   })
+  // Also apply large-font to <html> so rem-based sizes scale (rem is relative to html, not body)
+  document.documentElement.classList.toggle('setting-large-font', !!settings['large-font'])
 }
 
 export function useSettings() {

@@ -8,10 +8,12 @@ import { readUrlParams, pushUrlState } from './composables/useUrlState.js'
 import AppHeader from './components/AppHeader.vue'
 import WitnessLegend from './components/WitnessLegend.vue'
 import CategorySection from './components/CategorySection.vue'
-import SummarySection from './components/SummarySection.vue'
+import InfoBanner from './components/InfoBanner.vue'
 import SettingsPanel from './components/SettingsPanel.vue'
+import { useIntro } from './composables/useIntro.js'
 
 const { settings, toggle, resetSettings, datasetId, setDataset } = useSettings()
+const { visible: introBannerVisible, dismiss: dismissIntro, reEnable: reEnableIntro } = useIntro()
 
 const activeVariants = computed(() =>
   datasetId.value === 'full' ? variantsFull : variantsStandard
@@ -36,7 +38,9 @@ function norm(s) {
 // Filtered variants (reactive computed — no manual re-renders needed)
 const filteredVariants = computed(() => {
   const term = norm(searchTerm.value.trim())
-  const base = currentFilter.value === 'all'
+  // When searching, always search the full dataset so results aren't silently excluded
+  // by the active category filter. Category is still visible via section headers.
+  const base = (term || currentFilter.value === 'all')
     ? activeVariants.value
     : activeVariants.value.filter(v => v.category === currentFilter.value)
   if (!term) return base
@@ -107,6 +111,10 @@ onMounted(() => {
   <WitnessLegend :visible="witnessColVisible" />
 
   <main class="main-content">
+    <Transition name="info-fade">
+      <InfoBanner v-if="introBannerVisible" @dismiss="dismissIntro" />
+    </Transition>
+
     <div v-if="!hasResults" class="no-results">
       <i class="fa-solid fa-magnifying-glass"></i>
       Inga resultat hittades för "<strong>{{ searchTerm }}</strong>"
@@ -123,7 +131,6 @@ onMounted(() => {
       />
     </template>
 
-    <SummarySection />
   </main>
 
   <SettingsPanel
@@ -135,6 +142,7 @@ onMounted(() => {
     @reset="resetSettings"
     @toggle-witness="witnessColVisible = !witnessColVisible"
     @set-dataset="setDataset"
+    @reset-intro="reEnableIntro"
   />
 
 </template>

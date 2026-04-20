@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { generateBibleLink, isRedundantImpact } from '../constants/index.js'
+import { generateBibleLink, generateSwedishCompareLink, isRedundantImpact } from '../constants/index.js'
 import WitnessCell from './WitnessCell.vue'
 
 const props = defineProps({
@@ -9,6 +9,7 @@ const props = defineProps({
 })
 
 const bibleUrl        = computed(() => generateBibleLink(props.variant.verse))
+const svCompareUrl    = computed(() => generateSwedishCompareLink(props.variant.verse))
 const impactRedundant = computed(() => isRedundantImpact(props.variant.impact, props.variant.un_text))
 </script>
 
@@ -19,6 +20,7 @@ const impactRedundant = computed(() => isRedundantImpact(props.variant.impact, p
       <template v-if="bibleUrl">
         <a :href="bibleUrl" target="_blank" rel="noopener" class="verse-link" title="Öppna i YouVersion">{{ variant.verse }}</a>
         <a :href="`${bibleUrl}?parallel=154`" target="_blank" rel="noopener" class="verse-parallel-link" title="Parallell jämförelse (SRB / SFB)">⇌</a>
+        <a v-if="svCompareUrl" :href="svCompareUrl" target="_blank" rel="noopener" class="verse-compare-link" title="Jämför svenska översättningar (YouVersion SV)">SV</a>
       </template>
       <span v-else class="verse-ref">{{ variant.verse }}</span>
     </td>

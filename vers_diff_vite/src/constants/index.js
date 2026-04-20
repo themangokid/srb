@@ -103,6 +103,15 @@ export function generateBibleLink(verse) {
   return `https://www.bible.com/bible/4709/${bookCode}.${chapter}.${startVerse}`
 }
 
+export function generateSwedishCompareLink(verse) {
+  const match = verse.match(/^(.+?)\s+(\d+):(\d+)(?:-(\d+))?$/)
+  if (!match) return null
+  const [, book, chapter, startVerse] = match
+  const bookCode = BOOK_MAP[book]
+  if (!bookCode) return null
+  return `https://www.bible.com/sv/bible/compare/${bookCode.toUpperCase()}.${chapter}.${startVerse}`
+}
+
 export function isRedundantImpact(impact, un_text) {
   if (!impact || !un_text) return false
   const n = s => s.toLowerCase().replace(/[^a-zåäö0-9]/g, '').trim()

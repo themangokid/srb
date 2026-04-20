@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
-import { generateBibleLink, isRedundantImpact, WITNESS_TYPES, WITNESS_NAMES, TYPE_ORDER } from '../constants/index.js'
+import { generateBibleLink, generateSwedishCompareLink, isRedundantImpact, WITNESS_TYPES, WITNESS_NAMES, TYPE_ORDER } from '../constants/index.js'
 
 const props = defineProps({
   variant: { type: Object, required: true },
@@ -8,7 +8,8 @@ const props = defineProps({
 
 const witnessExpanded = ref(false)
 
-const bibleUrl = computed(() => generateBibleLink(props.variant.verse))
+const bibleUrl     = computed(() => generateBibleLink(props.variant.verse))
+const svCompareUrl = computed(() => generateSwedishCompareLink(props.variant.verse))
 const impactRedundant = computed(() => isRedundantImpact(props.variant.impact, props.variant.un_text))
 const witnessCount    = computed(() => {
   const w = props.variant.witnesses
@@ -34,6 +35,7 @@ function groupedWitnesses(list) {
       <template v-if="bibleUrl">
         <a :href="bibleUrl" target="_blank" rel="noopener" class="card-verse-link">{{ variant.verse }}</a>
         <a :href="`${bibleUrl}?parallel=154`" target="_blank" rel="noopener" class="verse-parallel-link" title="Parallell jämförelse (SRB / SFB)">⇌</a>
+        <a v-if="svCompareUrl" :href="svCompareUrl" target="_blank" rel="noopener" class="verse-compare-link" title="Jämför svenska översättningar (YouVersion SV)">SV</a>
       </template>
       <span v-else class="card-verse-link">{{ variant.verse }}</span>
     </div>
