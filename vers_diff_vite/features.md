@@ -31,6 +31,10 @@ Lägg också till detta i tutorialen, som har info rutor som grund med info
 "sv" need to be cleaned up and purposed and coherent to the rest of the app, it is now
 very random and it does not have a clear purpose
 
+https://www.bible.com/sv/bible/compare/MAT.4.12
+This link is apparently not coherent ON THE LINKED SITE, meaning we don't really know
+what will be presented. Now, i would like to call this something like "additional information" but I don't know how to do that. 
+
 
 
 

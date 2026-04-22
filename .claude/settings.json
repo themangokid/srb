@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/herman/Documents/GitHub/srb/**)",
+      "Bash(python3 -c \"import pdfplumber; print\\('pdfplumber ok'\\)\")",
+      "Bash(python3 -c \"import PyPDF2; print\\('PyPDF2 ok'\\)\")",
+      "Bash(python3 -c \"import pypdf; print\\('pypdf ok'\\)\")",
+      "Bash(pip3 list *)",
+      "Bash(pdftotext /Users/herman/Documents/GitHub/srb/vers_diff_vite/src/data/generating_1130_verses_exp/SRBgrundtextskillnader.pdf -)",
+      "Bash(pdftotext /Users/herman/Documents/GitHub/srb/vers_diff_vite/src/data/generating_1130_verses_exp/SRBgrundtextskillnader.pdf /tmp/srb_pdf_text.txt)",
+      "Read(//tmp/**)",
+      "Bash(python3 /tmp/parse_srb_pdf.py)"
+    ],
+    "additionalDirectories": [
+      "/tmp",
+      "/private/tmp"
+    ]
+  }
+}

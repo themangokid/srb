@@ -39,7 +39,7 @@ function applyBodyClasses(settings) {
 
 export function useSettings() {
   const settings  = ref(load())
-  const datasetId = ref(localStorage.getItem(DATASET_KEY) || 'standard')
+  const datasetId = ref(localStorage.getItem(DATASET_KEY) || 'complete')
 
   watch(settings, (val) => {
     save(val)

@@ -11,8 +11,9 @@ const props = defineProps({
 const emit = defineEmits(['update:open', 'toggle', 'reset', 'toggleWitness', 'setDataset', 'resetIntro'])
 
 const DATASETS = [
-  { id: 'standard', title: 'Utvalda varianter', count: '400 – med handskrifter' },
-  { id: 'full',     title: 'Utökad lista',       count: '~480 varianter' },
+  { id: 'complete', title: 'Komplett lista',     count: '1 129 varianter' },
+  { id: 'standard', title: 'Utvalda varianter',  count: '400 – med handskrifter' },
+  { id: 'full',     title: 'Utökad lista',        count: '~480 varianter' },
 ]
 
 const PDF_URL = '/SRBgrundtextskillnader.pdf'

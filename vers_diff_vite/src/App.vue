@@ -1,7 +1,8 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
-import { allVariants as variantsStandard } from './data/verse_data_400_with_witnesses.js'
-import { allVariants as variantsFull }     from './data/verse_data_large_set.js'
+import { allVariants as variantsStandard }  from './data/verse_data_400_with_witnesses.js'
+import { allVariants as variantsFull }      from './data/verse_data_large_set.js'
+import { allVariants as variantsComplete }  from './data/verse_data_complete_1130.js'
 import { CATEGORIES } from './constants/index.js'
 import { useSettings } from './composables/useSettings.js'
 import { readUrlParams, pushUrlState } from './composables/useUrlState.js'
@@ -15,9 +16,11 @@ import { useIntro } from './composables/useIntro.js'
 const { settings, toggle, resetSettings, datasetId, setDataset } = useSettings()
 const { visible: introBannerVisible, dismiss: dismissIntro, reEnable: reEnableIntro } = useIntro()
 
-const activeVariants = computed(() =>
-  datasetId.value === 'full' ? variantsFull : variantsStandard
-)
+const activeVariants = computed(() => {
+  if (datasetId.value === 'full')     return variantsFull
+  if (datasetId.value === 'standard') return variantsStandard
+  return variantsComplete
+})
 
 // UI state
 const searchTerm        = ref('')
