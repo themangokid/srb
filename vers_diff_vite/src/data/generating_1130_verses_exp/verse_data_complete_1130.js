@@ -443,67 +443,67 @@ export const allVariants = [
   {category:"jesus", verse:"Joh 13:3",
    tr_text:"Jesus visste, att Fadern hade gett...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Joh 18:5",
    tr_text:"...Jesus sa till dem: Jag Är. Och ...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Joh 1:29",
    tr_text:"Nästa dag ser Johan­nes Jesus komma till sig och säger: ...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Joh 4:16",
    tr_text:"Jesus sa till henne: Gå och kalla...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Joh 4:46",
    tr_text:"Så kom Jesus till­baka till Kana...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Joh 5:17",
    tr_text:"Men Jesus svarade dem:...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Joh 6:14",
    tr_text:"sett det tecken som Jesus hade gjort,",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Joh 8:16",
    tr_text:"Och även om jag dömer, så är min dom rätt, för jag är inte ensam, utan Fadern som har sänt mig är med mig.",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Joh 8:20",
    tr_text:"Dessa ord talade Jesus vid offerkistan, när han undervisade i templet...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Joh 8:21",
    tr_text:"Då sa Jesus på nytt till dem: Jag går bort, och ni ska söka efter mig...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Joh 8:29",
    tr_text:"Och han som har sänt mig är med mig. Fadern har inte lämnat mig ensam...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Joh 8:54",
    tr_text:"Jesus svarade: Om jag ärar mig själv, är min ära ingenting...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Joh 9:11",
    tr_text:"Han svarade: En man som heter Jesus...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Jud 1:1",
    tr_text:"Judas, Jesu Kristi tjänare och Jakobs bror, till de kallade, som i Gud, Fadern, är helgade och bevarade i Jesus Kristus",
@@ -582,7 +582,7 @@ export const allVariants = [
   },
   {category:"jesus", verse:"Luk 24:42",
    tr_text:"Då gav de honom en bit stekt fisk och en bit honungskaka",
-   un_text:"UN utelämnar: och en bit honungskaka",
+   un_text:"UN utelämnar: och en bit honungskaka. Luk 24 46. ...och därför var det nödvändigt* att Kristus skulle lida och på tredje dagen uppstå .. *UN utelämnar: därför var det nödvändigt",
    impact:"UN utelämnar: och en bit honungskaka. Luk 24 46. ...och därför var det nödvändig"
   },
   {category:"jesus", verse:"Luk 4:1",
@@ -638,7 +638,7 @@ export const allVariants = [
   {category:"jesus", verse:"Mark 12:41",
    tr_text:"Och Jesus satte sig mitt emot offerkistan...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Mark 14:22",
    tr_text:"Och medan de åt, tog Jesus ett bröd, välsignade och bröt det och gav åt dem och sa: Tag, ät, detta är min kropp",
@@ -658,7 +658,7 @@ export const allVariants = [
   {category:"jesus", verse:"Mark 1:41",
    tr_text:"Då fylldes Jesus av medlidande...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Mark 5:13",
    tr_text:"Och genast tillät Jesus dem det",
@@ -668,7 +668,7 @@ export const allVariants = [
   {category:"jesus", verse:"Mark 5:19",
    tr_text:"Men Jesus tillät det inte...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Mark 5:36",
    tr_text:"Men så snart som Jesus hörde vad som sades,",
@@ -683,12 +683,12 @@ export const allVariants = [
   {category:"jesus", verse:"Mark 7:27",
    tr_text:"Men Jesus sa till henne: ...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Mark 8:1",
    tr_text:"Då kallade Jesus till sig sina lärjungar och sa till dem:",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Mark 8:17",
    tr_text:"Då Jesus märkte detta, sa han till dem: Varför talar ni om att ni inte har bröd? Kan ni ännu inget fatta eller förstå? Är era hjärtan fortfa rande förblindade?",
@@ -703,7 +703,7 @@ export const allVariants = [
   {category:"jesus", verse:"Matt 13:36",
    tr_text:"Sedan skickade Jesus iväg folket...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Matt 13:51",
    tr_text:"Jesus",
@@ -713,17 +713,17 @@ export const allVariants = [
   {category:"jesus", verse:"Matt 14:14",
    tr_text:"När Jesus kom fram såg han en stor folkskara,",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Matt 14:22",
    tr_text:"Och strax där­efter uppmanade Jesus sina lärjungar att stiga i båten.",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Matt 15:16",
    tr_text:"Då sa Jesus: Är även ni fortfarande oförstån­diga?",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Matt 15:30",
    tr_text:"Jesus",
@@ -732,7 +732,7 @@ export const allVariants = [
   },
   {category:"jesus", verse:"Matt 16:20",
    tr_text:"att han var Jesus Kristus",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Jesus\"",
    impact:"Mindre komplett titel"
   },
   {category:"jesus", verse:"Matt 17:11",
@@ -753,12 +753,12 @@ export const allVariants = [
   {category:"jesus", verse:"Matt 17:26",
    tr_text:"Petrus sa till honom: Från andra...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Matt 18:2",
    tr_text:"Då kallade Jesus fram ett litet barn till sig...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Matt 20:23",
    tr_text:"Dopet med Kristi dop",
@@ -768,12 +768,12 @@ export const allVariants = [
   {category:"jesus", verse:"Matt 22:37",
    tr_text:"Då sa Jesus till honom:",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Matt 24:2",
    tr_text:"Då sa Jesus till dem: Ser ni inte allt detta?",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Matt 27:16",
    tr_text:"Och vid samma tid hade de en beryktad fånge, som hette Barabbas",
@@ -793,22 +793,22 @@ export const allVariants = [
   {category:"jesus", verse:"Matt 28:6",
    tr_text:"Kom och se plat­sen, där Herren låg.",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Matt 4:12",
    tr_text:"Då nu Jesus hörde, att Johannes var satt i fängelse,",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Matt 4:18",
    tr_text:"När Jesus gick utmed Galileiska sjön",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Matt 4:23",
    tr_text:"Och Jesus gick omkring i hela Galileen...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Matt 8:29",
    tr_text:"Jesus",
@@ -818,22 +818,22 @@ export const allVariants = [
   {category:"jesus", verse:"Matt 8:3",
    tr_text:"...Jesus ut handen och rörde vid honom och sa: Jag vill, bli ren.",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Matt 8:5",
    tr_text:"När Jesus kom in i Kapernaum, gick en officer fram till honom...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Matt 8:7",
    tr_text:"Då sa Jesus till honom: Jag ska komma och bota honom.",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Matt 9:12",
    tr_text:"När Jesus hörde detta...",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Rom 15:7",
    tr_text:"Ta därför emot var andra, såsom också Kristus har tagit emot oss till Guds ära",
@@ -867,7 +867,7 @@ export const allVariants = [
   },
   {category:"jesus", verse:"Upp 1:9",
    tr_text:"Jesu Kristi",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Kristi\"",
    impact:"Mindre komplett titel"
   },
 
@@ -1638,12 +1638,12 @@ export const allVariants = [
   },
   {category:"miracles", verse:"Mark 1:42",
    tr_text:"när han hade sagt det",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"när han hade sagt det\"",
    impact:"Detalj borttagen"
   },
   {category:"miracles", verse:"Mark 3:5",
    tr_text:"frisk som den andra",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"som den andra\"",
    impact:"Mindre komplett"
   },
   {category:"miracles", verse:"Mark 6:11",
@@ -1658,7 +1658,7 @@ export const allVariants = [
   },
   {category:"miracles", verse:"Matt 12:22",
    tr_text:"den blinde och stumme",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"blinde och\"",
    impact:"Mindre mirakel"
   },
   {category:"miracles", verse:"Matt 14:24",
@@ -1692,7 +1692,7 @@ export const allVariants = [
   },
   {category:"ethics", verse:"1 Petr 4:1",
    tr_text:"Kristus har lidit i köttet för oss",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"för oss\"",
    impact:"Försoningsteologi påverkad"
   },
   {category:"ethics", verse:"2 Thess 2:3",
@@ -1717,7 +1717,7 @@ export const allVariants = [
   },
   {category:"ethics", verse:"Jak 4:4",
    tr_text:"Ni äktenskapsbrytare och äktenskapsbryterskor",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"äktenskapsbrytare och\"",
    impact:"Mindre skarpt"
   },
   {category:"ethics", verse:"Jak 5:16",
@@ -1807,7 +1807,7 @@ export const allVariants = [
   },
   {category:"ethics", verse:"Matt 5:27",
    tr_text:"till dem i forna tider",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"till dem i forna tider\"",
    impact:"Mindre specifikt"
   },
   {category:"ethics", verse:"Matt 5:47",
@@ -1827,12 +1827,12 @@ export const allVariants = [
   },
   {category:"ethics", verse:"Rom 1:29",
    tr_text:"orättfärdighet, otukt, ondska",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"otukt\"",
    impact:"Synd borttagen"
   },
   {category:"ethics", verse:"Rom 1:31",
    tr_text:"oförsonliga, obarmhärtiga",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"oförsonliga\"",
    impact:"Synd borttagen"
   },
   {category:"ethics", verse:"Rom 9:31",
@@ -1990,7 +1990,7 @@ export const allVariants = [
   },
   {category:"church", verse:"1 Kor 11:24",
    tr_text:"Tag, ät. Detta är min kropp som är bruten för er",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Tag, ät\" och \"bruten\"",
    impact:"Nattvardsinstruktion förkortad"
   },
   {category:"church", verse:"1 Kor 11:29",
@@ -2035,12 +2035,12 @@ export const allVariants = [
   },
   {category:"church", verse:"Apg 2:41",
    tr_text:"De som då med glädje tog emot hans ord",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"med glädje\"",
    impact:"Emotionell aspekt borttagen"
   },
   {category:"church", verse:"Apg 2:47",
    tr_text:"till församlingen",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"till församlingen\"",
    impact:"Mindre specifikt"
   },
   {category:"church", verse:"Mark 1:5",
@@ -2124,7 +2124,7 @@ export const allVariants = [
   },
   {category:"resurrection", verse:"Joh 20:17",
    tr_text:"min Fader",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"min\"",
    impact:"Mindre personligt"
   },
   {category:"resurrection", verse:"Kol 2:13",
@@ -2228,7 +2228,7 @@ export const allVariants = [
   },
   {category:"prophecy", verse:"Matt 21:4",
    tr_text:"Men allt detta hände för att det skulle uppfyllas",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"allt\"",
    impact:"Mindre emfatiskt"
   },
   {category:"prophecy", verse:"Upp 10:11",
@@ -2257,7 +2257,7 @@ export const allVariants = [
   },
   {category:"sin", verse:"1 Petr 4:3",
    tr_text:"vi under den förflutna tiden av vårt liv",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"vi\" och \"liv\"",
    impact:"Mindre personligt"
   },
   {category:"sin", verse:"2 Petr 2:2",
@@ -2272,12 +2272,12 @@ export const allVariants = [
   },
   {category:"sin", verse:"Gal 5:19",
    tr_text:"hor, otukt, orenhet",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"hor\"",
    impact:"Synd borttagen"
   },
   {category:"sin", verse:"Gal 5:21",
    tr_text:"missunnsamhet, mord, fylleri",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"mord\"",
    impact:"Synd borttagen"
   },
   {category:"sin", verse:"Kol 2:11",
@@ -2292,7 +2292,7 @@ export const allVariants = [
   },
   {category:"sin", verse:"Rom 13:9",
    tr_text:"du skall inte bära falskt vittnesbörd",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"du ska inte bära falskt vittnesbörd\"",
    impact:"Ett bud borttaget"
   },
 
@@ -2311,7 +2311,7 @@ export const allVariants = [
   },
   {category:"ministry", verse:"2 Kor 4:10",
    tr_text:"Herren Jesu död",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Herren\"",
    impact:"Mindre specifikt"
   },
   {category:"ministry", verse:"2 Tim 1:11",
@@ -2326,7 +2326,7 @@ export const allVariants = [
   },
   {category:"ministry", verse:"Ef 4:9",
    tr_text:"först och delarna",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"först\", tveksam om \"delarna\"",
    impact:"Mindre tydligt"
   },
   {category:"ministry", verse:"Joh 17:12",
@@ -2356,17 +2356,17 @@ export const allVariants = [
   },
   {category:"ministry", verse:"Mark 3:14",
    tr_text:"tolv",
-   un_text:"Tillägger inom parentes \\",
+   un_text:"Tillägger inom parentes \"(som han kallade apostlar)\"",
    impact:"UN mer specifik"
   },
   {category:"ministry", verse:"Mark 3:16",
    tr_text:"Och Simon gav han namnet Petrus",
-   un_text:"Tillägger \\",
+   un_text:"Tillägger \"Han utsåg dessa tolv\"",
    impact:"UN tydligare"
   },
   {category:"ministry", verse:"Matt 10:3",
    tr_text:"Lebbeus som kallades Taddeus",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Lebbeus som kallades\"",
    impact:"Namn förenklat"
   },
   {category:"ministry", verse:"Matt 18:29",
@@ -2386,7 +2386,7 @@ export const allVariants = [
   },
   {category:"ministry", verse:"Rom 15:19",
    tr_text:"genom Guds Andes kraft",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Guds\"",
    impact:"Mindre specifikt"
   },
 
@@ -2480,7 +2480,7 @@ export const allVariants = [
   },
   {category:"eschatology", verse:"Upp 14:5",
    tr_text:"inför Guds tron",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"inför Guds tron\"",
    impact:"Mindre specifikt"
   },
   {category:"eschatology", verse:"Upp 15:3",
@@ -2505,7 +2505,7 @@ export const allVariants = [
   },
   {category:"eschatology", verse:"Upp 20:9",
    tr_text:"från Gud",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"från Gud\"",
    impact:"Källan borttagen"
   },
   {category:"eschatology", verse:"Upp 21:24",
@@ -2520,12 +2520,12 @@ export const allVariants = [
   },
   {category:"eschatology", verse:"Upp 22:21",
    tr_text:"Vår, Kristi, er, Amen",
-   un_text:"Utelämnar allt utom \\",
+   un_text:"Utelämnar allt utom \"med de heliga\"",
    impact:"Avslutning förkortad"
   },
   {category:"eschatology", verse:"Upp 2:13",
    tr_text:"dina gärningar och",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"dina gärningar och\"",
    impact:"Mindre komplett"
   },
   {category:"eschatology", verse:"Upp 2:15",
@@ -2550,27 +2550,27 @@ export const allVariants = [
   },
   {category:"eschatology", verse:"Upp 6:1",
    tr_text:"Kom och se",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"och se\"",
    impact:"Uppmaningen förkortad"
   },
   {category:"eschatology", verse:"Upp 6:3",
    tr_text:"Kom och se",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"och se\"",
    impact:"Uppmaningen förkortad"
   },
   {category:"eschatology", verse:"Upp 6:5",
    tr_text:"Kom och se",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"och se\"",
    impact:"Uppmaningen förkortad"
   },
   {category:"eschatology", verse:"Upp 6:7",
    tr_text:"Kom och se",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"och se\"",
    impact:"Uppmaningen förkortad"
   },
   {category:"eschatology", verse:"Upp 8:7",
    tr_text:"Text om hagelstorm",
-   un_text:"Tillägger \\",
+   un_text:"Tillägger \"och en tredjedel av jorden brändes upp\"",
    impact:"UN mer detaljerad"
   },
 
@@ -3174,7 +3174,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Luk 10:20",
    tr_text:"hellre",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"hellre\"",
    impact:"Jämförelse borttagen"
   },
   {category:"minor", verse:"Luk 10:35",
@@ -3209,7 +3209,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Luk 12:31",
    tr_text:"Guds rike och allt",
-   un_text:"hans rike, utelämnar \\",
+   un_text:"hans rike, utelämnar \"allt\"",
    impact:"Mindre specifikt"
   },
   {category:"minor", verse:"Luk 12:39",
@@ -3254,7 +3254,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Luk 14:3",
    tr_text:"Frågan om det är tillåtet",
-   un_text:"Tillägger \\",
+   un_text:"Tillägger \"eller inte?\"",
    impact:"UN mer direkt"
   },
   {category:"minor", verse:"Luk 14:5",
@@ -3279,12 +3279,12 @@ export const allVariants = [
   },
   {category:"minor", verse:"Luk 17:24",
    tr_text:"också",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"också\"",
    impact:"Jämförelse försvagad"
   },
   {category:"minor", verse:"Luk 17:3",
    tr_text:"mot dig",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"mot dig\"",
    impact:"Mindre personligt"
   },
   {category:"minor", verse:"Luk 17:33",
@@ -3294,7 +3294,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Luk 17:4",
    tr_text:"om dagen",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"om dagen\"",
    impact:"Tidsaspekt borttagen"
   },
   {category:"minor", verse:"Luk 17:9",
@@ -3434,7 +3434,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Luk 2:17",
    tr_text:"vida omkring",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"vida omkring\"",
    impact:"Räckvidd begränsad"
   },
   {category:"minor", verse:"Luk 2:22",
@@ -3454,17 +3454,17 @@ export const allVariants = [
   },
   {category:"minor", verse:"Luk 2:40",
    tr_text:"i anden",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"i anden\"",
    impact:"Andlig aspekt borttagen"
   },
   {category:"minor", verse:"Luk 2:42",
    tr_text:"till Jerusalem",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"till Jerusalem\"",
    impact:"Destination borttagen"
   },
   {category:"minor", verse:"Luk 2:5",
    tr_text:"hustru",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"hustru\"",
    impact:"Status ändrad"
   },
   {category:"minor", verse:"Luk 3:19",
@@ -3484,12 +3484,12 @@ export const allVariants = [
   },
   {category:"minor", verse:"Luk 5:15",
    tr_text:"av honom",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"av honom\"",
    impact:"Agent borttagen"
   },
   {category:"minor", verse:"Luk 5:33",
    tr_text:"Varför",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Varför\"",
    impact:"Fråga förkortad"
   },
   {category:"minor", verse:"Luk 5:36",
@@ -3514,7 +3514,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Luk 6:10",
    tr_text:"som den andra",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"som den andra\"",
    impact:"Jämförelse borttagen"
   },
   {category:"minor", verse:"Luk 6:18",
@@ -3554,12 +3554,12 @@ export const allVariants = [
   },
   {category:"minor", verse:"Luk 6:5",
    tr_text:"också",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"också\"",
    impact:"Emfas borttagen"
   },
   {category:"minor", verse:"Luk 7:11",
    tr_text:"många",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"många\"",
    impact:"Mängd ospecificerad"
   },
   {category:"minor", verse:"Luk 7:19",
@@ -3664,7 +3664,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Luk 9:7",
    tr_text:"av honom",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"av honom\"",
    impact:"Agent borttagen"
   },
   {category:"minor", verse:"Mark 10:12",
@@ -3679,7 +3679,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Mark 10:29",
    tr_text:"eller hustru",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"eller hustru\"",
    impact:"En relation borttagen"
   },
   {category:"minor", verse:"Mark 10:46",
@@ -3689,7 +3689,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Mark 11:10",
    tr_text:"i Herrens namn",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"i Herrens namn\"",
    impact:"Kvalifikation borttagen"
   },
   {category:"minor", verse:"Mark 11:19",
@@ -3734,7 +3734,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Mark 13:33",
    tr_text:"och be",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"och be\"",
    impact:"Bön borttagen"
   },
   {category:"minor", verse:"Mark 13:6",
@@ -3759,7 +3759,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Mark 14:24",
    tr_text:"det nya förbundet",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"nya\"",
    impact:"Mindre specifikt"
   },
   {category:"minor", verse:"Mark 14:27",
@@ -3819,7 +3819,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Mark 1:31",
    tr_text:"Och genast",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Genast\"",
    impact:"Tidsaspekt borttagen"
   },
   {category:"minor", verse:"Mark 1:38",
@@ -3834,7 +3834,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Mark 1:8",
    tr_text:"i sanning",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"i sanning\"",
    impact:"Mindre emfatiskt"
   },
   {category:"minor", verse:"Mark 2:16",
@@ -3844,12 +3844,12 @@ export const allVariants = [
   },
   {category:"minor", verse:"Mark 2:2",
    tr_text:"Då samlades genast",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"genast\"",
    impact:"Tidsaspekt borttagen"
   },
   {category:"minor", verse:"Mark 2:22",
    tr_text:"det nya vinet",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"nya\"",
    impact:"Mindre specifikt"
   },
   {category:"minor", verse:"Mark 3:15",
@@ -3904,7 +3904,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Mark 6:16",
    tr_text:"från de döda",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"från de döda\"",
    impact:"Mindre specifikt"
   },
   {category:"minor", verse:"Mark 6:20",
@@ -3914,7 +3914,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Mark 6:33",
    tr_text:"och samlades till honom",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"och samlades till honom\"",
    impact:"Handling borttagen"
   },
   {category:"minor", verse:"Mark 6:36",
@@ -4059,7 +4059,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Matt 19:16",
    tr_text:"Gode mästare",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Gode\"",
    impact:"Tilltal ändrat"
   },
   {category:"minor", verse:"Matt 19:17",
@@ -4069,12 +4069,12 @@ export const allVariants = [
   },
   {category:"minor", verse:"Matt 19:20",
    tr_text:"från min ungdom",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"från min ungdom\"",
    impact:"Tidsaspekt borttagen"
   },
   {category:"minor", verse:"Matt 19:29",
    tr_text:"eller hustru",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"eller hustru\"",
    impact:"En relation borttagen"
   },
   {category:"minor", verse:"Matt 20:7",
@@ -4104,7 +4104,7 @@ export const allVariants = [
   },
   {category:"minor", verse:"Matt 24:48",
    tr_text:"att komma",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"att komma\"",
    impact:"Mindre specifikt"
   },
   {category:"minor", verse:"Matt 24:6",
@@ -4603,7 +4603,7 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 10:32",
    tr_text:"min Fader",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"min\"",
    impact:"Mindre personligt"
   },
   {category:"john", verse:"Joh 10:38",
@@ -4613,7 +4613,7 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 10:4",
    tr_text:"släppt ut",
-   un_text:"Tillägger \\",
+   un_text:"Tillägger \"alla\"",
    impact:"UN mer komplett"
   },
   {category:"john", verse:"Joh 11:31",
@@ -4633,12 +4633,12 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 12:1",
    tr_text:"som hade varit död och han",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"som hade varit död\", ändrar till \"Jesus\"",
    impact:"Mindre detalj, mer specifikt subjekt"
   },
   {category:"john", verse:"Joh 12:4",
    tr_text:"Simons",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Simons\"",
    impact:"Faders namn borttaget"
   },
   {category:"john", verse:"Joh 12:41",
@@ -4663,12 +4663,12 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 14:11",
    tr_text:"mig",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"mig\"",
    impact:"Objekt borttaget"
   },
   {category:"john", verse:"Joh 14:12",
    tr_text:"min Fader",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"min\"",
    impact:"Mindre personligt"
   },
   {category:"john", verse:"Joh 14:15",
@@ -4678,7 +4678,7 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 14:28",
    tr_text:"jag sa och min Fader",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"jag sa\" och \"min\"",
    impact:"Mindre emfatiskt och personligt"
   },
   {category:"john", verse:"Joh 14:30",
@@ -4698,7 +4698,7 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 16:10",
    tr_text:"min Fader",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"min\"",
    impact:"Mindre personligt"
   },
   {category:"john", verse:"Joh 16:13",
@@ -4713,7 +4713,7 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 16:3",
    tr_text:"mot er",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"mot er\"",
    impact:"Mindre personligt"
   },
   {category:"john", verse:"Joh 16:33",
@@ -4728,12 +4728,12 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 17:1",
    tr_text:"också din Son",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"också din\"",
    impact:"Mindre emfatiskt"
   },
   {category:"john", verse:"Joh 17:17",
    tr_text:"din sanning",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"din\"",
    impact:"Mindre personligt"
   },
   {category:"john", verse:"Joh 17:20",
@@ -4743,17 +4743,17 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 17:21",
    tr_text:"ett",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"ett\"",
    impact:"Enhet försvagad"
   },
   {category:"john", verse:"Joh 18:20",
    tr_text:"judarna",
-   un_text:"Tillägger \\",
+   un_text:"Tillägger \"alla\"",
    impact:"UN mer inkluderande"
   },
   {category:"john", verse:"Joh 18:40",
    tr_text:"alla",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"alla\"",
    impact:"Mindre emfatiskt"
   },
   {category:"john", verse:"Joh 19:16",
@@ -4763,7 +4763,7 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 19:3",
    tr_text:"",
-   un_text:"Tillägger \\",
+   un_text:"Tillägger \"De gick fram till honom\"",
    impact:"UN mer detaljerad"
   },
   {category:"john", verse:"Joh 19:38",
@@ -4798,7 +4798,7 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 1:51",
    tr_text:"Härefter",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Härefter\"",
    impact:"Tidsaspekt borttagen"
   },
   {category:"john", verse:"Joh 20:16",
@@ -4833,7 +4833,7 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 21:25",
    tr_text:"Amen",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Amen\"",
    impact:"Avslutning borttagen"
   },
   {category:"john", verse:"Joh 21:3",
@@ -4848,7 +4848,7 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 3:13",
    tr_text:"som är i himlen",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"som är i himlen\"",
    impact:"Jesu nuvarande plats borttagen"
   },
   {category:"john", verse:"Joh 3:15",
@@ -4858,7 +4858,7 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 3:16",
    tr_text:"sin enfödde Son",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"sin\"",
    impact:"Mindre personligt"
   },
   {category:"john", verse:"Joh 3:17",
@@ -4873,7 +4873,7 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 3:34",
    tr_text:"Gud ger inte Anden efter mått",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Gud\"",
    impact:"Subjekt ospecificerat"
   },
   {category:"john", verse:"Joh 4:1",
@@ -4883,7 +4883,7 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 5:27",
    tr_text:"också",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"också\"",
    impact:"Emfas borttagen"
   },
   {category:"john", verse:"Joh 5:30",
@@ -4918,12 +4918,12 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 6:58",
    tr_text:"mannat",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"mannat\"",
    impact:"Jämförelse borttagen"
   },
   {category:"john", verse:"Joh 6:65",
    tr_text:"min",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"min\"",
    impact:"Mindre personligt"
   },
   {category:"john", verse:"Joh 6:69",
@@ -4938,7 +4938,7 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 7:29",
    tr_text:"Men",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Men\"",
    impact:"Kontrast försvagad"
   },
   {category:"john", verse:"Joh 7:40",
@@ -4948,7 +4948,7 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 7:50",
    tr_text:"kom till honom om natten",
-   un_text:"hade kommit tidigare och utelämnar \\",
+   un_text:"hade kommit tidigare och utelämnar \"om natten\"",
    impact:"Tid ändrad"
   },
   {category:"john", verse:"Joh 7:52",
@@ -4963,7 +4963,7 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 7:8",
    tr_text:"ännu",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"ännu\"",
    impact:"Tidsaspekt ändrad"
   },
   {category:"john", verse:"Joh 8:10",
@@ -4978,12 +4978,12 @@ export const allVariants = [
   },
   {category:"john", verse:"Joh 8:28",
    tr_text:"min Fader",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"min\"",
    impact:"Mindre personligt"
   },
   {category:"john", verse:"Joh 8:38",
    tr_text:"min och sett",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"min\", ändrar till \"hört\"",
    impact:"Person och sinne ändrade"
   },
   {category:"john", verse:"Joh 8:9",
@@ -5022,12 +5022,12 @@ export const allVariants = [
 // ═══════════════════════════════════════════════════════════════════
   {category:"acts", verse:"Apg 10:11",
    tr_text:"hopbunden",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"hopbunden\"",
    impact:"Detalj borttagen"
   },
   {category:"acts", verse:"Apg 10:12",
    tr_text:"vilddjur",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"vilddjur\"",
    impact:"En kategori borttagen"
   },
   {category:"acts", verse:"Apg 10:16",
@@ -5042,7 +5042,7 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 10:30",
    tr_text:"fastade",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"fastade\"",
    impact:"Andlig övning borttagen"
   },
   {category:"acts", verse:"Apg 10:32",
@@ -5127,7 +5127,7 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 15:17",
    tr_text:"allt",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"allt\"",
    impact:"Mindre omfattande"
   },
   {category:"acts", verse:"Apg 15:18",
@@ -5182,7 +5182,7 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 17:26",
    tr_text:"av ett blod",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"blod\"",
    impact:"Gemensamt ursprung försvagat"
   },
   {category:"acts", verse:"Apg 17:27",
@@ -5202,7 +5202,7 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 18:17",
    tr_text:"grekerna",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"grekerna\"",
    impact:"Grupp ospecificerad"
   },
   {category:"acts", verse:"Apg 18:19",
@@ -5257,7 +5257,7 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 1:14",
    tr_text:"och åkallan",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"och åkallan\"",
    impact:"Böneaspekt borttagen"
   },
   {category:"acts", verse:"Apg 1:15",
@@ -5267,7 +5267,7 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 20:1",
    tr_text:"",
-   un_text:"Tillägger \\",
+   un_text:"Tillägger \"förmanat\"",
    impact:"UN mer detaljerad"
   },
   {category:"acts", verse:"Apg 20:15",
@@ -5277,12 +5277,12 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 20:19",
    tr_text:"många tårar",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"många\"",
    impact:"Mindre emfatiskt"
   },
   {category:"acts", verse:"Apg 20:21",
    tr_text:"Kristus",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Kristus\"",
    impact:"Titel borttagen"
   },
   {category:"acts", verse:"Apg 20:25",
@@ -5302,7 +5302,7 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 20:4",
    tr_text:"ända till Asien",
-   un_text:"Utelämnar destination, lägger till \\",
+   un_text:"Utelämnar destination, lägger till \"Pyrrhus son\"",
    impact:"Destination borttagen, släktskap tillagd"
   },
   {category:"acts", verse:"Apg 20:7",
@@ -5352,7 +5352,7 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 23:11",
    tr_text:"Paulus",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Paulus\"",
    impact:"Namn borttaget"
   },
   {category:"acts", verse:"Apg 23:12",
@@ -5362,7 +5362,7 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 23:15",
    tr_text:"i morgon",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"i morgon\"",
    impact:"Tid ospecificerad"
   },
   {category:"acts", verse:"Apg 23:30",
@@ -5383,11 +5383,11 @@ export const allVariants = [
   {category:"acts", verse:"Apg 24:1",
    tr_text:"några äldste",
    un_text:"några äldste",
-   impact:"Vissa TR utelämnar \\"
+   impact:"Vissa TR utelämnar \"några\""
   },
   {category:"acts", verse:"Apg 24:15",
    tr_text:"de döda",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"de döda\"",
    impact:"Mindre specifikt"
   },
   {category:"acts", verse:"Apg 24:22",
@@ -5402,7 +5402,7 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 24:24",
    tr_text:"Kristus",
-   un_text:"Tillägger \\",
+   un_text:"Tillägger \"Jesus\" efter Kristus",
    impact:"UN mer komplett"
   },
   {category:"acts", verse:"Apg 24:26",
@@ -5437,7 +5437,7 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 25:18",
    tr_text:"då anklagarna kom fram, kom de inte med någon anklagelse mot honom",
-   un_text:"Tillägger \\",
+   un_text:"Tillägger \"brott\"",
    impact:"UN mer specifikt"
   },
   {category:"acts", verse:"Apg 25:2",
@@ -5452,7 +5452,7 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 25:7",
    tr_text:"mot Paulus",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"mot Paulus\"",
    impact:"Mindre specifikt"
   },
   {category:"acts", verse:"Apg 25:8",
@@ -5477,7 +5477,7 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 26:7",
    tr_text:"Agrippa",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"Agrippa\"",
    impact:"Namn borttaget"
   },
   {category:"acts", verse:"Apg 27:19",
@@ -5522,7 +5522,7 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 2:23",
    tr_text:"tagit och",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"tagit och\"",
    impact:"Handling förenklad"
   },
   {category:"acts", verse:"Apg 2:30",
@@ -5532,7 +5532,7 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 2:31",
    tr_text:"själ",
-   un_text:"Utelämnar \\",
+   un_text:"Utelämnar \"själ\"",
    impact:"Mindre specifikt"
   },
   {category:"acts", verse:"Apg 3:11",
@@ -5688,7 +5688,7 @@ export const allVariants = [
   {category:"acts", verse:"Apg 9:19",
    tr_text:"..Därefter var Saulus några dagar tillsam­mans med lärjungarna i Damas­kus,",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"acts", verse:"Apg 9:20",
    tr_text:"och han började genast predika Kristus i syna­gogorna, att han är Guds Son.",
@@ -5698,7 +5698,7 @@ export const allVariants = [
   {category:"acts", verse:"Apg 9:26",
    tr_text:"Och när Saulus kom till Jerusalem, försökte han ansluta sig till lärjungarna,",
    un_text:"han.",
-   impact:"Jesus ersatt med pronomen \\"
+   impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"acts", verse:"Apg 9:28",
    tr_text:"Och han stannade hos dem, och gick in och ut i Jerusalem och predikade frimo­digt i Herren Jesu namn.",
