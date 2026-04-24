@@ -82,7 +82,7 @@ export const allVariants = [
    impact:"UN utelämnar: fastan och"
   },
   {category:"significant", verse:"1 Petr 2:2",
-   tr_text:"Längta såsom nyfödda barn efter ordets oför falskade mjölk, så att ni kan växa upp genom det,",
+   tr_text:"Längta såsom nyfödda barn efter ordets oförfalskade mjölk, så att ni kan växa upp genom det,",
    un_text:"UN tillägger: till frälsning",
    impact:"UN tillägger: till frälsning"
   },
@@ -122,7 +122,7 @@ export const allVariants = [
    impact:"UN utelämnar: skriftlärda och fariseer, ni hycklare"
   },
   {category:"significant", verse:"Luk 22:44",
-   tr_text:"Och under svår kamp bad han ännu ivrigare, och hans svett blev som blods droppar som droppade ner på marken",
+   tr_text:"Och under svår kamp bad han ännu ivrigare, och hans svett blev som blodsdroppar som droppade ner på marken",
    un_text:"är tveksam och sätter hela vers 44 inom dubbla parentestecken",
    impact:"är tveksam och sätter hela vers 44 inom dubbla parentestecken"
   },
@@ -143,7 +143,7 @@ export const allVariants = [
   },
   {category:"significant", verse:"Luk 9:56",
    tr_text:"För Människo­sonen har inte kommit för att förgöra människoliv, utan för att frälsa dem. Och de gick till en annan by.",
-   un_text:"utelämnar: För Männis­kosonen har inte kommit för att förgöra människornas liv, utan för att frälsa dem.",
+   un_text:"utelämnar: För Människosonen har inte kommit för att förgöra människornas liv, utan för att frälsa dem.",
    impact:"UN utelämnar: Människosonens syfte att frälsa"
   },
   {category:"significant", verse:"Mark 2:17",
@@ -167,7 +167,7 @@ export const allVariants = [
    impact:"UN utelämnar: rättfärdige"
   },
   {category:"significant", verse:"Matt 27:35",
-   tr_text:"...delade de hans kläder och kastade lott om dem, för att det skulle upp­fyllas som var sagt genom profeten.",
+   tr_text:"...delade de hans kläder och kastade lott om dem, för att det skulle uppfyllas som var sagt genom profeten.",
    un_text:"utelämnar resten av versen (uppfyllelsecitatet).",
    impact:"UN utelämnar: uppfyllelsecitat om Ps 22"
   },
@@ -231,12 +231,12 @@ export const allVariants = [
    impact:"UN utelämnar: därför, för oss"
   },
   {category:"jesus", verse:"1 Kor 9:1",
-   tr_text:"Är jag inte en apos tel? Är jag inte fri? Har jag inte sett Jesus Kristus, vår Herre?",
+   tr_text:"Är jag inte en apostel? Är jag inte fri? Har jag inte sett Jesus Kristus, vår Herre?",
    un_text:"UN annorlunda ordning: Är jag inte fri? Är jag inte apostel? **UN utelämnar: Kristus",
    impact:"UN annorlunda ordning: Är jag inte fri? Är jag inte apostel? **UN utelämnar: Kri"
   },
   {category:"jesus", verse:"1 Petr 2:21",
-   tr_text:"För till detta blev ni kallade, eftersom också Kristus led för oss och läm nande oss en förebild, för att ni ska följa efter i hans fotspår,",
+   tr_text:"För till detta blev ni kallade, eftersom också Kristus led för oss och lämnande oss en förebild, för att ni ska följa efter i hans fotspår,",
    un_text:"er",
    impact:"er"
   },
@@ -246,12 +246,12 @@ export const allVariants = [
    impact:"Kristus"
   },
   {category:"jesus", verse:"1 Petr 3:16",
-   tr_text:"s å at t de som förtalar er såsom onda människor får skämmas när de talar illa om ert goda lev nadssätt i Kristus",
+   tr_text:"Så att de som förtalar er såsom onda människor får skämmas när de talar illa om ert goda levnadssätt i Kristus",
    un_text:"UN utelämnar: såsom onda människor",
    impact:"UN utelämnar: såsom onda människor"
   },
   {category:"jesus", verse:"1 Petr 3:18",
-   tr_text:"För också Kristus led en gång för synder, rättfär dig för orättfärdiga, för att han skulle föra oss till Gud",
+   tr_text:"För också Kristus led en gång för synder, rättfärdig för orättfärdiga, för att han skulle föra oss till Gud",
    un_text:"er",
    impact:"er"
   },
@@ -266,7 +266,7 @@ export const allVariants = [
    impact:"UN utelämnar: Jesus, Amen"
   },
   {category:"jesus", verse:"1 Thess 1:1",
-   tr_text:"till thessalo nikernas församling i Gud, Fader n, och Her ren Jesus Kristus. Nåd vare med er och frid från Gud, vår Fader, och 23 Herren Jesus Kristus",
+   tr_text:"till thessalonikernas församling i Gud, Fadern, och Herren Jesus Kristus. Nåd vare med er och frid från Gud, vår Fader, och Herren Jesus Kristus",
    un_text:"UN utelämnar. från Gud, vår Fader, och Herren Jesus Kristus",
    impact:"UN utelämnar. från Gud, vår Fader, och Herren Jesus Kristus"
   },
@@ -276,7 +276,7 @@ export const allVariants = [
    impact:"UN utelämnar: sina egna"
   },
   {category:"jesus", verse:"1 Thess 2:19",
-   tr_text:"eller vår äre krona inför vår Herre Jesus Kristus när han kommer",
+   tr_text:"eller vår ärekrona inför vår Herre Jesus Kristus när han kommer",
    un_text:"UN utelämnar: Kristus",
    impact:"UN utelämnar: Kristus"
   },
@@ -291,7 +291,7 @@ export const allVariants = [
    impact:"UN utelämnar: Herren"
   },
   {category:"jesus", verse:"1 Tim 1:2",
-   tr_text:"Nåd, barmhär tighet och frid från Gud, vår Fader, och Jesus Kristus, vår Herre",
+   tr_text:"Nåd, barmhärtighet och frid från Gud, vår Fader, och Jesus Kristus, vår Herre",
    un_text:"UN utelämnar: vår",
    impact:"UN utelämnar: vår"
   },
@@ -336,7 +336,7 @@ export const allVariants = [
    impact:"UN utelämnar: Jesus Kristus, Amen"
   },
   {category:"jesus", verse:"Ef 1:10",
-   tr_text:"att i tidernas fullbor dan sammanfatta allt i Kristus, både det som är i himlarna och det som är på jorden – i honom",
+   tr_text:"att i tidernas fullbordan sammanfatta allt i Kristus, både det som är i himlarna och det som är på jorden – i honom",
    un_text:"UN utelämnar: både",
    impact:"UN utelämnar: både"
   },
@@ -356,7 +356,7 @@ export const allVariants = [
    impact:"UN : hushållningen, planen. **UN utelämnar: genom Jesus Kristus"
   },
   {category:"jesus", verse:"Ef 5:29",
-   tr_text:"utan man ger det näring och vårdar det, såsom också Herren gör med försam lingen",
+   tr_text:"utan man ger det näring och vårdar det, såsom också Herren gör med församlingen",
    un_text:"Kristus",
    impact:"Kristus"
   },
@@ -431,7 +431,7 @@ export const allVariants = [
    impact:"oss"
   },
   {category:"jesus", verse:"Hebr 3:1",
-   tr_text:"ge akt på den apos tel och överstepräst, Kristus Jesus, som vi bekänner",
+   tr_text:"ge akt på den apostel och överstepräst, Kristus Jesus, som vi bekänner",
    un_text:"UN utelämnar: Kristus",
    impact:"UN utelämnar: Kristus"
   },
@@ -521,12 +521,12 @@ export const allVariants = [
    impact:"UN utelämnar: Gud"
   },
   {category:"jesus", verse:"Kol 1:2",
-   tr_text:"till de heliga och tro fasta bröderna i Kristus, som är i Kolosse. Nåd vare med er och frid från Gud, vår Fader, och Herren Jesus Kristus",
+   tr_text:"till de heliga och trofasta bröderna i Kristus, som är i Kolosse. Nåd vare med er och frid från Gud, vår Fader, och Herren Jesus Kristus",
    un_text:"UN utelämnar: och Herren Jesus Kristus",
    impact:"UN utelämnar: och Herren Jesus Kristus"
   },
   {category:"jesus", verse:"Kol 1:28",
-   tr_text:"så att vi kan ställa fram varje människa fullkom lig i Kristus Jesus",
+   tr_text:"så att vi kan ställa fram varje människa fullkomlig i Kristus Jesus",
    un_text:"UN utelämnar: Jesus",
    impact:"UN utelämnar: Jesus"
   },
@@ -536,7 +536,7 @@ export const allVariants = [
    impact:"Herren"
   },
   {category:"jesus", verse:"Kol 3:20",
-   tr_text:"Därför om ni med Kristus har dött bort från värl dens läror",
+   tr_text:"Därför om ni med Kristus har dött bort från världens läror",
    un_text:"UN utelämnar: Därför",
    impact:"UN utelämnar: Därför"
   },
@@ -596,7 +596,7 @@ export const allVariants = [
    impact:"Mindre specifikt"
   },
   {category:"jesus", verse:"Luk 8:38",
-   tr_text:"Men Jesus skick ade iväg honom",
+   tr_text:"Men Jesus skickade iväg honom",
    un_text:"han",
    impact:"han"
   },
@@ -616,7 +616,7 @@ export const allVariants = [
    impact:"han"
   },
   {category:"jesus", verse:"Mark 11:14",
-   tr_text:"Och Jesus bör jade tala och sa till det: Aldrig mer ska någon äta frukt av dig",
+   tr_text:"Och Jesus började tala och sa till det: Aldrig mer ska någon äta frukt av dig",
    un_text:"han",
    impact:"han"
   },
@@ -626,7 +626,7 @@ export const allVariants = [
    impact:"han"
   },
   {category:"jesus", verse:"Mark 11:29",
-   tr_text:"Men Jesus sva rade och sa till dem: Jag vill också fråga er om en sak",
+   tr_text:"Men Jesus svarade och sa till dem: Jag vill också fråga er om en sak",
    un_text:"UN utelämnar: också",
    impact:"UN utelämnar: också"
   },
@@ -651,7 +651,7 @@ export const allVariants = [
    impact:"UN tillägger: Jesus"
   },
   {category:"jesus", verse:"Mark 1:14",
-   tr_text:"kom Jesus till Galileen och predikade evang elium om Guds rike,",
+   tr_text:"kom Jesus till Galileen och predikade evangelium om Guds rike,",
    un_text:"UN utelämnar: rike",
    impact:"UN utelämnar: rike"
   },
@@ -691,7 +691,7 @@ export const allVariants = [
    impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
   {category:"jesus", verse:"Mark 8:17",
-   tr_text:"Då Jesus märkte detta, sa han till dem: Varför talar ni om att ni inte har bröd? Kan ni ännu inget fatta eller förstå? Är era hjärtan fortfa rande förblindade?",
+   tr_text:"Då Jesus märkte detta, sa han till dem: Varför talar ni om att ni inte har bröd? Kan ni ännu inget fatta eller förstå? Är era hjärtan fortfarande förblindade?",
    un_text:"UN : han. **UN utelämnar: fortfarande",
    impact:"UN : han. **UN utelämnar: fortfarande"
   },
@@ -851,7 +851,7 @@ export const allVariants = [
    impact:"UN utelämnar: Jesus"
   },
   {category:"jesus", verse:"Rom 16:5",
-   tr_text:"Hälsa min äls kade Epenetus som är Akajas förstlingsfrukt åt Kristus",
+   tr_text:"Hälsa min älskade Epenetus som är Akajas förstlingsfrukt åt Kristus",
    un_text:"Asiens",
    impact:"Asiens"
   },
@@ -861,7 +861,7 @@ export const allVariants = [
    impact:"dig"
   },
   {category:"jesus", verse:"Titus 1:4",
-   tr_text:"min äkta son i den gemensamma tron. Nåd, barmhärtighet och frid från Gud, Fader n, och Her ren Jesus Kristus, vår Frälsare",
+   tr_text:"min äkta son i den gemensamma tron. Nåd, barmhärtighet och frid från Gud, Fadern, och Herren Jesus Kristus, vår Frälsare",
    un_text:"UN utelämnar: barmhärtighet och Herren",
    impact:"UN utelämnar: barmhärtighet och Herren"
   },
@@ -905,7 +905,7 @@ export const allVariants = [
    impact:"att han har"
   },
   {category:"god", verse:"1 Kor 10:20",
-   tr_text:"Nej, utan vad hed ningarna offrar, det offrar de åt onda andar och inte åt Gud",
+   tr_text:"Nej, utan vad hedningarna offrar, det offrar de åt onda andar och inte åt Gud",
    un_text:"UN utelämnar: hedningarna",
    impact:"UN utelämnar: hedningarna"
   },
@@ -925,7 +925,7 @@ export const allVariants = [
    impact:"Gud"
   },
   {category:"god", verse:"1 Kor 2:1",
-   tr_text:"var det inte med stor vält alig het eller hög visdom jag förkunnade Guds vittnesbörd för er",
+   tr_text:"var det inte med stor vältalighet eller hög visdom jag förkunnade Guds vittnesbörd för er",
    un_text:"hemlighet",
    impact:"hemlighet"
   },
@@ -940,7 +940,7 @@ export const allVariants = [
    impact:"UN utelämnar: Jesu"
   },
   {category:"god", verse:"1 Kor 6:11",
-   tr_text:"och ni är rättfär diggjorda i Herren Jesu namn och genom vår Guds Ande",
+   tr_text:"och ni är rättfärdiggjorda i Herren Jesu namn och genom vår Guds Ande",
    un_text:"UN tillägger: Kristi",
    impact:"UN tillägger: Kristi"
   },
@@ -1015,7 +1015,7 @@ export const allVariants = [
    impact:"UN utelämnar: gott och"
   },
   {category:"god", verse:"1 Tim 6:5",
-   tr_text:"värdelösa strid igheter mellan människor som är fördärvade i sitt sinne, och som har förlorat sanningen och menar att gudsfruktan är en vinning. Dra dig ifrån sådana",
+   tr_text:"värdelösa stridigheter mellan människor som är fördärvade i sitt sinne, och som har förlorat sanningen och menar att gudsfruktan är en vinning. Dra dig ifrån sådana",
    un_text:"UN : ständiga. **UN utelämnar: Dra dig ifrån sådana",
    impact:"UN : ständiga. **UN utelämnar: Dra dig ifrån sådana"
   },
@@ -1060,7 +1060,7 @@ export const allVariants = [
    impact:"vår"
   },
   {category:"god", verse:"2 Petr 2:4",
-   tr_text:"För Gud skonade ju inte änglarna som syndade, utan störtade ner dem i avgrun den och överlämnade dem åt mörkrets kedjor, för att förvaras till domen",
+   tr_text:"För Gud skonade ju inte änglarna som syndade, utan störtade ner dem i avgrunden och överlämnade dem åt mörkrets kedjor, för att förvaras till domen",
    un_text:"mörka hålor",
    impact:"mörka hålor"
   },
@@ -1250,7 +1250,7 @@ export const allVariants = [
    impact:"UN utelämnar: till Guds"
   },
   {category:"god", verse:"Luk 22:18",
-   tr_text:"För jag säger er, att jag inte ska dricka av vint rädets frukt förrän Guds rike kommer",
+   tr_text:"För jag säger er, att jag inte ska dricka av vinträdets frukt förrän Guds rike kommer",
    un_text:"UN tillägger: från denna stund",
    impact:"UN tillägger: från denna stund"
   },
@@ -1295,7 +1295,7 @@ export const allVariants = [
    impact:"UN utelämnar: eld"
   },
   {category:"god", verse:"Matt 15:6",
-   tr_text:"På detta sätt upp häver ni Guds bud för era traditioners skull",
+   tr_text:"På detta sätt upphäver ni Guds bud för era traditioners skull",
    un_text:"ord",
    impact:"ord"
   },
@@ -1375,12 +1375,12 @@ export const allVariants = [
    impact:"men om"
   },
   {category:"god", verse:"Rom 3:22",
-   tr_text:"nämligen Guds rättf ärdighet, som kommer genom Jesu Kristi tro, till alla och över alla dem som tror",
+   tr_text:"nämligen Guds rättfärdighet, som kommer genom Jesu Kristi tro, till alla och över alla dem som tror",
    un_text:"UN utelämnar: och över alla",
    impact:"UN utelämnar: och över alla"
   },
   {category:"god", verse:"Rom 9:28",
-   tr_text:"För han ska full borda verket och förkorta det i rättfärdighet, för Herren ska snart avsluta verket på jorden",
+   tr_text:"För han ska fullborda verket och förkorta det i rättfärdighet, för Herren ska snart avsluta verket på jorden",
    un_text:"UN utelämnar: i rättfärdighet",
    impact:"UN utelämnar: i rättfärdighet"
   },
@@ -1430,7 +1430,7 @@ export const allVariants = [
    impact:"altaret säga"
   },
   {category:"god", verse:"Upp 18:20",
-   tr_text:"Gläd dig över he n ne du h i m mel o ch n i heliga apostlar och profeter, för Gud har utkrävt en rättvis",
+   tr_text:"Gläd dig över henne, du himmel och ni heliga apostlar och profeter, för Gud har utkrävt en rättvis",
    un_text:"ni heliga och ni apostlar",
    impact:"ni heliga och ni apostlar"
   },
@@ -1515,7 +1515,7 @@ export const allVariants = [
    impact:"UN utelämnar: mitten"
   },
   {category:"god", verse:"Upp 3:14",
-   tr_text:"Skriv också till ängeln för laodiceernas för samling: Detta säger Amen, det trovärdiga och sanna vittnet, begynnelsen till Guds ska pelse:",
+   tr_text:"Skriv också till ängeln för laodiceernas församling: Detta säger Amen, det trovärdiga och sanna vittnet, begynnelsen till Guds skapelse:",
    un_text:"i Laodicea",
    impact:"i Laodicea"
   },
@@ -1681,7 +1681,7 @@ export const allVariants = [
    impact:"UN utelämnar: våra"
   },
   {category:"ethics", verse:"1 Kor 7:14",
-   tr_text:"För den man som inte t ror är helgad genom hustrun, och den hustru som inte t ror är helgad genom mannen",
+   tr_text:"För den man som inte tror är helgad genom hustrun, och den hustru som inte tror är helgad genom mannen",
    un_text:"brodern",
    impact:"brodern"
   },
@@ -1701,7 +1701,7 @@ export const allVariants = [
    impact:"laglöshetens"
   },
   {category:"ethics", verse:"Hebr 10:38",
-   tr_text:"Men den rättfär dige ska leva av tro",
+   tr_text:"Men den rättfärdige ska leva av tro",
    un_text:"Min rättfärdige. 25",
    impact:"Min rättfärdige. 25"
   },
@@ -1711,7 +1711,7 @@ export const allVariants = [
    impact:"UN utelämnar: genom sig själv, våra"
   },
   {category:"ethics", verse:"Hebr 8:12",
-   tr_text:"För jag ska förlåta dem deras orättfärdighet, och deras synder och deras laglös het ska jag inte mer komma ihåg",
+   tr_text:"För jag ska förlåta dem deras orättfärdighet, och deras synder och deras laglöshet ska jag inte mer komma ihåg",
    un_text:"UN utelämnar: och deras laglöshet",
    impact:"UN utelämnar: och deras laglöshet"
   },
@@ -1721,7 +1721,7 @@ export const allVariants = [
    impact:"Mindre skarpt"
   },
   {category:"ethics", verse:"Jak 5:16",
-   tr_text:"Bekänn era överträ delser för varandra och be för varandra, så att ni blir helade",
+   tr_text:"Bekänn era överträdelser för varandra och be för varandra, så att ni blir helade",
    un_text:"Bekänn därför era synder",
    impact:"Bekänn därför era synder"
   },
@@ -1802,8 +1802,8 @@ export const allVariants = [
   },
   {category:"ethics", verse:"Matt 25:13",
    tr_text:"Vaka därför, för ni vet varken dagen eller stunden då Männi­skosonen kommer.",
-   un_text:"utelämnar: då Männi­skosonen kommer.",
-   impact:"UN utelämnar: då Männi­skosonen kommer"
+   un_text:"utelämnar: då Människosonen kommer.",
+   impact:"UN utelämnar: då Människosonen kommer"
   },
   {category:"ethics", verse:"Matt 5:27",
    tr_text:"till dem i forna tider",
@@ -1841,7 +1841,7 @@ export const allVariants = [
    impact:"UN utelämnar: rättfärdighetens"
   },
   {category:"ethics", verse:"Upp 16:5",
-   tr_text:"Och jag hörde vatt nens ängel säga: Rättfärdig är du, Herre, som är och som var, och den Helige, att du har dömt så",
+   tr_text:"Och jag hörde vattnens ängel säga: Rättfärdig är du, Herre, som är och som var, och den Helige, att du har dömt så",
    un_text:"UN utelämnar: Herre",
    impact:"UN utelämnar: Herre"
   },
@@ -2103,7 +2103,7 @@ export const allVariants = [
    impact:"vi"
   },
   {category:"resurrection", verse:"2 Petr 2:18",
-   tr_text:"För de talar stora men tomma ord och lockar genom köttsliga, lösaktiga begär till sig sådana som verk ligen kommit undan dem som lever i villfarelse",
+   tr_text:"För de talar stora men tomma ord och lockar genom köttsliga, lösaktiga begär till sig sådana som verkligen kommit undan dem som lever i villfarelse",
    un_text:"med knapp nöd",
    impact:"med knapp nöd"
   },
@@ -2128,7 +2128,7 @@ export const allVariants = [
    impact:"Mindre personligt"
   },
   {category:"resurrection", verse:"Kol 2:13",
-   tr_text:"har han g jor t levande med honom, i och med att han förlät alla era synder",
+   tr_text:"har han gjort levande med honom, i och med att han förlät alla era synder",
    un_text:"våra",
    impact:"våra"
   },
@@ -2222,7 +2222,7 @@ export const allVariants = [
    impact:"UN utelämnar: ända till himlen"
   },
   {category:"prophecy", verse:"Matt 16:4",
-   tr_text:"men inget annat tecken ska ges åt den än profe ten Jonas tecken",
+   tr_text:"men inget annat tecken ska ges åt den än profeten Jonas tecken",
    un_text:"UN utelämnar: profeten",
    impact:"UN utelämnar: profeten"
   },
@@ -2242,7 +2242,7 @@ export const allVariants = [
    impact:"UN tillägger: också"
   },
   {category:"prophecy", verse:"Upp 2:20",
-   tr_text:"Men jag har några få saker emot dig, att du tillå ter kvinnan Jesabel, som säger att hon är en profetissa, att undervisa och förföra mina tjänare",
+   tr_text:"Men jag har några få saker emot dig, att du tillåter kvinnan Jesabel, som säger att hon är en profetissa, att undervisa och förföra mina tjänare",
    un_text:"det har jag emot dig. **UN: och undervisar och förför",
    impact:"det har jag emot dig. **UN: och undervisar och förför"
   },
@@ -2335,7 +2335,7 @@ export const allVariants = [
    impact:"UN utelämnar: i världen"
   },
   {category:"ministry", verse:"Luk 7:10",
-   tr_text:"och fan n at t tjänaren, som hade varit sjuk, var frisk",
+   tr_text:"och fann att tjänaren, som hade varit sjuk, var frisk",
    un_text:"UN utelämnar: som hade varit sjuk",
    impact:"UN utelämnar: som hade varit sjuk"
   },
@@ -2394,12 +2394,12 @@ export const allVariants = [
 // KATEGORI 15 — HIMMELSKA SCENER OCH ESKATOLOGI
 // ═══════════════════════════════════════════════════════════════════
   {category:"eschatology", verse:"1 Kor 15:20",
-   tr_text:"Men nu har Kris tus uppstått från de döda och har blivit förstlingen av de som somnat in",
+   tr_text:"Men nu har Kristus uppstått från de döda och har blivit förstlingen av de som somnat in",
    un_text:"UN utelämnar: blivit",
    impact:"UN utelämnar: blivit"
   },
   {category:"eschatology", verse:"1 Petr 5:11",
-   tr_text:"Honom tillhör äran och herraväldet i evig heternas evigheter. Amen",
+   tr_text:"Honom tillhör äran och herraväldet i evigheternas evigheter. Amen",
    un_text:"UN utelämnar: äran och. **UN utelämnar: evigheter",
    impact:"UN utelämnar: äran och. **UN utelämnar: evigheter"
   },
@@ -2439,7 +2439,7 @@ export const allVariants = [
    impact:"UN utelämnar: och din dialekt låter så"
   },
   {category:"eschatology", verse:"Mark 7:31",
-   tr_text:"S e d a n g ick han åter bort från Tyrus och Sidons område,",
+   tr_text:"Sedan gick han åter bort från Tyrus och Sidons område,",
    un_text:"kom han genom Sidon",
    impact:"kom han genom Sidon"
   },
@@ -2643,7 +2643,7 @@ export const allVariants = [
    impact:"Du död, var är din seger? Du död, var är din udd?"
   },
   {category:"minor", verse:"1 Kor 16:23",
-   tr_text:"Her ren Jesu Kristi nåd vare med er",
+   tr_text:"Herren Jesu Kristi nåd vare med er",
    un_text:"UN utelämnar: Kristi",
    impact:"UN utelämnar: Kristi"
   },
@@ -2688,7 +2688,7 @@ export const allVariants = [
    impact:"allt"
   },
   {category:"minor", verse:"1 Petr 1:12",
-   tr_text:"Och det uppen barades för dem att de inte tjänade sig själva, utan oss",
+   tr_text:"Och det uppenbarades för dem att de inte tjänade sig själva, utan oss",
    un_text:"er",
    impact:"er"
   },
@@ -2703,7 +2703,7 @@ export const allVariants = [
    impact:"ivrar"
   },
   {category:"minor", verse:"1 Petr 3:21",
-   tr_text:"Efter denna före bild blir också vi nu frälsta i dopet, som inte innebär ett avläggande av köttets oren het",
+   tr_text:"Efter denna före bild blir också vi nu frälsta i dopet, som inte innebär ett avläggande av köttets orenhet",
    un_text:"ni",
    impact:"ni"
   },
@@ -2768,9 +2768,9 @@ export const allVariants = [
    impact:"UN utelämnar: Därför"
   },
   {category:"minor", verse:"1 Tim 3:3",
-   tr_text:"inte drinkare, inte våldsam, inte sniken på orätt vinning, utan mild, inte strids lysten, fri från penningbegär",
-   un_text:"UN utelämnar: inte sniken på orätt vinning",
-   impact:"UN utelämnar: inte sniken på orätt vinning"
+   tr_text:"inte drinkare, inte våldsam, inte sniken på orättvinning, utan mild, inte stridslysten, fri från penningbegär",
+   un_text:"UN utelämnar: inte sniken på orättvinning",
+   impact:"UN utelämnar: inte sniken på orättvinning"
   },
   {category:"minor", verse:"1 Tim 4:10",
    tr_text:"Ty för detta både arbetar vi och blir smädade",
@@ -2813,7 +2813,7 @@ export const allVariants = [
    impact:"Jag måste berömma mig"
   },
   {category:"minor", verse:"2 Kor 12:11",
-   tr_text:"Jag har blivit oför ståndig genom att berömma mig. Ni har tvingat mig till det",
+   tr_text:"Jag har blivit oförståndig genom att berömma mig. Ni har tvingat mig till det",
    un_text:"UN utelämnar: att berömma mig",
    impact:"UN utelämnar: att berömma mig"
   },
@@ -2863,7 +2863,7 @@ export const allVariants = [
    impact:"UN tillägger: som hånar er"
   },
   {category:"minor", verse:"2 Thess 1:12",
-   tr_text:"så att vår Herre Jesu Kristi namn ska bli för härligat i er och ni i honom",
+   tr_text:"så att vår Herre Jesu Kristi namn ska bli förhärligat i er och ni i honom",
    un_text:"UN utelämnar: Kristi",
    impact:"UN utelämnar: Kristi"
   },
@@ -2883,7 +2883,7 @@ export const allVariants = [
    impact:"du"
   },
   {category:"minor", verse:"3 Joh 1:7",
-   tr_text:"De har ju för hans namns skull gått ut och har inte tagit emot något från hed ningarna",
+   tr_text:"De har ju för hans namns skull gått ut och har inte tagit emot något från hedningarna",
    un_text:"namnets",
    impact:"namnets"
   },
@@ -2893,7 +2893,7 @@ export const allVariants = [
    impact:"sörja för"
   },
   {category:"minor", verse:"Ef 1:18",
-   tr_text:"Och upplysa ert för stånds ögon, så att ni kan förstå vilket hopp han har",
+   tr_text:"Och upplysa ert förstånds ögon, så att ni kan förstå vilket hopp han har",
    un_text:"hjärtas",
    impact:"hjärtas"
   },
@@ -2973,7 +2973,7 @@ export const allVariants = [
    impact:"Kefas"
   },
   {category:"minor", verse:"Gal 4:14",
-   tr_text:"Och den prövning som jag led i mitt kött, den f öraktade och avvisade ni inte",
+   tr_text:"Och den prövning som jag led i mitt kött, den föraktade och avvisade ni inte",
    un_text:"det, som i mitt kött var en frestelse för er",
    impact:"det, som i mitt kött var en frestelse för er"
   },
@@ -3033,7 +3033,7 @@ export const allVariants = [
    impact:"föras bort"
   },
   {category:"minor", verse:"Hebr 2:7",
-   tr_text:"Med ära och här lighet krönte du honom och satte honom över dina händers verk",
+   tr_text:"Med ära och härlighet krönte du honom och satte honom över dina händers verk",
    un_text:"UN utelämnar: och satte honom över dina händers verk",
    impact:"UN utelämnar: och satte honom över dina händers verk"
   },
@@ -3053,7 +3053,7 @@ export const allVariants = [
    impact:"andra"
   },
   {category:"minor", verse:"Jak 1:19",
-   tr_text:"Dä r f ör, m i na älskade bröder",
+   tr_text:"Därför, mina älskade bröder",
    un_text:"Detta vet ni",
    impact:"Detta vet ni"
   },
@@ -3063,12 +3063,12 @@ export const allVariants = [
    impact:"UN utelämnar: dina"
   },
   {category:"minor", verse:"Jak 2:20",
-   tr_text:"Men vill du inte inse, du oförståndiga männ iska, att tron utan gärningar är död?",
+   tr_text:"Men vill du inte inse, du oförståndiga människa, att tron utan gärningar är död?",
    un_text:"värdelös",
    impact:"värdelös"
   },
   {category:"minor", verse:"Jak 3:12",
-   tr_text:"Inte kan väl ett fikon träd, mina bröder, bära oliver eller ett vinträd fikon? Så kan inte heller en källa ge både salt och sött vatten",
+   tr_text:"Inte kan väl ett fikonträd, mina bröder, bära oliver eller ett vinträd fikon? Så kan inte heller en källa ge både salt och sött vatten",
    un_text:"salt källa ge sött vatten",
    impact:"salt källa ge sött vatten"
   },
@@ -3138,12 +3138,12 @@ export const allVariants = [
    impact:"UN utelämnar: era"
   },
   {category:"minor", verse:"Kol 4:13",
-   tr_text:"För jag ger honom det vittnesbördet, att han har stor iver för er och för dem i Laodicea och för dem i Hie rapolis",
+   tr_text:"För jag ger honom det vittnesbördet, att han har stor iver för er och för dem i Laodicea och för dem i Hierapolis",
    un_text:"hur mycket han arbetar",
    impact:"hur mycket han arbetar"
   },
   {category:"minor", verse:"Kol 4:15",
-   tr_text:"Hälsa bröderna i Laodicea och Nymfas och för samlingen i hans hus",
+   tr_text:"Hälsa bröderna i Laodicea och Nymfas och församlingen i hans hus",
    un_text:"hennes",
    impact:"hennes"
   },
@@ -3193,7 +3193,7 @@ export const allVariants = [
    impact:"UN utelämnar: bröd, ger honom en sten eller om"
   },
   {category:"minor", verse:"Luk 11:53",
-   tr_text:"När han sa detta till dem, började de skriftlärda och fariseer na att angripa honom ",
+   tr_text:"När han sa detta till dem, började de skriftlärda och fariseerna att angripa honom ",
    un_text:"när han gick därifrån",
    impact:"när han gick därifrån"
   },
@@ -3218,7 +3218,7 @@ export const allVariants = [
    impact:"UN utelämnar: vaka och"
   },
   {category:"minor", verse:"Luk 12:40",
-   tr_text:"Var därför också ni redo, för i den stund som ni inte tänker er, kommer Män niskosonen",
+   tr_text:"Var därför också ni redo, för i den stund som ni inte tänker er, kommer Människosonen",
    un_text:"UN utelämnar: därför",
    impact:"UN utelämnar: därför"
   },
@@ -3263,7 +3263,7 @@ export const allVariants = [
    impact:"Helt annorlunda objekt"
   },
   {category:"minor", verse:"Luk 16:18",
-   tr_text:"Alla de som skil jer sig från sin hustr u och gifter sig med en annan begår äktenskapsbrott. Och alla de som gifter sig med henne som är skild från sin man begår äktenskapsbrott",
+   tr_text:"Alla de som skiljer sig från sin hustru och gifter sig med en annan begår äktenskapsbrott. Och alla de som gifter sig med henne som är skild från sin man begår äktenskapsbrott",
    un_text:"den",
    impact:"den"
   },
@@ -3373,7 +3373,7 @@ export const allVariants = [
    impact:"UN utelämnar: honom"
   },
   {category:"minor", verse:"Luk 22:61",
-   tr_text:"Och Petrus kom ihåg Her rens ord, hur han hade sagt till honom: Innan tuppen gal, ska du tre gånger förneka mig",
+   tr_text:"Och Petrus kom ihåg Herrens ord, hur han hade sagt till honom: Innan tuppen gal, ska du tre gånger förneka mig",
    un_text:"UN tillägger: i dag",
    impact:"UN tillägger: i dag"
   },
@@ -3393,7 +3393,7 @@ export const allVariants = [
    impact:"för han har skickat tillbaka honom till oss"
   },
   {category:"minor", verse:"Luk 23:23",
-   tr_text:"att han skulle korsfästas, och deras och över steprästernas rop fick överta get",
+   tr_text:"att han skulle korsfästas, och deras och översteprästernas rop fick överta get",
    un_text:"UN utelämnar: och översteprästernas",
    impact:"UN utelämnar: och översteprästernas"
   },
@@ -3403,7 +3403,7 @@ export const allVariants = [
    impact:"UN utelämnar: åt dem"
   },
   {category:"minor", verse:"Luk 23:35",
-   tr_text:"Och även råds medlemmarna tillsammans med dem hånade honom och sa: ",
+   tr_text:"Och även rådsmedlemmarna tillsammans med dem hånade honom och sa: ",
    un_text:"UN utelämnar: tillsammans med dem. 11",
    impact:"UN utelämnar: tillsammans med dem. 11"
   },
@@ -3413,7 +3413,7 @@ export const allVariants = [
    impact:"UN utelämnar: mycket"
   },
   {category:"minor", verse:"Luk 24:1",
-   tr_text:"kom de tidigt i gryningen till graven tillsam mans med några andra",
+   tr_text:"kom de tidigt i gryningen till graven tillsammans med några andra",
    un_text:"UN utelämnar: tillsammans med några",
    impact:"UN utelämnar: tillsammans med några"
   },
@@ -3468,7 +3468,7 @@ export const allVariants = [
    impact:"Status ändrad"
   },
   {category:"minor", verse:"Luk 3:19",
-   tr_text:"Och He rode s, tetrarken, blev tillrättavisad av honom för Herodias skull, hustru till hans bror Filippus",
+   tr_text:"Och Herodes, tetrarken, blev tillrättavisad av honom för Herodias skull, hustru till hans bror Filippus",
    un_text:"UN utelämnar: Filippus",
    impact:"UN utelämnar: Filippus"
   },
@@ -3598,7 +3598,7 @@ export const allVariants = [
    impact:"Annorlunda objekt"
   },
   {category:"minor", verse:"Luk 8:37",
-   tr_text:"Och allt folket från trakten däromkring i gada renernas land bad honom att han skulle gå bort från dem",
+   tr_text:"Och allt folket från trakten däromkring i gadarenernas land bad honom att han skulle gå bort från dem",
    un_text:"gerasenernas",
    impact:"gerasenernas"
   },
@@ -3608,7 +3608,7 @@ export const allVariants = [
    impact:"Osäkerhet om denna detalj"
   },
   {category:"minor", verse:"Luk 8:45",
-   tr_text:"Då alla nekade, sa Pet r us och de som var med honom: Mästare, folket trycker och tränger sig inpå dig, och du säger: Vem rörde vid mig?",
+   tr_text:"Då alla nekade, sa Petrus och de som var med honom: Mästare, folket trycker och tränger sig inpå dig, och du säger: Vem rörde vid mig?",
    un_text:"UN utelämnar: och de som var med honom. **UN utelämnar: och du säger: Vem rörde vid mig?",
    impact:"UN utelämnar: och de som var med honom. **UN utelämnar: och du säger: Vem rörde "
   },
@@ -3743,12 +3743,12 @@ export const allVariants = [
    impact:"UN utelämnar: För"
   },
   {category:"minor", verse:"Mark 13:7",
-   tr_text:"så bli inte för skräckta. För sådant måste ske, men det är ännu inte slutet",
+   tr_text:"så bli inte förskräckta. För sådant måste ske, men det är ännu inte slutet",
    un_text:"UN utelämnar: För",
    impact:"UN utelämnar: För"
   },
   {category:"minor", verse:"Mark 13:8",
-   tr_text:"ska bli hungers nöd och oroligheter. Detta är början på födslovärkarna",
+   tr_text:"ska bli hungersnöd och oroligheter. Detta är början på födslovärkarna",
    un_text:"UN utelämnar: oroligheter",
    impact:"UN utelämnar: oroligheter"
   },
@@ -3768,7 +3768,7 @@ export const allVariants = [
    impact:"Tid och orsak borttagna"
   },
   {category:"minor", verse:"Mark 14:43",
-   tr_text:"och tillsam mans med honom en stor folk skara med svärd och påkar",
+   tr_text:"och tillsammans med honom en stor folk skara med svärd och påkar",
    un_text:"UN utelämnar: stor",
    impact:"UN utelämnar: stor"
   },
@@ -3933,7 +3933,7 @@ export const allVariants = [
    impact:"(Därmed förklarade) han all mat ren"
   },
   {category:"minor", verse:"Mark 7:2",
-   tr_text:"det vill säga otvät tade händer, klandrade de det",
+   tr_text:"det vill säga otvättade händer, klandrade de det",
    un_text:"UN utelämnar: klandrade de det",
    impact:"UN utelämnar: klandrade de det"
   },
@@ -3948,7 +3948,7 @@ export const allVariants = [
    impact:"UN utelämnar: och bänkar"
   },
   {category:"minor", verse:"Mark 7:5",
-   tr_text:"d e ä ld s t e s traditioner, utan äter bröd med otvättade händer?",
+   tr_text:"de äldstes traditioner, utan äter bröd med otvättade händer?",
    un_text:"orena",
    impact:"orena"
   },
@@ -4023,22 +4023,22 @@ export const allVariants = [
    impact:"UN utelämnar: ur sitt hjärta"
   },
   {category:"minor", verse:"Matt 12:8",
-   tr_text:"För Människo sonen är Herre också över sabbaten",
+   tr_text:"För Människosonen är Herre också över sabbaten",
    un_text:"UN utelämnar: också",
    impact:"UN utelämnar: också"
   },
   {category:"minor", verse:"Matt 13:22",
-   tr_text:"men där omsorg för denna världen och rikedo mens lockelser kväver ordet, och han blir utan frukt",
+   tr_text:"men där omsorg för denna världen och rikedomens lockelser kväver ordet, och han blir utan frukt",
    un_text:"UN utelämnar: denna",
    impact:"UN utelämnar: denna"
   },
   {category:"minor", verse:"Matt 13:40",
-   tr_text:"Så som när ogrä set samlas ihop och bränns upp i eld, så ska det vara vid denna tidsålderns slut",
+   tr_text:"Så som när ogräset samlas ihop och bränns upp i eld, så ska det vara vid denna tidsålderns slut",
    un_text:"UN utelämnar: denna",
    impact:"UN utelämnar: denna"
   },
   {category:"minor", verse:"Matt 14:34",
-   tr_text:"Och när de hade farit över, kom de till Genne sarets land",
+   tr_text:"Och när de hade farit över, kom de till Gennesarets land",
    un_text:"kom de till landet vid Gennesaret",
    impact:"kom de till landet vid Gennesaret"
   },
@@ -4048,7 +4048,7 @@ export const allVariants = [
    impact:"UN utelämnar: närmar sig mig med sin mun"
   },
   {category:"minor", verse:"Matt 16:3",
-   tr_text:"och på morgo nen: Det blir oväder i dag, för himlen är röd och mulen. Ni hycklare!",
+   tr_text:"och på morgonen: Det blir oväder i dag, för himlen är röd och mulen. Ni hycklare!",
    un_text:"UN utelämnar: hycklare",
    impact:"UN utelämnar: hycklare"
   },
@@ -4083,7 +4083,7 @@ export const allVariants = [
    impact:"UN utelämnar: så ska ni få vad som är skäligt"
   },
   {category:"minor", verse:"Matt 21:7",
-   tr_text:"D e h ä mt a d e åsnestoet och fölet och lade sina kläder på dem, och de satte upp honom på det",
+   tr_text:"De hämtade åsnestoet och fölet och lade sina kläder på dem, och de satte upp honom på det",
    un_text:"och han satt",
    impact:"och han satt"
   },
@@ -4118,7 +4118,7 @@ export const allVariants = [
    impact:"UN utelämnar: epidemier"
   },
   {category:"minor", verse:"Matt 25:6",
-   tr_text:"Men vid midnatts tid hördes ett rop: Se, brud gummen kommer!",
+   tr_text:"Men vid midnattstid hördes ett rop: Se, brud gummen kommer!",
    un_text:"UN utelämnar: kommer",
    impact:"UN utelämnar: kommer"
   },
@@ -4138,17 +4138,17 @@ export const allVariants = [
    impact:"UN utelämnar: fann de inget. **UN utelämnar: falska vittnen"
   },
   {category:"minor", verse:"Matt 27:2",
-   tr_text:"Och de lät binda honom och förde bort honom och överlämnade honom till landshövdingen Pontius Pila tus",
+   tr_text:"Och de lät binda honom och förde bort honom och överlämnade honom till landshövdingen Pontius Pilatus",
    un_text:"UN utelämnar: Pontius",
    impact:"UN utelämnar: Pontius"
   },
   {category:"minor", verse:"Matt 27:23",
-   tr_text:"Då sa landshöv dingen: Vad ont har han då gjort?",
+   tr_text:"Då sa landshövdingen: Vad ont har han då gjort?",
    un_text:"UN utelämnar: landshövdingen",
    impact:"UN utelämnar: landshövdingen"
   },
   {category:"minor", verse:"Matt 27:42",
-   tr_text:"Om han är Isra els Konung, så må han nu stiga ner från korset, så ska vi tro honom",
+   tr_text:"Om han är Israels Konung, så må han nu stiga ner från korset, så ska vi tro honom",
    un_text:"Han är Israels konung",
    impact:"Han är Israels konung"
   },
@@ -4173,7 +4173,7 @@ export const allVariants = [
    impact:"Belöningens art ändrad"
   },
   {category:"minor", verse:"Matt 8:25",
-   tr_text:"Då gick hans lär jungar fram och väckte honom",
+   tr_text:"Då gick hans lärjungar fram och väckte honom",
    un_text:"de",
    impact:"de"
   },
@@ -4188,7 +4188,7 @@ export const allVariants = [
    impact:"UN utelämnar: bland folket"
   },
   {category:"minor", verse:"Matt 9:36",
-   tr_text:"greps han av medlidande med dem, eftersom de var uppgivna och försking rade som får utan herde",
+   tr_text:"greps han av medlidande med dem, eftersom de var uppgivna och förskingrade som får utan herde",
    un_text:"rivna och slagna",
    impact:"rivna och slagna"
   },
@@ -4243,7 +4243,7 @@ export const allVariants = [
    impact:"stamfar"
   },
   {category:"minor", verse:"Rom 4:11",
-   tr_text:"För att han så skulle vara fader till alla oom skurna som tror, så att rättfär dighet skulle tillräknas också dem",
+   tr_text:"För att han så skulle vara fader till alla oomskurna som tror, så att rättfärdighet skulle tillräknas också dem",
    un_text:"UN : utelämnar: också",
    impact:"UN : utelämnar: också"
   },
@@ -4258,7 +4258,7 @@ export const allVariants = [
    impact:"UN utelämnar: genom tron"
   },
   {category:"minor", verse:"Rom 9:32",
-   tr_text:"de sökte den inte genom tro utan genom laggär ningar. För de stötte sig mot stötestenen,",
+   tr_text:"de sökte den inte genom tro utan genom laggärningar. För de stötte sig mot stötestenen,",
    un_text:"UN : genom gärningar. **UN utelämnar: För",
    impact:"UN : genom gärningar. **UN utelämnar: För"
   },
@@ -4303,7 +4303,7 @@ export const allVariants = [
    impact:"deras"
   },
   {category:"minor", verse:"Upp 12:12",
-   tr_text:"Ve över jordens och havets invånare, för djä vulen har kommit ner till er i stor vrede, eftersom han vet att hans tid är kort",
+   tr_text:"Ve över jordens och havets invånare, för djävulen har kommit ner till er i stor vrede, eftersom han vet att hans tid är kort",
    un_text:"ve dig, du jord och du hav",
    impact:"ve dig, du jord och du hav"
   },
@@ -4328,22 +4328,22 @@ export const allVariants = [
    impact:"omvänd ordning: tio horn och sju huvuden"
   },
   {category:"minor", verse:"Upp 13:10",
-   tr_text:"Den som dödar med svärd, måste dödas med svärd. Här är de heligas uthål lighet och tro",
+   tr_text:"Den som dödar med svärd, måste dödas med svärd. Här är de heligas uthållighet och tro",
    un_text:"om någon måste dödas med svärd, ska han dödas",
    impact:"om någon måste dödas med svärd, ska han dödas"
   },
   {category:"minor", verse:"Upp 13:17",
-   tr_text:"så att ingen ska kunna köpa eller sälja, utom den som har märket eller vild djurets namn eller dess namns tal",
+   tr_text:"så att ingen ska kunna köpa eller sälja, utom den som har märket eller vilddjurets namn eller dess namns tal",
    un_text:"UN utelämnar: eller",
    impact:"UN utelämnar: eller"
   },
   {category:"minor", verse:"Upp 13:3",
-   tr_text:"Och jag såg att ett av dess huvuden var liksom sårat till döds, men dess död liga sår blev läkt",
+   tr_text:"Och jag såg att ett av dess huvuden var liksom sårat till döds, men dess dödliga sår blev läkt",
    un_text:"UN utelämnar: Jag såg",
    impact:"UN utelämnar: Jag såg"
   },
   {category:"minor", verse:"Upp 13:4",
-   tr_text:"Och de tillbad draken som hade gett vild djuret makt",
+   tr_text:"Och de tillbad draken som hade gett vilddjuret makt",
    un_text:"därför att han",
    impact:"därför att han"
   },
@@ -4353,12 +4353,12 @@ export const allVariants = [
    impact:"UN tillägger: och folk"
   },
   {category:"minor", verse:"Upp 14:15",
-   tr_text:"Hugg till med din lie och skörda, för skördetiden har kommit för dig, för skör den på jorden har blivit mogen",
+   tr_text:"Hugg till med din lie och skörda, för skördetiden har kommit för dig, för skörden på jorden har blivit mogen",
    un_text:"UN utelämnar: för dig",
    impact:"UN utelämnar: för dig"
   },
   {category:"minor", verse:"Upp 14:8",
-   tr_text:"Fallet, fallet är den stora staden Babylon, därför att hon har gett alla folk att dricka av sin otukts vredes vin",
+   tr_text:"Fallet, fallet är den stora staden Babylon, därför att hon har gett alla folk att dricka av sin otuktsvredes vin",
    un_text:"UN utelämnar: staden. **UN: som",
    impact:"UN utelämnar: staden. **UN: som"
   },
@@ -4368,7 +4368,7 @@ export const allVariants = [
    impact:"UN tillägger: annan"
   },
   {category:"minor", verse:"Upp 15:5",
-   tr_text:"Och därefter såg jag, och se, templet i himlen, vittnesbördets tabernakel, öpp nades",
+   tr_text:"Och därefter såg jag, och se, templet i himlen, vittnesbördets tabernakel, öppnades",
    un_text:"UN utelämnar: se",
    impact:"UN utelämnar: se"
   },
@@ -4378,12 +4378,12 @@ export const allVariants = [
    impact:"UN utelämnar: ängeln"
   },
   {category:"minor", verse:"Upp 16:12",
-   tr_text:"Och den sjätte ängeln tömde sin skål över den stora f loden Eufrat och dess vatten torkade ut",
+   tr_text:"Och den sjätte ängeln tömde sin skål över den stora floden Eufrat och dess vatten torkade ut",
    un_text:"UN utelämnar: ängeln",
    impact:"UN utelämnar: ängeln"
   },
   {category:"minor", verse:"Upp 16:16",
-   tr_text:"Och han försam lade dem till den plats som på hebreiska heter Armageddon",
+   tr_text:"Och han församlade dem till den plats som på hebreiska heter Armageddon",
    un_text:"Harmagedon",
    impact:"Harmagedon"
   },
@@ -4408,7 +4408,7 @@ export const allVariants = [
    impact:"och"
   },
   {category:"minor", verse:"Upp 17:8",
-   tr_text:"när de ser vild djuret som har varit och inte är, och som ändå är",
+   tr_text:"när de ser vilddjuret som har varit och inte är, och som ändå är",
    un_text:"ska komma",
    impact:"ska komma"
   },
@@ -4438,12 +4438,12 @@ export const allVariants = [
    impact:"Därför skriv"
   },
   {category:"minor", verse:"Upp 1:20",
-   tr_text:"De sju stjärnorna är de sju f örsamlingar nas änglar, och de sju ljusstakarna som du såg är de sju försam lingarna",
+   tr_text:"De sju stjärnorna är de sju församlingarnas änglar, och de sju ljusstakarna som du såg är de sju församlingarna",
    un_text:"UN utelämnar: som du såg",
    impact:"UN utelämnar: som du såg"
   },
   {category:"minor", verse:"Upp 20:14",
-   tr_text:"Och döden och dödsriket kastades i den brin nande sjön. Detta är den andra döden",
+   tr_text:"Och döden och dödsriket kastades i den brinnande sjön. Detta är den andra döden",
    un_text:"UN tillägger: den brinnande sjön",
    impact:"UN tillägger: den brinnande sjön"
   },
@@ -4453,7 +4453,7 @@ export const allVariants = [
    impact:"UN utelämnar: till mig"
   },
   {category:"minor", verse:"Upp 22:13",
-   tr_text:"Jag är Alfa och O mega , beg y n nelse n och änden, den f örste och den siste",
+   tr_text:"Jag är Alfa och Omega, begynnelsen och änden, den förste och den siste",
    un_text:"UN har annan ordningsföljd",
    impact:"UN har annan ordningsföljd"
   },
@@ -4493,12 +4493,12 @@ export const allVariants = [
    impact:"UN utelämnar: och har arbetat"
   },
   {category:"minor", verse:"Upp 2:5",
-   tr_text:"Tänk därför på vari från du har fallit och omvänd dig och gör de första gärning arna, annars ska jag med hast komma över dig och flytta din",
+   tr_text:"Tänk därför på vari från du har fallit och omvänd dig och gör de första gärningarna, annars ska jag med hast komma över dig och flytta din",
    un_text:"UN utelämnar: med hast",
    impact:"UN utelämnar: med hast"
   },
   {category:"minor", verse:"Upp 2:9",
-   tr_text:"Jag vet om dina gär ningar och ditt lidande och din fattigdom, men du är rik",
+   tr_text:"Jag vet om dina gärningar och ditt lidande och din fattigdom, men du är rik",
    un_text:"UN utelämnar: gärningar och",
    impact:"UN utelämnar: gärningar och"
   },
@@ -4508,7 +4508,7 @@ export const allVariants = [
    impact:"UN utelämnar: Se"
   },
   {category:"minor", verse:"Upp 3:18",
-   tr_text:"och vita kläder att klä dig i, så att din skamliga nakenhet inte ska synas, och smörj dina ögon med ögon salva, så att du kan se",
+   tr_text:"och vita kläder att klä dig i, så att din skamliga nakenhet inte ska synas, och smörj dina ögon med ögonsalva, så att du kan se",
    un_text:"och salva att smörja",
    impact:"och salva att smörja"
   },
@@ -4533,12 +4533,12 @@ export const allVariants = [
    impact:"ingen kan stänga"
   },
   {category:"minor", verse:"Upp 3:8",
-   tr_text:"Jag vet om dina gär ningar. Se, jag har låtit en dörr stå öppen för dig och ingen kan stänga den",
+   tr_text:"Jag vet om dina gärningar. Se, jag har låtit en dörr stå öppen för dig och ingen kan stänga den",
    un_text:"som ingen kan stänga",
    impact:"som ingen kan stänga"
   },
   {category:"minor", verse:"Upp 4:6",
-   tr_text:"Och framför tronen var det ett glashav, likt kris tall",
+   tr_text:"Och framför tronen var det ett glashav, likt kristall",
    un_text:"UN tillägger: liksom",
    impact:"UN tillägger: liksom"
   },
@@ -4558,7 +4558,7 @@ export const allVariants = [
    impact:"deras"
   },
   {category:"minor", verse:"Upp 6:6",
-   tr_text:"Och jag hörde en röst mitt ibland de fyra varel serna säga: Ett mått vete för en denar, och tre mått korn",
+   tr_text:"Och jag hörde en röst mitt ibland de fyra varelserna säga: Ett mått vete för en denar, och tre mått korn",
    un_text:"UN tillägger: liksom",
    impact:"UN tillägger: liksom"
   },
@@ -4583,7 +4583,7 @@ export const allVariants = [
    impact:"i stjärten låg deras makt"
   },
   {category:"minor", verse:"Upp 9:18",
-   tr_text:"Av dessa tre döda des tredjed elen av människ orna",
+   tr_text:"Av dessa tre döda des tredjedelen av människorna",
    un_text:"UN tillägger: plågor",
    impact:"UN tillägger: plågor"
   },
@@ -4682,7 +4682,7 @@ export const allVariants = [
    impact:"Mindre emfatiskt och personligt"
   },
   {category:"john", verse:"Joh 14:30",
-   tr_text:"f ör de n n a världens furste kommer. Och i mig har han ingenting",
+   tr_text:"för denna världens furste kommer. Och i mig har han ingenting",
    un_text:"UN utelämnar: denna",
    impact:"UN utelämnar: denna"
   },
@@ -4902,7 +4902,7 @@ export const allVariants = [
    impact:"UN tillägger: ännu"
   },
   {category:"john", verse:"Joh 6:39",
-   tr_text:"O c h d e t t a ä r Faderns vilja, som har sänt mig,",
+   tr_text:"Och detta är Faderns vilja, som har sänt mig,",
    un_text:"hans",
    impact:"hans"
   },
@@ -5081,7 +5081,7 @@ export const allVariants = [
    impact:"han"
   },
   {category:"acts", verse:"Apg 11:28",
-   tr_text:"stor hungersnöd skulle komma över hela värl den, vilken också kom under kejsar Claudius tid",
+   tr_text:"stor hungersnöd skulle komma över hela världen, vilken också kom under kejsar Claudius tid",
    un_text:"UN utelämnar: kejsar",
    impact:"UN utelämnar: kejsar"
   },
@@ -5096,7 +5096,7 @@ export const allVariants = [
    impact:"han"
   },
   {category:"acts", verse:"Apg 13:26",
-   tr_text:"söner av Abra hams släkt och de bland er som fruktar Gud, till er har ordet om denna frälsning blivit sänt",
+   tr_text:"söner av Abrahams släkt och de bland er som fruktar Gud, till er har ordet om denna frälsning blivit sänt",
    un_text:"oss",
    impact:"oss"
   },
@@ -5141,7 +5141,7 @@ export const allVariants = [
    impact:"UN utelämnar: och sagt att ni ska låta omskära er och hålla lagen"
   },
   {category:"acts", verse:"Apg 15:33",
-   tr_text:"sände bröderna dem i frid tillbaka till apost larna",
+   tr_text:"sände bröderna dem i frid tillbaka till apostlarna",
    un_text:"till dem som hade sänt ut dem",
    impact:"till dem som hade sänt ut dem"
   },
@@ -5261,7 +5261,7 @@ export const allVariants = [
    impact:"Böneaspekt borttagen"
   },
   {category:"acts", verse:"Apg 1:15",
-   tr_text:"Och i de dagarna stod Petrus upp bland lärjung arna",
+   tr_text:"Och i de dagarna stod Petrus upp bland lärjungarna",
    un_text:"bröderna",
    impact:"bröderna"
   },
@@ -5321,7 +5321,7 @@ export const allVariants = [
    impact:"Annorlunda objekt"
   },
   {category:"acts", verse:"Apg 21:22",
-   tr_text:"Helt säkert ska mycket folk komma tillsam mans, för de kommer att få höra att du har kommit hit",
+   tr_text:"Helt säkert ska mycket folk komma tillsammans, för de kommer att få höra att du har kommit hit",
    un_text:"UN utelämnar: Helt säkert ska mycket folk komma tillsammans",
    impact:"UN utelämnar: Helt säkert ska mycket folk komma tillsammans"
   },
@@ -5361,7 +5361,7 @@ export const allVariants = [
    impact:"Mindre specifikt"
   },
   {category:"acts", verse:"Apg 23:15",
-   tr_text:"i morgon",
+   tr_text:"imorgon",
    un_text:"Utelämnar \"i morgon\"",
    impact:"Tid ospecificerad"
   },
@@ -5371,7 +5371,7 @@ export const allVariants = [
    impact:"Agent och hälsning borttagna"
   },
   {category:"acts", verse:"Apg 23:34",
-   tr_text:"Då landshöv dingen hade läst brevet,",
+   tr_text:"Då landshövdingen hade läst brevet,",
    un_text:"han",
    impact:"han"
   },
@@ -5411,7 +5411,7 @@ export const allVariants = [
    impact:"Motiv borttaget"
   },
   {category:"acts", verse:"Apg 24:6",
-   tr_text:"Han har också för sökt vanhelga templet. Vi grep honom och ville döma honom efter vår lag",
+   tr_text:"Han har också försökt vanhelga templet. Vi grep honom och ville döma honom efter vår lag",
    un_text:"UN utelämnar: ville döma honom efter vår lag",
    impact:"UN utelämnar: ville döma honom efter vår lag"
   },
@@ -5566,7 +5566,7 @@ export const allVariants = [
    impact:"förkunnat"
   },
   {category:"acts", verse:"Apg 3:25",
-   tr_text:"Ni är barn av pro feterna och av det förbund som Gud har gjort med våra fäder, när han sa till Abraham: I din säd ska alla släkten på jorden bli välsignade",
+   tr_text:"Ni är barn av profeterna och av det förbund som Gud har gjort med våra fäder, när han sa till Abraham: I din säd ska alla släkten på jorden bli välsignade",
    un_text:"era",
    impact:"era"
   },
@@ -5686,7 +5686,7 @@ export const allVariants = [
    impact:"UN utelämnar: omedelbart"
   },
   {category:"acts", verse:"Apg 9:19",
-   tr_text:"..Därefter var Saulus några dagar tillsam­mans med lärjungarna i Damas­kus,",
+   tr_text:"..Därefter var Saulus några dagar tillsammans med lärjungarna i Damas­kus,",
    un_text:"han.",
    impact:"Jesus ersatt med pronomen \"han\" i UN"
   },
@@ -5717,7 +5717,7 @@ export const allVariants = [
   },
   {category:"acts", verse:"Apg 9:6",
    tr_text:"Både skälvande och med förvåning sa han: Herre, vad vill du att jag ska göra? Då sa Herren till honom: Stå upp och gå in i staden, så ska det bli sagt till dig vad du måste göra.",
-   un_text:"utelämnar: Både skäl­vande och med förvåning sa han: Herre, vad vill du att jag ska göra? Då sa Herren till honom:",
+   un_text:"utelämnar: Både skälvande och med förvåning sa han: Herre, vad vill du att jag ska göra? Då sa Herren till honom:",
    impact:"UN utelämnar: Paulus reaktion och fråga"
   },
   {category:"acts", verse:"Apg 9:8",

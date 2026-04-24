@@ -22,6 +22,34 @@ function onSearchInput(e) {
   searchTimer = setTimeout(() => emit('update:search', e.target.value), 250)
 }
 
+// Keyword dropdown
+const keywordsOpen = ref(false)
+const keywordsEl   = ref(null)
+
+const KEYWORD_GROUPS = [
+  {
+    label: 'Typ av ändring',
+    words: ['utelämnar', 'tillägger', 'hela vers', 'ändrar', 'pronomen'],
+  },
+  {
+    label: 'Gudomliga namn',
+    words: ['Jesus', 'Kristus', 'Herren', 'Gud', 'Ande'],
+  },
+  {
+    label: 'Teologi',
+    words: ['blod', 'frälsa', 'synd', 'uppstå', 'bön', 'fasta', 'nåd', 'tro'],
+  },
+  {
+    label: 'Tema',
+    words: ['dopet', 'nattvard', 'botgöring', 'profet', 'apostel', 'församling'],
+  },
+]
+
+function selectKeyword(word) {
+  keywordsOpen.value = false
+  emit('update:search', props.search === word ? '' : word)
+}
+
 // Filter dropdown
 const dropdownOpen = ref(false)
 const dropdownEl   = ref(null)
@@ -40,10 +68,13 @@ function currentLabel() {
   return (parts[1] || cat.title).substring(0, 28)
 }
 
-// Close dropdown on outside click
+// Close both dropdowns on outside click
 function onDocClick(e) {
   if (dropdownOpen.value && dropdownEl.value && !dropdownEl.value.contains(e.target)) {
     dropdownOpen.value = false
+  }
+  if (keywordsOpen.value && keywordsEl.value && !keywordsEl.value.contains(e.target)) {
+    keywordsOpen.value = false
   }
 }
 onMounted(() => document.addEventListener('click', onDocClick, true))
@@ -55,8 +86,9 @@ function onKeydown(e) {
     e.preventDefault()
     document.querySelector('.search-box')?.focus()
   }
-  if (e.key === 'Escape' && dropdownOpen.value) {
+  if (e.key === 'Escape') {
     dropdownOpen.value = false
+    keywordsOpen.value = false
   }
 }
 onMounted(() => document.addEventListener('keydown', onKeydown))
@@ -85,6 +117,32 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
           :value="search"
           @input="onSearchInput"
         />
+
+        <div class="keywords-wrap" ref="keywordsEl">
+          <button
+            class="filter-btn keywords-btn"
+            :class="{ open: keywordsOpen }"
+            @click.stop="keywordsOpen = !keywordsOpen; dropdownOpen = false"
+          >
+            <span class="filter-btn-text">Sökord</span>
+            <span class="filter-chevron">▼</span>
+          </button>
+
+          <div v-if="keywordsOpen" class="filter-dropdown keywords-dropdown" @click.stop>
+            <template v-for="group in KEYWORD_GROUPS" :key="group.label">
+              <div class="kw-group-label">{{ group.label }}</div>
+              <div class="kw-chips">
+                <button
+                  v-for="word in group.words"
+                  :key="word"
+                  class="kw-chip"
+                  :class="{ active: search === word }"
+                  @click="selectKeyword(word)"
+                >{{ word }}</button>
+              </div>
+            </template>
+          </div>
+        </div>
 
         <div class="filter-wrap" ref="dropdownEl">
           <button
