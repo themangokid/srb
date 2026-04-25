@@ -29,19 +29,27 @@ const keywordsEl   = ref(null)
 const KEYWORD_GROUPS = [
   {
     label: 'Typ av ändring',
-    words: ['utelämnar', 'tillägger', 'hela vers', 'ändrar', 'pronomen'],
+    words: ['utelämnar', 'tillägger', 'hela vers', 'parentes', 'ändrar', 'pronomen'],
   },
   {
-    label: 'Gudomliga namn',
-    words: ['Jesus', 'Kristus', 'Herren', 'Gud', 'Ande'],
+    label: 'Borttagna nyckelversar',
+    words: ['Mark 16', 'Apg 8:37', '1 Joh 5:7', 'Joh 7:53', 'riket är ditt'],
   },
   {
-    label: 'Teologi',
-    words: ['blod', 'frälsa', 'synd', 'uppstå', 'bön', 'fasta', 'nåd', 'tro'],
+    label: 'Blodsförsoningen',
+    words: ['blod', 'förlossning', 'förlåtelse', 'renat'],
   },
   {
-    label: 'Tema',
-    words: ['dopet', 'nattvard', 'botgöring', 'profet', 'apostel', 'församling'],
+    label: 'Jesu identitet & gudom',
+    words: ['Guds Son', 'Kristus', 'Herren', 'Gud'],
+  },
+  {
+    label: 'Omvändelse & helgelse',
+    words: ['omvändelse', 'fasta', 'kors', 'bön och fasta'],
+  },
+  {
+    label: 'Maria & jungfrufödsel',
+    words: ['förstfödde', 'hustru', 'jungfru'],
   },
 ]
 
