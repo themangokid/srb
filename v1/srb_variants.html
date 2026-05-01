@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SRB · Textvarianter</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.21/vue.global.prod.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#f5f0e8;--bg2:#ede7d9;--bg3:#e4dccb;
+  --ink:#1e1a14;--ink2:#4a4236;--ink3:#7a6f60;
+  --gold:#8b6914;--gold2:#c49a2a;
+  --tr:#2a5c3f;--tr-light:#e8f2ec;
+  --na:#7a2020;--na-light:#f5e8e8;
+  --mix:#1a3a5c;--mix-light:#e8eef5;
+  --byz:#5c3a1a;--byz-light:#f5ede8;
+  --border:#cdc4b0;
+  --mono:'JetBrains Mono',monospace;
+  --serif:'EB Garamond',Georgia,serif;
+}
+html{font-size:16px;}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);min-height:100vh;}
+
+header{
+  background:var(--ink);padding:0.85rem 2rem;
+  display:flex;align-items:center;gap:1.25rem;
+  border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100;
+}
+.logo{font-size:1.4rem;font-weight:600;color:var(--gold2);letter-spacing:0.08em;white-space:nowrap;}
+.logo span{color:#fff;font-weight:400;}
+.search-wrap{flex:1;max-width:480px;position:relative;}
+.search-wrap input{
+  width:100%;background:#2a2620;border:1px solid #4a4236;color:#f5f0e8;
+  font-family:var(--serif);font-size:0.95rem;
+  padding:0.45rem 1rem 0.45rem 2.2rem;border-radius:4px;outline:none;transition:border-color 0.15s;
+}
+.search-wrap input::placeholder{color:#7a6f60;}
+.search-wrap input:focus{border-color:var(--gold2);}
+.search-icon{position:absolute;left:0.7rem;top:50%;transform:translateY(-50%);color:#7a6f60;font-size:0.85rem;pointer-events:none;}
+.filter-pills{display:flex;gap:0.35rem;flex-shrink:0;}
+.pill{padding:0.25rem 0.65rem;border-radius:999px;border:1px solid #555;font-family:var(--mono);font-size:0.68rem;cursor:pointer;transition:all 0.12s;background:transparent;color:#aaa;letter-spacing:0.04em;}
+.pill.active-all{background:var(--gold);border-color:var(--gold);color:#fff;}
+.pill.active-nt {background:var(--tr);  border-color:var(--tr);  color:#fff;}
+.pill.active-ot {background:var(--mix); border-color:var(--mix); color:#fff;}
+.pill.active-var{background:var(--na);  border-color:var(--na);  color:#fff;}
+.stats{font-family:var(--mono);font-size:0.7rem;color:#7a6f60;white-space:nowrap;}
+.srb-attr{font-family:var(--mono);font-size:0.58rem;color:#4a4236;white-space:nowrap;border-left:1px solid #4a4236;padding-left:0.75rem;}
+
+main{max-width:1100px;margin:0 auto;padding:1.25rem 2rem 4rem;}
+.empty{text-align:center;padding:4rem 2rem;color:var(--ink3);font-size:1.1rem;font-style:italic;}
+.empty strong{display:block;font-size:2rem;margin-bottom:0.5rem;font-style:normal;color:var(--border);}
+
+.verse-card{background:#fff;border:1px solid var(--border);border-radius:6px;margin-bottom:0.6rem;overflow:hidden;transition:box-shadow 0.15s;}
+.verse-card:hover{box-shadow:0 2px 10px rgba(0,0,0,0.07);}
+
+.card-header{display:flex;align-items:center;gap:0.65rem;padding:0.6rem 1rem;background:var(--bg2);border-bottom:1px solid var(--border);cursor:pointer;user-select:none;}
+.ref-badge{font-family:var(--mono);font-size:0.78rem;font-weight:500;color:var(--gold);min-width:88px;}
+.testament-tag{font-family:var(--mono);font-size:0.62rem;padding:0.12rem 0.45rem;border-radius:3px;letter-spacing:0.05em;}
+.tag-nt{background:var(--tr-light);color:var(--tr);}
+.tag-ot{background:var(--mix-light);color:var(--mix);}
+.variant-counts{display:flex;gap:0.35rem;flex:1;flex-wrap:wrap;}
+.vc-tag{font-family:var(--mono);font-size:0.62rem;padding:0.12rem 0.45rem;border-radius:3px;}
+.vc-tr {background:var(--tr-light); color:var(--tr);}
+.vc-na {background:var(--na-light); color:var(--na);}
+.vc-mix{background:var(--mix-light);color:var(--mix);}
+.vc-ot {background:var(--bg3);color:var(--ink2);}
+.vc-app{background:var(--byz-light);color:var(--byz);}
+.stepbible-link{font-family:var(--mono);font-size:0.62rem;color:var(--gold);text-decoration:none;padding:0.18rem 0.45rem;border:1px solid var(--gold);border-radius:3px;white-space:nowrap;transition:all 0.12s;}
+.stepbible-link:hover{background:var(--gold);color:#fff;}
+.expand-btn{margin-left:auto;color:var(--ink3);font-size:0.75rem;transition:transform 0.2s;flex-shrink:0;}
+.expand-btn.open{transform:rotate(180deg);}
+
+.srb-text{
+  padding:0.6rem 1rem;
+  font-family:var(--serif);font-size:1.05rem;color:var(--ink);
+  line-height:1.65;border-bottom:1px solid var(--bg3);
+  background:#fff;
+}
+.section{padding:0.75rem 1rem;border-bottom:1px solid var(--bg3);}
+.section:last-child{border-bottom:none;}
+.section-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:0.5rem;}
+.word-row{display:grid;grid-template-columns:2rem 1fr 1fr 1fr auto;gap:0.2rem 0.65rem;align-items:baseline;padding:0.25rem 0;border-bottom:1px solid #f0ebe0;font-size:0.88rem;}
+.word-row:last-child{border-bottom:none;}
+.word-num{font-family:var(--mono);font-size:0.62rem;color:var(--ink3);}
+.word-greek{font-size:1.02rem;}
+.word-translit{font-style:italic;color:var(--ink3);font-size:0.82rem;}
+.word-english{color:var(--ink2);font-size:0.85rem;}
+.wt-badge{font-family:var(--mono);font-size:0.58rem;padding:0.08rem 0.35rem;border-radius:2px;white-space:nowrap;}
+.wt-K{background:var(--tr-light);color:var(--tr);}
+.wt-k{background:#f0f5f2;color:#4a7a5c;}
+.wt-N{background:var(--na-light);color:var(--na);}
+.wt-n{background:#f5efef;color:#9a5050;}
+.wt-other{background:var(--mix-light);color:var(--mix);}
+.variant-note{grid-column:1/-1;font-size:0.8rem;color:var(--ink2);padding:0.35rem 0.5rem;background:var(--bg);border-left:2px solid var(--gold2);border-radius:0 3px 3px 0;margin-top:0.12rem;font-style:italic;line-height:1.5;}
+
+/* Apparatus */
+.apparatus{border-top:2px solid var(--bg3);}
+.apparatus-label{padding:0.55rem 1rem;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);background:var(--bg2);border-bottom:1px solid var(--bg3);}
+
+.reading-block{padding:0.7rem 1rem;border-bottom:1px solid var(--bg3);}
+.reading-block:last-child{border-bottom:none;}
+.reading-block.is-tr{background:#f0f8f3;}
+.reading-block.is-other{background:#fafafa;opacity:0.92;}
+
+.reading-top{display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.5rem;flex-wrap:wrap;}
+.reading-greek{font-family:var(--serif);font-size:1.05rem;color:var(--ink);flex:1;min-width:160px;line-height:1.4;}
+.reading-badge{font-family:var(--mono);font-size:0.6rem;padding:0.15rem 0.55rem;border-radius:999px;white-space:nowrap;align-self:flex-start;margin-top:3px;}
+.badge-tr  {background:var(--tr);  color:#fff;}
+.badge-byz {background:var(--byz); color:#fff;}
+.badge-na  {background:var(--bg3); color:var(--ink3); border:1px solid var(--border);}
+.badge-other{background:var(--bg3);color:var(--ink3); border:1px solid var(--border);}
+
+.witnesses{display:flex;flex-wrap:wrap;gap:0.28rem;}
+.chip{
+  display:inline-flex;align-items:center;
+  font-family:var(--mono);font-size:0.67rem;
+  padding:0.16rem 0.48rem;border-radius:3px;
+  border:1px solid transparent;white-space:nowrap;line-height:1.3;
+}
+.chip a{color:inherit;text-decoration:none;}
+.chip a:hover{text-decoration:underline;}
+.chip-papyrus  {background:#fdf3e8;border-color:#e8c880;color:#7a5010;}
+.chip-uncial   {background:#eef2fa;border-color:#a8b8d8;color:#2a3a6a;}
+.chip-minuscule{background:#f5f5f5;border-color:#c8c8c8;color:#404040;}
+.chip-family   {background:#f0eefa;border-color:#b8a8e0;color:#3a2a7a;}
+.chip-byzantine{background:var(--byz-light);border-color:#d8a870;color:var(--byz);}
+.chip-lectionary{background:#f5f0fa;border-color:#c0a8d8;color:#5a3a7a;}
+.chip-version  {background:#e8f5ee;border-color:#90c8a0;color:#1a5a2a;}
+.chip-father   {background:#faeaea;border-color:#d09090;color:#6a1a1a;}
+.chip-edition  {background:#fdf5dc;border-color:#d4b840;color:#5a4000;}
+
+/* OT */
+.ot-word-row{padding:0.4rem 0;border-bottom:1px solid #f0ebe0;font-size:0.88rem;}
+.ot-word-row:last-child{border-bottom:none;}
+.ot-top{display:grid;grid-template-columns:2rem auto 1fr auto auto;gap:0.2rem 0.65rem;align-items:baseline;}
+.ot-hebrew{font-size:1.1rem;direction:rtl;font-family:var(--serif);}
+.ot-translit{font-style:italic;color:var(--ink3);font-size:0.8rem;}
+.ot-english{color:var(--ink2);font-size:0.85rem;}
+.ot-type{font-family:var(--mono);font-size:0.58rem;padding:0.08rem 0.35rem;border-radius:2px;white-space:nowrap;}
+.sig-yes{background:var(--na-light);color:var(--na);}
+.sig-no {background:var(--bg3);color:var(--ink3);}
+.ot-meaning{margin-top:0.3rem;font-size:0.78rem;color:var(--ink2);padding:0.3rem 0.5rem;background:var(--bg);border-left:2px solid var(--gold2);font-style:italic;line-height:1.5;}
+
+.pagination{display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-top:1.25rem;font-family:var(--mono);font-size:0.78rem;}
+.pagination button{background:#fff;border:1px solid var(--border);color:var(--ink2);padding:0.28rem 0.7rem;border-radius:3px;cursor:pointer;transition:all 0.12s;}
+.pagination button:hover:not(:disabled){border-color:var(--gold);color:var(--gold);}
+.pagination button:disabled{opacity:0.35;cursor:default;}
+.pagination .page-info{color:var(--ink3);padding:0 0.5rem;}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <header>
+    <div class="logo">SRB <span>·</span> Varianter</div>
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input v-model="query" @input="onSearch" placeholder="Sök vers — Rom 8:1, Matt 5, 1 Joh 5:7…" autocomplete="off" spellcheck="false"/>
+    </div>
+    <div class="filter-pills">
+      <button class="pill" :class="{'active-all':filter==='all'}"  @click="setFilter('all')">Alla</button>
+      <button class="pill" :class="{'active-nt': filter==='NT'}"   @click="setFilter('NT')">NT</button>
+      <button class="pill" :class="{'active-ot': filter==='OT'}"   @click="setFilter('OT')">GT</button>
+      <button class="pill" :class="{'active-var':filter==='var'}"  @click="setFilter('var')">Varianter</button>
+    </div>
+    <div class="stats">{{ filteredCount.toLocaleString('sv') }} vers</div>
+    <div class="srb-attr">SRB © Svenska Reformationsbibelsällskapet</div>
+  </header>
+
+  <main>
+    <div v-if="loading"  class="empty"><strong>⟳</strong>Laddar data…</div>
+    <div v-else-if="pageItems.length===0" class="empty"><strong>∅</strong>Inga resultat för "{{ query }}"</div>
+
+    <template v-else>
+      <div v-for="item in pageItems" :key="item.ref" class="verse-card">
+
+        <div class="card-header" @click="toggle(item.ref)">
+          <span class="ref-badge">{{ formatRef(item.ref) }}</span>
+          <span class="testament-tag" :class="item.data.testament==='NT'?'tag-nt':'tag-ot'">
+            {{ item.data.testament==='NT' ? 'NT' : 'GT' }}
+          </span>
+
+          <!-- NT badges -->
+          <div class="variant-counts" v-if="item.data.testament==='NT'">
+            <span class="vc-tag vc-tr"  v-if="(item.data.tr_words||[]).length">{{ item.data.tr_words.length }} TR</span>
+            <span class="vc-tag vc-na"  v-if="(item.data.na_only_words||[]).length">{{ item.data.na_only_words.length }} ej TR</span>
+            <span class="vc-tag vc-mix" v-if="(item.data.mixed_words||[]).length">{{ item.data.mixed_words.length }} mix</span>
+            <span class="vc-tag vc-app" v-if="(item.data.apparatus||[]).length">{{ item.data.apparatus.length }} läsarter</span>
+          </div>
+          <!-- OT badges -->
+          <div class="variant-counts" v-else>
+            <span class="vc-tag vc-ot" v-if="(item.data.variant_words||[]).length">{{ item.data.variant_words.length }} var</span>
+          </div>
+
+          <a :href="item.data.stepbible_url" target="_blank" class="stepbible-link" @click.stop>STEPBible ↗</a>
+          <span class="expand-btn" :class="{open:expanded[item.ref]}">▾</span>
+        </div>
+
+        <div v-if="expanded[item.ref]">
+
+          <!-- SRB verse text -->
+          <div class="srb-text" v-if="item.data.srb_text">
+            {{ item.data.srb_text }}
+          </div>
+          <template v-if="item.data.testament==='NT'">
+
+            <div class="section" v-if="(item.data.tr_words||[]).length">
+              <div class="section-label">TR-stödd läsart — utelämnad i kritisk text</div>
+              <div v-for="w in item.data.tr_words" :key="w.word_num" class="word-row">
+                <span class="word-num">#{{ w.word_num }}</span>
+                <span class="word-greek">{{ w.greek }}</span>
+                <span class="word-translit">{{ w.transliteration }}</span>
+                <span class="word-english">{{ w.english }}</span>
+                <span class="wt-badge" :class="wtClass(w.word_type)">{{ w.word_type }}</span>
+                <div class="variant-note" v-if="w.variant_note&&w.variant_note.length>2" v-html="cleanNote(w.variant_note)"></div>
+              </div>
+            </div>
+
+            <div class="section" v-if="(item.data.na_only_words||[]).length">
+              <div class="section-label">Utelämnad i TR — endast i kritisk text</div>
+              <div v-for="w in item.data.na_only_words" :key="w.word_num" class="word-row">
+                <span class="word-num">#{{ w.word_num }}</span>
+                <span class="word-greek">{{ w.greek }}</span>
+                <span class="word-translit">{{ w.transliteration }}</span>
+                <span class="word-english">{{ w.english }}</span>
+                <span class="wt-badge wt-N">{{ w.word_type }}</span>
+                <div class="variant-note" v-if="w.variant_note&&w.variant_note.length>2" v-html="cleanNote(w.variant_note)"></div>
+              </div>
+            </div>
+
+            <div class="section" v-if="(item.data.mixed_words||[]).length">
+              <div class="section-label">Avvikande läsart från TR i kritisk text</div>
+              <div v-for="w in item.data.mixed_words" :key="w.word_num" class="word-row">
+                <span class="word-num">#{{ w.word_num }}</span>
+                <span class="word-greek">{{ w.greek }}</span>
+                <span class="word-translit">{{ w.transliteration }}</span>
+                <span class="word-english">{{ w.english }}</span>
+                <span class="wt-badge wt-other">{{ w.word_type }}</span>
+                <div class="variant-note" v-if="w.variant_note&&w.variant_note.length>2" v-html="cleanNote(w.variant_note)"></div>
+              </div>
+            </div>
+
+            <!-- ── Apparatus ── -->
+            <div class="apparatus" v-if="(item.data.apparatus||[]).length">
+              <div class="apparatus-label">Handskriftsstöd · Laparola apparatus (CC0)</div>
+
+              <div
+                v-for="(r, ri) in sortedReadings(item.data.apparatus)"
+                :key="ri"
+                class="reading-block"
+                :class="r.is_tr ? 'is-tr' : 'is-other'"
+              >
+                <div class="reading-top">
+                  <span class="reading-greek">{{ r.reading || '—' }}</span>
+                  <span v-if="r.is_tr && r.is_byz" class="reading-badge badge-tr">TR + Byz</span>
+                  <span v-else-if="r.is_tr"        class="reading-badge badge-tr">TR</span>
+                  <span v-else-if="r.is_byz"       class="reading-badge badge-byz">Byz</span>
+                  <span v-else                      class="reading-badge badge-na">Avviker från TR</span>
+                </div>
+
+                <div class="witnesses">
+                  <span
+                    v-for="(w, wi) in r.witnesses"
+                    :key="wi"
+                    class="chip"
+                    :class="'chip-'+w.type"
+                    :title="chipTitle(w)"
+                  >
+                    <a v-if="w.url" :href="w.url" target="_blank" @click.stop>{{ w.siglum }}</a>
+                    <span v-else>{{ w.siglum }}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </template>
+
+          <!-- ── OT ── -->
+          <template v-else>
+            <div class="section" v-if="(item.data.variant_words||[]).length">
+              <div class="section-label">Textvarianter</div>
+              <div v-for="w in item.data.variant_words" :key="w.word_num" class="ot-word-row">
+                <div class="ot-top">
+                  <span class="word-num">#{{ w.word_num }}</span>
+                  <span class="ot-hebrew">{{ w.hebrew }}</span>
+                  <span class="ot-translit">{{ w.transliteration }}</span>
+                  <span class="ot-english">{{ w.english }}</span>
+                  <span class="ot-type" :class="w.significant?'sig-yes':'sig-no'">{{ w.text_type }}</span>
+                </div>
+                <div class="ot-meaning" v-if="w.meaning_variant">{{ w.meaning_variant }}</div>
+              </div>
+            </div>
+          </template>
+
+        </div>
+      </div>
+
+      <div class="pagination" v-if="totalPages>1">
+        <button @click="page=1"          :disabled="page===1">«</button>
+        <button @click="page--"          :disabled="page===1">‹</button>
+        <span class="page-info">{{ page }} / {{ totalPages }}</span>
+        <button @click="page++"          :disabled="page===totalPages">›</button>
+        <button @click="page=totalPages" :disabled="page===totalPages">»</button>
+      </div>
+    </template>
+  </main>
+</div>
+
+<script>
+const { createApp, ref, computed, reactive, watch } = Vue;
+createApp({
+  setup() {
+    const allData  = ref({});
+    const loading  = ref(true);
+    const query    = ref('');
+    const filter   = ref('var');
+    const expanded = reactive({});
+    const page     = ref(1);
+    const PER_PAGE = 50;
+
+    fetch('bible_variants.json')
+      .then(r => r.json())
+      .then(d => { allData.value = d; loading.value = false; })
+      .catch(() => { loading.value = false; });
+
+    const BOOK_ALIASES = {
+      // ── OT Swedish ──────────────────────────────────────────────
+      '1mos':'Gen','2mos':'Exo','3mos':'Lev','4mos':'Num','5mos':'Deu',
+      'gen':'Gen','exo':'Exo','lev':'Lev','num':'Num','deu':'Deu',
+      'jos':'Jos','dom':'Jdg','jdg':'Jdg','rut':'Rut',
+      '1sam':'1Sa','2sam':'2Sa','1sa':'1Sa','2sa':'2Sa',
+      '1kung':'1Ki','2kung':'2Ki','1ki':'1Ki','2ki':'2Ki',
+      '1krön':'1Ch','2krön':'2Ch','1ch':'1Ch','2ch':'2Ch',
+      'esra':'Ezr','ezr':'Ezr','neh':'Neh','est':'Est',
+      'job':'Job',
+      'ps':'Psa','psa':'Psa','psalt':'Psa','psaltaren':'Psa',
+      'ords':'Pro','pro':'Pro',
+      'pred':'Ecc','ecc':'Ecc',
+      'hv':'Sng','högl':'Sng','sng':'Sng',
+      'jes':'Isa','isa':'Isa',
+      'jer':'Jer',
+      'klag':'Lam','lam':'Lam',
+      'hes':'Ezk','ezk':'Ezk',
+      'dan':'Dan',
+      'hos':'Hos','joel':'Jol','jol':'Jol','amos':'Amo','amo':'Amo',
+      'ob':'Oba','oba':'Oba','jon':'Jon','mik':'Mic','mic':'Mic',
+      'nah':'Nam','nam':'Nam','hab':'Hab',
+      'sef':'Zep','zep':'Zep',
+      'hag':'Hag',
+      'sak':'Zec','zec':'Zec',
+      'mal':'Mal',
+      // ── NT Swedish ──────────────────────────────────────────────
+      'matt':'Mat','mat':'Mat',
+      'mark':'Mrk','mrk':'Mrk',
+      'luk':'Luk',
+      'joh':'Jhn','jhn':'Jhn',          // Johannes evangelium
+      'apg':'Act','act':'Act',
+      'rom':'Rom',
+      '1kor':'1Co','2kor':'2Co','1co':'1Co','2co':'2Co',
+      'gal':'Gal',
+      'ef':'Eph','eph':'Eph',
+      'fil':'Php','php':'Php',
+      'kol':'Col','col':'Col',
+      '1tess':'1Th','2tess':'2Th','1th':'1Th','2th':'2Th',
+      '1tessalonikerbrevet':'1Th','2tessalonikerbrevet':'2Th',
+      '1tim':'1Ti','2tim':'2Ti','1ti':'1Ti','2ti':'2Ti',
+      'tit':'Tit',
+      'filem':'Phm','phm':'Phm',
+      'hebr':'Heb','heb':'Heb',
+      'jak':'Jas','jas':'Jas',
+      '1pet':'1Pe','2pet':'2Pe','1pe':'1Pe','2pe':'2Pe',
+      '1petr':'1Pe','2petr':'2Pe',
+      '1petrus':'1Pe','2petrus':'2Pe',
+      '1joh':'1Jn','2joh':'2Jn','3joh':'3Jn',
+      '1jn':'1Jn','2jn':'2Jn','3jn':'3Jn',
+      '1jhn':'1Jn','2jhn':'2Jn','3jhn':'3Jn',
+      '1johannes':'1Jn','2johannes':'2Jn','3johannes':'3Jn',
+      'jud':'Jud',
+      'upp':'Rev','rev':'Rev','uppenbarelseboken':'Rev',
+      // ── English ─────────────────────────────────────────────────
+      'genesis':'Gen','exodus':'Exo','leviticus':'Lev','numbers':'Num','deuteronomy':'Deu',
+      'joshua':'Jos','judges':'Jdg','ruth':'Rut',
+      '1samuel':'1Sa','2samuel':'2Sa','1kings':'1Ki','2kings':'2Ki',
+      '1chronicles':'1Ch','2chronicles':'2Ch','ezra':'Ezr','nehemiah':'Neh','esther':'Est',
+      'job':'Job','psalms':'Psa','psalm':'Psa','proverbs':'Pro','ecclesiastes':'Ecc',
+      'songofsolomon':'Sng','songs':'Sng','isaiah':'Isa','jeremiah':'Jer','lamentations':'Lam',
+      'ezekiel':'Ezk','daniel':'Dan','hosea':'Hos','joel':'Jol','amos':'Amo',
+      'obadiah':'Oba','jonah':'Jon','micah':'Mic','nahum':'Nam','habakkuk':'Hab',
+      'zephaniah':'Zep','haggai':'Hag','zechariah':'Zec','malachi':'Mal',
+      'matthew':'Mat','mark':'Mrk','luke':'Luk','john':'Jhn','acts':'Act',
+      'romans':'Rom','galatians':'Gal','ephesians':'Eph','philippians':'Php',
+      'colossians':'Col','philemon':'Phm','hebrews':'Heb','james':'Jas',
+      '1peter':'1Pe','2peter':'2Pe','1john':'1Jn','2john':'2Jn','3john':'3Jn',
+      'jude':'Jud','revelation':'Rev',
+      '1corinthians':'1Co','2corinthians':'2Co',
+      '1thessalonians':'1Th','2thessalonians':'2Th',
+      '1timothy':'1Ti','2timothy':'2Ti','titus':'Tit',
+    };
+
+    function toBookCode(n) {
+      return BOOK_ALIASES[n.toLowerCase().replace(/\s|\./g,'')] || n;
+    }
+    function normalizeQuery(q) {
+      q = q.trim();
+      if (!q) return '';
+      // Book + chapter + verse: "Rom 8:1", "1 Joh 5:7"
+      let m = q.match(/^(\d?\s?[A-Za-zÅåÄäÖö]+)\s+(\d+)[:.:](\d+)/);
+      if (m) return toBookCode(m[1]) + '.' + m[2] + '.' + m[3];
+      // Book + chapter: "Rom 8", "1 Joh 5"
+      m = q.match(/^(\d?\s?[A-Za-zÅåÄäÖö]+)\s+(\d+)$/);
+      if (m) return toBookCode(m[1]) + '.' + m[2];
+      // Book only: "Romans", "1 John", "Upp"
+      m = q.match(/^(\d?\s?[A-Za-zÅåÄäÖö]+)$/);
+      if (m) return toBookCode(m[1]);
+      return q;
+    }
+
+    const filtered = computed(() => {
+      const q = normalizeQuery(query.value).toLowerCase();
+      return Object.entries(allData.value).filter(([ref,v]) => {
+        if (filter.value==='NT'  && v.testament!=='NT') return false;
+        if (filter.value==='OT'  && v.testament!=='OT') return false;
+        if (filter.value==='var' && !v.has_variant)     return false;
+        return !q || ref.toLowerCase().includes(q);
+      }).map(([ref,data]) => ({ref,data}));
+    });
+
+    const filteredCount = computed(() => filtered.value.length);
+    const totalPages    = computed(() => Math.max(1,Math.ceil(filtered.value.length/PER_PAGE)));
+    const pageItems     = computed(() => filtered.value.slice((page.value-1)*PER_PAGE, page.value*PER_PAGE));
+
+    watch([query,filter], () => { page.value=1; });
+
+    function onSearch()     { page.value=1; }
+    function setFilter(f)   { filter.value=f; page.value=1; }
+    function toggle(ref)    { expanded[ref]=!expanded[ref]; }
+    function formatRef(ref) { return ref.replace(/^([^.]+)\.(\d+)\.(\d+)$/,'$1 $2:$3'); }
+    function cleanNote(n)   { return n.replace(/^\^\s*/,'').replace(/\s{2,}/g,' ').trim(); }
+
+    function wtClass(t) {
+      const c = t.charAt(0);
+      if (c==='K') return 'wt-K';
+      if (c==='k') return 'wt-k';
+      if (c==='N') return 'wt-N';
+      if (c==='n') return 'wt-n';
+      return 'wt-other';
+    }
+
+    const TYPE_SV = {
+      papyrus:'Papyrus', uncial:'Uncial', minuscule:'Minuskel',
+      family:'Handskriftsfamilj', byzantine:'Bysantinsk tradition',
+      lectionary:'Lektionarium', version:'Forntida version',
+      father:'Kyrkofader', edition:'Edition'
+    };
+    function chipTitle(w) {
+      const t = TYPE_SV[w.type]||w.type;
+      return w.url ? `${w.siglum} — ${t} · klicka för Wikipedia` : `${w.siglum} — ${t}`;
+    }
+
+    function sortedReadings(readings) {
+      if (!readings) return [];
+      return [...readings].sort((a, b) => {
+        // TR+Byz first, then TR only, then Byz only, then everything else
+        const score = r => r.is_tr && r.is_byz ? 0 : r.is_tr ? 1 : r.is_byz ? 2 : 3;
+        return score(a) - score(b);
+      });
+    }
+
+    return {
+      loading, query, filter, expanded, page,
+      filteredCount, totalPages, pageItems,
+      onSearch, setFilter, toggle, formatRef, cleanNote, wtClass, chipTitle, sortedReadings
+    };
+  }
+}).mount('#app');
+</script>
+</body>
+</html>
