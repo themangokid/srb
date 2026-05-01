@@ -96,13 +96,15 @@ main{max-width:1100px;margin:0 auto;padding:1.25rem 2rem 4rem;}
 .reading-block{padding:0.7rem 1rem;border-bottom:1px solid var(--bg3);}
 .reading-block:last-child{border-bottom:none;}
 .reading-block.is-tr{background:#f0f8f3;}
+.reading-block.is-other{background:#fafafa;opacity:0.92;}
 
 .reading-top{display:flex;align-items:flex-start;gap:0.6rem;margin-bottom:0.5rem;flex-wrap:wrap;}
 .reading-greek{font-family:var(--serif);font-size:1.05rem;color:var(--ink);flex:1;min-width:160px;line-height:1.4;}
 .reading-badge{font-family:var(--mono);font-size:0.6rem;padding:0.15rem 0.55rem;border-radius:999px;white-space:nowrap;align-self:flex-start;margin-top:3px;}
-.badge-tr {background:var(--tr);  color:#fff;}
-.badge-byz{background:var(--byz); color:#fff;}
-.badge-na {background:transparent;color:var(--na);border:1px solid var(--na);}
+.badge-tr  {background:var(--tr);  color:#fff;}
+.badge-byz {background:var(--byz); color:#fff;}
+.badge-na  {background:var(--bg3); color:var(--ink3); border:1px solid var(--border);}
+.badge-other{background:var(--bg3);color:var(--ink3); border:1px solid var(--border);}
 
 .witnesses{display:flex;flex-wrap:wrap;gap:0.28rem;}
 .chip{
@@ -176,7 +178,7 @@ main{max-width:1100px;margin:0 auto;padding:1.25rem 2rem 4rem;}
           <!-- NT badges -->
           <div class="variant-counts" v-if="item.data.testament==='NT'">
             <span class="vc-tag vc-tr"  v-if="(item.data.tr_words||[]).length">{{ item.data.tr_words.length }} TR</span>
-            <span class="vc-tag vc-na"  v-if="(item.data.na_only_words||[]).length">{{ item.data.na_only_words.length }} NA</span>
+            <span class="vc-tag vc-na"  v-if="(item.data.na_only_words||[]).length">{{ item.data.na_only_words.length }} ej TR</span>
             <span class="vc-tag vc-mix" v-if="(item.data.mixed_words||[]).length">{{ item.data.mixed_words.length }} mix</span>
             <span class="vc-tag vc-app" v-if="(item.data.apparatus||[]).length">{{ item.data.apparatus.length }} läsarter</span>
           </div>
@@ -195,7 +197,7 @@ main{max-width:1100px;margin:0 auto;padding:1.25rem 2rem 4rem;}
           <template v-if="item.data.testament==='NT'">
 
             <div class="section" v-if="(item.data.tr_words||[]).length">
-              <div class="section-label">TR / Byz — ej i kritisk text</div>
+              <div class="section-label">TR-stödd läsart — utelämnad i kritisk text</div>
               <div v-for="w in item.data.tr_words" :key="w.word_num" class="word-row">
                 <span class="word-num">#{{ w.word_num }}</span>
                 <span class="word-greek">{{ w.greek }}</span>
@@ -207,7 +209,7 @@ main{max-width:1100px;margin:0 auto;padding:1.25rem 2rem 4rem;}
             </div>
 
             <div class="section" v-if="(item.data.na_only_words||[]).length">
-              <div class="section-label">NA — ej i TR</div>
+              <div class="section-label">Utelämnad i TR — endast i kritisk text</div>
               <div v-for="w in item.data.na_only_words" :key="w.word_num" class="word-row">
                 <span class="word-num">#{{ w.word_num }}</span>
                 <span class="word-greek">{{ w.greek }}</span>
@@ -219,7 +221,7 @@ main{max-width:1100px;margin:0 auto;padding:1.25rem 2rem 4rem;}
             </div>
 
             <div class="section" v-if="(item.data.mixed_words||[]).length">
-              <div class="section-label">Olika läsart — TR vs NA</div>
+              <div class="section-label">Avvikande läsart från TR i kritisk text</div>
               <div v-for="w in item.data.mixed_words" :key="w.word_num" class="word-row">
                 <span class="word-num">#{{ w.word_num }}</span>
                 <span class="word-greek">{{ w.greek }}</span>
@@ -235,17 +237,17 @@ main{max-width:1100px;margin:0 auto;padding:1.25rem 2rem 4rem;}
               <div class="apparatus-label">Handskriftsstöd · Laparola apparatus (CC0)</div>
 
               <div
-                v-for="(r, ri) in item.data.apparatus"
+                v-for="(r, ri) in sortedReadings(item.data.apparatus)"
                 :key="ri"
                 class="reading-block"
-                :class="{'is-tr': r.is_tr}"
+                :class="r.is_tr ? 'is-tr' : 'is-other'"
               >
                 <div class="reading-top">
                   <span class="reading-greek">{{ r.reading || '—' }}</span>
                   <span v-if="r.is_tr && r.is_byz" class="reading-badge badge-tr">TR + Byz</span>
                   <span v-else-if="r.is_tr"        class="reading-badge badge-tr">TR</span>
                   <span v-else-if="r.is_byz"       class="reading-badge badge-byz">Byz</span>
-                  <span v-else                      class="reading-badge badge-na">NA / annan</span>
+                  <span v-else                      class="reading-badge badge-na">Avviker från TR</span>
                 </div>
 
                 <div class="witnesses">
@@ -395,10 +397,19 @@ createApp({
       return w.url ? `${w.siglum} — ${t} · klicka för Wikipedia` : `${w.siglum} — ${t}`;
     }
 
+    function sortedReadings(readings) {
+      if (!readings) return [];
+      return [...readings].sort((a, b) => {
+        // TR+Byz first, then TR only, then Byz only, then everything else
+        const score = r => r.is_tr && r.is_byz ? 0 : r.is_tr ? 1 : r.is_byz ? 2 : 3;
+        return score(a) - score(b);
+      });
+    }
+
     return {
       loading, query, filter, expanded, page,
       filteredCount, totalPages, pageItems,
-      onSearch, setFilter, toggle, formatRef, cleanNote, wtClass, chipTitle
+      onSearch, setFilter, toggle, formatRef, cleanNote, wtClass, chipTitle, sortedReadings
     };
   }
 }).mount('#app');
