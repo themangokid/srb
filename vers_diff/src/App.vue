@@ -17,6 +17,19 @@ import ApparatusView from './components/ApparatusView.vue'
 const { settings, toggle, resetSettings, datasetId, setDataset } = useSettings()
 const { visible: introBannerVisible, dismiss: dismissIntro, reEnable: reEnableIntro } = useIntro()
 
+// ── Routing ───────────────────────────────────────────────────────
+// Simple hash-based routing: #/ = main, #/apparatus = apparatus view
+const currentView = ref(window.location.hash === '#/apparatus' ? 'apparatus' : 'main')
+
+function navigateTo(view) {
+  currentView.value = view
+  window.location.hash = view === 'apparatus' ? '#/apparatus' : '#/'
+}
+
+window.addEventListener('hashchange', () => {
+  currentView.value = window.location.hash === '#/apparatus' ? 'apparatus' : 'main'
+})
+
 const activeVariants = computed(() => {
   if (datasetId.value === 'full')     return variantsFull
   if (datasetId.value === 'standard') return variantsStandard
@@ -28,23 +41,17 @@ const searchTerm        = ref('')
 const currentFilter     = ref('all')
 const witnessColVisible = ref(false)
 const settingsPanelOpen = ref(false)
-const apparatusOpen     = ref(false)
 
-// Apply witness-column body class
 watch(witnessColVisible, val => {
   document.body.classList.toggle('witnesses-hidden', !val)
 }, { immediate: true })
 
-// Normalize a string: NFC + lower-case + strip soft-hyphens
 function norm(s) {
   return (s ?? '').normalize('NFC').toLowerCase().replace(/\u00ad/g, '')
 }
 
-// Filtered variants (reactive computed — no manual re-renders needed)
 const filteredVariants = computed(() => {
   const term = norm(searchTerm.value.trim())
-  // When searching, always search the full dataset so results aren't silently excluded
-  // by the active category filter. Category is still visible via section headers.
   const base = (term || currentFilter.value === 'all')
     ? activeVariants.value
     : activeVariants.value.filter(v => v.category === currentFilter.value)
@@ -57,7 +64,6 @@ const filteredVariants = computed(() => {
   )
 })
 
-// Grouped by category (preserves CATEGORIES key order)
 const groupedVariants = computed(() => {
   const result = {}
   for (const key of Object.keys(CATEGORIES)) {
@@ -68,7 +74,6 @@ const groupedVariants = computed(() => {
 
 const hasResults = computed(() => filteredVariants.value.length > 0)
 
-// URL sync
 watch([searchTerm, currentFilter, witnessColVisible], () => {
   pushUrlState({
     category:  currentFilter.value,
@@ -107,46 +112,51 @@ onMounted(() => {
 </script>
 
 <template>
+  <!-- Shared header — always visible -->
   <AppHeader
     v-model:search="searchTerm"
     v-model:filter="currentFilter"
+    :show-nav="true"
+    :current-view="currentView"
     @open-settings="settingsPanelOpen = true"
+    @navigate="navigateTo"
   />
 
-  <WitnessLegend :visible="witnessColVisible" />
-
-  <main class="main-content">
-    <Transition name="info-fade">
-      <InfoBanner v-if="introBannerVisible" @dismiss="dismissIntro" />
-    </Transition>
-
-    <div v-if="!hasResults" class="no-results">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      Inga resultat hittades för "<strong>{{ searchTerm }}</strong>"
-    </div>
-
-    <template v-else>
-      <CategorySection
-        v-for="key in Object.keys(CATEGORIES)"
-        :key="key"
-        :category-key="key"
-        :category-data="CATEGORIES[key]"
-        :variants="groupedVariants[key]"
-        :witness-visible="witnessColVisible"
-      />
-    </template>
-
-  </main>
-
-  <!-- Apparatus overlay -->
-  <Teleport to="body">
-    <Transition name="av-slide">
-      <div v-if="apparatusOpen" class="apparatus-overlay">
-        <ApparatusView @close="apparatusOpen = false" />
+  <!-- Main view -->
+  <template v-if="currentView === 'main'">
+    <WitnessLegend :visible="witnessColVisible" />
+    <main class="main-content">
+      <Transition name="info-fade">
+        <InfoBanner v-if="introBannerVisible" @dismiss="dismissIntro" />
+      </Transition>
+      <div v-if="!hasResults" class="no-results">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        Inga resultat hittades för "<strong>{{ searchTerm }}</strong>"
       </div>
-    </Transition>
-  </Teleport>
+      <template v-else>
+        <CategorySection
+          v-for="key in Object.keys(CATEGORIES)"
+          :key="key"
+          :category-key="key"
+          :category-data="CATEGORIES[key]"
+          :variants="groupedVariants[key]"
+          :witness-visible="witnessColVisible"
+        />
+      </template>
+    </main>
+  </template>
 
+  <!-- Apparatus view -->
+  <template v-else-if="currentView === 'apparatus'">
+    <ApparatusView
+      :settings="settings"
+      :witness-col-visible="witnessColVisible"
+      @open-settings="settingsPanelOpen = true"
+      @navigate="navigateTo"
+    />
+  </template>
+
+  <!-- Settings panel — shared between both views -->
   <SettingsPanel
     v-model:open="settingsPanelOpen"
     :settings="settings"
@@ -157,7 +167,6 @@ onMounted(() => {
     @toggle-witness="witnessColVisible = !witnessColVisible"
     @set-dataset="setDataset"
     @reset-intro="reEnableIntro"
-    @open-apparatus="apparatusOpen = true"
+    @open-apparatus="navigateTo('apparatus')"
   />
-
 </template>

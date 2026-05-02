@@ -3,11 +3,13 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { CATEGORIES, HOME_URL } from '../constants/index.js'
 
 const props = defineProps({
-  search: { type: String, default: '' },
-  filter: { type: String, default: 'all' },
+  search:      { type: String,  default: '' },
+  filter:      { type: String,  default: 'all' },
+  showNav:     { type: Boolean, default: false },
+  currentView: { type: String,  default: 'main' },
 })
 
-const emit = defineEmits(['update:search', 'update:filter', 'openSettings'])
+const emit = defineEmits(['update:search', 'update:filter', 'openSettings', 'navigate'])
 
 // Scroll-compact header
 const compact = ref(false)
@@ -184,6 +186,16 @@ onUnmounted(() => document.removeEventListener('keydown', onKeydown))
         </div>
 
       </div>
+
+      <button
+        v-if="showNav"
+        class="apparatus-nav-btn"
+        :class="{ 'apparatus-nav-active': currentView === 'apparatus' }"
+        :title="currentView === 'apparatus' ? 'Tillbaka till tabellen' : 'Öppna handskriftsapparaten'"
+        @click="emit('navigate', currentView === 'apparatus' ? 'main' : 'apparatus')"
+      >
+        {{ currentView === 'apparatus' ? '← Tabellen' : '📜 Handskrifter' }}
+      </button>
 
       <button
         class="settings-btn"

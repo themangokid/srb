@@ -1313,3 +1313,22 @@ a:hover { color: var(--accent-light); text-decoration: underline; }
   transform: translateX(100%);
   opacity: 0;
 }
+
+/* ── Apparatus nav button in AppHeader ── */
+.apparatus-nav-btn {
+  padding: .3rem .75rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--accent);
+  font-family: var(--font-ui);
+  font-size: .78rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition);
+}
+.apparatus-nav-btn:hover,
+.apparatus-nav-active {
+  background: var(--accent);
+  color: #fff;
+}
