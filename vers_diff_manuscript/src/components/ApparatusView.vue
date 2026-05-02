@@ -17,7 +17,7 @@ const loadError = ref('')
 
 onMounted(async () => {
   try {
-    const resp = await fetch('/apparatus_full.json')
+    const resp = await fetch(import.meta.env.BASE_URL + 'apparatus_full.json')
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
     const total  = parseInt(resp.headers.get('content-length') || '0')
     const reader = resp.body.getReader()
