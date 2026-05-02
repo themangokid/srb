@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Textvarianter">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#8b6914">
+  <link rel="icon" type="image/png" href="../favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg" />
+  <link rel="shortcut icon" href="../favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <title>Grundtextskillnader</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+
+<script>
+  var SUPA_URL = 'https://lpxrhpaauklyhwjrmfhe.supabase.co/rest/v1/visits_v2';
+  var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxweHJocGFhdWtseWh3anJtZmhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MjkzMjAsImV4cCI6MjA5MjAwNTMyMH0.OhSyj2El2RsHkBddG8EUtqCOrTQUB-99XRrI1XWrync';
+
+  var visitor_id = localStorage.getItem('vid') || crypto.randomUUID();
+  localStorage.setItem('vid', visitor_id);
+
+  var session_id = sessionStorage.getItem('sid') || crypto.randomUUID();
+  sessionStorage.setItem('sid', session_id);
+
+  var startTime = Date.now();
+
+  var data = {
+    visitor_id: visitor_id,
+    session_id: session_id,
+    page: location.pathname,
+    referrer: document.referrer,
+    screen_width: screen.width,
+    screen_height: screen.height,
+    window_width: window.innerWidth,
+    window_height: window.innerHeight,
+    user_agent: navigator.userAgent,
+    language: navigator.language,
+    platform: navigator.platform,
+    is_online: navigator.onLine,
+    pixel_ratio: window.devicePixelRatio,
+    connection_type: navigator.connection ? navigator.connection.effectiveType : null,
+    connection_speed: navigator.connection ? navigator.connection.downlink : null,
+    seconds_spent: 0
+  };
+
+  fetch(SUPA_URL, {
+    method: 'POST',
+    headers: {
+      'apikey': SUPA_KEY,
+      'Authorization': 'Bearer ' + SUPA_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify(data)
+  });
+
+  window.addEventListener('beforeunload', function() {
+    data.seconds_spent = Math.round((Date.now() - startTime) / 1000);
+    fetch(SUPA_URL, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPA_KEY,
+        'Authorization': 'Bearer ' + SUPA_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(data)
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+  <script type="module" crossorigin src="./assets/index-CXUlpkca.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DPooVF16.css">
+</head>
+<body>
+  <div id="app"></div>
+</body>
+</html>
