@@ -282,8 +282,13 @@ const TYPE_LABEL_SV = { pap:'Papyrus',cod:'Uncial/Kodex',min:'Minuskel',byz:'Bys
           <p class="av-pop-note">{{ popover.meta.x }}</p>
         </div>
         <div class="av-pop-body" v-else><p class="av-pop-note">{{ popover.siglum }}</p></div>
-        <div class="av-pop-footer" v-if="popover.url">
-          <a :href="popover.url" target="_blank" rel="noopener" class="av-pop-link">Läs mer på textus-receptus.com ↗</a>
+        <div class="av-pop-footer" v-if="popover.meta?.w || popover.url">
+          <a v-if="popover.meta?.w" :href="popover.meta.w" target="_blank" rel="noopener" class="av-pop-link av-pop-wiki">
+            📖 Wikipedia ↗
+          </a>
+          <a v-if="popover.url && popover.url !== popover.meta?.w" :href="popover.url" target="_blank" rel="noopener" class="av-pop-link">
+            textus-receptus.com ↗
+          </a>
         </div>
       </div>
     </Teleport>
@@ -432,9 +437,10 @@ details[open] .av-details-summary::before { transform: rotate(90deg); }
 .av-pop-key { color: var(--text-light); white-space: nowrap; }
 .av-pop-val { color: var(--text); }
 .av-pop-note { font-size: .76rem; color: var(--text-muted); font-style: italic; line-height: 1.5; margin: 0; }
-.av-pop-footer { padding: .35rem .7rem .55rem; border-top: 1px solid var(--border-light); }
-.av-pop-link { font-size: .73rem; color: var(--accent); text-decoration: none; }
-.av-pop-link:hover { text-decoration: underline; }
+.av-pop-footer { padding: .35rem .7rem .55rem; border-top: 1px solid var(--border-light); display: flex; gap: .5rem; flex-wrap: wrap; }
+.av-pop-link { font-size: .73rem; color: var(--accent); text-decoration: none; padding: .2rem .5rem; border: 1px solid var(--accent); border-radius: var(--radius-sm); transition: all var(--transition); }
+.av-pop-link:hover { background: var(--accent); color: #fff; }
+.av-pop-wiki { font-weight: 500; }
 
 /* Footer */
 .av-footer { text-align: center; font-family: var(--font-ui); font-size: .66rem; color: var(--text-light); padding: .85rem 1rem; border-top: 1px solid var(--border-light); max-width: 1100px; margin: 0 auto; }
