@@ -100,7 +100,7 @@ export function generateBibleLink(verse) {
   const [, book, chapter, startVerse] = match
   const bookCode = BOOK_MAP[book]
   if (!bookCode) return null
-  return `https://www.bible.com/bible/4709/${bookCode}.${chapter}.${startVerse}`
+  return `https://www.bible.com/bible/4709/${bookCode.toUpperCase()}.${chapter}.${startVerse}.SRB26`
 }
 
 export function generateSwedishCompareLink(verse) {
@@ -109,7 +109,8 @@ export function generateSwedishCompareLink(verse) {
   const [, book, chapter, startVerse] = match
   const bookCode = BOOK_MAP[book]
   if (!bookCode) return null
-  return `https://www.bible.com/sv/bible/compare/${bookCode.toUpperCase()}.${chapter}.${startVerse}`
+  return `https://www.bible.com/sv/bible/compare/${bookCode.toUpperCase()}.${chapter}.${startVerse}.SRB26`
+
 }
 
 export function isRedundantImpact(impact, un_text) {
@@ -118,3 +119,4 @@ export function isRedundantImpact(impact, un_text) {
   const a = n(impact), b = n(un_text)
   return a === b || (a.length > 5 && b.includes(a)) || (b.length > 5 && a.includes(b))
 }
+
