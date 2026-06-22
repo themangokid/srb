@@ -16,7 +16,7 @@ const DATASETS = [
   { id: 'full',     title: 'Utökad lista',        count: '~480 varianter' },
 ]
 
-const PDF_URL = '/SRBgrundtextskillnader.pdf'
+const PDF_URL = './SRBgrundtextskillnader.pdf'
 
 const groups = [
   { title: 'Utseende',  ids: ['dark', 'sepia', 'large-font', 'compact-rows'] },
